@@ -1,0 +1,86 @@
+@import '../../../styles/settings.scss';
+
+.header {
+  background-color: rgb(28, 28, 28);
+  &__top {
+    display: flex;
+    position: relative;
+    padding: 0 10px;
+  }
+  &__bottom {
+    display: flex;
+    padding: 0 15px;
+    border-top: 1px solid #363636;
+    justify-content: space-between;
+    position: relative;
+  }
+  &__bottom__icon {
+    display: flex;
+    flex-direction: row;
+  }
+  &__search {
+    z-index: 100;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    width: 90%;
+    .input {
+      font-size: 12px;
+      padding: 10px;
+      width: 100%;
+    }
+    .icon {
+      position: absolute;
+      bottom: 3px;
+      right: 0;
+      transform: translateY(50%);
+    }
+  }
+  &__account {
+    visibility: hidden;
+    z-index: 100;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(-15%, 130%);
+    background-color: white;
+    padding: 15px;
+    width: 150px;
+    opacity: 0;
+    transition: 0.3s linear all;
+    .list {
+      list-style-type: none;
+    }
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    .item {
+      padding: 5px;
+    }
+    &--active {
+      visibility: visible;
+      opacity: 1;
+      transform: translate(-15%, 100%);
+    }
+  }
+}
+.icon {
+  margin: 15px 8px;
+  position: relative;
+  color: white;
+  a {
+    color: white;
+  }
+  &__last {
+    margin-right: 15px;
+  }
+  &__bottom {
+    margin: 5px 10px;
+  }
+  &:hover {
+    color: $color-text;
+  }
+}
+

@@ -1,0 +1,12 @@
+.textArea{
+  &__label{
+    text-transform: capitalize;
+    color:black;
+    font-weight: 300;
+  }
+  &__block {
+    width:100%;
+    margin:5px 0;
+    padding:10px;
+  }
+}

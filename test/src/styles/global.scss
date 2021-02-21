@@ -1,0 +1,16 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color:#828282;
+  background-color: #f2f2f2;
+  font-family:'Poppins', sans-serif;
+  .page{
+    min-height: 100vh;
+  }
+}

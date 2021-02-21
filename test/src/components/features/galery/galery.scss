@@ -1,0 +1,54 @@
+@import "../../../styles/settings.scss";
+
+.galery {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  &__foto {
+    position: relative;
+    min-width: 280px;
+    height: 120px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin:2px 0;
+  }
+  &__bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: 0.4s linear all;
+    &:hover {
+      background-color: rgba($color: #000000, $alpha: 0.5);
+      .galery__text {
+        opacity: 1;
+      }
+      .galery__text::after {
+        width: 50%;
+      }
+    }
+  }
+  &__text {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    transform: translateY(-50%);
+    padding: 10px 10px;
+    line-height: 1.5;
+    color: white;
+    opacity: 0;
+    transition: 0.4s linear all;
+    &:after {
+      content: "";
+      left: 0px;
+      bottom: -5px;
+      height: 1px;
+      width: 0;
+      position: absolute;
+      background-color: $color-darkGray;
+      transition: 0.4s linear all;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.readMore {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+    margin: 5px 0;
+    color: #e09654;
+    cursor: pointer;
+  }
+  &__show {
+    display: block;
+  }
+  &__hide {
+    display: none;
+  }
+}

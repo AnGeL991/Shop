@@ -1,0 +1,10 @@
+.order{
+  padding:10px;
+  &__title {
+    text-align: center;
+  }
+  &__basketBox {
+    text-align: right;
+    margin:0 20px 20px;
+  }
+}

@@ -1,0 +1,25 @@
+@import '../../../styles/settings.scss';
+
+.contactForm {
+  padding:0 10px;
+  &__header{
+    padding:10px;
+  }
+  &__title{
+    text-align: left;
+    font-weight: 500;
+    color:black;
+    padding:15px 0px;
+    margin:0 0px;
+    border-bottom:1px solid $border-gray;
+  }
+  &__description {
+    margin:10px 0;
+    font-weight: 500;
+    color:black;
+    line-height: 1.6;
+  }
+  &__fieldset{
+    border:none;
+  }
+}
