@@ -21,7 +21,7 @@ export const CreateAccount: FC = () => {
             You can easily save your selected products for later
           </li>
         </ul>
-        <div className='login__buttonBox'>
+        <div className="login__buttonBox">
           <Button>
             <Link className="login__linkButton" to="/registration">
               Create Account

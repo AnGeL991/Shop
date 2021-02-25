@@ -1,35 +1,19 @@
-import { ReadMore } from 'components/common';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { ImBin } from 'react-icons/im';
-// import { useDispatch } from 'react-redux';
-// import {
-//   updateOrderAmount,
-//   deleteOrder,
-// } from '../../../../_actions/orderAction';
+import { ReadMore } from 'components/common';
+import { useChangeAmountLogic } from '_hooks';
 
 type Props = {
-  id: number | string;
-  image: string;
   title: string;
-  price: string;
-  description?: string;
-  amount?: number;
+  image: string;
+  price: number;
+  time?: string;
+  amount: number;
+  _id: string;
 };
 
-export const Item: FC<Props> = ({
-  id,
-  image,
-  title,
-  description,
-  price,
-  amount = 1,
-}) => {
-
-  const [testAmount, setAmount] = useState(1);
-
-  const handleAdd = () => setAmount(prev => prev + 1)
-  const handleRemove = () => setAmount(prev => prev - 1)
-
+export const Item: FC<Props> = ({ _id, image, title, price, amount, time }) => {
+  const { increment, decrement, removeProduct } = useChangeAmountLogic(_id);
 
   return (
     <div className="eachOrder__wrapper">
@@ -38,38 +22,46 @@ export const Item: FC<Props> = ({
       </div>
       <div className="eachOrder__productInfo">
         <h4 className="eachOrder__title">{title}</h4>
-      <ReadMore title='Wiecej Szegółów' className='basketRead' style={{width:'100%'}}>
-        kolory
-      </ReadMore>
+        <ReadMore
+          title="Wiecej Szegółów"
+          className="basketRead"
+          style={{ width: '100%' }}
+        >
+          <p className="basketRead__description">{time}</p>
+        </ReadMore>
       </div>
       <div className="eachOrder__priceBox">
         <p className="eachOrder__eachPrice">
-          Cena jedn.: 0 <span>0 zł</span>
+          Price: {amount} x <span>{price} $</span>
         </p>
         <div className="eachOrder__amountBox">
           <button
             name="decrement"
             className="basketProduct__btn"
-            disabled={testAmount === 1 ? true : false}
-            onClick={handleRemove}
+            disabled={amount === 1 ? true : false}
+            onClick={decrement}
           >
             -
           </button>
           <input
             type="text"
-            value={testAmount}
+            value={amount}
             className="basketProduct__amountInput"
-            onChange={() => console.log(testAmount)}
+            onChange={() => console.log(amount)}
           />
-          <button name="increment" className="basketProduct__btn" onClick={handleAdd}>
+          <button
+            name="increment"
+            className="basketProduct__btn"
+            onClick={increment}
+          >
             +
           </button>
-          <button className="basketProduct__btn">
+          <button className="basketProduct__btn" onClick={removeProduct}>
             <ImBin size="10" />
           </button>
         </div>
         <p className="eachOrder__totalPrice">
-          Wartość: <span>0 zł</span>
+          Total pay: <span>{amount * price} $</span>
         </p>
       </div>
     </div>

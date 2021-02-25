@@ -1,13 +1,13 @@
-import {FunctionComponent} from 'react';
+import { FunctionComponent } from 'react';
 import './circle.scss';
 
-type CircleProps={
-  amount:Number
+type CircleProps = {
+  amount: Number
 }
-export const Circle:FunctionComponent<CircleProps> =({amount})=>{
+export const Circle: FunctionComponent<CircleProps> = ({ amount }) => {
 
-  return(
-  <div className="circle">
-    {amount}
-  </div>)
+  return (
+    <div className="circle">
+      {amount}
+    </div>)
 }

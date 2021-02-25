@@ -1,15 +1,20 @@
 import { FC, MouseEventHandler, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
+import { HiPlus, HiMinus } from 'react-icons/hi';
 
 type Props = {
   name: string;
   path: string;
   subLink?: Array<{ path: string; name: string }>;
-  className?:string,
+  className?: string;
 };
 
-export const EachLink: FC<Props> = ({ name, path, subLink,className = 'nav' }) => {
+export const EachLink: FC<Props> = ({
+  name,
+  path,
+  subLink,
+  className = 'nav',
+}) => {
   const [open, setOpen] = useState(false);
 
   const handleToggle: MouseEventHandler = () => {
@@ -17,14 +22,14 @@ export const EachLink: FC<Props> = ({ name, path, subLink,className = 'nav' }) =
   };
 
   const icon = open ? (
-    <AiOutlineMinus onClick={handleToggle} />
+    <HiMinus onClick={handleToggle} className="nav__icon" />
   ) : (
-    <AiOutlinePlus onClick={handleToggle} />
+    <HiPlus onClick={handleToggle} className="nav__icon" />
   );
 
   const subLinks = subLink
     ? subLink.map((el) => (
-        <li className={`${className}__subLink`} key={el.name}>
+        <li className={`${className}__subLink`} value={el.name} key={el.name}>
           <Link to={el.path}>{el.name}</Link>
         </li>
       ))

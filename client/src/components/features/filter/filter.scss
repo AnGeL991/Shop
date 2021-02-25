@@ -1,61 +1,43 @@
 @import '../../../styles/settings.scss';
 
 .container {
-  padding-bottom:40px;
+  padding-bottom: 40px;
 }
 .filter {
-  width:80%;
-  margin:10px auto;
+  margin: 10px 20px;
   background-color: white;
-  &__title{
+  text-transform: capitalize;
+  &__title {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    color:black;
-    padding:10px;
+    color: black;
+    padding: 10px;
     font-size: 18px;
   }
-  &__show{
+  &__show {
     display: block;
   }
   &__hide {
-    display: none;;
+    display: none;
   }
 }
 .filterContext {
-  padding:0 10px;
+  padding: 0 10px;
+  padding-bottom: 10px;
   list-style-type: none;
-  a {
-    text-decoration: none;
-    color:black;
-    &:hover{
-      color:$color-text;
+  &__category {
+    padding: 10px;
+    color: black;
+    border: 1px solid #dcdcdc;
+    margin: 10px;
+    &:hover {
+      border: 1px solid $color-text;
+      color: $color-text;
     }
   }
-  &__link {
-    text-align: left;
-    list-style-type: none;
-    padding: 5px 0;
-    width: 100%;
-  }
-  &__list {
-    display: flex;
-    flex-direction: column;
-    color:black;
-  }
-  &__sub {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    list-style-type: none;
-  }
-  &__subLink {
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    margin: 10px 5px;
-  }
+
   &__button {
     background-color: black;
     text-transform: uppercase;
@@ -63,10 +45,10 @@
     font-weight: 700;
   }
   &__price {
-    padding:20px 0;
+    padding: 20px 0;
   }
   &__range {
-    margin:20px 0;
-    width:100%;
+    margin: 20px 0;
+    width: 100%;
   }
 }

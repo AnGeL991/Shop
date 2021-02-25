@@ -1,49 +1,49 @@
 import { FC } from 'react';
 import { Slide } from './subComponent/slide';
+import { Dots } from 'components/common';
 import { useChangeSlider } from '_hooks/useChangeSlider';
 import { RiArrowRightSLine, RiArrowLeftSLine } from 'react-icons/ri';
 import './galerySlider.scss';
 
-const data = [
-  {
-    id: 0,
-    image:
-      'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Cms-banner-02.jpg',
-  },
-  {
-    id: 1,
-    image:
-      'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Cms-banner-02.jpg',
-  },
-  {
-    id: 2,
-    image:
-      'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Cms-banner-02.jpg',
-  },
-];
+type Props = {
+  data: Array<{ id: number; image: string }>;
+  arrows?: boolean;
+  padding?: number;
+  duration?: number;
+};
+export const GalerySlider: FC<Props> = ({
+  data,
+  arrows,
+  padding,
+  duration,
+}) => {
+  const { slide, nextSlide, prevSlide, handleClick } = useChangeSlider(
+    data,
+    duration
+  );
 
-export const GalerySlider: FC = () => {
-
-  const { slide, nextSlide, prevSlide, handleClick } = useChangeSlider(data,2);
-
-  const dots = data.map((el, index) => (
-    <li key={el.id} className="galerySlider__dot">
-      <button
-        className={`galerySlider__item ${slide.activeIndex === index ? 'galerySlider__active' : null
-          }`}
-        value={el.id}
-        onClick={handleClick}
-      >
-        {el.id}
-      </button>
-    </li>
-  ));
   const fotos = data.map((el) => (
-    <Slide key={el.id} image={el.image} translate={slide.translate} transition={slide.transition} />
+    <Slide
+      key={el.id}
+      image={el.image}
+      translate={slide.translate}
+      transition={slide.transition}
+    />
   ));
+
+  const Arrows = arrows ? (
+    <div className="galerySlider__arrowBox">
+      <RiArrowLeftSLine className="galerySlider__icon" onClick={prevSlide} />
+      <RiArrowRightSLine
+        className="galerySlider__icon"
+        style={{ right: '0px' }}
+        onClick={nextSlide}
+      />
+    </div>
+  ) : null;
 
   return (
-    <section className="galerySlider">
+    <section className="galerySlider" style={{ padding: `${padding}px` }}>
       <div className="galerySlider__content">
         <div
           className="galerySlider__wrapper"
@@ -51,19 +51,9 @@ export const GalerySlider: FC = () => {
         >
           {fotos}
         </div>
-        <div className="galerySlider__arrowBox">
-          <RiArrowLeftSLine
-            className="galerySlider__icon"
-            onClick={prevSlide}
-          />
-          <RiArrowRightSLine
-            className="galerySlider__icon"
-            style={{ right: '0px' }}
-            onClick={nextSlide}
-          />
-        </div>
+        {Arrows}
       </div>
-      <ul className="galerySlider__dots">{dots}</ul>
+      <Dots data={data} activeIndex={slide.activeIndex} onClick={handleClick} />
     </section>
   );
 };

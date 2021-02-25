@@ -1,32 +1,47 @@
-import { FC } from 'react';
-import {option,products} from 'db/db';
-import {ProductBox} from 'components/common';
-import {ProductDataPage} from 'components/features';
+import { FC, useEffect } from 'react';
+import { option } from 'db/db';
+import { ProductBox } from 'components/common';
+import { ProductDataPage } from 'components/features';
+import { useFilterValue, useDisplayProduct } from '_hooks';
 import './productCart.scss';
 
-
 export const ProductCart: FC = () => {
+  const { handleSetPrice, handleSetSort } = useFilterValue();
+
+  const { displayArray } = useDisplayProduct();
+
+  useEffect(() => {
+    handleSetPrice();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const options = option.map((el) => (
-    <option key={el.name} value={el.name} >
+    <option key={el.name} value={el.name}>
       {el.text}
     </option>
   ));
-    const productsToDisplay = products.map((el)=>(
-      <ProductBox key={el.id} item={el} width={50}/>
-    ))
+
+  const productsToDisplay = displayArray.map((el) => (
+    <ProductBox key={el._id} item={el} width={50} />
+  ));
 
   return (
     <section className="page">
       <div className="productCart__wrapper">
         <form>
-          <select defaultValue='Default sorting' className="productCart__select">{options}</select>
+          <select
+            defaultValue="Default sorting"
+            className="productCart__select"
+            onClick={handleSetSort}
+          >
+            {options}
+          </select>
         </form>
       </div>
       <div className="productCart__products">
-       {productsToDisplay} 
-        <ProductDataPage array={products} value={1}/> 
-        </div>
+        {productsToDisplay}
+        <ProductDataPage array={displayArray} value={8} />
+      </div>
     </section>
   );
 };

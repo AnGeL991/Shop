@@ -1,4 +1,4 @@
-import { ChangeEvent, FC,Ref } from 'react';
+import { ChangeEvent, FC, Ref } from 'react';
 import './field.scss';
 
 type Props = {
@@ -9,9 +9,9 @@ type Props = {
   title?: string;
   value?: string | number;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  keyUp?: ()=> void;
+  keyUp?: () => void;
   reference?: Ref<HTMLInputElement>;
-  error?: { message: string, type: string },
+  error?: { message: string; type: string };
 };
 
 export const Field: FC<Props> = ({
@@ -24,7 +24,7 @@ export const Field: FC<Props> = ({
   keyUp,
   title,
   auto = 'on',
-  error
+  error,
 }) => {
   const Label = required ? title + ' *' : title;
 
@@ -44,7 +44,7 @@ export const Field: FC<Props> = ({
           autoComplete={auto}
           ref={reference}
         />
-        <p className='register__error'>{error?.message}</p>
+        <p className="register__error">{error?.message}</p>
       </div>
     </div>
   );

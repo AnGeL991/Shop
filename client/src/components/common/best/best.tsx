@@ -9,7 +9,7 @@ type Props = {
 export const Best: FunctionComponent<Props> = ({ onClick }) => {
   return (
     <div className="icon">
-      <Link to='/wish'>
+      <Link to="/wish">
         <AiOutlineHeart size="28" />
         <Circle amount={0} />
       </Link>

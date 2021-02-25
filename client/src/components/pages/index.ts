@@ -7,3 +7,4 @@ export {PageNoFound} from './pageNoFound/pageNoFound';
 export {Media} from './media/media';
 export {AboutUs} from './aboutUs/aboutUs';
 export {MyAccount} from './myAccount/myAccount';
+export {Order} from './order/order';

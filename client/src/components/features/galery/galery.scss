@@ -1,4 +1,4 @@
-@import "../../../styles/settings.scss";
+@import '../../../styles/settings.scss';
 
 .galery {
   padding: 40px 20px;
@@ -10,7 +10,7 @@
     height: 120px;
     background-size: contain;
     background-repeat: no-repeat;
-    margin:2px 0;
+    margin: 2px 0;
   }
   &__bg {
     width: 100%;
@@ -41,7 +41,7 @@
     opacity: 0;
     transition: 0.4s linear all;
     &:after {
-      content: "";
+      content: '';
       left: 0px;
       bottom: -5px;
       height: 1px;

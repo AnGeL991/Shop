@@ -1,30 +1,26 @@
-import { FC,useState } from 'react';
+import { FC } from 'react';
 import { ImBin } from 'react-icons/im';
 import { ReadMore } from 'components/common';
+import { useChangeAmountLogic } from '_hooks';
 
 type Props = {
-  id: string | number;
   title: string;
   image: string;
-  price: number | string;
-  description: string;
-  amount?: string;
+  price: number;
+  time?: string;
+  amount: number;
+  _id: string;
 };
-
 
 export const BasketProduct: FC<Props> = ({
   title,
   image,
   price,
-  description,
-  amount = 1,
+  amount,
+  time,
+  _id,
 }) => {
-
-  const [testAmount,setAmount] = useState(1);
-
-  const handleAdd =()=>setAmount(prev=>prev + 1)
-  const handleRemove =()=>setAmount(prev=>prev - 1)
-
+  const { increment, decrement, removeProduct } = useChangeAmountLogic(_id);
 
   return (
     <div className="basketProduct">
@@ -34,29 +30,37 @@ export const BasketProduct: FC<Props> = ({
       <div className="basketProduct__productInfo">
         <h4 className="basketProduct__title">{title}</h4>
         <ReadMore title="Wiecej szczegółów" className="basketRead">
-          <p className='basketProduct__description'>{description}</p>
+          <p className="basketProduct__description">{time}</p>
         </ReadMore>
-        <p className="basketProduct__price">Price: ${price}</p>
-        <p className="basketProduct__totalPrice">Total price: ${price}</p>
+        <p className="basketProduct__price">
+          Price: {amount} x ${price}
+        </p>
+        <p className="basketProduct__totalPrice">
+          Total price: ${price * amount}
+        </p>
         <div className="basketProduct__amountBox">
           <button
             name="decrement"
             className="basketProduct__btn"
-           disabled={testAmount === 1 ? true : false}
-            onClick={handleRemove}
+            disabled={amount === 1 ? true : false}
+            onClick={decrement}
           >
             -
           </button>
           <input
             type="text"
-            value={testAmount}
+            value={amount}
             className="basketProduct__amountInput"
-            onChange={()=>console.log(testAmount)}
+            disabled
           />
-          <button name="increment" className="basketProduct__btn" onClick={handleAdd}>
+          <button
+            name="increment"
+            className="basketProduct__btn"
+            onClick={increment}
+          >
             +
           </button>
-          <button className="basketProduct__btn">
+          <button className="basketProduct__btn" onClick={removeProduct}>
             <ImBin size="10" />
           </button>
         </div>

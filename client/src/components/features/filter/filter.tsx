@@ -1,11 +1,14 @@
 import { FC } from 'react';
-import { EachLink, Button, Tag,EachFilter } from 'components/common';
+import { EachCategory, Button, Tag, EachFilter } from 'components/common';
+import { useFilterValue } from '_hooks';
+import { ApplicationState } from 'store/index';
+import { useSelector } from 'react-redux';
 import './filter.scss';
 
 const data = [
-  { name: 'Sofa', path: '/shop/sofa' },
+  { name: 'sofa', path: '/shop/sofa' },
   {
-    name: 'Bed',
+    name: 'bed',
     path: '/shop/bed',
     subLink: [
       { name: 'Single', path: '/shop/bed/single' },
@@ -13,38 +16,49 @@ const data = [
     ],
   },
   {
-    name: 'Table',
+    name: 'table',
     path: '/shop/table',
     subLink: [{ name: 'Long table', path: '/shop/table/long' }],
   },
-  { name: 'Accesories', path: '/shop/accesories' },
+  { name: 'accessories', path: '/shop/accesories' },
 ];
-const dataTag = [{ name: 'Summer' }, { name: 'Winter' }]
+
+const dataTag = [{ name: 'Summer' }, { name: 'Winter' }];
 
 export const Filter: FC = () => {
+  const { minPrice, maxPrice, price } = useSelector(
+    (store: ApplicationState) => store.inventory
+  );
 
-  const categoryData = data.map((el) => <EachLink key={el.name} {...el} className='filterContext' />);
+  const { handleSetFilterPrice } = useFilterValue();
 
-  const tagData = dataTag.map((el) => (<Tag key={el.name} name={el.name} />))
+  const categoryData = data.map((el) => (
+    <EachCategory key={el.name} name={el.name} className="filterContext" />
+  ));
+  const tagData = dataTag.map((el) => <Tag key={el.name} name={el.name} />);
 
   return (
-    <section className='container' >
+    <section className="container">
       <EachFilter title="Product categories">
-        <ul className="filterContext">
-          {categoryData}
-        </ul>
+        <ul className="filterContext">{categoryData}</ul>
       </EachFilter>
       <EachFilter title="Filter by price">
-        <div className='filterContext'>
-          <input className='filterContext__range' type='range' />
-          <Button className='filterContext__button'>Filter</Button>
-          <p className='filterContext__price'>Price: <span>$0</span> — <span>$90</span></p>
+        <div className="filterContext">
+          <input
+            className="filterContext__range"
+            type="range"
+            min={minPrice}
+            max={maxPrice}
+            onChange={handleSetFilterPrice}
+          />
+          <Button className="filterContext__button">Filter</Button>
+          <p className="filterContext__price">
+            Price: <span>${minPrice > price ? minPrice : price}</span> —{' '}
+            <span>${maxPrice}</span>
+          </p>
         </div>
-
       </EachFilter>
-      <EachFilter title="Product tags">
-        {tagData}
-      </EachFilter>
+      <EachFilter title="Product tags">{tagData}</EachFilter>
     </section>
   );
 };

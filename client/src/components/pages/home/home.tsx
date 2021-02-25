@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useLayoutEffect } from 'react';
 import { connect } from 'react-redux';
 import {
   Banner,
@@ -6,10 +6,10 @@ import {
   DealOfDay,
   RecomendetProduct,
   SlideBanner,
+  Brands,
 } from 'components/features';
-import { Inventory } from 'store/inventory/types';
+import { Inventory, fetchRequest } from 'store/inventory';
 import { ApplicationState } from 'store/index';
-import { fetchRequest } from 'store/inventory/action';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 
@@ -25,7 +25,7 @@ interface propsFromDispatch {
 type Allprops = PropsFromState & propsFromDispatch;
 
 const Home: FC<Allprops> = ({ loading, errors, data, fetchRequest }) => {
-  useEffect(() => {
+  useLayoutEffect(() => {
     fetchRequest();
   }, [fetchRequest]);
 
@@ -49,7 +49,7 @@ const Home: FC<Allprops> = ({ loading, errors, data, fetchRequest }) => {
         description="Now in all Color Varient Available."
         button="Shop now"
       />
-      <BestSeller data={data} />
+      <BestSeller />
       <Banner
         image="http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Offer-banner.0.jpg"
         title="Clay Bowl Designs"
@@ -70,9 +70,7 @@ const Home: FC<Allprops> = ({ loading, errors, data, fetchRequest }) => {
         description="Now in Many Different Color Available."
         button="Shop now"
       />
-      {/* <SliderBaner/> */}
-      {/* 
-      <Brands/> */}
+      <Brands />
     </section>
   );
 };
@@ -83,7 +81,7 @@ const mapStateToProps = ({ inventory }: ApplicationState) => ({
   data: inventory.data,
 });
 
-///thunk dispatch usuń 
+///thunk dispatch usuń
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AnyAction>) => {
   return {

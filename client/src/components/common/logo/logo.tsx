@@ -1,18 +1,14 @@
-import React,{FunctionComponent} from 'react';
+import React, { FunctionComponent } from 'react';
 import './logo.scss';
 
 type Props = {
-  onClick:()=> void;
-}
+  onClick: () => void;
+};
 
-export const Logo:FunctionComponent<Props> =({onClick})=>{
-
+export const Logo: FunctionComponent<Props> = ({ onClick }) => {
   return (
-    <div 
-    onClick={onClick}
-    className='logo'
-    >
+    <div onClick={onClick} className="logo">
       M-tibis-bis
     </div>
-  )
+  );
 };

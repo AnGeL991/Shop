@@ -1,45 +1,76 @@
-import {FC} from 'react';
-import { Carousel } from '../carousel/carousel';
+import { FC } from 'react';
+import { Carousell } from 'components/features';
+import { ProductBox } from 'components/common';
+import { useChangeSlider } from '_hooks';
 
-
-export const RecomendetProduct:FC=()=>{
-
+export const RecomendetProduct: FC = () => {
   const data = [
     {
-      id:1,
-      title:'Similique sunt in culpa',
-      image:'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/03/3-256x360.jpg',
-      price:'150.00',
-      star:3
-    }
-    ,{
-      id:2,
-      title:'Laborum et Dolorum Fug',
-      image:'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg',
-      price:'150.00',
-      star:4
+      _id: '1',
+      title: 'Similique sunt in culpa',
+      image:
+        'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/03/3-256x360.jpg',
+      price: 150.0,
+      category: 'test',
+      star: 3,
+      amount: 1,
     },
     {
-      id:3,
-      title:'Laborum et Dolorum Fug',
-      image:'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg',
-      price:'1000.00',
-      star:1
+      _id: '2',
+      title: 'Laborum et Dolorum Fug',
+      image:
+        'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg',
+      price: 150.0,
+      category: 'test',
+      star: 4,
+      amount: 1,
     },
     {
-      id:4,
-      title:'Laborum et Dolorum Fug',
-      image:'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg',
-      price:'30.00',
-      star:5
-    }
-  ]
+      _id: '3',
+      title: 'Laborum et Dolorum Fug',
+      image:
+        'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg',
+      price: 1000.0,
+      category: 'test',
+      star: 1,
+      amount: 1,
+    },
+    {
+      _id: '4',
+      title: 'Laborum et Dolorum Fug',
+      image:
+        'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg',
+      price: 30.0,
+      category: 'test',
+      star: 5,
+      amount: 1,
+    },
+  ];
 
+  const { slide, nextSlide, prevSlide } = useChangeSlider(data);
 
+  const arrayOfProduct = data.map((el) => (
+    <div
+      key={el._id}
+      className="carousel__item"
+      style={{
+        transform: `translateX(-${slide.translate}%)`,
+      }}
+    >
+      <ProductBox item={el} />
+    </div>
+  ));
 
-  return(
+  return (
     <section>
-      <Carousel slides={data} title='Recommended Products' showAmountItem={2}/>
+      <Carousell
+        length={data.length}
+        title="Recomended Products"
+        next={nextSlide}
+        prev={prevSlide}
+      >
+        {arrayOfProduct}
+      </Carousell>
     </section>
-  )
-}
+  );
+};

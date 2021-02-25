@@ -13,7 +13,9 @@ export {Tag} from './tag/tag';
 export {DarkButton} from './darkButton/darkButton';
 export {TextArea} from './textArea/textArea';
 export {EachFilter} from './eachFilter/eachFilter';
-
+export {EachCategory} from './eachCategory/eachCategory'
+export {BasketProduct} from './basketProduct/basketProduct';
+export {Dots} from './dots/dots';
 
 
 

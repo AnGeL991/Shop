@@ -31,3 +31,5 @@ export {WhyUs} from './whyUs/whyUs';
 export {GalerySlider} from './galerySlider/galerySlider'; 
 export {AccountFilter} from './accountFilter/accountFilter';
 export {PersonalData} from './personalData/personalData';
+export {Carousell} from './carousell/carousell';
+export {Brands} from './brands/brands';

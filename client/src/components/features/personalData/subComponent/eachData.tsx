@@ -1,19 +1,55 @@
 import { FC } from 'react';
+import { Button, Field } from 'components/common';
+import { Modal } from 'components/features';
+import { useModalLogic } from '_hooks';
 
+type Props = {
+  name: string;
+  firstName: string;
+  type?: string;
+};
 
-export const EachData: FC = () => {
+export const EachData: FC<Props> = ({ name, firstName, type = 'text' }) => {
+  const { handleToggleModal, showModal } = useModalLogic();
+
+  const editInput =
+    type !== 'password' ? (
+      <div className="personalData__field">
+        <Field name={name} type={type} title={name} />
+      </div>
+    ) : (
+      <div className="personalData__field">
+        <Field name={name} type={type} title={name} />
+        <Field name="confirmPassword" type={type} title="confirm Password" />
+      </div>
+    );
 
   return (
-    <div className='personalData__wrapper'>
-      <label className='personalData__label'>
-        <p>Name</p>
-      </label>
-      <input className='personalData__input' type='text' value='adrian' disabled />
-     <div className='personalData__btnBox'>
-     <button className='personalData__button'>Edytuj</button>
-      <button className='personalData__button'>Zapisz</button>
-     </div>
-     
-    </div>
-  )
-}
+    <>
+      <Modal
+        show={showModal}
+        title="Edytuj"
+        btn="Zapisz"
+        close={handleToggleModal}
+      >
+        {editInput}
+      </Modal>
+      <div className="personalData__wrapper">
+        <label className="personalData__label">
+          <p>{name}</p>
+        </label>
+        <input
+          className="personalData__input"
+          type={type}
+          value={firstName}
+          disabled
+        />
+        <div className="personalData__btnBox">
+          <Button className="personalData__button" onClick={handleToggleModal}>
+            Edytuj
+          </Button>
+        </div>
+      </div>
+    </>
+  );
+};

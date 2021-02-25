@@ -14,10 +14,8 @@ interface Account {
   password: string;
 }
 
-
 // import {UserApi} from ...
 // import {actions} from ...
-
 
 // akcje, api, i dispach
 // class ConnectedUserLogic{
@@ -32,8 +30,6 @@ interface Account {
 //     }
 //   }
 // }
-
-
 
 // const useLogin = ()=>{
 //   const dispatch = useDispatch()
@@ -51,14 +47,9 @@ interface Account {
 //     }
 //   },[])
 
-
-
 //   const handleLogout = ()=>{}
 
 // }
-
-
-
 
 export const LoginForm: FC = () => {
   const [account, setAccount] = useState<Account>({

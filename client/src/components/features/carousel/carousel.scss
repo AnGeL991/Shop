@@ -1,20 +1,20 @@
-.carousel{
+.carousel {
   overflow: hidden;
-  &__header{
-    color:#000000;
-    margin:0 20px;
+  &__header {
+    color: #000000;
+    margin: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom:1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
   }
   &__title {
     width: 80%;
     font-size: 16px;
   }
-  &__slider{
+  &__slider {
     display: flex;
-    margin:20px;
+    margin: 20px;
   }
   &__slide {
     overflow: hidden;
@@ -22,6 +22,7 @@
   }
   &__item {
     transition: 0.3s linear all;
-    padding:10px;
+    padding: 10px;
+    width: 50vw;
   }
 }

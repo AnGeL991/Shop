@@ -8,7 +8,7 @@ type Props = {
   checked?: boolean;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   reference?: Ref<HTMLInputElement>;
-  error?:{message:string, type:string},
+  error?: { message: string; type: string };
 };
 
 export const FieldChecked: FC<Props> = ({
@@ -18,23 +18,22 @@ export const FieldChecked: FC<Props> = ({
   checked,
   onChange,
   reference,
-  error
+  error,
 }) => {
   return (
     <>
-    <div className="checkedFild">
-      <input
-        type={type}
-        name={name}
-        checked={checked}
-        onChange={onChange}
-        ref={reference}
-        className="checkedFild__input"
-      />
-      {children}
-    
-    </div>
-     <p className='register__error'>{error?.message}</p>
-     </>
+      <div className="checkedFild">
+        <input
+          type={type}
+          name={name}
+          checked={checked}
+          onChange={onChange}
+          ref={reference}
+          className="checkedFild__input"
+        />
+        {children}
+      </div>
+      <p className="register__error">{error?.message}</p>
+    </>
   );
 };

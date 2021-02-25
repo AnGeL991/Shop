@@ -1,22 +1,23 @@
 import { FC, useState } from 'react';
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from 'react-icons/io';
-import { chunkArrayWithSlice } from '_helpers/utils';
 
 type Props = {
   array: Array<{}>;
   value: number;
 };
 
-export const ProductDataPage: FC<Props> = ({ array, value }) => {
-
+const useChunkArray = (array: Array<{}>, amountInChunk: number) => {
   const [activePage, setActivePage] = useState(1);
-
   const [activeArray, setActiveArray] = useState({
     next: true,
     prev: false,
   });
 
-  const chunk = chunkArrayWithSlice(array, value,1);
+  const chunk = array.reduce((chunk) => {
+    chunk = Math.ceil(array.length / amountInChunk);
+    return chunk;
+  }, 1);
+
   const nextPage = () => {
     if (activePage === chunk) {
       return;
@@ -39,8 +40,19 @@ export const ProductDataPage: FC<Props> = ({ array, value }) => {
     });
   };
 
-  const anotherPage = chunk > 2 ? <li className="productCart__item">{activePage +1 }</li> : null;
-  const dots =  chunk > 2 ? <li className="productCart__item">...</li> : null;
+  return { activeArray, activePage, prevPage, nextPage, chunk };
+};
+
+export const ProductDataPage: FC<Props> = ({ array, value }) => {
+  const { activeArray, activePage, nextPage, prevPage, chunk } = useChunkArray(
+    array,
+    value
+  );
+
+  const dots =
+    chunk > 2 && activePage + 1 !== chunk ? (
+      <li className="productCart__item">...</li>
+    ) : null;
 
   return (
     <div className="productCart__pages">
@@ -55,7 +67,6 @@ export const ProductDataPage: FC<Props> = ({ array, value }) => {
             <IoIosArrowRoundBack />
           </li>
           <li className="productCart__item">{activePage}</li>
-          {anotherPage}
           {dots}
           <li className={`productCart__item ${chunk > 1 ? 'show' : 'hide'} `}>
             {chunk}

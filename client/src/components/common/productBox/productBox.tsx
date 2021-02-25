@@ -1,9 +1,9 @@
-import { FC, useCallback } from 'react';
+import { FC } from 'react';
 import { Tag } from 'components/common';
 import { AiFillStar } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
+import { useProductBoxLogic } from '_hooks/useProductBoxLogic';
 import { Inventory } from 'store/inventory/types';
-import { addToOrder } from 'store/order/action';
+
 import './productBox.scss';
 
 interface Product {
@@ -17,23 +17,8 @@ interface propsFromComponent {
 
 type Props = propsFromComponent & Product;
 
-const useProductBoxLogic = (item:Inventory) => {
-
-  const dispatch = useDispatch();
-  const AddProductToOrder = useCallback(
-    () => {
-      dispatch(addToOrder(item))
-    }, [dispatch,item]);
-    return {AddProductToOrder}
-}
-
-
-
 export const ProductBox: FC<Props> = ({ width, tags, item }) => {
-
-
-  const {AddProductToOrder} = useProductBoxLogic(item)
-
+  const { AddProductToOrder } = useProductBoxLogic(item);
 
   const stars = [1, 2, 3, 4, 5].map((i) => (
     <span key={i} className="productBox__star">
@@ -42,8 +27,8 @@ export const ProductBox: FC<Props> = ({ width, tags, item }) => {
           {i}stars
         </AiFillStar>
       ) : (
-          <AiFillStar className="productBox__star">{i} stars</AiFillStar>
-        )}
+        <AiFillStar className="productBox__star">{i} stars</AiFillStar>
+      )}
     </span>
   ));
 
@@ -73,7 +58,7 @@ export const ProductBox: FC<Props> = ({ width, tags, item }) => {
         <div>{stars}</div>
         <h5 className="productBox__title">{item.title}</h5>
         <span className="productBox__price">
-          <strong>${item.price}</strong>
+          <strong>${item.price.toFixed(2)}</strong>
         </span>
       </div>
     </div>

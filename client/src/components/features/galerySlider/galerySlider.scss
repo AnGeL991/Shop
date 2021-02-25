@@ -28,30 +28,9 @@
     color: white;
     font-size: 48px;
   }
-  &__dots {
-    display: flex;
-    justify-content: center;
-  }
-  &__dot {
-    list-style: none;
-    line-height: 25px;
-  }
-  &__item {
-    margin: 5px;
-    width: 12px;
-    height: 12px;
-    border: none;
-    background-color: $color-darkGray;
-    border-radius: 50%;
-    text-indent: -999px;
-    outline: none;
-  }
-  &__active {
-    background-color: black;
-  }
   &__arrowBox {
     position: absolute;
     width: 100%;
-    top:50%;
+    top: 50%;
   }
 }

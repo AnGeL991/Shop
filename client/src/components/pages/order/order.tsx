@@ -1,25 +1,11 @@
-import { Dispatch, FC } from 'react';
+import {FC } from 'react';
 import { ProductSecurity, OrderProduct } from 'components/features';
 import { DarkButton, Header } from 'components/common';
-import { connect} from 'react-redux';
-import { Order } from 'store/order/types';
-import { ApplicationState } from 'store/index';
-import { fetchOrderREquest } from 'store/order/action';
 import { Link } from 'react-router-dom';
 import './order.scss';
 
 
-
-interface PropsFromState {
-  data: Order;
-}
-interface propsFromDispatch {
-  fetchOrderREquest: () => any;
-}
-type Allprops = PropsFromState & propsFromDispatch;
-
-
-const Basket: FC<Allprops> = ({ fetchOrderREquest }) => {
+export const Order: FC = () => {
 
   return (
     <section className='page'>
@@ -32,21 +18,5 @@ const Basket: FC<Allprops> = ({ fetchOrderREquest }) => {
     </section>
   )
 }
-
-const mapStateToProps = ({ order }: ApplicationState) => ({
-  loading: order.loading,
-  errors: order.errors,
-  data: order.data,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<any>) => {
-  return {
-    fetchOrderREquest: () => {
-      dispatch(fetchOrderREquest());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Basket);
 
 
