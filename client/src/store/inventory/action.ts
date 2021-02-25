@@ -1,59 +1,77 @@
 import { InventoryActionTypes } from './types';
-import { ActionCreator, Action, Dispatch } from 'redux'
-import { ThunkAction } from 'redux-thunk';
-
-import { ApplicationState } from '../index';
-
-import { products } from 'db/db';
-
-// pozbyc sie appThunk 
-
-export type AppThunk = ActionCreator<ThunkAction<void, ApplicationState, null, Action<string>>>;
+import { API_URL } from 'config';
+import { Dispatch } from 'redux'
+import axios from 'axios';
 
 
-// const startLoading = () => ({
-//   type: InventoryActionTypes.START_REQUEST,
-// })
-// const doneFetchingAppData = (payload) => ({
-//   type: InventoryActionTypes.END_REQUEST,
-//   payload
-// })
-// const errorFetchingAppData = (payload) => ({
-//   type: InventoryActionTypes.ERROR_REQUEST,
-//   payload
-// })
+/* Selectors */
+
+const setSortOption = (option: string) => ({
+  type: InventoryActionTypes.SET_SORT_OPTION,
+  payload: option
+})
+const setMinPrice = (minPrice: number) => ({
+  type: InventoryActionTypes.SET_MIN_PRICE,
+  payload: minPrice
+})
+const setMaxPrice = (maxPrice: number) => ({
+  type: InventoryActionTypes.SET_MAX_PRICE,
+  payload: maxPrice
+})
+const setSearchValue = (value: string) => ({
+  type: InventoryActionTypes.SET_SEARCH_VALUE,
+  payload: value
+})
+const setCategory = (category: string) => ({
+  type: InventoryActionTypes.SET_CATEGORY,
+  payload: category,
+})
+const setFilterPrice = (price:number) =>({
+  type:InventoryActionTypes.SET_FILTER_PRICE,
+  payload: price
+})
+const startLoading = () => ({
+  type: InventoryActionTypes.START_REQUEST,
+})
+const doneFetchingAppData = (data: Array<{}>) => ({
+  type: InventoryActionTypes.END_REQUEST,
+  payload: data
+})
+const errorFetchingAppData = (error: string) => ({
+  type: InventoryActionTypes.ERROR_REQUEST,
+  payload: error
+})
 
 
-// const actions = {
-//   startLoading,
-//   doneFetchingAppData,
-//   errorFetchingAppData
-// }
+export const actions = {
+  startLoading,
+  doneFetchingAppData,
+  errorFetchingAppData,
+  setCategory,
+  setMinPrice,
+  setMaxPrice,
+  setSortOption,
+  setSearchValue,
+  setFilterPrice
+}
 
 
 
-export const fetchRequest: AppThunk = () => {
-  return (dispatch: Dispatch): Action => {
-    dispatch({
-      type: InventoryActionTypes.START_REQUEST,
-    })
+export const fetchRequest = () => {
+  return async (dispatch: Dispatch) => {
+    dispatch(actions.startLoading())
     try {
-
-      return dispatch({
-        type: InventoryActionTypes.END_REQUEST,
-        payload: products
-      });
-    } catch (e) {
-      return dispatch({
-        type: InventoryActionTypes.ERROR_REQUEST
-      });
+      let res = await axios.get(`${API_URL}/products`)
+      return dispatch(actions.doneFetchingAppData(res.data.product));
+    } catch (error) {
+      return dispatch(actions.errorFetchingAppData(error));
     }
   }
 }
 
 // SOC 
 
-// store - to jestno
+// store - to jedno
 // api to drugie
 
 // class API

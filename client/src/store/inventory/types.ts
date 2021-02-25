@@ -1,19 +1,43 @@
 export interface Inventory {
-  id:number,
-  title:string,
-  image:string,
-  price:number | string,
-  star:number,
+  _id: string,
+  title: string,
+  image: string,
+  price: number,
+  category:string,
+  star: number,
+  amount:number,
+  time?: string,
+  discount?:number,
 }
 
 export enum InventoryActionTypes {
   START_REQUEST = 'START_REQUEST',
   END_REQUEST = 'END_REQUEST',
   ERROR_REQUEST = 'ERROR_REQUEST',
+  SET_MIN_PRICE = 'SET_MIN_PRICE',
+  SET_MAX_PRICE = 'SET_MAX_PRICE',
+  SET_SEARCH_VALUE = 'SET_SEARCH_VALUE',
+  SET_CATEGORY ='SET_CATEGORY',
+  SET_SORT_OPTION ='SET_SORT_OPTION',
+  SET_FILTER_PRICE = 'SET_FILTER_PRICE',
+}
+
+export enum SortOPtion {
+  DEFAULT ='DEFAULT_SORT',
+  TO_HIGHT_PRICE ='TO_HIGHT_PRICE',
+  TO_LOW_PRICE ='TO_LOW_PRICE',
+  POPULAR_SORT='POPULAR_SORT',
+  NEW_PRODUCTS ='NEW_PRODUCTS',
 }
 
 export interface InventoryState {
-  readonly loading:boolean,
-  readonly data:Inventory[];
-  readonly errors?:string,
+  readonly loading: boolean,
+  readonly data: Inventory[];
+  readonly errors?: string,
+  search:string,
+  maxPrice:number,
+  minPrice:number,
+  category:string,
+  sort:string,
+  price:number,
 }
