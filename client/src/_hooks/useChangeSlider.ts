@@ -1,12 +1,5 @@
 import { useState, MouseEvent, useEffect } from 'react';
-
-
-interface State {
-  activeIndex: number,
-  translate: number,
-  transition: number,
-  _slides: Array<{}>
-}
+import {CarouselState} from 'db/db';
 
 export const useChangeSlider = (data: Array<{}>, autoPlay?: number) => {
 
@@ -14,7 +7,7 @@ export const useChangeSlider = (data: Array<{}>, autoPlay?: number) => {
   const secoundSlide = data[1];
   const lastSlide = data[data.length - 1];
 
-  const [slide, setSlide] = useState<State>({
+  const [slide, setSlide] = useState<CarouselState>({
     activeIndex: 0,
     translate: 0,
     transition: 0,
