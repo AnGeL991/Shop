@@ -1,96 +1,29 @@
-import {
-  ChangeEvent,
-  ChangeEventHandler,
-  FC,
-  FormEvent,
-  FormEventHandler,
-  useState,
-} from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Field } from 'components/common';
-
-interface Account {
-  login: string;
-  password: string;
-}
-
-// import {UserApi} from ...
-// import {actions} from ...
-
-// akcje, api, i dispach
-// class ConnectedUserLogic{
-//   static handleLogin = (dispatch) => async (email, password) => {
-//     try{
-//       dispatch(action.init())
-//       const userData = await UserApi.login(...,...)
-//       dispatch(action.login(userData))
-//     }
-//     catch(error){
-//       dispatch(action.error(error))
-//     }
-//   }
-// }
-
-// const useLogin = ()=>{
-//   const dispatch = useDispatch()
-
-//   const handleLogin = useCallback(ConnectedUserLogic.handleLogin(dispatch) ,[])
-
-//   const handleLogout = useCallback(async ()=>{
-//     try{
-//       dispatch(action.init())
-//       const userData = await UserApi.logout(...,...)
-//       dispatch(action.login(userData))
-//     }
-//     catch(error){
-//       dispatch(action.error(error))
-//     }
-//   },[])
-
-//   const handleLogout = ()=>{}
-
-// }
+import { FC } from "react";
+import { Link } from "react-router-dom";
+import { Button, Field } from "components/common";
+import { useLogic } from "_hooks";
 
 export const LoginForm: FC = () => {
-  const [account, setAccount] = useState<Account>({
-    login: '',
-    password: '',
-  });
-  const { login, password } = account;
+  const { handleChange, handleSubmit, account, alert } = useLogic();
 
-  const handleChange: ChangeEventHandler = (
-    e: ChangeEvent<HTMLInputElement>
-  ) => {
-    const { name, value } = e.currentTarget;
-    if (name === 'login') {
-      setAccount((prev) => ({
-        ...prev,
-        login: value,
-      }));
-    } else if (name === 'password') {
-      setAccount((prev) => ({
-        ...prev,
-        password: value,
-      }));
-    }
-  };
-  const handleSubmit: FormEventHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(account);
-    setAccount({
-      login: '',
-      password: '',
-    });
-  };
+  const { email, password } = account;
+
+  const wrongLabel =
+    alert.type === "ALERT_ERROR" ? (
+      <div className="login__error">
+        <label>{alert.message}</label>
+      </div>
+    ) : null;
 
   return (
     <form className="login__form" onSubmit={handleSubmit}>
+      {wrongLabel}
       <fieldset className="login__fildset">
         <Field
           type="text"
           name="login"
           required
-          value={login}
+          value={email}
           onChange={handleChange}
           title="E-mail Adress"
         />

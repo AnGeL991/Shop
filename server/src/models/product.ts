@@ -1,5 +1,5 @@
-import mongoose, { Schema } from 'mongoose';
-import IProduct from '../interfaces/product';
+import { Schema, model } from 'mongoose';
+import { IProduct, IProductModel } from '../interfaces/product';
 
 const ProductSchema: Schema = new Schema(
   {
@@ -11,6 +11,7 @@ const ProductSchema: Schema = new Schema(
     amount: { type: Number, default: 1, required: true },
     color: { type: String, default: null },
     description: { type: String, required: true },
+    star: { type: Number, default: 0 },
     category: { type: String, required: true },
     tags: { type: Array }
   },
@@ -19,4 +20,27 @@ const ProductSchema: Schema = new Schema(
   }
 );
 
-export default mongoose.model<IProduct>('Product', ProductSchema);
+ProductSchema.statics.createNewFromRequestBody = async function (props) {
+  try {
+    const newProduct = new this(props);
+    await newProduct.save();
+    return newProduct;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+ProductSchema.statics.findByCategory = function (category) {
+  return this.find({ category: category });
+};
+ProductSchema.statics.findAllProduct = async function () {
+  try {
+    return await this.find();
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+const ProductModel = model<IProduct, IProductModel>('Product', ProductSchema);
+
+export default ProductModel;

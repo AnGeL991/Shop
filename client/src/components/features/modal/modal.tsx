@@ -54,6 +54,6 @@ export const Modal: FC<Props> = ({
         {footer}
       </div>
     </div>,
-    document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement,
   );
 };

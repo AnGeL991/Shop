@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { Logo, Search, Basket, Best } from 'components/common';
 import { Categories, Nav, Account } from '../../features';
 import './mainMenu.scss';

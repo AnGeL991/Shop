@@ -1,31 +1,30 @@
 import { Request, Response, NextFunction } from 'express';
-import logging from '../config/logging';
+import { config, info } from '../config';
 import jwt from 'jsonwebtoken';
-import config from '../config/config';
 
 const NAMESPACE = 'Auth';
 
-const extractJWT = (req: Request, res: Response, next: NextFunction) => {
-  logging.info(NAMESPACE, 'Validating Token');
-  let token = req.headers.authorization?.split(' ')[1];
-
-  if (token) {
-    jwt.verify(token, config.server.token.secret, (error, decoded) => {
-      if (error) {
-        return res.status(404).json({
-          message: error.message,
-          error
-        });
-      } else {
-        res.locals.jwt = decoded;
-        next();
-      }
+export const extractJWT = async (req: Request, res: Response, next: NextFunction) => {
+  info(NAMESPACE, 'Validating Token');
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (token)
+      return jwt.verify(token, config.server.token.secret, (error, decoded) => {
+        if (error) {
+          res.status(404).json({
+            message: error.message,
+            error
+          });
+        } else {
+          res.locals.user = decoded;
+          next();
+        }
+      });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+      error
     });
-  } else {
-    return res.status(401).json({
-      message: 'Unauthorized'
-    });
+    next();
   }
 };
-
-export default extractJWT;

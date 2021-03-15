@@ -7,7 +7,6 @@ import { Inventory } from 'store/inventory/types';
 import './productBox.scss';
 
 interface Product {
-  tags?: Array<string>;
   width?: number;
 }
 
@@ -17,8 +16,9 @@ interface propsFromComponent {
 
 type Props = propsFromComponent & Product;
 
-export const ProductBox: FC<Props> = ({ width, tags, item }) => {
-  const { AddProductToOrder } = useProductBoxLogic(item);
+export const ProductBox: FC<Props> = ({ width,item }) => {
+  
+  const { AddProductToOrder,discountPrice } = useProductBoxLogic(item);
 
   const stars = [1, 2, 3, 4, 5].map((i) => (
     <span key={i} className="productBox__star">
@@ -32,9 +32,9 @@ export const ProductBox: FC<Props> = ({ width, tags, item }) => {
     </span>
   ));
 
-  const tag = tags ? (
+  const tag = item.tags ? (
     <div className="productBox__tags">
-      {tags.map((el) => (
+      {item.tags.map((el) => (
         <Tag
           key={el}
           name={el}
@@ -43,6 +43,8 @@ export const ProductBox: FC<Props> = ({ width, tags, item }) => {
       ))}
     </div>
   ) : null;
+
+  const price = discountPrice? <> <strong>${discountPrice.toFixed(2)}</strong><span className='productBox__oldPrice'>${item.price.toFixed(2)}</span></> : <strong>${item.price.toFixed(2)}</strong>
 
   return (
     <div
@@ -58,7 +60,7 @@ export const ProductBox: FC<Props> = ({ width, tags, item }) => {
         <div>{stars}</div>
         <h5 className="productBox__title">{item.title}</h5>
         <span className="productBox__price">
-          <strong>${item.price.toFixed(2)}</strong>
+        {price}
         </span>
       </div>
     </div>

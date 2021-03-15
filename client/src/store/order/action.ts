@@ -1,73 +1,49 @@
-import { OrderActionTypes } from './types';
-import { Inventory } from '../inventory/types';
-import { Action, Dispatch } from 'redux';
-import { ApplicationState } from '../index';
+import { OrderActionTypes } from "./types";
+import { Inventory } from "../inventory/types";
+import { Action, Dispatch } from "redux";
+import { ApplicationState } from "../index";
+import { selector } from "../utils";
+
+const {
+  START_LOAD_ORDER,
+  END_LOAD_ORDER,
+  ERROR_LOAD_ORDER,
+  ADD_TO_ORDER,
+  ADD_TO_ORDER_FAILURE,
+  UPDATE_ORDER_AMOUNT,
+  REMOVE_FROM_ORDER,
+} = OrderActionTypes;
+
+export const startLoading = () => selector(START_LOAD_ORDER);
+export const successLoading = (state: ApplicationState) =>
+  selector(END_LOAD_ORDER, state);
+export const errorLoading = (error: string) => selector(ERROR_LOAD_ORDER, error);
+export const addToOrder = (item: Inventory) => selector(ADD_TO_ORDER, item);
+export const addToOrderFailure = (error: string) =>
+  selector(ADD_TO_ORDER_FAILURE, error);
+export const updateOrderAmount = (amount: number, id: string) =>
+  selector(UPDATE_ORDER_AMOUNT, { amount, id });
+export const deleteOrderProduct = (id: string) => selector(REMOVE_FROM_ORDER, id);
 
 
-const startLoading = () => ({
-  type: OrderActionTypes.START_LOAD_ORDER
-})
-
-const successLoading = (state: ApplicationState) => ({
-  type: OrderActionTypes.END_LOAD_ORDER,
-  payload: state.order
-})
-
-const errorLoading = (error: string) => ({
-  type: OrderActionTypes.ERROR_LOAD_ORDER,
-  payload: error
-})
-
-const addToOrder = (item: Inventory) => ({
-  type: OrderActionTypes.ADD_TO_ORDER,
-  payload: item
-})
-
-const addToOrderFailure = (error: string) => ({
-  type: OrderActionTypes.ERROR_LOAD_ORDER,
-  payload: error,
-})
-const updateOrderAmount = (amount: number, id: string) => ({
-  type: OrderActionTypes.UPDATE_ORDER_AMOUNT,
-  payload: {
-    amount,
-    id
-  }
-})
-const deleteOrderProduct = (id: string) => ({
-  type: OrderActionTypes.REMOVE_FROM_ORDER,
-  payload: id,
-})
-
-export const actions = {
-  startLoading,
-  successLoading,
-  errorLoading,
-  addToOrder,
-  addToOrderFailure,
-  deleteOrderProduct,
-  updateOrderAmount,
-}
-
-
-export const fetchOrderREquest = () => {
-  return (dispatch: Dispatch, state: ApplicationState): Action => {
-    dispatch(actions.startLoading());
-    try {
-      return dispatch(actions.successLoading(state));
-    } catch (e) {
-      return dispatch(actions.errorLoading(e));
-    }
-  };
-};
-
+// export const fetchOrderREquest = () => {
+//   return (dispatch: Dispatch, state: ApplicationState): Action => {
+//     dispatch(actions.startLoading());
+//     try {
+//       return dispatch(actions.successLoading(state));
+//     } catch (e) {
+//       return dispatch(actions.errorLoading(e));
+//     }
+//   };
+// };
 
 export const addItemToOrder = (item: Inventory) => {
   return (dispatch: Dispatch): Action => {
-    try {      
-      return dispatch(actions.addToOrder(item));
+    try {
+      return dispatch(addToOrder(item));
     } catch (e) {
-      return dispatch(actions.addToOrderFailure(e));
+      return dispatch(addToOrderFailure(e));
     }
   };
 };
+

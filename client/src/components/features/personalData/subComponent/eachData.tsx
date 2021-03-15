@@ -5,7 +5,7 @@ import { useModalLogic } from '_hooks';
 
 type Props = {
   name: string;
-  firstName: string;
+  firstName?: string;
   type?: string;
 };
 

@@ -8,3 +8,5 @@ export {Media} from './media/media';
 export {AboutUs} from './aboutUs/aboutUs';
 export {MyAccount} from './myAccount/myAccount';
 export {Order} from './order/order';
+export { ProductPage } from "./product/product";
+export { Home } from "./home/home";

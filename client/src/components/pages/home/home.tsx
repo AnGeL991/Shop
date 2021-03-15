@@ -1,5 +1,4 @@
-import { FC, useLayoutEffect } from 'react';
-import { connect } from 'react-redux';
+import { FC } from 'react';
 import {
   Banner,
   BestSeller,
@@ -8,32 +7,9 @@ import {
   SlideBanner,
   Brands,
 } from 'components/features';
-import { Inventory, fetchRequest } from 'store/inventory';
-import { ApplicationState } from 'store/index';
-import { ThunkDispatch } from 'redux-thunk';
-import { AnyAction } from 'redux';
 
-interface PropsFromState {
-  loading: boolean;
-  data: Inventory[];
-  errors?: string;
-}
-interface propsFromDispatch {
-  fetchRequest: () => any;
-}
+export const Home: FC = () => {
 
-type Allprops = PropsFromState & propsFromDispatch;
-
-const Home: FC<Allprops> = ({ loading, errors, data, fetchRequest }) => {
-  useLayoutEffect(() => {
-    fetchRequest();
-  }, [fetchRequest]);
-
-  if (loading === true) {
-    return <section>Loading ...</section>;
-  } else if (errors) {
-    return <section>Cos poszło nie tak</section>;
-  }
   return (
     <section>
       <SlideBanner />
@@ -75,20 +51,4 @@ const Home: FC<Allprops> = ({ loading, errors, data, fetchRequest }) => {
   );
 };
 
-const mapStateToProps = ({ inventory }: ApplicationState) => ({
-  loading: inventory.loading,
-  errors: inventory.errors,
-  data: inventory.data,
-});
 
-///thunk dispatch usuń
-
-const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AnyAction>) => {
-  return {
-    fetchRequest: () => {
-      dispatch(fetchRequest());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);

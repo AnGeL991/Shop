@@ -1,54 +1,52 @@
-import { Inventory, SortOPtion } from 'store/inventory';
-import { useSelector } from 'react-redux';
-import { ApplicationState } from 'store'
+import { Inventory, SortOption } from "store/inventory";
+import { useSelector } from "react-redux";
+import { ApplicationState } from "store";
+import { actions } from "store/inventory";
 
 export const useDisplayProduct = () => {
-  const { data, search, price, sort, category } = useSelector((store: ApplicationState) => store.inventory)
-
+  const { data, search, price, sort, category } = useSelector(
+    (store: ApplicationState) => store.inventory
+  );
+  const recommendedProduct = useSelector(actions.getRecommendedProduct);
   let displayArray: Array<Inventory> = data;
 
+  const dealProduct = data.filter((el) => el.discount !== 0);
 
-  const recomendedProduct = data.filter(el=>el.star > 3)
-  const dealProduct = data.filter(el => el.discount !== 0 )
-  
   const sortArray = (sort: string) => {
     switch (sort) {
-      case SortOPtion.DEFAULT: {
+      case SortOption.DEFAULT: {
         return displayArray;
-
       }
-      case SortOPtion.TO_HIGHT_PRICE: {
-        displayArray.sort((a, b) => (a.price > b.price) ? 1 : -1)
+      case SortOption.TO_HIGHT_PRICE: {
+        displayArray.sort((a, b) => (a.price > b.price ? 1 : -1));
         break;
       }
-      case SortOPtion.TO_LOW_PRICE: {
-        displayArray.sort((a, b) => (a.price < b.price) ? 1 : -1)
+      case SortOption.TO_LOW_PRICE: {
+        displayArray.sort((a, b) => (a.price < b.price ? 1 : -1));
         break;
       }
-      case SortOPtion.POPULAR_SORT: {
-        return displayArray
+      case SortOption.POPULAR_SORT: {
+        return displayArray.sort((a, b) => (a.star < b.star ? 1 : -1));
       }
-      case SortOPtion.NEW_PRODUCTS: {
-        return displayArray
+      case SortOption.NEW_PRODUCTS: {
+        return displayArray;
       }
       default:
         break;
     }
-  }
+  };
 
-  if (category !== '') {
-   displayArray = displayArray.filter((el) => el.category === category)
+  if (category !== "") {
+    displayArray = displayArray.filter((el) => el.category === category);
   }
-  if  (search !== '') {
-   displayArray= displayArray.filter(el => el.title === search)
+  if (search !== "") {
+    displayArray = displayArray.filter((el) => el.title === search);
   }
   if (price !== 0) {
-  console.log(price)
-  displayArray = displayArray.filter(el => el.price >= price)
+    displayArray = displayArray.filter((el) => el.price >= price);
   }
-  if (sort !== '') {
-    sortArray(sort) 
-  } 
-
-  return {displayArray,recomendedProduct,dealProduct} 
-}
+  if (sort !== "") {
+    sortArray(sort);
+  }
+  return { displayArray, recommendedProduct, dealProduct };
+};

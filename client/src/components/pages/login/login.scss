@@ -1,4 +1,4 @@
-@import '../../../styles/settings.scss';
+@import "../../../styles/settings.scss";
 
 .login {
   display: flex;
@@ -14,12 +14,12 @@
     border: none;
   }
 
-  &__buttons { 
+  &__buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin:10px 0;
+    margin: 10px 0;
   }
   &__link {
     color: black;
@@ -55,5 +55,10 @@
   &__linkButton {
     color: white;
     text-decoration: none;
+  }
+  &__error {
+    color: red;
+    padding: 5px 0;
+    text-align: center;
   }
 }

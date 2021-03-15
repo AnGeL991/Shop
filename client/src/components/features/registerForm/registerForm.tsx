@@ -4,17 +4,24 @@ import { registerField } from 'db/db';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRegisterLogic } from '_hooks';
+import {Modal} from 'components/features';
+
 
 export const RegisterForm: FC = () => {
-  const { status, schema, onSubmit } = useRegisterLogic();
+  const { status, schema,onSubmit,alert,showModal} = useRegisterLogic();
 
   const progressRef = useRef(null);
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
-
-  ///pobrac wartosc z passwordconfirm która znajduje sie w register
+ 
+  const modalAlert = (
+    <Modal show={showModal}>
+      <p className='register__alert'>{alert.message}</p>
+    </Modal>
+  )
+  
 
   const registerProgress = (
     <div className="register__progress">
@@ -59,7 +66,8 @@ export const RegisterForm: FC = () => {
       case 'regulations':
       case 'newsletter':
         return (
-          <FieldChecked key={el.name} name={el.name} type={el.type}>
+          <FieldChecked key={el.name} name={el.name} type={el.type} reference={register} error={errors[el.name]}
+          >
             <ReadMore title={el.name} className="checkedRead">
               <p>{el.children}</p>
             </ReadMore>
@@ -71,11 +79,14 @@ export const RegisterForm: FC = () => {
   });
 
   return (
+    <>
+    {modalAlert}
     <form className="register" onSubmit={handleSubmit(onSubmit)}>
       <fieldset className="register__fildset">
         {fields}
         <Button className="register__button">Create Account</Button>
       </fieldset>
     </form>
+    </>
   );
 };

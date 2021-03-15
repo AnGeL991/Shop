@@ -1,28 +1,31 @@
-import React, { FC } from 'react';
-import 'normalize.css';
-import 'styles/global.scss';
-import { Provider } from 'react-redux';
-import { Store } from 'redux';
-import { MainLayout } from './components/layout';
-import { ApplicationState } from 'store';
-import { ConnectedRouter } from 'connected-react-router';
-import { History } from 'history';
-import {Routers} from './routers';
+import { FC, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { MainLayout } from "components/layout";
+import { ConnectedRouter } from "connected-react-router";
+import { History } from "history";
+import { Routers } from "routers";
+import { alertAction } from "store/alert";
+
+import "normalize.css";
+import "styles/global.scss";
+
 interface MainProps {
-  store: Store<ApplicationState>;
   history: History;
 }
 
-
-const App: FC<MainProps> = ({ store, history }) => {
+const App: FC<MainProps> = ({ history }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    history.listen(() => {
+      dispatch(alertAction.clear());
+    });
+  });
   return (
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <MainLayout>
-          <Routers/>
-        </MainLayout>
-      </ConnectedRouter>
-    </Provider>
+    <ConnectedRouter history={history}>
+      <MainLayout>
+        <Routers />
+      </MainLayout>
+    </ConnectedRouter>
   );
 };
 

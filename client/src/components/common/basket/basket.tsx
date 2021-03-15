@@ -8,11 +8,11 @@ import { useBasketLogic, useToggleClick } from '_hooks/';
 import './basket.scss';
 
 export const Basket: FunctionComponent = () => {
-  const { amount, items, price } = useBasketLogic();
+  const { count, items, totalPrice } = useBasketLogic();
   const { open, handleToggle } = useToggleClick();
 
   const renderBasket =
-    amount === 0 ? (
+  count === 0 ? (
       <div className="basket__empty">
         <p className="basket__title">No products in the cart.</p>
       </div>
@@ -35,14 +35,14 @@ export const Basket: FunctionComponent = () => {
   return (
     <>
       <div onClick={handleToggle} className="icon icon__last">
-        <Circle amount={amount} />
+        <Circle amount={count} />
         <AiOutlineShoppingCart size="28" />
       </div>
       <div className={`basket ${open && 'basket__active'}`}>
         <div className="basket__context">
           <h4 className="basket__subTitle">Wartość twoje zamówienia</h4>
-          <span className="basket__amount">(Ilość produktów: {amount} )</span>
-          <span className="basket__price">{price} $</span>
+          <span className="basket__amount">(Ilość produktów: {count} )</span>
+          <span className="basket__price">{totalPrice} $</span>
           <DarkButton>
             <Link to="/order">Zobacz koszyk</Link>
           </DarkButton>

@@ -4,7 +4,7 @@ import { Item } from './subComponents/item';
 import { useBasketLogic } from '_hooks';
 
 export const OrderProduct: FC = () => {
-  const { items, delivery, price } = useBasketLogic();
+  const { items, delivery, totalPrice } = useBasketLogic();
 
   const orders = items.map((el) => <Item key={el._id} {...el} />);
 
@@ -14,7 +14,7 @@ export const OrderProduct: FC = () => {
       <div className="order__payBox">
         <div>
           <p className="order__totalPay">
-            Razem za produkty: <span>{price.toFixed(2)} $</span>
+            Razem za produkty: <span>{totalPrice.toFixed(2)} $</span>
           </p>
           <p className="order__delivery">
             Dostawa do domu: <span>{delivery.toFixed(2)} $</span>
@@ -22,7 +22,7 @@ export const OrderProduct: FC = () => {
         </div>
         <div className="order__summary">
           <p className="order__finalPay">
-            Razem do zapłaty: <span>{(delivery + price).toFixed(2)}$</span>
+            Razem do zapłaty: <span>{(delivery + totalPrice).toFixed(2)}$</span>
           </p>
           <p className="order__discountCode">
             Mam kod rabatowy lub karte duzej rodziny

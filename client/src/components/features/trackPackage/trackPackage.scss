@@ -1,0 +1,46 @@
+@import '../../../styles/settings.scss';
+
+.track {
+  padding: 10px;
+  &__icons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 0 10px;
+  }
+  &__icon {
+    color: black;
+    font-size: 24px;
+  }
+  &__number {
+    margin: 10px 0;
+    text-align: center;
+  }
+  &__title {
+    font-size: 18px;
+    color: black;
+    font-weight: 500;
+  }
+  &__input {
+    text-align: center;
+    padding: 5px;
+    width: 80%;
+    margin: 10px 0;
+  }
+  &__info {
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__status {
+    margin-right: 10px;
+  }
+  &__description {
+    text-transform: none;
+    text-align: center;
+    line-height: 1.5;
+    font-size: 14px;
+    padding: 10px 0;
+    color: $color-darkGray;
+  }
+}

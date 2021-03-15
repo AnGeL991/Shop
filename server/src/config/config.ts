@@ -41,9 +41,7 @@ const SERVER = {
     secret:SERVER__TOKEN__SECRET,
   }
 }
-const config = {
+export const config = {
   mongo:MONGO,
   server:SERVER
 };
-
-export default config;

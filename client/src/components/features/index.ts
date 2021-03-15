@@ -33,3 +33,5 @@ export {AccountFilter} from './accountFilter/accountFilter';
 export {PersonalData} from './personalData/personalData';
 export {Carousell} from './carousell/carousell';
 export {Brands} from './brands/brands';
+export {TrackPackage} from './trackPackage/trackPackage';
+export {Product} from './product/product';

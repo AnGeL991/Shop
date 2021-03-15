@@ -1,16 +1,14 @@
-import { useCallback } from 'react';
-import { addItemToOrder } from 'store/order';
-import { Inventory } from 'store/inventory';
-import { useDispatch } from 'react-redux';
+import { actions } from "store/order";
+import { Inventory } from "store/inventory";
+import { FactoryCallbackAction } from "./utils";
 
-export const useProductBoxLogic = (item: Inventory,) => {
+export const useProductBoxLogic = (item: Inventory) => {
+  const AddProductToOrder = FactoryCallbackAction(actions.addItemToOrder, [
+    item,
+  ]);
 
-  const dispatch = useDispatch();
+  const discountPrice =
+    item.discount > 0 ? item.price - (item.price * item.discount) / 100 : null;
 
-  const AddProductToOrder = useCallback(
-    () => {
-      dispatch(addItemToOrder(item))
-    }, [dispatch, item]);
-
-  return { AddProductToOrder }
-}
+  return { AddProductToOrder, discountPrice };
+};

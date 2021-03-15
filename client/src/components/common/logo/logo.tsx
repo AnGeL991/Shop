@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
+import { Link } from 'react-router-dom';
 import './logo.scss';
 
 type Props = {
@@ -8,7 +9,7 @@ type Props = {
 export const Logo: FunctionComponent<Props> = ({ onClick }) => {
   return (
     <div onClick={onClick} className="logo">
-      M-tibis-bis
+      <Link to="/">M-tibis-bis</Link>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { Footer } from '../footer/Footer';
 import { MainMenu } from '../mainMenu/mainMenu';
 import './mainLayout.scss';
 type ComponentProps = {
-  readonly children: ReactNode;
+  children: ReactNode;
 };
 
 export const MainLayout: FunctionComponent<ComponentProps> = ({ children }) => {

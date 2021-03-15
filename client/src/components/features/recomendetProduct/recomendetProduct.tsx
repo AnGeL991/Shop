@@ -11,6 +11,7 @@ export const RecomendetProduct: FC = () => {
       image:
         'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/03/3-256x360.jpg',
       price: 150.0,
+      discount:0,
       category: 'test',
       star: 3,
       amount: 1,
@@ -21,6 +22,7 @@ export const RecomendetProduct: FC = () => {
       image:
         'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg',
       price: 150.0,
+      discount:0,
       category: 'test',
       star: 4,
       amount: 1,
@@ -31,6 +33,7 @@ export const RecomendetProduct: FC = () => {
       image:
         'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg',
       price: 1000.0,
+      discount:0,
       category: 'test',
       star: 1,
       amount: 1,
@@ -41,6 +44,7 @@ export const RecomendetProduct: FC = () => {
       image:
         'http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg',
       price: 30.0,
+      discount:0,
       category: 'test',
       star: 5,
       amount: 1,

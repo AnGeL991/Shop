@@ -2,12 +2,19 @@ import { FC } from 'react';
 import { EachData } from './subComponent/eachData';
 import './personalData.scss';
 
-export const PersonalData: FC = () => {
+type Props ={
+  firstName?:string ,
+  lastName?:string,
+  email?:string,
+}
+
+
+export const PersonalData: FC<Props> = ({firstName,lastName,email}) => {
   return (
     <section className="personalData">
-      <EachData name="First Name" firstName="Jan" />
-      <EachData name="Last Name" firstName="Kowalski" />
-      <EachData name="E-mail" firstName="demo@email.pl" />
+      <EachData name="First Name" firstName={firstName} />
+      <EachData name="Last Name" firstName={lastName} />
+      <EachData name="E-mail" firstName={email} />
       <EachData name="Password" firstName="Markuszewski" type="password" />
     </section>
   );
