@@ -1,12 +1,6 @@
-export interface User {
-  email: string;
-  password: string;
-  firstName?: string;
-  lastName?: string;
-  passwordConfirmation?: string;
-  regulations?: boolean;
-  newsletter?: boolean;
-}
+import { IUser } from "components/interface";
+
+export interface User extends IUser {}
 
 export enum UserActionType {
   REGISTER_REQUEST = "REGISTER_REQUEST",
@@ -14,7 +8,7 @@ export enum UserActionType {
   REGISTER_FAILURE = "REGISTER_FAILURE",
   LOGIN_REQUEST = "LOGIN_REQUEST",
   LOGIN_SUCCESS = "LOGIN_SUCCESS",
-  LOGIN_FAILURE = "LOGIN_FAILURE",
+  LOGIN_FAILURE = " LOGIN_FAILURE",
   USER_LOADING = "USER_LOADING",
   USER_LOADED = "USER_LOADED",
   LOGOUT = "LOGOUT",
@@ -24,5 +18,5 @@ export interface UserState {
   isAuthenticated: boolean;
   loading: boolean;
   data: User[];
-  errors?: string;
+  error: string | null;
 }

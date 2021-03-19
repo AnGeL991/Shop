@@ -1,0 +1,58 @@
+@import "../../../../styles/settings.scss";
+
+.container {
+  padding-bottom: 40px;
+}
+.filter {
+  margin: 10px 20px;
+  background-color: white;
+  text-transform: capitalize;
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    font-size: 18px;
+  }
+  &__show {
+    display: block;
+  }
+  &__hide {
+    display: none;
+  }
+}
+.filterContext {
+  padding: 0 10px;
+  padding-bottom: 10px;
+  list-style-type: none;
+  &__category {
+    width: 90%;
+    padding: 10px;
+    color: black;
+    border: 1px solid $border-gray;
+    margin: 10px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+      border: 1px solid $color-orange;
+      color: $color-orange;
+    }
+  }
+  &__button {
+    background-color: black;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  &__price {
+    padding: 20px 0;
+  }
+  &__range {
+    margin: 20px 0;
+    width: 100%;
+  }
+}

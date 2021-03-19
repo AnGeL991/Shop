@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import './header.scss';
 
-type Props = {
+type HeaderProps = {
   title: string;
 };
 
-export const Header: FC<Props> = ({ title }) => {
+export const Header: FC<HeaderProps> = ({ title }) => {
   return (
     <header className="headerPage">
       <h3 className="headerPage__title">{title}</h3>

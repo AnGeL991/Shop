@@ -1,22 +1,22 @@
-import { FunctionComponent } from 'react';
-import { Logo, Search, Basket, Best } from 'components/common';
-import { Categories, Nav, Account } from '../../features';
-import './mainMenu.scss';
+import { FC } from "react";
+import { Logo, Search, Basket, Best } from "components/common";
+import { NavCategories, Nav, Account } from "../../template";
+import "./mainMenu.scss";
 
-export const MainMenu: FunctionComponent = () => {
+export const MainMenu: FC = () => {
   return (
     <header className="header">
       <div className="header__top">
-        <Logo onClick={() => console.log('zostałem klikniety')} />
-        <Search/>
-        <Best onClick={() => console.log('zostałem klikniety')} />
-        <Basket  />
+        <Logo />
+        <Search />
+        <Best />
+        <Basket />
       </div>
       <div className="header__bottom">
-        <Categories onClick={() => console.log('zostałem klikniety')} />
+        <NavCategories />
         <div className="header__bottom__icon">
-        <Nav/>
-        <Account/>
+          <Nav />
+          <Account />
         </div>
       </div>
     </header>

@@ -17,6 +17,7 @@ function initApp() {
 
   ReactDOM.render(
     <Provider store={store}>
+      {/* <Init /></Init> */}
       <App history={history} />
     </Provider>,
     document.getElementById("root")

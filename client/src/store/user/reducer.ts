@@ -6,9 +6,17 @@ const initialState: UserState = {
   isAuthenticated: false,
   loading: false,
   data: [],
+  error: null,
 };
 
-const { USER_LOADED, USER_LOADING, LOGIN_SUCCESS, LOGOUT } = UserActionType;
+const {
+  USER_LOADED,
+  USER_LOADING,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT,
+} = UserActionType;
 
 const reducer: Reducer<UserState> = (state = initialState, action) => {
   switch (action.type) {
@@ -18,12 +26,16 @@ const reducer: Reducer<UserState> = (state = initialState, action) => {
         loading: true,
       };
     case USER_LOADED:
-      console.log(action.payload);
       return {
         ...state,
         isAuthenticated: true,
         loading: false,
         data: action.payload,
+      };
+    case LOGIN_REQUEST:
+      return {
+        ...state,
+        loading: true,
       };
     case LOGIN_SUCCESS:
       return {
@@ -31,13 +43,19 @@ const reducer: Reducer<UserState> = (state = initialState, action) => {
         ...action.payload,
         isAuthenticated: true,
         loading: false,
+        error: null,
+      };
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       };
     case LOGOUT:
       localStorage.removeItem("Token");
       return {
         ...state,
         token: null,
-        user: null,
         isAuthenticated: false,
         loading: false,
       };

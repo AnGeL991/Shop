@@ -1,4 +1,4 @@
-import { Inventory } from "store/inventory/types";
+import { Inventory } from "store/inventory";
 
 export interface Order {
   count: number;
@@ -9,6 +9,7 @@ export interface Order {
 export enum OrderActionTypes {
   ADD_TO_ORDER = "ADD_TO_ORDER",
   ADD_TO_ORDER_FAILURE = "ADD_TO_ORDER_FAILURE",
+  ADD_TO_ORDER_REQUEST = "ADD_TO_ORDER_REQUEST",
   REMOVE_FROM_ORDER = "REMOVE_FROM_ORDER",
   UPDATE_ORDER_AMOUNT = "UPDATE_ORDER_AMOUNT",
   START_LOAD_ORDER = "START_LOAD_REQUEST",

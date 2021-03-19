@@ -1,8 +1,8 @@
-import {FunctionComponent} from 'react';
+import {FC} from 'react';
+import {List,CopyRight} from 'components/template'
 import './footer.scss';
-import {List,CopyRight} from 'components/features'
 
-export const Footer:FunctionComponent =()=>{
+export const Footer:FC =()=>{
   return (
     <section className='footer' >
       <List/>

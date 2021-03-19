@@ -9,25 +9,25 @@ import {
   Wish,
   Media,
   AboutUs,
-  MyAccount,
+  Account,
   Order,
   ProductPage,
-  Home
-} from "./components/pages";
+  Home,
+} from "./components/view";
 import { PrivateRoute } from "components/routing/privateRoute";
 
 const routes = [
   { exact: true, path: "/", component: Home },
-  { exact: false, path: "/shop", component: Shop },
-  { exact: false, path: "/wish", component: Wish },
-  { exact: false, path: "/order", component: Order },
-  { exact: false, path: "/media", component: Media },
-  { exact: false, path: "/contact", component: Contact },
-  { exact: false, path: "/login", component: Login },
-  { exact: false, path: "/registration", component: Registration },
-  { exact: false, path: "/AboutUs", component: AboutUs },
-  { exact: false, path: "/myAccount", component: MyAccount, protected: true },
-  { exact: false, path: "/product", component: ProductPage },
+  { exact: true, path: "/shop", component: Shop },
+  { exact: true, path: "/shop/:id", component: ProductPage },
+  { exact: true, path: "/wish", component: Wish },
+  { exact: true, path: "/order", component: Order },
+  { exact: true, path: "/media", component: Media },
+  { exact: true, path: "/contact", component: Contact },
+  { exact: true, path: "/login", component: Login },
+  { exact: true, path: "/registration", component: Registration },
+  { exact: true, path: "/AboutUs", component: AboutUs },
+  { exact: true, path: "/product", component: ProductPage },
   { exact: false, path: "*", component: PageNoFound },
 ];
 
@@ -36,12 +36,9 @@ const router = routes.map((el, index) => (
 ));
 
 export const Routers: FC = () => {
-
   return (
     <Switch>
-      <PrivateRoute path='/myAccount' component={MyAccount}>
-        MY Account
-      </PrivateRoute>
+      <PrivateRoute path="/myAccount" component={Account} />
       {router}
     </Switch>
   );

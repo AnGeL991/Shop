@@ -1,0 +1,64 @@
+@import "../../../styles/settings.scss";
+
+.login {
+  display: flex;
+  flex-direction: column;
+  &__form {
+    margin: 20px 0;
+  }
+  &__fildset {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+  }
+  &__link {
+    color: black;
+    margin-left: 20px;
+    &:hover {
+      color: $color-orange;
+    }
+  }
+  &__createAccount {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  &__description {
+    line-height: 1.6;
+    color: black;
+    text-align: left;
+    font-weight: 700;
+  }
+  &__list {
+    color: black;
+  }
+  &__item {
+    width: 60%;
+    margin: 0 auto;
+    padding: 10px 0;
+  }
+  &__buttonBox {
+    margin: 30px;
+  }
+  &__linkButton {
+    color: white;
+    text-decoration: none;
+  }
+  &__error {
+    color: red;
+    padding: 5px 0;
+    text-align: center;
+  }
+}

@@ -7,7 +7,7 @@ interface IRegister {
   password: string;
   regulations: string;
 }
-
+/// nie działa do poprawy
 export const validateRegisterInput = (data: IRegister) => {
   let errors = {
     email: '',

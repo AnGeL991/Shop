@@ -8,6 +8,7 @@ export interface Inventory {
   amount: number;
   time?: string;
   discount: number;
+  description?: string;
   tags?: Array<string>;
 }
 

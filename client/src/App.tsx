@@ -4,8 +4,8 @@ import { MainLayout } from "components/layout";
 import { ConnectedRouter } from "connected-react-router";
 import { History } from "history";
 import { Routers } from "routers";
-import { alertAction } from "store/alert";
-
+import { AlertAction } from "store/alert";
+import { useLoading } from "_hooks";
 import "normalize.css";
 import "styles/global.scss";
 
@@ -14,17 +14,26 @@ interface MainProps {
 }
 
 const App: FC<MainProps> = ({ history }) => {
+  const { inventoryLoading,alert } = useLoading();
   const dispatch = useDispatch();
+
   useEffect(() => {
+    if(alert.type)
     history.listen(() => {
-      dispatch(alertAction.clear());
+      dispatch(AlertAction.clear());
     });
-  });
+  }, []);
+
+  if (inventoryLoading) {
+    return <div>Loading..</div>;
+  }
+   
   return (
     <ConnectedRouter history={history}>
-      <MainLayout>
-        <Routers />
-      </MainLayout>
+        {/* <Listener /> */}
+        <MainLayout>
+          <Routers />
+        </MainLayout>
     </ConnectedRouter>
   );
 };

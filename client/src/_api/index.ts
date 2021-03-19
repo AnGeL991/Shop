@@ -8,13 +8,12 @@ export async function client(
 ) {
   const { ...customConfig } = options ?? {};
   const headers = { "Content-Type": "application/json" };
-
   const config: RequestInit = {
     method: data ? "POST" : "GET",
     body: data ? JSON.stringify(data) : undefined,
     headers: {
       ...headers,
-      Authorization: AuthToken ? `Bearer ${JSON.parse(AuthToken).token}` : "",
+      Authorization: AuthToken ? `Bearer ${AuthToken}` : "",
       ...customConfig.headers,
     },
     ...customConfig,

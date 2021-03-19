@@ -2,23 +2,26 @@ import { combineReducers } from "redux";
 import { connectRouter, RouterState } from "connected-react-router";
 import { History } from "history";
 import { InventoryState, InventoryReducer } from "./inventory";
-import { OrderState, orderReducer } from "./order";
+import { OrderState, OrderReducer } from "./order";
 import { UserState, UserReducer } from "./user";
-import { alertReducer, alertState } from "./alert";
+import { AlertReducer, alertState } from "./alert";
+import { WishState, WishReducer } from "./wishList";
 
 export interface ApplicationState {
   order: OrderState;
   inventory: InventoryState;
-  router: RouterState;
   user: UserState;
+  wish: WishState;
   alert: alertState;
+  router: RouterState;
 }
 
 export const createRootReducer = (history: History) =>
   combineReducers({
-    order: orderReducer,
+    order: OrderReducer,
     inventory: InventoryReducer,
     user: UserReducer,
-    alert: alertReducer,
+    wish: WishReducer,
+    alert: AlertReducer,
     router: connectRouter(history),
   });

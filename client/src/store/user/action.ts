@@ -1,57 +1,72 @@
 import { history } from "_helpers/history";
 import * as userService from "_services/user.service";
 import { UserActionType, User } from "./types";
-import { alertAction } from "../alert";
+import { AlertAction } from "../alert";
 import { selector } from "../utils";
 
 const userApi = new userService.UserApiHandler();
 
 const {
-  REGISTER_FAILURE,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
+  REGISTER_FAILURE,
   LOGIN_REQUEST,
-  LOGIN_FAILURE,
   LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT,
+  USER_LOADING,
+  USER_LOADED,
 } = UserActionType;
 
-export const request = (type: UserActionType, user: any) =>
+export const userRequest = (type: UserActionType, user?: any) =>
   selector(type, user);
-export const success = (type: UserActionType, user: Array<{}>) =>
+export const userSuccess = (type: UserActionType, user: Array<{}>) =>
   selector(type, user);
-export const failure = (type: UserActionType, user: any) =>
-  selector(type, user);
-export const logout = (type: UserActionType.LOGOUT) => selector(type);
+export const userFailure = (type: UserActionType, error: string) =>
+  selector(type, error);
+
+export const userLogout = () => selector(LOGOUT);
+
+export const loadUser = (token: string) => {
+  return async (dispatch: Function) => {
+    dispatch(userRequest(USER_LOADING));
+    try {
+      const user = await userApi.load(token);
+      dispatch(userSuccess(USER_LOADED, user.result));
+    } catch (error) {
+      dispatch(AlertAction.error(error.message));
+    }
+  };
+};
 
 export function login(email: string, password: string) {
-  return (dispatch: Function) => {
-    dispatch(request(LOGIN_REQUEST, { email }));
-    userApi.login(email, password).then(
+  return async (dispatch: Function) => {
+    dispatch(userRequest(LOGIN_REQUEST, { email }));
+    await userApi.login(email, password).then(
       (user) => {
-        localStorage.setItem("Token", JSON.stringify(user));
-        dispatch(success(LOGIN_SUCCESS, user));
-        history.push("/");
+        localStorage.setItem("Token", JSON.stringify(user.token));
+        dispatch(userSuccess(LOGIN_SUCCESS, user));
+        dispatch(loadUser(user.token));
+        history.push("/myAccount");
       },
       (error) => {
-        dispatch(failure(LOGIN_FAILURE, error.message));
-        dispatch(alertAction.error(error.message));
+        dispatch(userFailure(LOGIN_FAILURE, error.message));
       }
     );
   };
 }
 
 export function register(user: User) {
-  return (dispatch: Function) => {
-    dispatch(request(REGISTER_REQUEST, user));
-    userApi.register(user).then(
+  return async (dispatch: Function) => {
+    dispatch(userRequest(REGISTER_REQUEST, user));
+    await userApi.register(user).then(
       (user) => {
-        dispatch(success(REGISTER_SUCCESS, user));
+        dispatch(userSuccess(REGISTER_SUCCESS, user));
         history.push("/login");
-        dispatch(alertAction.success("Rejestracja zakończona powodzeniem"));
+        dispatch(AlertAction.success("Rejestracja zakończona powodzeniem"));
       },
       (error) => {
-        dispatch(failure(REGISTER_FAILURE, error.message));
-        dispatch(alertAction.error(error.message));
+        dispatch(userFailure(REGISTER_FAILURE, error.message));
       }
     );
   };

@@ -5,7 +5,7 @@ interface ILogin {
   email: string;
   password: string;
 }
-
+/// nie działa do poprawy
 export const ValidationLoginInput = (data: ILogin) => {
   let errors = {
     email: '',

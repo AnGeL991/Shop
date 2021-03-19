@@ -11,17 +11,29 @@ export const initialState: OrderState = {
   loading: false,
 };
 
+const {
+  START_LOAD_ORDER,
+  END_LOAD_ORDER,
+  ERROR_LOAD_ORDER,
+  ADD_TO_ORDER_REQUEST,
+  ADD_TO_ORDER,
+  UPDATE_ORDER_AMOUNT,
+  REMOVE_FROM_ORDER,
+} = OrderActionTypes;
+
 const reducer: Reducer<OrderState> = (state = initialState, action) => {
   const { items, count, totalPrice } = state.data;
   const total = items.reduce((total, item) => {
-    return total + item.amount * item.price;
+    return (
+      total + item.amount * (item.price - (item.price * item.discount) / 100)
+    );
   }, 0);
-  
+
   switch (action.type) {
-    case OrderActionTypes.START_LOAD_ORDER: {
+    case START_LOAD_ORDER: {
       return { ...state, loading: true };
     }
-    case OrderActionTypes.END_LOAD_ORDER: {
+    case END_LOAD_ORDER: {
       return {
         ...state,
         loading: false,
@@ -30,38 +42,52 @@ const reducer: Reducer<OrderState> = (state = initialState, action) => {
         },
       };
     }
-    case OrderActionTypes.ERROR_LOAD_ORDER: {
+    case ERROR_LOAD_ORDER: {
       return { ...state, loading: false, errors: action.payload };
     }
-    case OrderActionTypes.ADD_TO_ORDER: {
-      const { _id, price } = action.payload;
+    case ADD_TO_ORDER_REQUEST: {
+      return { ...state, loading: true };
+    }
+    case ADD_TO_ORDER: {
+      const { _id, price, amount, discount } = action.payload;
       const some = items.some((el) => el._id === _id);
-
+      const dicountPrice = price - (price * discount) / 100;
+      if (!some) {
+        localStorage.setItem(
+          "Order",
+          JSON.stringify([...items, action.payload])
+        );
+      }
       if (some) {
-        const item = items.map((el) => ({
-          ...el,
-          amount: el.amount ? el.amount + 1 : 10,
-        }));
+        const item = items.map((el) =>
+          el._id === _id
+            ? {
+                ...el,
+                amount: el.amount ? el.amount + amount : 1,
+              }
+            : el
+        );
         return {
+          loading: false,
           data: {
             ...state.data,
-            count: count + 1,
+            count: count + amount,
             items: [...item],
-            totalPrice: total + price,
+            totalPrice: total + dicountPrice,
           },
         };
       }
       return {
-        errors: state.errors,
-        loading: state.loading,
+        ...state,
+        loading: false,
         data: {
-          count: count + 1,
+          count: count + amount,
           items: [...items, action.payload],
-          totalPrice: total + price,
+          totalPrice: total + price - (price * discount) / 100,
         },
       };
     }
-    case OrderActionTypes.UPDATE_ORDER_AMOUNT:
+    case UPDATE_ORDER_AMOUNT:
       const { id, amount } = action.payload;
       const item = items.map((el) =>
         el._id === id
@@ -71,7 +97,7 @@ const reducer: Reducer<OrderState> = (state = initialState, action) => {
             }
           : el
       );
-      const price = item.map((el) => el.price);
+      const price = item.map((el) => el.price - (el.price * el.discount) / 100);
       return {
         data: {
           count: count + amount,
@@ -79,19 +105,20 @@ const reducer: Reducer<OrderState> = (state = initialState, action) => {
           totalPrice: total + price[0] * amount,
         },
       };
-    case OrderActionTypes.REMOVE_FROM_ORDER:
-      const countProduct = items.map((el) =>
-        el._id === action.payload ? el.amount : 1
-      );
-      const itemPrice = items.map((el) =>
-        el._id === action.payload ? el.price : 0
-      );
+    case REMOVE_FROM_ORDER:
+      const product = items.filter((el) => el._id === action.payload);
+      const productPrice = product.reduce((total, item) => {
+        return (
+          total +
+          item.amount * (item.price - (item.price * item.discount) / 100)
+        );
+      }, 0);
       return {
         data: {
           ...state.data,
-          count: count - countProduct[0],
+          count: count - product[0].amount,
           items: items.filter((el) => el._id !== action.payload),
-          totalPrice: totalPrice - countProduct[0] * itemPrice[0],
+          totalPrice: totalPrice - productPrice,
         },
       };
 
@@ -100,4 +127,4 @@ const reducer: Reducer<OrderState> = (state = initialState, action) => {
     }
   }
 };
-export { reducer as orderReducer };
+export { reducer as OrderReducer };

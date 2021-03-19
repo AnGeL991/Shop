@@ -1,5 +1,4 @@
-import { InventoryActionTypes } from "./types";
-import { ApplicationState } from "store";
+import { Inventory, InventoryActionTypes } from "./types";
 import { selector } from "../utils";
 
 const {
@@ -14,10 +13,6 @@ const {
   ERROR_REQUEST,
 } = InventoryActionTypes;
 
-
-export const getRecommendedProduct = (state: ApplicationState) =>
-  state.inventory.data.filter((el) => el.star > 3);
-
 export const setSortOption = (option: string) =>
   selector(SET_SORT_OPTION, option);
 export const setMinPrice = (minPrice: number) =>
@@ -31,7 +26,7 @@ export const setCategory = (category: string) =>
 export const setFilterPrice = (price: number) =>
   selector(SET_FILTER_PRICE, price);
 export const startLoading = () => selector(START_REQUEST);
-export const doneFetchingAppData = (data: Array<{}>) =>
+export const doneFetchingAppData = (data: Array<Inventory>) =>
   selector(END_REQUEST, data);
 export const errorFetchingAppData = (error: string) =>
   selector(ERROR_REQUEST, error);

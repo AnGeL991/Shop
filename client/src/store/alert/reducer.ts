@@ -21,4 +21,4 @@ const reducer: Reducer = (state = {}, action) => {
       return state;
   }
 };
-export { reducer as alertReducer };
+export { reducer as AlertReducer };
