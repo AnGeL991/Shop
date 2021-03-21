@@ -19,3 +19,4 @@ export { Dots } from "./dots/dots";
 export { DealButtons } from "../template/dealButtons/dealButtons";
 export { Stars } from "../template/products/productBox/stars";
 export { Icons } from "./icons/icons";
+export { FieldRadio } from "./form/fieldRadio";

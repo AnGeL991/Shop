@@ -63,6 +63,7 @@
 }
 .basketProduct {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   overflow: hidden;
   height: auto;
@@ -73,8 +74,9 @@
   text-align: left;
   overflow: auto;
   &__image {
+    margin: auto;
     width: 30%;
-    height: auto;
+    height: 70%;
   }
   &__img {
     width: 100%;
@@ -106,7 +108,8 @@
   }
   &__amountBox {
     text-align: right;
-    margin: 5px;
+    margin: 0px 10px 10px;
+    width: 100%;
   }
   &__amountInput,
   &__btn {

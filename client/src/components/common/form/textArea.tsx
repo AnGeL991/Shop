@@ -3,7 +3,7 @@ import { ChangeEvent, FC, Ref } from "react";
 import "./form.scss";
 
 interface TextAreaProps {
-  name: string;
+  name?: string;
   value?: string | number;
   rows?: number;
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
@@ -31,7 +31,7 @@ export const TextArea: FC<TextAreaProps> = ({
         rows={rows}
         ref={reference}
       ></textarea>
-      <p className="register__error">{error?.message}</p>
+      <p className="error">{error?.message}</p>
     </div>
   );
 };

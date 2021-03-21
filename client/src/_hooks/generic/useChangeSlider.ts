@@ -1,5 +1,5 @@
 import { useState, MouseEvent, useEffect } from "react";
-import { CarouselState } from "db/db";
+import { CarouselState } from "components/interface";
 
 export const useChangeSlider = (data: Array<{}>, autoPlay?: number) => {
   const firstSlide = data[0];
@@ -24,6 +24,7 @@ export const useChangeSlider = (data: Array<{}>, autoPlay?: number) => {
         100 * (activeIndex + 1 > data.length - 1 ? 0 : activeIndex + 1),
     }));
   };
+
   const prevSlide = () => {
     setSlide((prev) => ({
       ...prev,
@@ -41,6 +42,7 @@ export const useChangeSlider = (data: Array<{}>, autoPlay?: number) => {
       translate: 100 * (parseInt(value) === data.length ? 1 : parseInt(value)),
     }));
   };
+
   useEffect(() => {
     let interval: any = null;
     if (autoPlay) {

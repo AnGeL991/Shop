@@ -10,6 +10,7 @@ export interface Inventory {
   discount: number;
   description?: string;
   tags?: Array<string>;
+  images: Array<string>;
 }
 
 export enum InventoryActionTypes {

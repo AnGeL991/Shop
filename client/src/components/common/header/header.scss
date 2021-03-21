@@ -3,10 +3,10 @@
 .headerPage {
   text-align: center;
   padding: 0 20px;
-  text-transform: capitalize;
+  text-transform: initial;
+  font-size: 28px;
+  color: black;
   &__title {
-    font-size: 28px;
-    color: black;
     padding: 20px;
     border-bottom: 2px solid $border-gray;
   }

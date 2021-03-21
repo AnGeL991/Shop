@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Field, Button, TextArea } from 'components/common';
-import { contactField, User } from 'db/db';
+import { contactField, User } from 'db';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {contactSchema} from '_yup';

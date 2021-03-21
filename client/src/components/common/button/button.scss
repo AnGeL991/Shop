@@ -6,8 +6,9 @@
   padding: 10px 20px;
   border: none;
   font-size: 14px;
+  overflow: none;
   &:hover {
-    background-color: $color-orange;
+    background-color: black;
   }
   a {
     color: white;

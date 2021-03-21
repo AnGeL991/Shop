@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Product, CarousellProduct } from "components/template";
+import { ProductDetail, CarousellProduct } from "components/template";
 import { RouteComponentProps } from "react-router";
 import { useDisplayProduct } from "_hooks";
 
@@ -14,7 +14,8 @@ const data = [
     title: "Similique sunt in culpa",
     image:
       "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/03/3-256x360.jpg",
-    price: 150.0,
+      images:[],
+      price: 150.0,
     discount: 0,
     category: "test",
     star: 3,
@@ -25,7 +26,8 @@ const data = [
     title: "Laborum et Dolorum Fug",
     image:
       "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg",
-    price: 150.0,
+      images:[],
+      price: 150.0,
     discount: 0,
     category: "test",
     star: 4,
@@ -36,7 +38,8 @@ const data = [
     title: "Laborum et Dolorum Fug",
     image:
       "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg",
-    price: 1000.0,
+      images:[],
+      price: 1000.0,
     discount: 0,
     category: "test",
     star: 1,
@@ -47,7 +50,8 @@ const data = [
     title: "Laborum et Dolorum Fug",
     image:
       "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg",
-    price: 30.0,
+    images:[],
+      price: 30.0,
     discount: 0,
     category: "test",
     star: 5,
@@ -60,8 +64,8 @@ export const ProductPage: FC<ProductPageProps> = ({ match }) => {
   const product = productById(match.params.id);
   return (
     <section className="page">
-      <Product product={product[0]} />
-      <CarousellProduct title="Related Products" data={data} duration={2} />
+      <ProductDetail product={product[0]} />
+      <CarousellProduct title="Related Products" data={data} duration={0} />
     </section>
   );
 };

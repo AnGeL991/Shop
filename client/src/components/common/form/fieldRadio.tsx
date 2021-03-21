@@ -1,16 +1,14 @@
-import { FC,ReactNode } from 'react';
-import {IFieldIndput} from 'components/interface';
-import './form.scss';
+import { FC, ReactNode } from "react";
+import { IFieldIndput } from "components/interface";
 
-interface FieldCheckedProps extends IFieldIndput {
+interface IFieldRadio extends IFieldIndput {
   children: ReactNode;
   checked?: boolean;
-};
+}
 
-export const FieldChecked: FC<FieldCheckedProps> = ({
-  children,
+export const FieldRadio: FC<IFieldRadio> = ({
   name,
-  type,
+  children,
   checked,
   onChange,
   reference,
@@ -18,14 +16,14 @@ export const FieldChecked: FC<FieldCheckedProps> = ({
 }) => {
   return (
     <>
-      <div className="checkedFild">
+      <div className="fieldRadio" onChange={onChange}>
         <input
-          type={type}
+          type="radio"
           name={name}
           checked={checked}
           onChange={onChange}
           ref={reference}
-          className="checkedFild__input"
+          className="fieldRadio__input"
         />
         {children}
       </div>

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { securityInfo } from 'db/db';
+import { securityInfo } from 'db';
 
 export const OrderSecurity: FC = () => {
   return (

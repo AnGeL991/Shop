@@ -1,20 +1,16 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { User } from "db/db";
+import { User } from "db";
 import { userActions } from "store/user";
-import { ApplicationState } from "store";
+import { useFormLogic } from "_hooks";
 
 export const useRegisterLogic = () => {
-  const dispatch = useDispatch();
-  const { error } = useSelector((store: ApplicationState) => store.user);
+  const { onSubmit, error } = useFormLogic();
 
   const [status, setStatus] = useState("no password");
 
   const [showModal, setShowModal] = useState(false);
 
-  const onSubmit = (user: User) => {
-    dispatch(userActions.register(user));
-  };
+  const submit = (user: User) => onSubmit(userActions.register, [user]);
 
   useEffect(() => {
     if (error) {
@@ -34,5 +30,5 @@ export const useRegisterLogic = () => {
     };
   }, [showModal]);
 
-  return { status, onSubmit, error, showModal };
+  return { status, submit, error, showModal };
 };

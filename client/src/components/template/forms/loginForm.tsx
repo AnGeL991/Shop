@@ -4,10 +4,15 @@ import { Button, Field } from "components/common";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "_yup";
-import { useLogic } from "_hooks";
+import { useLoginLogic } from "_hooks";
 
-export const LoginForm: FC = () => {
-  const { onSubmit,error } = useLogic();
+type LoginFormProps ={
+  to?:string,
+}
+
+
+export const LoginForm: FC<LoginFormProps> = ({to}) => {
+  const { submit,error } = useLoginLogic(to);
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
@@ -21,7 +26,7 @@ export const LoginForm: FC = () => {
     ) : null;
 
   return (
-    <form className="login__form" onSubmit={handleSubmit(onSubmit)}>
+    <form className="login__form" onSubmit={handleSubmit(submit)}>
       {wrongLabel}
       <fieldset className="login__fildset">
         <Field
@@ -41,7 +46,7 @@ export const LoginForm: FC = () => {
           error={errors["password"]}
         />
         <div className="login__buttons">
-          <Button>Log in</Button>
+          <Button className='login__btn'>Log in</Button>
           <Link className="login__link" to="/login/forget-password">
             Forget password?
           </Link>

@@ -1,29 +1,30 @@
-import { FC } from 'react';
-import { EachCategory, Button, Tag, EachFilter } from 'components/common';
-import { useFilterValue } from '_hooks';
-import { ApplicationState } from 'store/index';
-import { useSelector } from 'react-redux';
-import './filter.scss';
+import { FC } from "react";
+import { EachCategory, Button, Tag, EachFilter } from "components/common";
+import { useFilterValue } from "_hooks";
+import { ApplicationState } from "store/index";
+import { useSelector } from "react-redux";
+import "./filter.scss";
 
 const data = [
-  { name: 'sofa', path: '/shop/sofa' },
+  { name: "sofa", path: "/shop/sofa" },
   {
-    name: 'bed',
-    path: '/shop/bed',
+    name: "bed",
+    path: "/shop/bed",
     subLink: [
-      { name: 'Single', path: '/shop/bed/single' },
-      { name: 'Double', path: '/shop/bed/double' },
+      { name: "Single", path: "/shop/bed/single" },
+      { name: "Double", path: "/shop/bed/double" },
     ],
   },
   {
-    name: 'table',
-    path: '/shop/table',
-    subLink: [{ name: 'Long table', path: '/shop/table/long' }],
+    name: "table",
+    path: "/shop/table",
+    subLink: [{ name: "Long table", path: "/shop/table/long" }],
   },
-  { name: 'accessories', path: '/shop/accesories' },
+  { name: "accessories", path: "/shop/accesories" },
+  { name: "chair", path: "/shop" },
 ];
 
-const dataTag = [{ name: 'Summer' }, { name: 'Winter' }];
+const dataTag = [{ name: "Summer" }, { name: "Winter" }];
 
 export const Filter: FC = () => {
   const { minPrice, maxPrice, price } = useSelector(
@@ -53,7 +54,7 @@ export const Filter: FC = () => {
           />
           <Button className="filterContext__button">Filter</Button>
           <p className="filterContext__price">
-            Price: <span>${minPrice > price ? minPrice : price}</span> —{' '}
+            Price: <span>${minPrice > price ? minPrice : price}</span> —{" "}
             <span>${maxPrice}</span>
           </p>
         </div>

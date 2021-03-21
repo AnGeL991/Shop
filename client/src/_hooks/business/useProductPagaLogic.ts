@@ -6,9 +6,10 @@ export const useProductPageLogic = (item: Inventory) => {
   const [amount, setAmount] = useState(1);
   const [activeInfo, setActiveInfo] = useState("delivery");
 
-  const { price, discount } = item;
+  const { price, discount, image, images } = item;
 
   item.amount = amount;
+  item.images = [...images, image];
 
   const currentPrice =
     discount !== 0 ? price - (price * discount) / 100 : price;
@@ -22,16 +23,17 @@ export const useProductPageLogic = (item: Inventory) => {
   const handleDecremnet = () => {
     setAmount((prev) => prev - 1);
   };
+
   const { addProductToOrder, addProductToWish } = useProductBoxLogic(item);
 
   return {
-    activeInfo,
-    amount,
     handleDecremnet,
     handleIncrement,
     HandleSetActiveInfo,
     addProductToOrder,
     addProductToWish,
     currentPrice,
+    activeInfo,
+    amount,
   };
 };

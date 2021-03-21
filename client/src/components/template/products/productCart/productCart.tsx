@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { option } from "db/db";
+import { option } from "db";
 import { ProductBox } from "components/common";
 import { ProductDataPage } from "components/template";
 import { useFilterValue, useDisplayProduct } from "_hooks";
@@ -21,7 +21,7 @@ export const ProductCart: FC = () => {
   ));
 
   return (
-    <section className="page">
+    <section>
       <div className="productCart__wrapper">
         <form>
           <select

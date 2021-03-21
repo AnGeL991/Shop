@@ -1,8 +1,15 @@
 .images {
-  position: relative;
   &__wrapper {
     display: flex;
     overflow: hidden;
+  }
+  &__bigImage {
+    img {
+      width: 100%;
+    }
+  }
+  &__box {
+    position: relative;
   }
   &__slide {
     width: 100%;

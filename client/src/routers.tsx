@@ -12,6 +12,9 @@ import {
   Account,
   Order,
   ProductPage,
+  Checkout,
+  Delivery,
+  Payment,
   Home,
 } from "./components/view";
 import { PrivateRoute } from "components/routing/privateRoute";
@@ -28,6 +31,9 @@ const routes = [
   { exact: true, path: "/registration", component: Registration },
   { exact: true, path: "/AboutUs", component: AboutUs },
   { exact: true, path: "/product", component: ProductPage },
+  { exact: true, path: "/Checkout", component: Checkout },
+  { exact: true, path: "/checkout/delivery", component: Delivery },
+  { exact: true, path: "/checkout/payment", component: Payment },
   { exact: false, path: "*", component: PageNoFound },
 ];
 

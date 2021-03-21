@@ -1,16 +1,16 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { Button, Stars } from "components/common";
 import { Icons } from "components/common";
 import { Inventory } from "store/inventory";
 import { ImageSlider } from "components/template";
 import { useProductPageLogic } from "_hooks";
-import "./product.scss";
+import "./productDetail.scss";
 
 type ProductPageProps = {
   product: Inventory;
 };
 
-export const Product: FC<ProductPageProps> = ({ product }) => {
+export const ProductDetail: FC<ProductPageProps> = ({ product }) => {
   const {
     addProductToOrder,
     amount,
@@ -22,45 +22,52 @@ export const Product: FC<ProductPageProps> = ({ product }) => {
     addProductToWish,
   } = useProductPageLogic(product);
 
-  const data = [
-    { id: 1, image: product.image },
-    { id: 2, image: product.image },
-  ];
+  const {
+    discount,
+    price,
+    images,
+    title,
+    star,
+    category,
+    description,
+  } = product;
 
-  const productPrice =
-    product.discount !== 0 ? (
-      <>
+  const productPrice = useMemo(
+    () =>
+      discount !== 0 ? (
+        <>
+          <span>${currentPrice.toFixed(2)}</span>
+          <span className="product__oldPrice">${price.toFixed(2)}</span>
+        </>
+      ) : (
         <span>${currentPrice.toFixed(2)}</span>
-        <span className="product__oldPrice">${product.price.toFixed(2)}</span>
-      </>
-    ) : (
-      <span>${currentPrice.toFixed(2)}</span>
-    );
+      ),
+    [discount, currentPrice, price]
+  );
+
   return (
     <section className="product">
       <div className="product__imageBox">
-        <div className="product__image">
-          <img
-            className="product__img"
-            src={product.image}
-            alt={product.title}
-          />
-        </div>
         <div>
-          <ImageSlider data={data} classImage="product__images" opacity={1} />
+          <ImageSlider
+            data={images}
+            classImage="product__images"
+            opacity={1}
+            big
+          />
         </div>
       </div>
       <div className="product__info">
-        <h4 className="product__title">{product.title}</h4>
+        <h4 className="product__title">{title}</h4>
         <div className="product__stars">
-          <Stars activeStart={product.star} /> <span>(1 customer review)</span>
+          <Stars activeStart={star} /> <span>(1 customer review)</span>
         </div>
         <div className="product__categories">
           <p className="product__category">Categories:</p>
-          <span>{product.category.toUpperCase()}</span>
+          <span>{category.toUpperCase()}</span>
         </div>
         <div className="product__price">{productPrice}</div>
-        <div className="product__description">{product.description}</div>
+        <div className="product__description">{description}</div>
         <div className="product__warehouse">
           <span>2499 in stock</span>
         </div>

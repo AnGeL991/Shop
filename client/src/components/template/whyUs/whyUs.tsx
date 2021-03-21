@@ -3,6 +3,7 @@ import { EachBox } from './subComponent/eachBox';
 import {Icons} from 'components/common';
 import './whyUs.scss';
 const {ShoppingBag,BubbleChat,HeartIcon,CopyIcon} = Icons;
+
 const data = [
   {
     children: <ShoppingBag className="whyUs__icon" />,

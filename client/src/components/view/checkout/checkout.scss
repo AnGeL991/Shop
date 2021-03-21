@@ -1,0 +1,226 @@
+@import "../../../styles/settings.scss";
+
+.checkout {
+  &__header {
+    text-transform: initial;
+    text-align: center;
+    padding: 20px 20px 0;
+    font-size: 14px;
+  }
+}
+.progressList {
+  margin: 40px 0;
+  &__list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style-type: none;
+    counter-reset: i;
+    text-align: center;
+  }
+  &__item {
+    position: relative;
+    display: inline-block;
+    width: 90px;
+    vertical-align: top;
+    font-size: 14px;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 19px;
+      height: 2px;
+    }
+    &::before {
+      left: 0;
+      width: 25px;
+      background-color: $color-gray;
+    }
+    &::after {
+      right: 0;
+      width: 25px;
+      background-color: $color-gray;
+    }
+    span {
+      border-radius: 50%;
+      display: inline-block;
+      padding-top: 55px;
+      font-size: 12px;
+      width: 100%;
+      color: $color-orange;
+      font-weight: 600;
+      &::before {
+        content: counter(i);
+        counter-increment: i;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 40px;
+        height: 40px;
+        margin-left: -20px;
+        border-radius: 50%;
+        border: 2px solid $color-gray;
+        line-height: 36px;
+        font-size: 20px;
+      }
+    }
+  }
+  &__item--active {
+    &::before {
+      background-color: $color-orange;
+    }
+    &::after {
+      background: rgb(224, 150, 84);
+      background: linear-gradient(
+        90deg,
+        rgba(224, 150, 84, 1) 33%,
+        rgba(222, 222, 222, 1) 100%
+      );
+    }
+    span::before {
+      border-color: $color-orange;
+      color: $color-orange;
+    }
+  }
+  &__item--done {
+    &::before,
+    &::after {
+      background-color: black;
+    }
+    span {
+      color: black;
+      &::before {
+        border-color: black;
+        color: $color-orange;
+      }
+    }
+  }
+}
+.gouest {
+  padding: 20px;
+  &__title {
+    color: black;
+    font-weight: 500;
+    text-align: center;
+    padding: 10px 0;
+  }
+  &__description {
+    font-weight: 300;
+    color: black;
+  }
+}
+.adressForm {
+  padding: 20px;
+  &__fieldset {
+    border: none;
+  }
+  &__legend {
+    text-align: center;
+    color: black;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 20px 0;
+  }
+  &__person {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  &__deliveryBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  &__description {
+    width: 50%;
+    color: black;
+    text-align: left;
+    font-size: 14px;
+    vertical-align: middle;
+  }
+}
+.payment {
+  margin: 20px;
+}
+.paymentMethod {
+  &__title {
+    color: black;
+    font-weight: 500;
+  }
+  &__box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  &__description {
+    font-weight: 300;
+  }
+}
+.comment {
+  border-top: 1px solid $border-gray;
+  border-bottom: 1px solid $border-gray;
+  padding: 20px 0;
+
+  &__title {
+    color: black;
+    font-weight: 500;
+    margin: 10px 0;
+  }
+}
+.paymentRule {
+  margin: 20px 0;
+  &__title {
+    font-weight: 500;
+  }
+}
+.detail {
+  margin: 20px 0;
+  &__wrapper {
+    background-color: $bgc-smokeWhite;
+    padding: 20px;
+    position: relative;
+    min-height: 200px;
+  }
+  &__edit {
+    position: absolute;
+    text-decoration: underline;
+    font-size: 12px;
+    right: 20px;
+  }
+  &__icon {
+    margin: 0 5px;
+    vertical-align: top;
+  }
+  &__title {
+    color: black;
+    padding: 10px 0;
+    font-size: 20px;
+  }
+  &__box {
+    display: flex;
+    flex-direction: column;
+  }
+  &__item {
+    margin: 2px 0;
+    color: black;
+    font-size: 14px;
+  }
+  &__item--delivery {
+    margin: 10px 0;
+  }
+}
+.buttons {
+  margin: 20px 0;
+  &__btn,
+  &__dark {
+    width: 100%;
+    text-transform: uppercase;
+  }
+  &__dark {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

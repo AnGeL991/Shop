@@ -14,7 +14,7 @@ interface MainProps {
 }
 
 const App: FC<MainProps> = ({ history }) => {
-  const { inventoryLoading,alert } = useLoading();
+  const { inventoryLoading,alert,userLoading } = useLoading();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const App: FC<MainProps> = ({ history }) => {
     });
   }, []);
 
-  if (inventoryLoading) {
+  if (inventoryLoading && userLoading) {
     return <div>Loading..</div>;
   }
    

@@ -3,6 +3,7 @@ import { Document, Model } from 'mongoose';
 export interface IProduct extends Document {
   title: string;
   image: string;
+  images?: Array<string>;
   price: number;
   discount: number;
   time: string;

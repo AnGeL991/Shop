@@ -39,15 +39,15 @@ export const loadUser = (token: string) => {
   };
 };
 
-export function login(email: string, password: string) {
+export function login(email: string, password: string, to?: string) {
   return async (dispatch: Function) => {
     dispatch(userRequest(LOGIN_REQUEST, { email }));
     await userApi.login(email, password).then(
-      (user) => {
+      async (user) => {
         localStorage.setItem("Token", JSON.stringify(user.token));
         dispatch(userSuccess(LOGIN_SUCCESS, user));
-        dispatch(loadUser(user.token));
-        history.push("/myAccount");
+        await dispatch(loadUser(user.token));
+        history.push(to ? to : "/myAccount");
       },
       (error) => {
         dispatch(userFailure(LOGIN_FAILURE, error.message));

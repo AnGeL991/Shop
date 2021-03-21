@@ -22,6 +22,7 @@ import { GoLocation, GoThreeBars } from "react-icons/go";
 import { FiPhone, FiSend } from "react-icons/fi";
 import { GiLetterBomb } from "react-icons/gi";
 import { BiSupport, BiShoppingBag } from "react-icons/bi";
+import { RiBallPenLine } from "react-icons/ri";
 
 export const Icons = {
   BinIcon: ImBin,
@@ -53,4 +54,5 @@ export const Icons = {
   HomeIcon: FaHome,
   BubbleChat: IoChatbubblesOutline,
   CubeIcon: FaCube,
+  PenIcon: RiBallPenLine,
 };

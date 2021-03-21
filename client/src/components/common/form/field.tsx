@@ -32,7 +32,7 @@ export const Field: FC<IFieldIndput> = ({
           autoComplete={auto}
           ref={reference}
         />
-        <p className="register__error">{error?.message}</p>
+        <p className="error">{error?.message}</p>
       </div>
     </div>
   );

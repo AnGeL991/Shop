@@ -31,6 +31,7 @@ export const registerSchema = yup.object().shape({
     .oneOf([true], "Musisz zaakceptować zasady"),
   newsletter: yup.boolean(),
 });
+
 export const loginSchema = yup.object().shape({
   email: yup
     .string()
@@ -40,4 +41,33 @@ export const loginSchema = yup.object().shape({
     .string()
     .min(6, "Hasło musi się składać z minimum 6 znaków")
     .required("To pole jest wymagane"),
+});
+
+export const adressPrivateSchema = yup.object().shape({
+  email: yup
+    .string()
+    .required("To pole jest wymagane")
+    .email("Email posiada nie własciwą konstrukcję - @gmail.com"),
+  firstName: yup
+    .string()
+    .required("To pole jest wymagane")
+    .min(3, "Imie musi się składać z minimum 3 znaków"),
+  surName: yup
+    .string()
+    .required("To pole jest wymagane")
+    .min(3, "Nazwisko musi się składać z minumum 3 znaków"),
+  street: yup
+    .string()
+    .required("To pole jest wymagane")
+    .min(3, "Ulica musi się składać z minumum 3 znakow"),
+  postCode: yup.string().required("To pole jest wymagane"),
+  city: yup.string().required("To pole jest wymagane"),
+  phone: yup.number().required("To pole jest wymagane"),
+  delivery: yup.array().of(
+    yup.object().shape({
+      transfer: yup.string().nullable(),
+      courier: yup.string().nullable(),
+      own: yup.string().nullable(),
+    })
+  ),
 });

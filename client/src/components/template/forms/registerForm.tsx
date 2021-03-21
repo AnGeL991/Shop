@@ -1,6 +1,6 @@
 import { FC, useRef } from "react";
 import { Button, Field, FieldChecked, ReadMore } from "components/common";
-import { registerField } from "db/db";
+import { registerField } from "db";
 import { registerSchema } from "_yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,7 +8,7 @@ import { useRegisterLogic } from "_hooks";
 import { Modal } from "components/template";
 
 export const RegisterForm: FC = () => {
-  const { status, onSubmit, error, showModal } = useRegisterLogic();
+  const { status, submit, error, showModal } = useRegisterLogic();
 
   const progressRef = useRef(null);
 
@@ -85,7 +85,7 @@ export const RegisterForm: FC = () => {
   return (
     <>
       {modalAlert}
-      <form className="register" onSubmit={handleSubmit(onSubmit)}>
+      <form className="register" onSubmit={handleSubmit(submit)}>
         <fieldset className="register__fildset">
           {fields}
           <Button className="register__button">Create Account</Button>

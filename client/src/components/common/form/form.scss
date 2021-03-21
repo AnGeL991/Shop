@@ -30,6 +30,7 @@
     justify-content: space-between;
     align-items: center;
     color: black;
+    font-weight: 400;
     cursor: pointer;
   }
   &__description {
@@ -53,4 +54,19 @@
     margin: 5px 0;
     padding: 10px;
   }
+}
+.fieldRadio {
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-right: 20px;
+  &__input {
+    margin: 10px 10px 0px 0;
+  }
+}
+.error {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 5px;
 }

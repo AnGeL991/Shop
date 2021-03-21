@@ -2,6 +2,7 @@ import { FC } from "react";
 import { GalerySlider } from "components/template";
 import { DealButtons, Stars } from "components/common";
 import { Inventory } from "components/interface";
+import { useProductBoxLogic } from "_hooks";
 
 type DealProps = {
   item: Inventory;
@@ -11,12 +12,14 @@ type DealProps = {
 };
 
 export const Slide: FC<DealProps> = ({ data, item, translate, transition }) => {
-  const { price, discount, _id, title, star, description } = item;
-  const newPrice = price - (price * discount) / 100;
-
+  const { price, title, star, description } = item;
+  const {
+    addProductToOrder,
+    addProductToWish,
+    discountPrice,
+  } = useProductBoxLogic(item);
   return (
     <div
-      key={_id}
       className="deal__wrapper"
       style={{
         transform: `translateX(-${translate}%)`,
@@ -29,7 +32,7 @@ export const Slide: FC<DealProps> = ({ data, item, translate, transition }) => {
           <h4 className="deal__title">{title}</h4>
           <Stars activeStart={star} />
           <div>
-            <span className="deal__price"> ${newPrice.toFixed(2)}</span>
+            <span className="deal__price"> ${discountPrice.toFixed(2)}</span>
             <span className="deal__oldPrice"> ${price.toFixed(2)}</span>
           </div>
           <p className="deal__description">{description}</p>
@@ -51,7 +54,12 @@ export const Slide: FC<DealProps> = ({ data, item, translate, transition }) => {
             </div>
           </div>
         </div>
-        <DealButtons className="deal__buttons" styleBtn="deal__button" />
+        <DealButtons
+          addToCard={addProductToOrder}
+          addToWishList={addProductToWish}
+          className="deal__buttons"
+          styleBtn="deal__button"
+        />
       </div>
     </div>
   );
