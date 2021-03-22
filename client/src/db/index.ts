@@ -93,7 +93,7 @@ export const registerField = [
     type: "password",
   },
   {
-    name: "select all",
+    name: "select",
     type: "checkbox",
   },
   {
@@ -213,7 +213,7 @@ export const business = [
 export const delivery: Array<IDelivery> = [
   {
     price: 29,
-    name: "transfer",
+    name: "payment",
     description: "Zamowienie przedpłata na konto",
   },
   {
@@ -236,15 +236,19 @@ export const paymentMethod: Array<IPayment> = [
   {
     name: "masterpass",
     description: "Pay Masterpass",
+    icon:
+      "https://www.kontomaniak.pl/artykuly/image-thumb__227__body-primary/masterpass@2x.webp",
   },
   {
     name: "dotpay",
     description: "Dotpay",
+    icon:
+      "https://lh3.googleusercontent.com/proxy/ghqV2xF_kjwtUmSv_XxhQo8t0GeV_wjc19Djw_H6oyN1pSwKcbZ2RK9E-BOT96O4MJ7Xg4Sa8s0Aao7RrwV9S1D0_fSlEabBN3gFlvRGe-Fd7PkFi2PyAB3YKivyj6u5_wo_",
   },
 ];
 export const paymentRule: Array<IRule> = [
   {
-    name: "approve",
+    name: "select",
     type: "checkbox",
     description: "Select all",
   },

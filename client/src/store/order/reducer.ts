@@ -6,6 +6,16 @@ export const initialState: OrderState = {
     count: 0,
     items: [],
     totalPrice: 0,
+    deliveryAdress: {
+      email: "",
+      firstName: "",
+      surName: "",
+      street: "",
+      postCode: "",
+      city: "",
+      phone: 0,
+      deliveryCost: 0,
+    },
   },
   errors: undefined,
   loading: false,
@@ -17,8 +27,12 @@ const {
   ERROR_LOAD_ORDER,
   ADD_TO_ORDER_REQUEST,
   ADD_TO_ORDER,
+  ADD_TO_ORDER_FAILURE,
   UPDATE_ORDER_AMOUNT,
   REMOVE_FROM_ORDER,
+  ADD_ADRESS_REQUEST,
+  ADD_ADRESS_SUCCESS,
+  ADD_ADRESS_FAILURE,
 } = OrderActionTypes;
 
 const reducer: Reducer<OrderState> = (state = initialState, action) => {
@@ -87,6 +101,9 @@ const reducer: Reducer<OrderState> = (state = initialState, action) => {
         },
       };
     }
+    case ADD_TO_ORDER_FAILURE: {
+      return { ...state, errors: action.payload };
+    }
     case UPDATE_ORDER_AMOUNT:
       const { id, amount } = action.payload;
       const item = items.map((el) =>
@@ -121,7 +138,22 @@ const reducer: Reducer<OrderState> = (state = initialState, action) => {
           totalPrice: totalPrice - productPrice,
         },
       };
-
+    case ADD_ADRESS_REQUEST: {
+      return { ...state, loading: true };
+    }
+    case ADD_ADRESS_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        data: {
+          ...state.data,
+          deliveryAdress: action.payload,
+        },
+      };
+    }
+    case ADD_ADRESS_FAILURE: {
+      return { ...state, errors: action.payload };
+    }
     default: {
       return state;
     }

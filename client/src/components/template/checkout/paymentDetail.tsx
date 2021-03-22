@@ -1,37 +1,47 @@
 import { FC } from "react";
-import {Icons} from 'components/common';
+import { Link } from "react-router-dom";
+import { Icons } from "components/common";
+import { Delivery } from "store/order";
+
 interface Detail {
+  detail: Delivery;
   title: string;
-  firstName: string;
-  surName: string;
-  street: string;
-  city: string;
-  postCode: string;
-  phone: number;
-  delivery?:string;
+  delivery?: boolean;
+  to?: string;
 }
 
-export const PaymentDetail: FC<Detail> = ({
-  title,
-  firstName,
-  surName,
-  street,
-  city,
-  postCode,
-  phone,
-  delivery
-}) => {
+export const PaymentDetail: FC<Detail> = ({ title, delivery, detail, to }) => {
+  const { firstName, surName, street, city, postCode, phone } = detail;
+
+  const deliveryStatus = detail.payment || detail.courier ? "Kurier" : "Own";
+
+  const link = to ? (
+    <Link to={`/checkout/${to}`}>
+      <Icons.PenIcon className="detail__icon" />
+      <span>Edytuj</span>
+    </Link>
+  ) : (
+    <>
+      <Icons.PenIcon className="detail__icon" />
+      <span>Edytuj</span>
+    </>
+  );
+
   return (
-    <article className='detail'>
-      <div className='detail__wrapper'>
-        <div className='detail__edit'><Icons.PenIcon className='detail__icon'/><span>Edytuj</span></div>
-        <h4 className='detail__title'>{title}</h4>
-        <div className='detail__box'>
-            {delivery && <span className='detail__item detail__item--delivery'>{delivery}</span> }
-          <span className='detail__item'>{firstName + " " + surName}</span>
-          <span className='detail__item'>{street}</span>
-          <span className='detail__item'>{city +', '+postCode}</span>
-          <span className='detail__item'>{phone}</span>
+    <article className="detail">
+      <div className="detail__wrapper">
+        <div className="detail__edit">{link}</div>
+        <h4 className="detail__title">{title}</h4>
+        <div className="detail__box">
+          {delivery === true && (
+            <span className="detail__item detail__item--delivery">
+              {deliveryStatus}
+            </span>
+          )}
+          <span className="detail__item">{firstName + " " + surName}</span>
+          <span className="detail__item">{street}</span>
+          <span className="detail__item">{city + ", " + postCode}</span>
+          <span className="detail__item">{phone}</span>
         </div>
       </div>
     </article>

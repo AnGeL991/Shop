@@ -8,7 +8,7 @@ import { useRegisterLogic } from "_hooks";
 import { Modal } from "components/template";
 
 export const RegisterForm: FC = () => {
-  const { status, submit, error, showModal } = useRegisterLogic();
+  const { status, submit, error, showModal,inputRules,handleSetRegulation } = useRegisterLogic();
 
   const progressRef = useRef(null);
 
@@ -61,7 +61,7 @@ export const RegisterForm: FC = () => {
             error={errors[el.name]}
           />
         );
-      case "select all":
+      case "select":
       case "regulations":
       case "newsletter":
         return (
@@ -71,10 +71,12 @@ export const RegisterForm: FC = () => {
             type={el.type}
             reference={register}
             error={errors[el.name]}
+            checked={inputRules[el.name]}
+            onChange={handleSetRegulation}
           >
-            <ReadMore title={el.name} className="checkedRead">
+            {el.name !== 'select' ? <ReadMore title={el.name} className="checkedRead">
               <p>{el.children}</p>
-            </ReadMore>
+            </ReadMore> : <p className='register__select'>{el.name} all</p> }
           </FieldChecked>
         );
       default:

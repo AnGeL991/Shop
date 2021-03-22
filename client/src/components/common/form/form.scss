@@ -49,20 +49,24 @@
     color: black;
     font-weight: 300;
   }
+
   &__block {
     width: 100%;
     margin: 5px 0;
     padding: 10px;
+    &::placeholder {
+      font-size: 10px;
+    }
   }
 }
 .fieldRadio {
   color: black;
   display: flex;
   justify-content: center;
-  align-items: baseline;
+  align-items: center;
   margin-right: 20px;
   &__input {
-    margin: 10px 10px 0px 0;
+    margin-right: 10px;
   }
 }
 .error {

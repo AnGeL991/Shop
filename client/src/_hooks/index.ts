@@ -16,3 +16,4 @@ export { useLoading } from "./generic/useLoading";
 export { usePaymentsLogic } from "./business/usePaymentsLogic";
 export { useFormLogic } from "./generic/useFormLogic";
 export { useAdressLogic } from "./business/useAdressLogic";
+export { useCheckedRule } from "./generic/useCheckedRule";

@@ -1,17 +1,35 @@
-import { FC } from "react";
+import { FC, ChangeEvent } from "react";
 import { FieldChecked, ReadMore } from "components/common";
-
 import { paymentRule } from "db";
 
-export const PaymentRule: FC = () => {
+type PaymentRuleProps = {
+  inputRules: { select: boolean; regulations: boolean; personal: boolean };
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  error: {message:string};
+};
+
+export const PaymentRule: FC<PaymentRuleProps> = ({
+  inputRules,
+  onChange,
+  error,
+}) => {
   const rule = paymentRule.map((el) => (
-    <FieldChecked key={el.name} name={el.name} type={el.type}>
-      {el.name !== "approve" ? (
-        <ReadMore title={el.name} className="checkedRead">
-          <p>{el.description}</p>
-        </ReadMore>
+    <FieldChecked
+      key={el.name}
+      name={el.name}
+      type={el.type}
+      checked={inputRules[el.name]}
+      onChange={onChange}
+      error={error}
+    >
+      {el.name !== "select" ? (
+        <>
+          <ReadMore title={el.name} className="checkedRead">
+            <p>{el.description}</p>
+          </ReadMore>
+        </>
       ) : (
-       <p className='paymentRule__title'>{el.description}</p> 
+        <p className="paymentRule__title">{el.description}</p>
       )}
     </FieldChecked>
   ));

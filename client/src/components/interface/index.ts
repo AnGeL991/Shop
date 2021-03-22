@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, Ref } from "react";
+import { ChangeEvent, Ref } from "react";
 
 export interface IFieldIndput {
   name: string;
@@ -10,7 +10,7 @@ export interface IFieldIndput {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   keyUp?: () => void;
   reference?: Ref<HTMLInputElement>;
-  error?: { message: string; type: string };
+  error?: { message: string; type?: string };
 }
 
 export interface IUser {
@@ -57,7 +57,7 @@ export interface CarouselState {
 }
 
 type Iname = {
-  transfer: "transfer";
+  payment: "payment";
   courier: "courier";
   own: "own";
 };
@@ -67,7 +67,7 @@ export interface IDelivery {
   price: number;
   description: string;
 }
-type IPayName = {
+export type IPayName = {
   transfer: "transfer";
   masterpass: "masterpass";
   dotpay: "dotpay";
@@ -75,10 +75,10 @@ type IPayName = {
 export interface IPayment {
   name: keyof IPayName;
   description: string;
-  icon?: ReactNode;
+  icon?: string;
 }
 type IRuleName = {
-  approve: "approve";
+  select: "select";
   regulations: "regulations";
   personal: "personal";
 };

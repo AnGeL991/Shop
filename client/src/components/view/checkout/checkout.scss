@@ -149,6 +149,11 @@
     color: black;
     font-weight: 500;
   }
+  &__img {
+    width: 100px;
+    height: auto;
+    vertical-align: bottom;
+  }
   &__box {
     display: flex;
     flex-direction: row;
@@ -157,6 +162,7 @@
   }
   &__description {
     font-weight: 300;
+    margin-right: 10px;
   }
 }
 .comment {
@@ -189,6 +195,9 @@
     text-decoration: underline;
     font-size: 12px;
     right: 20px;
+    a {
+      color: $color-darkGray;
+    }
   }
   &__icon {
     margin: 0 5px;

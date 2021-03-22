@@ -8,12 +8,13 @@ import { useAdressLogic } from "_hooks";
 
 export const AdressForm: FC = () => {
   const {
-    handleSetDelivery,
-    inputChecked,
+    handleSetRegulation,
+    inputDelivery,
     handleSetData,
     dataForm,
     delivery,
-    fieldsData
+    fieldsData,
+    submit,
   } = useAdressLogic();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(adressPrivateSchema),
@@ -26,8 +27,8 @@ export const AdressForm: FC = () => {
           name={el.name}
           reference={register}
           error={errors[el.name]}
-          checked={inputChecked[el.name]}
-          onChange={handleSetDelivery}
+          checked={inputDelivery[el.name]}
+          onChange={handleSetRegulation}
         >
           ${el.price.toFixed(2)}
         </FieldRadio>
@@ -43,10 +44,7 @@ export const AdressForm: FC = () => {
 
   return (
     <section className="adressForm">
-      <form
-        className="adressForm__form"
-        onSubmit={handleSubmit((d) => console.log(d))}
-      >
+      <form className="adressForm__form" onSubmit={handleSubmit(submit)}>
         <fieldset className="adressForm__fieldset">
           <legend className="adressForm__legend">
             Your data - Delivery address
@@ -69,14 +67,9 @@ export const AdressForm: FC = () => {
           </div>
           {fields}
           {fieldsDelivery}
-          <div className='buttons'>
-            <Button className="buttons__btn">
-             <Link to='/checkout/payment'> Choose payment method</Link>
-            </Button>
-            <Button
-              darkButton
-              className="buttons__dark"
-            >
+          <div className="buttons">
+            <Button className="buttons__btn">Choose payment method</Button>
+            <Button darkButton className="buttons__dark">
               <Link to="/shop">Back to cart</Link>
             </Button>
           </div>

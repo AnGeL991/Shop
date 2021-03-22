@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { User } from "db";
 import { userActions } from "store/user";
-import { useFormLogic } from "_hooks";
+import { useFormLogic, useCheckedRule } from "_hooks";
 
 export const useRegisterLogic = () => {
+  const { inputRules, handleSetRegulation } = useCheckedRule();
   const { onSubmit, error } = useFormLogic();
 
   const [status, setStatus] = useState("no password");
@@ -30,5 +31,12 @@ export const useRegisterLogic = () => {
     };
   }, [showModal]);
 
-  return { status, submit, error, showModal };
+  return {
+    status,
+    submit,
+    error,
+    showModal,
+    inputRules,
+    handleSetRegulation,
+  };
 };

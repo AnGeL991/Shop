@@ -1,5 +1,5 @@
 import { FC } from "react";
-
+import {Link} from 'react-router-dom';
 type ProgressProps = {
   active: number;
 };
@@ -14,7 +14,7 @@ export const ProgressList: FC<ProgressProps> = ({ active }) => {
             ${active - 1 >= 1 ? "progressList__item--done" : null}
             `}
         >
-          <span>Log in</span>
+          <Link to='/checkout'><span>Log in</span></Link>
         </li>
         <li
           className={`progressList__item 
@@ -22,7 +22,7 @@ export const ProgressList: FC<ProgressProps> = ({ active }) => {
             ${active - 1 >= 2 ? "progressList__item--done" : null}
             `}
         >
-          <span>Delivery</span>
+          <Link to='/checkout/delivery'><span>Delivery</span></Link>
         </li>
         <li
           className={`progressList__item 
