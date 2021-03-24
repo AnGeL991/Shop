@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Header } from "components/common";
 import {WishProducts} from 'components/template';
 import { useWishLogic } from "_hooks";
-import "./wish.scss";
+import "styles/pageStyle/wish.scss";
 
 export const Wish: FC = () => {
   

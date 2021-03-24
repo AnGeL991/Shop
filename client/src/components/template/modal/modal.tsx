@@ -2,7 +2,6 @@ import { CSSProperties, FC, ReactNode } from "react";
 import { Button } from "components/common";
 import { useModalLogic } from "_hooks";
 import ReactDom from "react-dom";
-import { Icons } from "components/common";
 import "./modal.scss";
 
 type Props = {
@@ -13,6 +12,7 @@ type Props = {
   title?: string;
   fullHight?: boolean;
   style?: CSSProperties;
+  className?:string;
 };
 
 export const Modal: FC<Props> = ({
@@ -23,13 +23,13 @@ export const Modal: FC<Props> = ({
   close,
   fullHight,
   style,
+  className,
 }) => {
   const { StopPropagation } = useModalLogic();
-  const { OutLineClose } = Icons;
+
 
   const header = title ? (
     <div className="modal__header">
-      <OutLineClose className="modal__icon" onClick={close} />
       <h4 className="modal__title">{title}</h4>
     </div>
   ) : null;
@@ -54,7 +54,9 @@ export const Modal: FC<Props> = ({
     >
       <div
         className={`modal__content 
-        ${show && "modal__content--show"}`}
+        ${show && "modal__content--show"}
+        ${className}
+        `}
         onClick={StopPropagation}
       >
         {header}

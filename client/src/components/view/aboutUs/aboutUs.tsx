@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Header } from 'components/common';
 import { WhyUs, GalerySlider } from 'components/template';
-import './aboutUs.scss';
+import 'styles/pageStyle/aboutUs.scss';
 
 const data = [
   {

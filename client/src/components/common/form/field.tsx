@@ -6,6 +6,7 @@ export const Field: FC<IFieldIndput> = ({
   name,
   required,
   type,
+  placeholder,
   reference,
   value,
   onChange,
@@ -31,6 +32,7 @@ export const Field: FC<IFieldIndput> = ({
           onKeyUp={keyUp}
           autoComplete={auto}
           ref={reference}
+          placeholder={placeholder}
         />
         <p className="error">{error?.message}</p>
       </div>

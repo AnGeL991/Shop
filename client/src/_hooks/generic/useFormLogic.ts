@@ -3,11 +3,13 @@ import { ApplicationState } from "store";
 
 export const useFormLogic = () => {
   const dispatch = useDispatch();
-  const { error } = useSelector((store: ApplicationState) => store.user);
+  const { type, message } = useSelector(
+    (store: ApplicationState) => store.alert
+  );
 
   const onSubmit = (action: any, props: any) => {
     dispatch(action(...props));
   };
 
-  return { onSubmit, error };
+  return { onSubmit, type, message };
 };

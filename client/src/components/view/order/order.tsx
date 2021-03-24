@@ -2,7 +2,7 @@ import { FC } from "react";
 import { OrderSecurity, OrderProduct } from "components/template";
 import { Button, Header } from "components/common";
 import { Link } from "react-router-dom";
-import "./order.scss";
+import 'styles/pageStyle/order.scss';
 
 export const Order: FC = () => {
   return (

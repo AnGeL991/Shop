@@ -1,8 +1,16 @@
 import { ChangeEvent, Ref } from "react";
+import { RouteComponentProps } from "react-router-dom";
+
+export interface MatchProps
+  extends RouteComponentProps<{
+    token: string;
+    id: string;
+  }> {}
 
 export interface IFieldIndput {
   name: string;
   type?: string;
+  placeholder?: string;
   required?: boolean;
   auto?: string;
   title?: string;

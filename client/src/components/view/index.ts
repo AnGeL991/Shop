@@ -1,7 +1,7 @@
 export { Shop } from "./shop/shop";
 export { Contact } from "./contact/contact";
-export { Login } from "./login/login";
-export { Registration } from "./registration/registration";
+export { Login } from "./account/login";
+export { Registration } from "./account/registration";
 export { Wish } from "./wish/wish";
 export { PageNoFound } from "./pageNoFound/pageNoFound";
 export { Media } from "./media/media";
@@ -13,3 +13,6 @@ export { Checkout } from "./checkout/checkout";
 export { Delivery } from "./checkout/delivery";
 export { Payment } from "./checkout/payment";
 export { Home } from "./home/home";
+export { Activate } from "./account/activate";
+export { ForgetPassword } from "./account/forgetPassword";
+export { ResetPassword } from "./account/resetPassword";

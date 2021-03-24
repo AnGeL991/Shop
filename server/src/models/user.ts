@@ -7,49 +7,34 @@ const Salt = 10;
 
 const UserSchema: Schema = new Schema(
   {
-    email: { type: String, required: true },
+    email: { type: String, required: true, trim: true, unique: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     password: { type: String, required: true },
     newsletter: { type: Boolean },
     regulations: { type: Boolean, required: true },
-    Role: { type: String, default: 'Client' }
+    role: { type: String, default: 'Client' },
+    resetPasswordLink: {
+      data: String,
+      default: ''
+    }
   },
   {
     timestamps: true
   }
 );
+
 UserSchema.statics.addUser = async function (userToAdd: IUser) {
   const user = new this(userToAdd);
   return await user.save();
 };
-UserSchema.statics.deleteUser = async function (userId: string) {
-  const user = await this.findByIdAndRemove(userId);
-  if (!user) {
-    throw Error('No user with given Id!');
-  }
-  return;
-};
-UserSchema.statics.updateUser = async function (userId: string, props) {
-  const user = await this.findByIdAndUpdate(userId, { ...props });
-  if (!user) {
-    throw Error('No user with given Id!');
-  }
-  return;
-};
 
-UserSchema.pre('save', function (this: IUser, next) {
+UserSchema.pre('save', async function (this: IUser, next) {
   let user = this;
-  if (!user.isModified('password')) next();
   try {
-    bcryptjs.genSalt(Salt, (hashError, hash) => {
-      if (hashError) return next(hashError);
-      bcryptjs.hash(user.password, hash, function (hashError, hash) {
-        if (hashError) return next(hashError);
-        user.password = hash;
-        next();
-      });
-    });
+    const salt = await bcryptjs.genSalt(Salt);
+    const hashedPassword = await bcryptjs.hash(user.password, salt);
+    user.password = hashedPassword;
   } catch (err) {
     response.status(500).json({
       message: err.message,
@@ -62,6 +47,6 @@ UserSchema.pre('save', function (this: IUser, next) {
 //   return await bcryptjs.compare(candidatePassword, this.password);
 // };
 
-export const UserModel = model<IUser, IUserModel>('User', UserSchema);
+const UserModel = model<IUser, IUserModel>('User', UserSchema);
 
 export default UserModel;

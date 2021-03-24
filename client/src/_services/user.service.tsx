@@ -1,4 +1,3 @@
-
 import { IUser } from "components/interface";
 import { client } from "_api";
 
@@ -9,15 +8,22 @@ export class UserApiHandler {
     const login = { email, password };
     return client("users/login", login);
   }
-  register(user:IUser) {
-  return client("users/register", user);
+  register(user: IUser) {
+    return client("users/register", user);
   }
-  load(token:string) {
-    return client("users/validate-Token", null, token) 
+  activate(token: string) {
+    return client("users/activation", null, token, { method: "POST" });
+  }
+  load(token: string) {
+    return client("users/validate-Token", null, token);
+  }
+  forgetPassword(email: string) {
+    return client("users/forgetPassword", { email });
+  }
+  resetPassword(newPassword: string, token: string) {
+    return client("users/resetPassword", { newPassword }, token);
   }
   logout() {
     localStorage.removeItem("Token");
   }
 }
-
-

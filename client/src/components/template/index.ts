@@ -45,3 +45,4 @@ export { PaymentComment } from "./checkout/paymentComment";
 export { PaymentRule } from "./checkout/paymentRule";
 export { PaymentCard } from "./checkout/paymentCart";
 export { PaymentDetail } from "./checkout/paymentDetail";
+export { AccountOperation } from "./account/accountOperation";

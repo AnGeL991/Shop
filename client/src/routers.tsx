@@ -1,6 +1,9 @@
 import { FC } from "react";
 import { Route, Switch } from "react-router-dom";
-import {
+import * as page from "./components/view";
+import { PrivateRoute } from "components/routing/privateRoute";
+
+const {
   PageNoFound,
   Shop,
   Contact,
@@ -16,8 +19,10 @@ import {
   Delivery,
   Payment,
   Home,
-} from "./components/view";
-import { PrivateRoute } from "components/routing/privateRoute";
+  Activate,
+  ForgetPassword,
+  ResetPassword,
+} = page;
 
 const routes = [
   { exact: true, path: "/", component: Home },
@@ -29,6 +34,13 @@ const routes = [
   { exact: true, path: "/contact", component: Contact },
   { exact: true, path: "/login", component: Login },
   { exact: true, path: "/registration", component: Registration },
+  { exact: true, path: "/users/activate/:token", component: Activate },
+  { exact: true, path: "/users/forgetPassword", component: ForgetPassword },
+  {
+    exact: true,
+    path: "/users/resetPassword/:token",
+    component: ResetPassword,
+  },
   { exact: true, path: "/AboutUs", component: AboutUs },
   { exact: true, path: "/product", component: ProductPage },
   { exact: true, path: "/Checkout", component: Checkout },

@@ -1,14 +1,23 @@
 import { FC, useRef } from "react";
 import { Button, Field, FieldChecked, ReadMore } from "components/common";
+import { Modal } from "components/template";
 import { registerField } from "db";
 import { registerSchema } from "_yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegisterLogic } from "_hooks";
-import { Modal } from "components/template";
 
 export const RegisterForm: FC = () => {
-  const { status, submit, error, showModal,inputRules,handleSetRegulation } = useRegisterLogic();
+  const {
+    status,
+    submit,
+    message,
+    showModal,
+    inputRules,
+    type,
+    handleSetRegulation,
+    handleToggole,
+  } = useRegisterLogic();
 
   const progressRef = useRef(null);
 
@@ -17,11 +26,21 @@ export const RegisterForm: FC = () => {
   });
 
   const modalAlert = (
-    <Modal show={showModal}>
-      <p className="register__alert">{error}</p>
+    <Modal
+      show={showModal}
+      close={handleToggole}
+      className="alert"
+      title={type === "ALERT_ERROR" ? "Something went wrong ..." : "Success"}
+    >
+      <p
+        className={`${
+          type === "ALERT_ERROR" ? "alert__error" : "alert__success"
+        }`}
+      >
+        {message}
+      </p>
     </Modal>
   );
-
   const registerProgress = (
     <div className="register__progress">
       <p>
@@ -74,9 +93,13 @@ export const RegisterForm: FC = () => {
             checked={inputRules[el.name]}
             onChange={handleSetRegulation}
           >
-            {el.name !== 'select' ? <ReadMore title={el.name} className="checkedRead">
-              <p>{el.children}</p>
-            </ReadMore> : <p className='register__select'>{el.name} all</p> }
+            {el.name !== "select" ? (
+              <ReadMore title={el.name} className="checkedRead">
+                <p>{el.children}</p>
+              </ReadMore>
+            ) : (
+              <p className="register__select">{el.name} all</p>
+            )}
           </FieldChecked>
         );
       default:

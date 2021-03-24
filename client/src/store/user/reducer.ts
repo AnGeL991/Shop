@@ -6,7 +6,6 @@ const initialState: UserState = {
   isAuthenticated: false,
   loading: false,
   data: [],
-  error: null,
 };
 
 const {
@@ -14,7 +13,6 @@ const {
   USER_LOADING,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE,
   LOGOUT,
 } = UserActionType;
 
@@ -44,12 +42,6 @@ const reducer: Reducer<UserState> = (state = initialState, action) => {
         isAuthenticated: true,
         loading: false,
         error: null,
-      };
-    case LOGIN_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
       };
     case LOGOUT:
       localStorage.removeItem("Token");

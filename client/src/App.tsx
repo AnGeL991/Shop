@@ -14,26 +14,27 @@ interface MainProps {
 }
 
 const App: FC<MainProps> = ({ history }) => {
-  const { inventoryLoading,alert,userLoading } = useLoading();
+  const { inventoryLoading, alert, userLoading } = useLoading();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(alert.type)
-    history.listen(() => {
-      dispatch(AlertAction.clear());
-    });
+    if (alert) {
+      history.listen(() => {
+        dispatch(AlertAction.clear());
+      });
+    }
   }, []);
 
   if (inventoryLoading && userLoading) {
     return <div>Loading..</div>;
   }
-   
+
   return (
     <ConnectedRouter history={history}>
-        {/* <Listener /> */}
-        <MainLayout>
-          <Routers />
-        </MainLayout>
+      {/* <Listener /> */}
+      <MainLayout>
+        <Routers />
+      </MainLayout>
     </ConnectedRouter>
   );
 };

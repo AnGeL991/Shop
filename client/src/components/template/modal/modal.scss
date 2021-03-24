@@ -1,4 +1,4 @@
-@import '../../../styles/settings.scss';
+@import "../../../styles/settings.scss";
 
 .modal {
   position: fixed;
@@ -27,10 +27,9 @@
     justify-content: flex-end;
   }
   &__header {
-    border-bottom: 1px solid $color-gray;
-    font-size: 18px;
+    font-size: 14px;
     text-align: center;
-    margin: 10px 0;
+    margin: 20px 0 0px;
     padding: 10px;
   }
   &__icon {
@@ -42,7 +41,7 @@
     font-size: 18px;
   }
   &__title {
-    font-weight: 400;
+    font-weight: 700;
     letter-spacing: 1.6px;
     color: black;
   }

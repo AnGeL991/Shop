@@ -14,5 +14,5 @@ export interface IUserModel extends Model<IUser> {
   deleteUser(UserId: string): Promise<void>;
   updateUser(UserId: string, props: IUser): Promise<void>;
   updateHashedPassword(password: string): Promise<void>;
-  comparePassword(this: IUser, candidatePassword: string): Promise<string>;
+  comparePassword(this: Document, candidatePassword: string): Promise<boolean>;
 }

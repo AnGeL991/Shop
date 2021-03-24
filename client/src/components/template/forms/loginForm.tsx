@@ -6,24 +6,22 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "_yup";
 import { useLoginLogic } from "_hooks";
 
-type LoginFormProps ={
-  to?:string,
-}
+type LoginFormProps = {
+  to?: string;
+};
 
-
-export const LoginForm: FC<LoginFormProps> = ({to}) => {
-  const { submit,error } = useLoginLogic(to);
+export const LoginForm: FC<LoginFormProps> = ({ to }) => {
+  const { submit,  message,type } = useLoginLogic(to);
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
   });
 
-  const wrongLabel =
-    error ? (
-      <div className="login__error">
-        <label>{error}</label>
-      </div>
-    ) : null;
+  const wrongLabel = type==='ALERT_ERROR' ? (
+    <div className="login__error">
+      <label>{message}</label>
+    </div>
+  ) : null;
 
   return (
     <form className="login__form" onSubmit={handleSubmit(submit)}>
@@ -46,9 +44,9 @@ export const LoginForm: FC<LoginFormProps> = ({to}) => {
           error={errors["password"]}
         />
         <div className="login__buttons">
-          <Button className='login__btn'>Log in</Button>
-          <Link className="login__link" to="/login/forget-password">
-            Forget password?
+          <Button>Log in</Button>
+          <Link className="login__link" to="/users/forgetPassword">
+            Forgot password?
           </Link>
         </div>
       </fieldset>

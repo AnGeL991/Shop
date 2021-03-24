@@ -1,42 +1,52 @@
 import { useState, useEffect } from "react";
 import { User } from "db";
 import { userActions } from "store/user";
-import { useFormLogic, useCheckedRule } from "_hooks";
+import { history } from "_helpers/history";
+import { useFormLogic, useCheckedRule, useModalLogic } from "_hooks";
+import { useSelector } from "react-redux";
+import { ApplicationState } from "store";
 
 export const useRegisterLogic = () => {
   const { inputRules, handleSetRegulation } = useCheckedRule();
-  const { onSubmit, error } = useFormLogic();
+  const { onSubmit } = useFormLogic();
+  const {
+    showModal,
+    StopPropagation,
+    setShowModal,
+    handleToggleModal,
+  } = useModalLogic();
+
+  const { type, message } = useSelector(
+    (state: ApplicationState) => state.alert
+  );
 
   const [status, setStatus] = useState("no password");
 
-  const [showModal, setShowModal] = useState(false);
+  const submit = (user: User) => onSubmit(userActions.Register, [user]);
 
-  const submit = (user: User) => onSubmit(userActions.register, [user]);
+  const handleToggole = () => {
+    if (type === "ALERT_SUCCESS") {
+      handleToggleModal();
+      history.push("/");
+    }
+    handleToggleModal();
+  };
 
   useEffect(() => {
-    if (error) {
+    if (message) {
       setShowModal(true);
     }
-  }, [error]);
-
-  useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>;
-    if (showModal) {
-      timeout = setTimeout(() => {
-        setShowModal(false);
-      }, 1500);
-    }
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [showModal]);
+  }, [message, setShowModal]);
 
   return {
     status,
     submit,
-    error,
+    message,
+    type,
     showModal,
     inputRules,
     handleSetRegulation,
+    StopPropagation,
+    handleToggole,
   };
 };

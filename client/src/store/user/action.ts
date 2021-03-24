@@ -7,12 +7,18 @@ import { selector } from "../utils";
 const userApi = new userService.UserApiHandler();
 
 const {
-  REGISTER_REQUEST,
-  REGISTER_SUCCESS,
-  REGISTER_FAILURE,
+  activate,
+  resetPassword,
+  register,
+  login,
+  load,
+  forgetPassword,
+} = userApi;
+const { success, error } = AlertAction;
+
+const {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE,
   LOGOUT,
   USER_LOADING,
   USER_LOADED,
@@ -20,7 +26,7 @@ const {
 
 export const userRequest = (type: UserActionType, user?: any) =>
   selector(type, user);
-export const userSuccess = (type: UserActionType, user: Array<{}>) =>
+export const userSuccess = (type: UserActionType, user?: Array<{}> | string) =>
   selector(type, user);
 export const userFailure = (type: UserActionType, error: string) =>
   selector(type, error);
@@ -31,7 +37,7 @@ export const loadUser = (token: string) => {
   return async (dispatch: Function) => {
     dispatch(userRequest(USER_LOADING));
     try {
-      const user = await userApi.load(token);
+      const user = await load(token);
       dispatch(userSuccess(USER_LOADED, user.result));
     } catch (error) {
       dispatch(AlertAction.error(error.message));
@@ -39,34 +45,73 @@ export const loadUser = (token: string) => {
   };
 };
 
-export function login(email: string, password: string, to?: string) {
+export function Login(email: string, password: string, to?: string) {
   return async (dispatch: Function) => {
     dispatch(userRequest(LOGIN_REQUEST, { email }));
-    await userApi.login(email, password).then(
+    await login(email, password).then(
       async (user) => {
         localStorage.setItem("Token", JSON.stringify(user.token));
         dispatch(userSuccess(LOGIN_SUCCESS, user));
         await dispatch(loadUser(user.token));
         history.push(to ? to : "/myAccount");
       },
-      (error) => {
-        dispatch(userFailure(LOGIN_FAILURE, error.message));
+      (err) => {
+        dispatch(error(err.message));
       }
     );
   };
 }
 
-export function register(user: User) {
+export function Register(user: User) {
   return async (dispatch: Function) => {
-    dispatch(userRequest(REGISTER_REQUEST, user));
-    await userApi.register(user).then(
-      (user) => {
-        dispatch(userSuccess(REGISTER_SUCCESS, user));
-        history.push("/login");
-        dispatch(AlertAction.success("Rejestracja zakończona powodzeniem"));
+    dispatch(AlertAction.clear());
+    await register(user).then(
+      () => {
+        dispatch(
+          dispatch(
+            AlertAction.success(
+              "Rejestracja zakończona powodzeniem dokończ veryfikacje by korzystać z konta"
+            )
+          )
+        );
       },
       (error) => {
-        dispatch(userFailure(REGISTER_FAILURE, error.message));
+        dispatch(AlertAction.error(error.message));
+      }
+    );
+  };
+}
+
+export function ActiveAccount(token: string) {
+  return async (dispatch: Function) => {
+    await activate(token).then(() => {
+      dispatch(success("Veryfikacja zakończona powodzeniem"));
+    });
+  };
+}
+
+export function ForgetPassword(email: string) {
+  return async (dispatch: Function) => {
+    await forgetPassword(email).then(
+      () => {
+        dispatch(success("Na email został wysłany link do zmiany hasła"));
+      },
+      (err) => {
+        dispatch(error(err.message));
+      }
+    );
+  };
+}
+
+export function ResetPassword(token: string, password: string) {
+  return async (dispatch: Function) => {
+    await resetPassword(token, password).then(
+      () => {
+        dispatch(success("Hasło zostało zmienione"));
+        history.push("/");
+      },
+      (err) => {
+        dispatch(error(err.message));
       }
     );
   };

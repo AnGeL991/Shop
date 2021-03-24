@@ -1,16 +1,59 @@
+import { useEffect } from "react";
+import { history } from "_helpers/history";
+import { useSelector } from "react-redux";
+import { ApplicationState } from "store";
 import { userActions } from "store/user";
-import { useFormLogic } from "_hooks";
+import { useFormLogic, useModalLogic } from "_hooks";
 interface Account {
   email: string;
   password: string;
   to?: string;
 }
+interface Forget {
+  email: string;
+}
+interface Password {
+  password: string;
+}
 
-export const useLoginLogic = (to?: string) => {
-  const { error, onSubmit } = useFormLogic();
+export const useLoginLogic = (to?: string, token?: string) => {
+  const { onSubmit } = useFormLogic();
+  const { showModal, handleToggleModal, setShowModal } = useModalLogic();
+  const { message, type } = useSelector(
+    (state: ApplicationState) => state.alert
+  );
 
   const submit = (user: Account) =>
-    onSubmit(userActions.login, [user.email, user.password, to]);
+    onSubmit(userActions.Login, [user.email, user.password, to]);
 
-  return { submit, error };
+  const forgetSubmit = (props: Forget) =>
+    onSubmit(userActions.ForgetPassword, [props.email]);
+
+  const newPasswordSubmit = (props: Password) => {
+    onSubmit(userActions.ResetPassword, [props.password, token]);
+  };
+  const activateAccount = () => {
+    onSubmit(userActions.ActiveAccount, [token]);
+  };
+
+  useEffect(() => {
+    if (type === "ALERT_SUCCESS") {
+      setShowModal(true);
+    }
+  }, [setShowModal, type]);
+
+  const handleToggle = () => {
+    handleToggleModal();
+    history.push("/");
+  };
+  return {
+    type,
+    message,
+    submit,
+    forgetSubmit,
+    newPasswordSubmit,
+    activateAccount,
+    showModal,
+    handleToggle,
+  };
 };

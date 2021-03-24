@@ -8,7 +8,7 @@ const reducer: Reducer = (state = {}, action) => {
     case SUCCESS:
       return {
         type: "ALERT_SUCCESS",
-        message: action.payload,
+        message: action.message,
       };
     case ERROR:
       return {
@@ -16,7 +16,7 @@ const reducer: Reducer = (state = {}, action) => {
         message: action.message,
       };
     case CLEAR:
-      return {};
+      return { type: "ALERT_CLEAN" };
     default:
       return state;
   }

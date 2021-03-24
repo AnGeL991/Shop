@@ -3,8 +3,7 @@ import { Header } from "components/common";
 import { LoginForm, ProgressList, GouestOption } from "components/template";
 import { usePaymentsLogic } from "_hooks";
 import { Redirect } from "react-router-dom";
-
-import "./checkout.scss";
+import 'styles/pageStyle/checkout.scss';
 
 export const Checkout: FC = () => {
   const { isAuthenticated } = usePaymentsLogic();

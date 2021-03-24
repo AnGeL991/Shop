@@ -9,22 +9,8 @@ export const Nav: FunctionComponent = () => {
   const { showModal, handleToggleModal } = useModalLogic();
   const data = [
     { name: "Home", path: "/" },
-    {
-      name: "Shop",
-      path: "/shop",
-      subLink: [
-        { name: "Product Category", path: "/ProductCategory" },
-        { name: "Top Rated Product", path: "/TopRated" },
-      ],
-    },
-    {
-      name: "Blog",
-      path: "/Blog",
-      subLink: [
-        { name: "Left SideBar", path: "/LeftSideBar" },
-        { name: "Right SideBar", path: "/RightSideBar" },
-      ],
-    },
+    { name: "Shop", path: "/shop" },
+    { name: "Blog", path: "/Blog" },
     { name: "Media", path: "/media" },
     { name: "ShortCode", path: "/shordCode" },
     { name: "Features", path: "/features" },

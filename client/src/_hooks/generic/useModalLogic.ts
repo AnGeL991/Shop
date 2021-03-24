@@ -1,4 +1,4 @@
-import {MouseEvent, useState} from 'react';
+import { MouseEvent, useState } from "react";
 
 export const useModalLogic = () => {
   const [showModal, setShowModal] = useState(false);
@@ -11,5 +11,5 @@ export const useModalLogic = () => {
     e.stopPropagation();
   };
 
-  return { handleToggleModal, showModal, StopPropagation };
+  return { handleToggleModal, showModal, StopPropagation, setShowModal };
 };

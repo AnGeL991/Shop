@@ -1,3 +1,5 @@
+@import "../settings.scss";
+
 .order {
   padding: 10px;
   &__title {
@@ -8,8 +10,6 @@
     margin: 0 20px 20px;
   }
 }
-@import "../../../styles/settings.scss";
-
 .content {
   padding: 10px 20px;
   text-align: right;
