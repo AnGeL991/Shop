@@ -11,7 +11,6 @@ function initConfig() {
     PROTOCOL = "/api";
   }
 
-  
   return {
     PROTOCOL,
     HOST,

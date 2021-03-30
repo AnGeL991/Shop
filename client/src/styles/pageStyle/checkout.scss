@@ -142,7 +142,7 @@
   }
 }
 .payment {
-  margin: 20px;
+  padding: 20px;
 }
 .paymentMethod {
   &__title {
@@ -213,12 +213,13 @@
     flex-direction: column;
   }
   &__item {
-    margin: 2px 0;
+    line-height: 1.4;
     color: black;
     font-size: 14px;
   }
   &__item--delivery {
     margin: 10px 0;
+    text-transform: uppercase;
   }
 }
 .buttons {
@@ -231,5 +232,16 @@
   &__dark {
     border-radius: 0;
     box-shadow: none;
+  }
+}
+.cancel {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  &__description {
+    color: black;
+    font-size: 14px;
+    margin: 20px;
   }
 }

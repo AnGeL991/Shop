@@ -44,7 +44,7 @@ export const Item: FC<OrderProductProps> = ({
       </div>
       <div className="orderProduct__priceBox">
         <p className="orderProduct__eachPrice">
-          Price: {amount} x <span>{currentPrice} $</span>
+          Price: {amount} x <span>{currentPrice.toFixed(2)} $</span>
         </p>
         <div className="orderProduct__amountBox">
           <button
@@ -69,11 +69,11 @@ export const Item: FC<OrderProductProps> = ({
             +
           </button>
           <button className="orderProduct__btn" onClick={removeProduct}>
-            <Icons.EyeIcon size="10" />
+            <Icons.BinIcon size="10" />
           </button>
         </div>
         <p className="orderProduct__totalPrice">
-          Total pay: <span>{amount * currentPrice} $</span>
+          Total pay: <span>{(amount * currentPrice).toFixed(2)} $</span>
         </p>
       </div>
     </div>

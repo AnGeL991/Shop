@@ -1,24 +1,28 @@
 import { useState, ChangeEventHandler } from "react";
+import { IPaymentInputs, IDeliveryOption } from "components/interfaces";
+import { RiMapPinRangeFill } from "react-icons/ri";
 
-export const useCheckedRule = () => {
-  const [inputPayment, setInputPayment] = useState({
+export const useChecked = () => {
+  const [inputPayment, setInputPayment] = useState<IPaymentInputs>({
     transfer: true,
-    masterpass: false,
-    dotpay: false,
+    delivery: false,
   });
+
   const [inputRules, setInputRules] = useState({
     select: false,
     regulations: false,
     newsletter: false,
     personal: false,
   });
-  const [inputDelivery, setInputDeliver] = useState({
+
+  const [inputDelivery, setInputDeliver] = useState<IDeliveryOption>({
     courier: false,
     own: false,
     payment: true,
   });
-  const [inputComment, setInputComment] = useState("");
 
+  const [inputComment, setInputComment] = useState("");
+  const [error, setError] = useState({ message: "" });
   const [dataForm, setDataForm] = useState({ private: true, business: false });
 
   const handleSetData: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -34,11 +38,28 @@ export const useCheckedRule = () => {
       }
     }
   };
+  /// wzorzec strategi
+  // const maping= {
+  //   select:(error,input)=>{
+  //   error({ message: "" });
+  //   input((prev) => ({
+  //     ...prev,
+  //     select: !prev.select,
+  //     regulations: !prev.select,
+  //     newsletter: !prev.select,
+  //     personal: !prev.select,
+  //   }));
+  //   maping['select'](setError,setInputRules)
+  // }}
+
+  //  maping['select']();
 
   const handleSetRegulation: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name } = e.target;
+
     switch (name) {
       case "select": {
+        setError({ message: "" });
         setInputRules((prev) => ({
           ...prev,
           select: !prev.select,
@@ -49,6 +70,7 @@ export const useCheckedRule = () => {
         break;
       }
       case "regulations": {
+        setError({ message: "" });
         setInputRules((prev) => ({
           ...prev,
           select: false,
@@ -65,6 +87,7 @@ export const useCheckedRule = () => {
         break;
       }
       case "personal": {
+        setError({ message: "" });
         setInputRules((prev) => ({
           ...prev,
           select: false,
@@ -100,26 +123,15 @@ export const useCheckedRule = () => {
         setInputPayment((prev) => ({
           ...prev,
           transfer: true,
-          masterpass: false,
-          dotpay: false,
+          delivery: false,
         }));
         break;
       }
-      case "masterpass": {
+      case "delivery": {
         setInputPayment((prev) => ({
           ...prev,
           transfer: false,
-          masterpass: true,
-          dotpay: false,
-        }));
-        break;
-      }
-      case "dotpay": {
-        setInputPayment((prev) => ({
-          ...prev,
-          transfer: false,
-          masterpass: false,
-          dotpay: true,
+          delivery: true,
         }));
         break;
       }
@@ -128,6 +140,7 @@ export const useCheckedRule = () => {
       }
     }
   };
+
   const handleSetComment: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     const { value } = e.currentTarget;
     setInputComment(value);
@@ -142,5 +155,7 @@ export const useCheckedRule = () => {
     inputPayment,
     inputRules,
     handleSetComment,
+    setError,
+    error,
   };
 };

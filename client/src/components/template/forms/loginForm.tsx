@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Button, Field } from "components/common";
+import { Button, Field, WrongLabel } from "components/common";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "_yup";
+import { loginSchema } from "./validateSchema";
 import { useLoginLogic } from "_hooks";
 
 type LoginFormProps = {
@@ -11,21 +11,20 @@ type LoginFormProps = {
 };
 
 export const LoginForm: FC<LoginFormProps> = ({ to }) => {
-  const { submit,  message,type } = useLoginLogic(to);
+  const { submit, message, type } = useLoginLogic(to);
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
   });
 
-  const wrongLabel = type==='ALERT_ERROR' ? (
-    <div className="login__error">
-      <label>{message}</label>
-    </div>
-  ) : null;
+  const wrong = useMemo(() => <WrongLabel {...{ message, type}} big />, [
+    message,
+    type,
+  ]);
 
   return (
     <form className="login__form" onSubmit={handleSubmit(submit)}>
-      {wrongLabel}
+      {wrong}
       <fieldset className="login__fildset">
         <Field
           type="text"

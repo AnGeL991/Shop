@@ -1,4 +1,4 @@
-import { IUser } from "components/interface";
+import { IUser } from "components/interfaces";
 
 export interface User extends IUser {}
 

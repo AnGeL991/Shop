@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { User } from "db";
 import { userActions } from "store/user";
 import { history } from "_helpers/history";
-import { useFormLogic, useCheckedRule, useModalLogic } from "_hooks";
+import { useFormLogic, useChecked, useModalLogic } from "_hooks";
 import { useSelector } from "react-redux";
 import { ApplicationState } from "store";
 
 export const useRegisterLogic = () => {
-  const { inputRules, handleSetRegulation } = useCheckedRule();
+  const { inputRules, handleSetRegulation } = useChecked();
   const { onSubmit } = useFormLogic();
   const {
     showModal,

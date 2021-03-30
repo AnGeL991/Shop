@@ -77,8 +77,7 @@ export interface IDelivery {
 }
 export type IPayName = {
   transfer: "transfer";
-  masterpass: "masterpass";
-  dotpay: "dotpay";
+  delivery: "delivery";
 };
 export interface IPayment {
   name: keyof IPayName;
@@ -94,4 +93,31 @@ export interface IRule {
   name: keyof IRuleName;
   type: string;
   description?: string;
+}
+
+export enum deliveryCos {
+  payment = 29,
+  courier = 39,
+}
+
+export interface IPaymentInputs {
+  transfer: boolean;
+  delivery: boolean;
+}
+
+export interface IDeliveryOption {
+  courier: boolean;
+  own: boolean;
+  payment: boolean;
+}
+export interface Account {
+  email: string;
+  password: string;
+  to?: string;
+}
+export interface Forget {
+  email: string;
+}
+export interface Password {
+  password: string;
 }

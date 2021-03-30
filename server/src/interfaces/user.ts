@@ -5,7 +5,9 @@ export interface IUser extends Document {
   password: string;
   firstName?: string;
   lastName?: string;
+  newsletter?: boolean;
   regulations?: Boolean;
+  role: string;
   _id?: string;
 }
 
@@ -14,5 +16,5 @@ export interface IUserModel extends Model<IUser> {
   deleteUser(UserId: string): Promise<void>;
   updateUser(UserId: string, props: IUser): Promise<void>;
   updateHashedPassword(password: string): Promise<void>;
-  comparePassword(this: Document, candidatePassword: string): Promise<boolean>;
+  comparePassword(candidatePassword: string): Promise<void>;
 }

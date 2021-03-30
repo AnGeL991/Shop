@@ -44,4 +44,5 @@ ProductSchema.statics.findAllProduct = async function () {
 
 const ProductModel = model<IProduct, IProductModel>('Product', ProductSchema);
 
+export { ProductSchema };
 export default ProductModel;

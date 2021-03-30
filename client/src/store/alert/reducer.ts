@@ -16,7 +16,7 @@ const reducer: Reducer = (state = {}, action) => {
         message: action.message,
       };
     case CLEAR:
-      return { type: "ALERT_CLEAN" };
+      return {};
     default:
       return state;
   }

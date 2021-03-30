@@ -4,17 +4,7 @@ import { useSelector } from "react-redux";
 import { ApplicationState } from "store";
 import { userActions } from "store/user";
 import { useFormLogic, useModalLogic } from "_hooks";
-interface Account {
-  email: string;
-  password: string;
-  to?: string;
-}
-interface Forget {
-  email: string;
-}
-interface Password {
-  password: string;
-}
+import { Account, Forget, Password } from "components/interfaces";
 
 export const useLoginLogic = (to?: string, token?: string) => {
   const { onSubmit } = useFormLogic();

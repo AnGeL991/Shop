@@ -16,3 +16,5 @@ export { Home } from "./home/home";
 export { Activate } from "./account/activate";
 export { ForgetPassword } from "./account/forgetPassword";
 export { ResetPassword } from "./account/resetPassword";
+export { Cancel } from "./checkout/cancel";
+export { Success } from "./checkout/success";

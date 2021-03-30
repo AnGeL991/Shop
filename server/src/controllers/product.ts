@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Product from '../models/product';
-import { errorHandler } from './handlers';
+import { errorHandler } from '../utils';
 
 export const addProduct = (req: Request, res: Response) => {
   errorHandler(res, Product.createNewFromRequestBody(req.body), 201, 500);

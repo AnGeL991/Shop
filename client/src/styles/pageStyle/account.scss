@@ -97,7 +97,7 @@
   padding: 20px;
   &__title {
     color: black;
-    font-size: 24px;
+    font-size: 22px;
     margin-bottom: 15px;
   }
   &__wrapper {
@@ -111,9 +111,10 @@
     font-weight: 300;
     margin-bottom: 20px;
     font-size: 14px;
+    line-height: 1.6;
   }
   &__btn {
-    margin-top: 10px;
+    width: 100%;
   }
 }
 
@@ -172,11 +173,6 @@
     color: white;
     text-decoration: none;
   }
-  &__error {
-    color: red;
-    padding: 5px 0;
-    text-align: center;
-  }
 }
 
 .register {
@@ -211,16 +207,6 @@
   &__select {
     text-transform: capitalize;
     font-weight: 700;
-  }
-  &__error {
-    color: red;
-    font-size: 12px;
-    margin-bottom: 5px;
-  }
-  &__alert {
-    color: red;
-    padding: 10px;
-    text-align: center;
   }
 }
 .alert {

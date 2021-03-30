@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { ApplicationState } from "store";
-import { Inventory } from "store/inventory";
-import { Delivery } from "store/order";
-import { useCheckedRule } from "_hooks";
-
-interface FinalPayment {
-  data: Inventory[];
-  adress?: Delivery;
-  paymentAdress?: Delivery;
-  payment?: string;
-  comment: string;
-  regulations: boolean;
-}
+import { useChecked, useFormLogic } from "_hooks";
+import { history } from "_helpers/history";
+import { loadStripe } from "@stripe/stripe-js";
+import Payment from "_services/payment.service";
+import { client } from "_api";
+import { preparePaymentMethod } from "../utils";
+const stripePromise = loadStripe(
+  "pk_test_51IYXGBAoyhrXLJPmdtLQphHcSAglpKIllGkQ4VaY1eFrOr5mkhyjsUHXpK6jNuISVr7LwCNQpazH2O0GHSiRlUz600Roe4EONl"
+);
 
 export const usePaymentsLogic = () => {
   const {
@@ -22,57 +19,73 @@ export const usePaymentsLogic = () => {
     inputPayment,
     handleSetComment,
     handleSetRegulation,
-  } = useCheckedRule();
+    error,
+    setError,
+  } = useChecked();
 
-  const { user, order } = useSelector((state: ApplicationState) => state);
-  const [error, setError] = useState({ message: "" });
-  const { items, deliveryAdress } = order.data;
+  const { onSubmit } = useFormLogic();
+
+  const { user, order, payment } = useSelector(
+    (state: ApplicationState) => state
+  );
   const { isAuthenticated } = user;
-
-  const [finalPayment, setFinalPayment] = useState<FinalPayment>({
-    data: [...items],
-    adress: deliveryAdress ? deliveryAdress : undefined,
-    payment: "",
-    comment: inputComment,
-    regulations: false,
-  });
+  const { deliveryCost, delivery } = payment;
 
   useEffect(() => {
-    setFinalPayment((prev) => ({
-      ...prev,
-      comment: inputComment,
-      regulations: inputRules.personal && inputRules.regulations ? true : false,
-      payment: inputPayment.dotpay
-        ? "dotpay"
-        : null || inputPayment.masterpass
-        ? "masterpass"
-        : null || inputPayment.transfer
-        ? "transfer"
-        : "",
-    }));
-  }, [inputRules, inputComment, inputPayment]);
-  const { data, regulations, adress, payment } = finalPayment;
+    onSubmit(Payment.setPaymentComment, [inputComment]);
+  }, [inputComment]);
 
-  const HandleSendOrder = () => {
-    if (regulations === false) {
-      setError({ message: "By kontynuować musisz zaakceptować zasady" });
-    }
-    if (data.length >= 1 && regulations && adress && payment) {
-      setError({ message: "" });
-      console.log(finalPayment);
+  useEffect(() => {
+    if (inputRules.regulations && inputRules.personal)
+      onSubmit(Payment.setRegulation, [
+        inputRules.regulations && inputRules.personal,
+      ]);
+  }, [inputRules]);
+
+  useEffect(() => {
+    const method = preparePaymentMethod(inputPayment);
+    onSubmit(Payment.setPaymentStatus, [method]);
+  }, [inputPayment]);
+
+  const handleCheckout = async () => {
+    const session = await Payment.setPaymentIntent(
+      delivery.email,
+      order.order.items,
+      deliveryCost.cost
+    );
+    const stripe = await stripePromise;
+    const result = await stripe?.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result?.error) {
+      console.log(result.error.message);
     }
   };
+
+  const handleSendOrder = () => {
+    if (!inputRules.personal && !inputRules.regulations) {
+      setError({ message: "By kontynuować musisz zaakceptować zasady" });
+    } else if (inputPayment.transfer) {
+      handleCheckout();
+    } else {
+      payment.products = order.order.items;
+      client("/order", payment);
+      history.push(`/success`);
+    }
+  };
+
   return {
     isAuthenticated,
-    deliveryAdress,
-    finalPayment,
     inputComment,
     inputRules,
     inputPayment,
     inputDelivery,
     handleSetComment,
     handleSetRegulation,
-    HandleSendOrder,
+    handleSendOrder,
     error,
+    delivery,
+    deliveryCost,
   };
 };

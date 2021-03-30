@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Logo, Search, Basket, Best } from "components/common";
-import { NavCategories, Nav, Account } from "../../template";
+import { NavCategories, Nav, Account } from "components/template";
 import "./mainMenu.scss";
 
 export const MainMenu: FC = () => {

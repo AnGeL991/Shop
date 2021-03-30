@@ -1,38 +1,21 @@
 import { FC } from "react";
 import { Carousell } from "components/template";
-import { useChangeSlider,useDisplayProduct } from "_hooks";
+import { useChangeSlider, useDisplayProduct } from "_hooks";
 import { Slide } from "./dealProduct";
-import "./carousell.scss";
+
 
 export const DealOfDay: FC = () => {
-  const {dealProduct} = useDisplayProduct()
-  const dataFoto = [
-    {
-      id: 0,
-      image:
-        "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/03/3-256x360.jpg",
-    },
-    {
-      id: 1,
-      image:
-        "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg",
-    },
-    {
-      id: 2,
-      image:
-        "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg",
-    },
-  ];
+  const { dealProduct } = useDisplayProduct();
 
-  const { slide, nextSlide, prevSlide } = useChangeSlider(dealProduct);
+  const { slide, nextSlide, prevSlide,handleSetOutSide } = useChangeSlider(dealProduct,2);
 
   const slides = dealProduct.map((el) => (
     <Slide
       key={el._id}
-      data={dataFoto}
       transition={slide.transition}
       translate={slide.translate}
       item={el}
+      onMouseMove={handleSetOutSide}
     />
   ));
 

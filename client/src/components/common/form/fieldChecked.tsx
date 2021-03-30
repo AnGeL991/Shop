@@ -1,11 +1,11 @@
-import { FC,ReactNode } from 'react';
-import {IFieldIndput} from 'components/interface';
-import './form.scss';
+import { FC, ReactNode } from "react";
+import { IFieldIndput } from "components/interfaces";
+import "./form.scss";
 
 interface FieldCheckedProps extends IFieldIndput {
   children: ReactNode;
   checked?: boolean;
-};
+}
 
 export const FieldChecked: FC<FieldCheckedProps> = ({
   children,

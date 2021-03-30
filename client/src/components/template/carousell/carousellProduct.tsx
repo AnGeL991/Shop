@@ -1,21 +1,24 @@
 import { FC } from "react";
 import { Carousell } from "components/template";
 import { ProductBox } from "components/common";
-import { Inventory } from "components/interface";
+import { Inventory } from "components/interfaces";
 import { useChangeSlider } from "_hooks";
 
 interface CarousellProps {
   title: string;
   data: Array<Inventory>;
   duration?: number;
-};
+}
 
 export const CarousellProduct: FC<CarousellProps> = ({
   title,
   data,
   duration,
 }) => {
-  const { nextSlide, prevSlide, slide } = useChangeSlider(data, duration);
+  const { nextSlide, prevSlide, slide, handleSetOutSide } = useChangeSlider(
+    data,
+    duration
+  );
 
   const arrayOfProduct = data.map((el) => (
     <div
@@ -24,6 +27,8 @@ export const CarousellProduct: FC<CarousellProps> = ({
       style={{
         transform: `translateX(-${slide.translate}%)`,
       }}
+      onMouseEnter={handleSetOutSide}
+      onMouseLeave={handleSetOutSide}
     >
       <ProductBox item={el} />
     </div>

@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { IBanner } from "components/interface";
-import "./banner.scss";
+import { IBanner } from "components/interfaces";
 import { Link } from "react-router-dom";
+import "./banner.scss";
 
 export const Banner: FC<IBanner> = ({ image, title, description, button }) => {
   return (
@@ -11,7 +11,9 @@ export const Banner: FC<IBanner> = ({ image, title, description, button }) => {
         <div className="banner__wrapper">
           <h4 className="banner__title">{title}</h4>
           <span className="banner__description">{description}</span>
-          <button className="banner__button"><Link to='/shop'>{button}</Link></button>
+          <button className="banner__button">
+            <Link to="/shop">{button}</Link>
+          </button>
         </div>
       </div>
     </div>

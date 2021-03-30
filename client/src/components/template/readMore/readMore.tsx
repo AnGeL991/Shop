@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactNode, CSSProperties } from "react";
+import { FunctionComponent, ReactNode, CSSProperties, useMemo } from "react";
 import { Icons } from "components/common";
 import { useToggleClick } from "_hooks";
 import "./readMore.scss";
@@ -17,12 +17,16 @@ export const ReadMore: FunctionComponent<ReadMoreProps> = ({
   style,
 }) => {
   const { open, handleToggle } = useToggleClick();
-  const {ArrowDown,ArrowUp} =Icons;
+  const { ArrowDown, ArrowUp } = Icons;
 
-  const arrow = !open ? (
-    <ArrowDown className={`${className}__icon`} />
-  ) : (
-    <ArrowUp className={`${className}__icon`} />
+  const arrow = useMemo(
+    () =>
+      open ? (
+        <ArrowUp className={`${className}__icon`} />
+      ) : (
+        <ArrowDown className={`${className}__icon`} />
+      ),
+    [open, className, ArrowDown, ArrowUp]
   );
 
   return (

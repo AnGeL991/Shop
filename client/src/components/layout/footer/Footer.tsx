@@ -1,12 +1,12 @@
-import {FC} from 'react';
-import {List,CopyRight} from 'components/template'
-import './footer.scss';
+import { FC } from "react";
+import { List, CopyRight } from "components/template";
+import "./footer.scss";
 
-export const Footer:FC =()=>{
+export const Footer: FC = () => {
   return (
-    <section className='footer' >
-      <List/>
-      <CopyRight/>
+    <section className="footer">
+      <List />
+      <CopyRight />
     </section>
-  )
-}
+  );
+};

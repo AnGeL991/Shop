@@ -1,31 +1,25 @@
-import { FunctionComponent } from "react";
+import { FC, useMemo } from "react";
 import { GoThreeBars } from "react-icons/go";
 import { EachLink } from "components/common";
 import { Modal } from "components/template";
 import { useModalLogic } from "_hooks";
+import { nav } from "db";
 import "./nav.scss";
 
-export const Nav: FunctionComponent = () => {
+export const Nav: FC = () => {
   const { showModal, handleToggleModal } = useModalLogic();
-  const data = [
-    { name: "Home", path: "/" },
-    { name: "Shop", path: "/shop" },
-    { name: "Blog", path: "/Blog" },
-    { name: "Media", path: "/media" },
-    { name: "ShortCode", path: "/shordCode" },
-    { name: "Features", path: "/features" },
-    { name: "About Us", path: "/aboutUs" },
-    { name: "Contact Us", path: "/contact" },
-  ];
 
-  const filter = (
-    <nav className={`nav ${showModal && "nav__active"}`}>
-      <ul className="nav__list">
-        {data.map((el) => (
-          <EachLink key={el.name} {...el} />
-        ))}
-      </ul>
-    </nav>
+  const filter = useMemo(
+    () => (
+      <nav className={`nav ${showModal && "nav__active"}`}>
+        <ul className="nav__list">
+          {nav.map((el) => (
+            <EachLink key={el.name} {...el} />
+          ))}
+        </ul>
+      </nav>
+    ),
+    [showModal]
   );
 
   return (

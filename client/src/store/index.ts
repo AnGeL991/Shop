@@ -6,9 +6,11 @@ import { OrderState, OrderReducer } from "./order";
 import { UserState, UserReducer } from "./user";
 import { AlertReducer, alertState } from "./alert";
 import { WishState, WishReducer } from "./wishList";
+import { PaymentState, PaymentReducer } from "./payment";
 
 export interface ApplicationState {
   order: OrderState;
+  payment: PaymentState;
   inventory: InventoryState;
   user: UserState;
   wish: WishState;
@@ -19,6 +21,7 @@ export interface ApplicationState {
 export const createRootReducer = (history: History) =>
   combineReducers({
     order: OrderReducer,
+    payment: PaymentReducer,
     inventory: InventoryReducer,
     user: UserReducer,
     wish: WishReducer,

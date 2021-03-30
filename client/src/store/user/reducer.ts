@@ -49,6 +49,7 @@ const reducer: Reducer<UserState> = (state = initialState, action) => {
         ...state,
         token: null,
         isAuthenticated: false,
+        data: [],
         loading: false,
       };
     default:

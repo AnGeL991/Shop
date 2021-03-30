@@ -30,6 +30,8 @@ const SERVER__TOKEN_EXPIRETIME = process.env.SERVER__TOKEN_EXPIRETIME || 3600;
 const SERVER__TOKEN__ISSUER = process.env.SERVER__TOKEN__ISSUER || 'coolIssuer';
 const SERVER__TOKEN__SECRET = process.env.SERVER__TOKEN__SECRET || 'secretPassword';
 const SERVER__TOKEN__ACTIVATION = process.env.JWT_ACTIVATION || 'activateToken';
+const STRIPE__SK = process.env.STRIPE_SK || 'stripeSecres';
+const STRIPE__PK = process.env.STRIPE_PK || 'stripePublic';
 
 const SERVER = {
   hostname: SERVER__HOSTNAME,
@@ -39,8 +41,13 @@ const SERVER = {
     issuer: SERVER__TOKEN__ISSUER,
     secret: SERVER__TOKEN__SECRET,
     activation: SERVER__TOKEN__ACTIVATION
+  },
+  Stripe: {
+    secret: STRIPE__SK,
+    public: STRIPE__PK
   }
 };
+
 const MAIL_KEY = process.env.MAIL_KEY || '';
 const EMAIL_FROM = process.env.EMAIL_FROM || 'example@gmail.com';
 const SQMAIL = {

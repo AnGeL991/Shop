@@ -1,6 +1,5 @@
 import { useState, FC, ChangeEventHandler, ChangeEvent } from "react";
-import { ReadMore } from "components/common";
-import { Icons } from "components/common";
+import { ReadMore, Icons } from "components/common";
 
 export const Subscribe: FC = () => {
   const [value, setValue] = useState("");

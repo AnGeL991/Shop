@@ -4,6 +4,8 @@ import bcryptjs from 'bcryptjs';
 import { response } from 'express';
 
 const Salt = 10;
+// https://tomanagle.medium.com/strongly-typed-models-with-mongoose-and-typescript-7bc2f7197722
+// jak otypować static
 
 const UserSchema: Schema = new Schema(
   {
@@ -13,11 +15,7 @@ const UserSchema: Schema = new Schema(
     password: { type: String, required: true },
     newsletter: { type: Boolean },
     regulations: { type: Boolean, required: true },
-    role: { type: String, default: 'Client' },
-    resetPasswordLink: {
-      data: String,
-      default: ''
-    }
+    role: { type: String, default: 'Client' }
   },
   {
     timestamps: true
@@ -43,9 +41,9 @@ UserSchema.pre('save', async function (this: IUser, next) {
   }
 });
 
-// UserSchema.methods.comparePassword = async function (this: IUser, candidatePassword: string) {
-//   return await bcryptjs.compare(candidatePassword, this.password);
-// };
+UserSchema.statics.comparePassword = async function (candidatePassword: string) {
+  return await bcryptjs.compare(candidatePassword, this.password);
+};
 
 const UserModel = model<IUser, IUserModel>('User', UserSchema);
 

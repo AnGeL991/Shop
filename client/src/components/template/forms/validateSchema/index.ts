@@ -63,20 +63,15 @@ export const adressPrivateSchema = yup.object().shape({
   postCode: yup.string().required("To pole jest wymagane"),
   city: yup.string().required("To pole jest wymagane"),
   phone: yup.number().required("To pole jest wymagane"),
-  delivery: yup.array().of(
-    yup.object().shape({
-      transfer: yup.string().nullable(),
-      courier: yup.string().nullable(),
-      own: yup.string().nullable(),
-    })
-  ),
 });
+
 export const forgetPasswordSchema = yup.object().shape({
   email: yup
     .string()
     .required("To pole jest wymagane")
     .email("Email posiada nie własciwą konstrukcję - @gmail.com"),
 });
+
 export const newPasswordSchema = yup.object().shape({
   password: yup
     .string()

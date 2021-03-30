@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import { EachData } from './eachData';
-import {IUser} from 'components/interface';
+import { FC } from "react";
+import { EachData } from "./eachData";
+import { IUser } from "components/interfaces";
 
-export const PersonalData: FC<IUser> = ({firstName,lastName,email}) => {
+export const PersonalData: FC<IUser> = ({ firstName, lastName, email }) => {
   return (
     <section className="personalData">
       <EachData name="First Name" firstName={firstName} />

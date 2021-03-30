@@ -1,4 +1,4 @@
-import { IUser } from "components/interface";
+import { IUser } from "components/interfaces";
 import { client } from "_api";
 
 export class UserApiHandler {

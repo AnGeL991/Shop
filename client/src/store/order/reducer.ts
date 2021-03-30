@@ -1,21 +1,12 @@
 import { Reducer } from "redux";
 import { OrderActionTypes, OrderState } from "./types";
+import OrderReduxProcesses from "./orderLogic";
 
 export const initialState: OrderState = {
-  data: {
+  order: {
     count: 0,
     items: [],
     totalPrice: 0,
-    deliveryAdress: {
-      email: "",
-      firstName: "",
-      surName: "",
-      street: "",
-      postCode: "",
-      city: "",
-      phone: 0,
-      deliveryCost: 0,
-    },
   },
   errors: undefined,
   loading: false,
@@ -30,31 +21,15 @@ const {
   ADD_TO_ORDER_FAILURE,
   UPDATE_ORDER_AMOUNT,
   REMOVE_FROM_ORDER,
-  ADD_ADRESS_REQUEST,
-  ADD_ADRESS_SUCCESS,
-  ADD_ADRESS_FAILURE,
 } = OrderActionTypes;
 
 const reducer: Reducer<OrderState> = (state = initialState, action) => {
-  const { items, count, totalPrice } = state.data;
-  const total = items.reduce((total, item) => {
-    return (
-      total + item.amount * (item.price - (item.price * item.discount) / 100)
-    );
-  }, 0);
-
   switch (action.type) {
     case START_LOAD_ORDER: {
       return { ...state, loading: true };
     }
     case END_LOAD_ORDER: {
-      return {
-        ...state,
-        loading: false,
-        data: {
-          ...action.payload,
-        },
-      };
+      return { ...state, loading: false, order: { ...action.payload } };
     }
     case ERROR_LOAD_ORDER: {
       return { ...state, loading: false, errors: action.payload };
@@ -63,97 +38,16 @@ const reducer: Reducer<OrderState> = (state = initialState, action) => {
       return { ...state, loading: true };
     }
     case ADD_TO_ORDER: {
-      const { _id, price, amount, discount } = action.payload;
-      const some = items.some((el) => el._id === _id);
-      const dicountPrice = price - (price * discount) / 100;
-      if (!some) {
-        localStorage.setItem(
-          "Order",
-          JSON.stringify([...items, action.payload])
-        );
-      }
-      if (some) {
-        const item = items.map((el) =>
-          el._id === _id
-            ? {
-                ...el,
-                amount: el.amount ? el.amount + amount : 1,
-              }
-            : el
-        );
-        return {
-          loading: false,
-          data: {
-            ...state.data,
-            count: count + amount,
-            items: [...item],
-            totalPrice: total + dicountPrice,
-          },
-        };
-      }
-      return {
-        ...state,
-        loading: false,
-        data: {
-          count: count + amount,
-          items: [...items, action.payload],
-          totalPrice: total + price - (price * discount) / 100,
-        },
-      };
+      return OrderReduxProcesses.addToOrder(state, action);
     }
     case ADD_TO_ORDER_FAILURE: {
       return { ...state, errors: action.payload };
     }
-    case UPDATE_ORDER_AMOUNT:
-      const { id, amount } = action.payload;
-      const item = items.map((el) =>
-        el._id === id
-          ? {
-              ...el,
-              amount: el.amount ? el.amount + amount : 1,
-            }
-          : el
-      );
-      const price = item.map((el) => el.price - (el.price * el.discount) / 100);
-      return {
-        data: {
-          count: count + amount,
-          items: [...item],
-          totalPrice: total + price[0] * amount,
-        },
-      };
+    case UPDATE_ORDER_AMOUNT: {
+      return OrderReduxProcesses.updateOrderAmount(state, action);
+    }
     case REMOVE_FROM_ORDER:
-      const product = items.filter((el) => el._id === action.payload);
-      const productPrice = product.reduce((total, item) => {
-        return (
-          total +
-          item.amount * (item.price - (item.price * item.discount) / 100)
-        );
-      }, 0);
-      return {
-        data: {
-          ...state.data,
-          count: count - product[0].amount,
-          items: items.filter((el) => el._id !== action.payload),
-          totalPrice: totalPrice - productPrice,
-        },
-      };
-    case ADD_ADRESS_REQUEST: {
-      return { ...state, loading: true };
-    }
-    case ADD_ADRESS_SUCCESS: {
-      return {
-        ...state,
-        loading: false,
-        data: {
-          ...state.data,
-          deliveryAdress: action.payload,
-        },
-      };
-    }
-    case ADD_ADRESS_FAILURE: {
-      return { ...state, errors: action.payload };
-    }
+      return OrderReduxProcesses.removeOrder(state, action);
     default: {
       return state;
     }

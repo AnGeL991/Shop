@@ -1,6 +1,7 @@
 import { FC } from "react";
-import { ReadMore } from "components/common";
 import { Link } from "react-router-dom";
+import { ReadMore } from "components/common";
+
 
 export const AboutUs: FC = () => {
   return (

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { Route, Switch } from "react-router-dom";
 import * as page from "./components/view";
 import { PrivateRoute } from "components/routing/privateRoute";
@@ -22,6 +22,8 @@ const {
   Activate,
   ForgetPassword,
   ResetPassword,
+  Success,
+  Cancel,
 } = page;
 
 const routes = [
@@ -46,14 +48,25 @@ const routes = [
   { exact: true, path: "/Checkout", component: Checkout },
   { exact: true, path: "/checkout/delivery", component: Delivery },
   { exact: true, path: "/checkout/payment", component: Payment },
+  { exact: true, path: "/success/:token", component: Success },
+  { exact: true, path: "/canceled", component: Cancel },
   { exact: false, path: "*", component: PageNoFound },
 ];
 
-const router = routes.map((el, index) => (
-  <Route key={index} exact={el.exact} path={el.path} component={el.component} />
-));
-
 export const Routers: FC = () => {
+  const router = useMemo(
+    () =>
+      routes.map((el, index) => (
+        <Route
+          key={index}
+          exact={el.exact}
+          path={el.path}
+          component={el.component}
+        />
+      )),
+    []
+  );
+
   return (
     <Switch>
       <PrivateRoute path="/myAccount" component={Account} />

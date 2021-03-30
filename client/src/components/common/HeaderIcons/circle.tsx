@@ -1,13 +1,9 @@
-import { FC } from 'react';
-import './headerIcons.scss';
+import { FC } from "react";
+import "./headerIcons.scss";
 
 type CircleProps = {
-  amount: Number
-}
+  amount: Number;
+};
 export const Circle: FC<CircleProps> = ({ amount }) => {
-
-  return (
-    <div className="circle">
-      {amount}
-    </div>)
-}
+  return <div className="circle">{amount}</div>;
+};

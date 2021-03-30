@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Slide } from "./subComponent/slide";
 import { Dots } from "components/common";
-import { useChangeSlider } from "_hooks/generic/useChangeSlider";
+import { useChangeSlider } from "components/template/carousell/hooks/useChangeSlider";
 import { Icons } from "components/common";
 import "./galerySlider.scss";
 
@@ -21,7 +21,9 @@ export const GalerySlider: FC<Props> = ({
     data,
     duration
   );
+
   const { ArrowLeft, ArrowRight } = Icons;
+
   const fotos = data.map((el) => (
     <Slide
       key={el.id}
@@ -42,6 +44,10 @@ export const GalerySlider: FC<Props> = ({
     </div>
   ) : null;
 
+  const dots =
+    data.length > 1 ? (
+      <Dots data={data} activeIndex={slide.activeIndex} onClick={handleClick} />
+    ) : null;
   return (
     <section className="galerySlider" style={{ padding: `${padding}px` }}>
       <div className="galerySlider__content">
@@ -53,7 +59,7 @@ export const GalerySlider: FC<Props> = ({
         </div>
         {Arrows}
       </div>
-      <Dots data={data} activeIndex={slide.activeIndex} onClick={handleClick} />
+      {dots}
     </section>
   );
 };

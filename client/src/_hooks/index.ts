@@ -1,5 +1,5 @@
-export { useBasketLogic } from "./business/useBasketLogic";
-export { useChangeSlider } from "./generic/useChangeSlider";
+export { useBasketLogic } from "../components/template/basket/hooks/useBasketLogic";
+export { useChangeSlider } from "../components/template/carousell/hooks/useChangeSlider";
 export { useProductBoxLogic } from "./business/useProductBoxLogic";
 export { useChangeAmountLogic } from "./business/useChangeAmountLogic";
 export { useFilterValue } from "./business/useFilterValue";
@@ -16,5 +16,5 @@ export { useLoading } from "./generic/useLoading";
 export { usePaymentsLogic } from "./business/usePaymentsLogic";
 export { useFormLogic } from "./generic/useFormLogic";
 export { useAdressLogic } from "./business/useAdressLogic";
-export { useCheckedRule } from "./generic/useCheckedRule";
+export { useChecked } from "./generic/useChecked";
 export { useActivate } from "./business/useActivate";

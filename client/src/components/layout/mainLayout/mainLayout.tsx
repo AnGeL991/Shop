@@ -1,13 +1,15 @@
 import { FunctionComponent, ReactNode } from "react";
-import { Footer } from "../footer/Footer";
-import { MainMenu } from "../mainMenu/mainMenu";
+import { Footer } from "components/layout";
+import { MainMenu } from "components/layout";
 import "./mainLayout.scss";
 
 type MainLayoutProps = {
   children: ReactNode;
 };
 
-export const MainLayout: FunctionComponent<MainLayoutProps> = ({ children }) => {
+export const MainLayout: FunctionComponent<MainLayoutProps> = ({
+  children,
+}) => {
   return (
     <section className="mainLayout">
       <MainMenu />

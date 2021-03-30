@@ -67,13 +67,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 10px;
   &__input {
-    margin-right: 10px;
+    margin-right: 15px;
   }
 }
+
 .error {
   color: red;
   font-size: 12px;
   margin-bottom: 5px;
+  &_big {
+    margin-bottom: 5px;
+    color: red;
+    text-align: center;
+  }
 }

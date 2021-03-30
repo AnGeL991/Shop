@@ -1,4 +1,4 @@
-import { CSSProperties, FC, ReactNode } from "react";
+import { CSSProperties, FC, ReactNode, useMemo } from "react";
 import { Button } from "components/common";
 import { useModalLogic } from "_hooks";
 import ReactDom from "react-dom";
@@ -12,7 +12,7 @@ type Props = {
   title?: string;
   fullHight?: boolean;
   style?: CSSProperties;
-  className?:string;
+  className?: string;
 };
 
 export const Modal: FC<Props> = ({
@@ -27,21 +27,27 @@ export const Modal: FC<Props> = ({
 }) => {
   const { StopPropagation } = useModalLogic();
 
+  const header = useMemo(
+    () =>
+      title ? (
+        <div className="modal__header">
+          <h4 className="modal__title">{title}</h4>
+        </div>
+      ) : null,
+    [title]
+  );
 
-  const header = title ? (
-    <div className="modal__header">
-      <h4 className="modal__title">{title}</h4>
-    </div>
-  ) : null;
-  const footer = btn ? (
-    <div className="modal__footer">
-      {btn && (
-        <Button darkButton onClick={close}>
-          {btn}
-        </Button>
-      )}
-    </div>
-  ) : null;
+  const footer = useMemo(
+    () =>
+      btn && (
+        <div className="modal__footer">
+          <Button darkButton onClick={close}>
+            {btn}
+          </Button>
+        </div>
+      ),
+    [btn, close]
+  );
 
   return ReactDom.createPortal(
     <div

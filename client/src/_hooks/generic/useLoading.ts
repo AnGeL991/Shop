@@ -5,7 +5,6 @@ export const useLoading = () => {
   const { inventory, user, order, alert } = useSelector(
     (state: ApplicationState) => state
   );
-
   const userLoading = user.loading;
   const orderLoading = order.loading;
   const inventoryLoading = inventory.loading;

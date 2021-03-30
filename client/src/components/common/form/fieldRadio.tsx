@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { IFieldIndput } from "components/interface";
+import { IFieldIndput } from "components/interfaces";
 
 interface IFieldRadio extends IFieldIndput {
   children: ReactNode;

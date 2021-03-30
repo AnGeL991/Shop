@@ -1,12 +1,11 @@
-import { FC } from 'react';
-import {Icons} from 'components/common';
-import { Circle } from './circle';
-import { Link } from 'react-router-dom';
-import { useWishLogic } from '_hooks';
-
+import { FC } from "react";
+import { Icons } from "components/common";
+import { Circle } from "./circle";
+import { Link } from "react-router-dom";
+import { useWishLogic } from "_hooks";
 
 export const Best: FC = () => {
-  const {wishlistLenght} = useWishLogic();
+  const { wishlistLenght } = useWishLogic();
   return (
     <div className="icon">
       <Link to="/wish">

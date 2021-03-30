@@ -17,13 +17,11 @@ export const PrivateRoute = (props: PrivateRouteProps) => {
   const RenderProps = useMemo(
     () => (props: any) =>
       isAuthenticated ? (
-        Component (
-          <Component {...props} />
-        )
+        Component(<Component {...props} />)
       ) : (
         <Redirect to="/login" />
       ),
-    [isAuthenticated,Component]
+    [isAuthenticated, Component]
   );
   return <Route {...rest} render={RenderProps} />;
 };

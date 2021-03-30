@@ -1,12 +1,22 @@
-import { FC } from 'react';
-import { Item } from './item';
-import { useBasketLogic } from '_hooks';
+import { FC, useMemo } from "react";
+import { Item } from "./item";
+import { useBasketLogic } from "_hooks";
 
 export const OrderProduct: FC = () => {
   const { items, delivery, totalPrice } = useBasketLogic();
 
-  const orders = items.map((el) => <Item key={el._id} {...el} />);
+  const orders = useMemo(
+    () => items.map((el) => <Item key={el._id} {...el} />),
+    [items]
+  );
 
+  if (orders.length <= 0) {
+    return (
+      <div className="basket__empty">
+        <p className="basket__title">No products in the cart.</p>
+      </div>
+    );
+  }
   return (
     <div className="content">
       {orders}

@@ -1,18 +1,29 @@
-import { useFormLogic } from "_hooks";
+import { useFormLogic, useChecked } from "_hooks";
 import { privatePerson, delivery, business } from "db";
-import { useCheckedRule } from "_hooks";
-import { Delivery, OrderActions } from "store/order";
+import { history } from "_helpers/history";
+import { Delivery } from "store/payment";
+import Payment from "_services/payment.service";
+import { useEffect } from "react";
+import { prepareDelivery } from "../utils";
+
 export const useAdressLogic = () => {
   const { onSubmit } = useFormLogic();
-  const submit = (delivery: Delivery) => {
-    onSubmit(OrderActions.addAdressToDelivery, [delivery]);
-  };
   const {
     dataForm,
     handleSetData,
     inputDelivery,
     handleSetRegulation,
-  } = useCheckedRule();
+  } = useChecked();
+
+  useEffect(() => {
+    const deliveryOption = prepareDelivery(inputDelivery);
+    onSubmit(Payment.setDeliveryCos, [deliveryOption]);
+  }, [inputDelivery]);
+
+  const submit = (delivery: Delivery) => {
+    onSubmit(Payment.setAdressPayment, [delivery]);
+    history.push("/checkout/payment");
+  };
 
   const fieldsData = dataForm.private ? privatePerson : business;
 

@@ -1,7 +1,6 @@
-import { FC } from 'react';
-import { Header } from 'components/common';
-import { Link } from 'react-router-dom';
-import { Button } from 'components/common';
+import { FC } from "react";
+import { Header, Button } from "components/common";
+import { Link } from "react-router-dom";
 
 export const CreateAccount: FC = () => {
   return (

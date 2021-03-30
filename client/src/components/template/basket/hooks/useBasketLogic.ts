@@ -3,7 +3,7 @@ import { ApplicationState } from "store";
 
 export const useBasketLogic = (_id?: string) => {
   const { items, totalPrice, count } = useSelector(
-    (store: ApplicationState) => store.order.data
+    (store: ApplicationState) => store.order.order
   );
   const delivery = 49;
 

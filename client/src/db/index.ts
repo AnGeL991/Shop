@@ -1,5 +1,5 @@
 import { SortOption } from "store/inventory";
-import { IDelivery, IPayment, IRule } from "components/interface";
+import { IDelivery, IPayment, IRule } from "components/interfaces";
 
 export const option = [
   { name: SortOption.DEFAULT, text: "Default sorting" },
@@ -109,6 +109,7 @@ export const registerField = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,sed eveniet! Facilis, eius. Quo suscipit reprehenderitaccusantium, iusto similique eaque animi at neque ad delectus consequuntur laborum aliquid dolorem? Dolorem.",
   },
 ];
+
 export const privatePerson = [
   {
     title: "email",
@@ -153,6 +154,7 @@ export const privatePerson = [
     type: "text",
   },
 ];
+
 export const business = [
   {
     title: "email",
@@ -234,18 +236,11 @@ export const paymentMethod: Array<IPayment> = [
     description: "Traditional transfer",
   },
   {
-    name: "masterpass",
-    description: "Pay Masterpass",
-    icon:
-      "https://www.kontomaniak.pl/artykuly/image-thumb__227__body-primary/masterpass@2x.webp",
-  },
-  {
-    name: "dotpay",
-    description: "Dotpay",
-    icon:
-      "https://lh3.googleusercontent.com/proxy/ghqV2xF_kjwtUmSv_XxhQo8t0GeV_wjc19Djw_H6oyN1pSwKcbZ2RK9E-BOT96O4MJ7Xg4Sa8s0Aao7RrwV9S1D0_fSlEabBN3gFlvRGe-Fd7PkFi2PyAB3YKivyj6u5_wo_",
+    name: "delivery",
+    description: "Cash on delivery",
   },
 ];
+
 export const paymentRule: Array<IRule> = [
   {
     name: "select",
@@ -265,6 +260,7 @@ export const paymentRule: Array<IRule> = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,sed eveniet! Facilis, eius. Quo suscipit reprehenderit accusantium, iusto similique eaque animi at neque ad delectus consequuntur laborum aliquid dolorem? Dolorem.",
   },
 ];
+
 export const brands = [
   "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Brand-3.png",
 
@@ -273,4 +269,48 @@ export const brands = [
   " http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Brand-2.png",
 
   "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Brand-1.png",
+];
+
+export const nav = [
+  { name: "Home", path: "/" },
+  { name: "Shop", path: "/shop" },
+  { name: "Blog", path: "/Blog" },
+  { name: "Media", path: "/media" },
+  { name: "ShortCode", path: "/shordCode" },
+  { name: "Features", path: "/features" },
+  { name: "About Us", path: "/aboutUs" },
+  { name: "Contact Us", path: "/contact" },
+];
+
+export const categoryNav = [
+  { name: "Appliances", path: "/shop" },
+  { name: "Bakeware", path: "/shop" },
+  { name: "Coffee maker", path: "/shop" },
+  { name: "Cooktops", path: "/shop" },
+  { name: "Cookware", path: "/shop" },
+  { name: "Cotlery", path: "/shop" },
+  { name: "Dishwasher", path: "/shop" },
+  { name: "Drawer", path: "/shop" },
+  { name: "Fryer", path: "/shop" },
+];
+
+export const mainBaner = [
+  {
+    id: 1,
+    image:
+      "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/main-banner-2.jpg",
+    title: "Summer Sale!",
+    subTitle: "Trumblers cups & ceramic",
+    description: "Understand introductions to ceramic materials",
+    buttons: ["shop", "now"],
+  },
+  {
+    id: 2,
+    image:
+      "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Main-banner-01.jpg",
+    title: "Summer Sale!",
+    subTitle: "Trumblers cups & ceramic",
+    description: "Understand introductions to ceramic materials",
+    buttons: ["shop now"],
+  },
 ];

@@ -1,2 +1,2 @@
-export {loggingMiddleware} from './loggingMiddleware';
-export {extractJWT} from './extractJWT';
+export { loggingMiddleware } from './loggingMiddleware';
+export { extractJWT } from './extractJWT';

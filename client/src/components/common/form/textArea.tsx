@@ -6,7 +6,7 @@ interface TextAreaProps {
   name?: string;
   value?: string | number;
   rows?: number;
-  placeholder?:string;
+  placeholder?: string;
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   reference?: Ref<HTMLTextAreaElement>;
   error?: { message: string; type: string };
@@ -19,7 +19,7 @@ export const TextArea: FC<TextAreaProps> = ({
   onChange,
   value,
   error,
-  placeholder
+  placeholder,
 }) => {
   return (
     <div className="textArea">

@@ -1,9 +1,8 @@
 import { Request, Response } from 'express';
 import bcryptjs from 'bcryptjs';
 import { config } from '../config';
-import { Validate, CreateToken } from '../utils';
+import { Validate, CreateToken, errorHandler } from '../utils';
 import User from '../models/user';
-import { errorHandler } from './handlers';
 import sgMail from '@sendgrid/mail';
 
 sgMail.setApiKey(config.sqMail.MAIL_KEY);
@@ -68,6 +67,9 @@ export const login = async (req: Request, res: Response) => {
     if (!user) return res.status(500).send({ message: 'Email lub hasło są nie prawidłowe' });
 
     const validatePassword = await bcryptjs.compare(password, user.password);
+    // const validatePassword = User.comparePassword(password);
+
+    console.log(validatePassword);
     if (!validatePassword) return res.status(500).send({ message: 'Email lub hasło są nie prawidłowe' });
 
     const token = CreateToken({ _id: user._id }, 31556926);

@@ -1,5 +1,5 @@
 import { FC, useMemo } from "react";
-import { IBanner } from "components/interface";
+import { IBanner } from "components/interfaces";
 import { Link } from "react-router-dom";
 
 interface SlideProps extends IBanner {

@@ -1,66 +1,21 @@
 import { FC } from "react";
 import { ProductDetail, CarousellProduct } from "components/template";
 import { useDisplayProduct } from "_hooks";
-import { MatchProps } from "components/interface";
-
-const data = [
-  {
-    _id: "1",
-    title: "Similique sunt in culpa",
-    image:
-      "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/03/3-256x360.jpg",
-    images: [],
-    price: 150.0,
-    discount: 0,
-    category: "test",
-    star: 3,
-    amount: 1,
-  },
-  {
-    _id: "2",
-    title: "Laborum et Dolorum Fug",
-    image:
-      "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg",
-    images: [],
-    price: 150.0,
-    discount: 0,
-    category: "test",
-    star: 4,
-    amount: 1,
-  },
-  {
-    _id: "3",
-    title: "Laborum et Dolorum Fug",
-    image:
-      "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg",
-    images: [],
-    price: 1000.0,
-    discount: 0,
-    category: "test",
-    star: 1,
-    amount: 1,
-  },
-  {
-    _id: "4",
-    title: "Laborum et Dolorum Fug",
-    image:
-      "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2016/12/16-256x360.jpg",
-    images: [],
-    price: 30.0,
-    discount: 0,
-    category: "test",
-    star: 5,
-    amount: 1,
-  },
-];
+import { MatchProps } from "components/interfaces";
 
 export const ProductPage: FC<MatchProps> = ({ match }) => {
-  const { productById } = useDisplayProduct();
+  const { productById, productByCategory } = useDisplayProduct();
   const product = productById(match.params.id);
+  const relatedProduct = productByCategory(product[0].category);
+
   return (
     <section className="page">
       <ProductDetail product={product[0]} />
-      <CarousellProduct title="Related Products" data={data} duration={0} />
+      <CarousellProduct
+        title="Related Products"
+        data={relatedProduct}
+        duration={0}
+      />
     </section>
   );
 };

@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Field, FieldRadio, Button } from "components/common";
 import { useForm } from "react-hook-form";
+import { Field, FieldRadio, Button } from "components/common";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { adressPrivateSchema } from "_yup";
+import { adressPrivateSchema } from "./validateSchema";
 import { useAdressLogic } from "_hooks";
 
 export const AdressForm: FC = () => {
@@ -16,31 +16,43 @@ export const AdressForm: FC = () => {
     fieldsData,
     submit,
   } = useAdressLogic();
+
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(adressPrivateSchema),
   });
 
-  const fieldsDelivery = delivery.map((el) => (
-    <div className="adressForm__deliveryBox" key={el.name}>
-      <div>
-        <FieldRadio
-          name={el.name}
+  const fieldsDelivery = useMemo(
+    () =>
+      delivery.map((el) => (
+        <div className="adressForm__deliveryBox" key={el.name}>
+          <div>
+            <FieldRadio
+              name={el.name}
+              error={errors[el.name]}
+              checked={inputDelivery[el.name]}
+              onChange={handleSetRegulation}
+            >
+              ${el.price.toFixed(2)}
+            </FieldRadio>
+          </div>
+          <div className="adressForm__description">{el.description}</div>
+        </div>
+      )),
+    [delivery, errors, inputDelivery, handleSetRegulation]
+  );
+
+  const fields = useMemo(
+    () =>
+      fieldsData.map((el) => (
+        <Field
+          key={el.name}
+          {...el}
           reference={register}
           error={errors[el.name]}
-          checked={inputDelivery[el.name]}
-          onChange={handleSetRegulation}
-        >
-          ${el.price.toFixed(2)}
-        </FieldRadio>
-      </div>
-
-      <div className="adressForm__description">{el.description}</div>
-    </div>
-  ));
-
-  const fields = fieldsData.map((el) => (
-    <Field key={el.name} {...el} reference={register} error={errors[el.name]} />
-  ));
+        />
+      )),
+    [fieldsData, register, errors]
+  );
 
   return (
     <section className="adressForm">

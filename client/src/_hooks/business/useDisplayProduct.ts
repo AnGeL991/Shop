@@ -10,7 +10,11 @@ export const useDisplayProduct = (amountOnPage?: number) => {
   const [slice, setSlice] = useState(0);
 
   const handleSetSlice = (amount: number) => setSlice(amount - 1);
+
   const productById = (id: string) => data.filter((el) => el._id === id);
+
+  const productByCategory = (category: string) =>
+    data.filter((el) => el.category === category);
 
   let displayArray: Array<Inventory> = data;
 
@@ -70,5 +74,6 @@ export const useDisplayProduct = (amountOnPage?: number) => {
     productById,
     category,
     handleSetSlice,
+    productByCategory,
   };
 };

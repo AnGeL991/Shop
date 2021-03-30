@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { IFieldIndput } from "components/interface";
+import { FC, useMemo } from "react";
+import { IFieldIndput } from "components/interfaces";
 import "./form.scss";
 
 export const Field: FC<IFieldIndput> = ({
@@ -15,7 +15,10 @@ export const Field: FC<IFieldIndput> = ({
   auto = "on",
   error,
 }) => {
-  const Label = required ? title + " *" : title;
+  const Label = useMemo(() => (required ? title + " *" : title), [
+    required,
+    title,
+  ]);
 
   return (
     <div className="fild">

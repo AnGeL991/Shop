@@ -10,6 +10,7 @@ export { Header } from "./header/header";
 export { Button } from "./button/button";
 export { Field } from "./form/field";
 export { FieldChecked } from "./form/fieldChecked";
+export { WrongLabel } from "./form/wrongLabel";
 export { EachLink } from "./eachItems/eachLink";
 export { Tag } from "../template/products/productBox/tag";
 export { TextArea } from "./form/textArea";

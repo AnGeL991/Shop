@@ -4,7 +4,7 @@ import cors from 'cors';
 import { info, config } from './config';
 import { connectToDb } from './database';
 import { loggingMiddleware } from './middlewares';
-import { Router } from './routes';
+import routes from './routes';
 
 const NAMESPACE = 'Server';
 const app = express();
@@ -19,7 +19,6 @@ connectToDb();
 //const readytogoserver = configureServer()
 
 /* logging the request */
-
 app.use(express.static(path.join('../client/build')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -28,14 +27,11 @@ app.use(cors());
 // middleware
 app.use(loggingMiddleware);
 
-// /*Routes */ - /server/configRoutes.ts
-app.use('/api', Router.productRoutes);
-app.use('/api', Router.userRoutes);
+// routes
+app.use('/api', routes);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '../client/build/index.html'));
 });
-/* Create the server */
 
-// funkcjia z init.ts
 app.listen(config.server.port, () => info(NAMESPACE, `Server is running on ${config.server.hostname}:${config.server.port}`));

@@ -61,6 +61,7 @@
     opacity: 1;
   }
 }
+
 .basketProduct {
   display: flex;
   flex-wrap: wrap;
@@ -137,6 +138,7 @@
     font-size: 16px;
   }
 }
+
 .basketRead {
   display: flex;
   flex-direction: column;
@@ -147,7 +149,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    font-size: 12px;
+    font-size: 10px;
     text-decoration: underline;
     color: $color-darkGray;
     cursor: pointer;
