@@ -1,5 +1,6 @@
 import { FC, ChangeEvent } from "react";
 import { TextArea } from "components/common";
+import './style/comment.scss';
 
 type PaymentCommentProps = {
   inputComment: string;

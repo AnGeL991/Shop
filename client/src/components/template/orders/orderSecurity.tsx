@@ -1,5 +1,8 @@
 import { FC } from "react";
 import { securityInfo } from "db";
+import { Link } from "react-router-dom";
+import { Button } from "components/common";
+import "./style/orderSecurity.scss";
 
 export const OrderSecurity: FC = () => {
   const Info = securityInfo.map((item) => (
@@ -12,6 +15,11 @@ export const OrderSecurity: FC = () => {
   return (
     <section className="security__wrapper">
       <ul className="security__wrapper">{Info}</ul>
+      <div className="security__basketBox">
+        <Button darkButton>
+          <Link to="/shop">return to Shop</Link>
+        </Button>
+      </div>
     </section>
   );
 };

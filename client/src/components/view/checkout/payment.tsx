@@ -1,17 +1,17 @@
 import { FC } from "react";
-import { ProgressList, PaymentCard } from "components/template";
-// import { usePaymentsLogic } from "_hooks";
-// import { Redirect } from "react-router";
+import { Header } from "components/common";
+import { PaymentRenderProduct, PaymentSummary } from "components/template";
 
 export const Payment: FC = () => {
-  // const { deliveryAdress } = usePaymentsLogic();
-  // if (!deliveryAdress?.email) {
-  //   return <Redirect to="/checkout/delivery" />;
-  // }
   return (
     <section className="page">
-      <ProgressList active={3} />
-      <PaymentCard />
+      <Header
+        title={`Confirm & Pay`}
+        className="checkout__header"
+        style={{ fontWeight: 500, padding: "10px" }}
+      />
+      <PaymentRenderProduct />
+      <PaymentSummary />
     </section>
   );
 };

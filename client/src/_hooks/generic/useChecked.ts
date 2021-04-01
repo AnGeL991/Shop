@@ -1,6 +1,5 @@
 import { useState, ChangeEventHandler } from "react";
 import { IPaymentInputs, IDeliveryOption } from "components/interfaces";
-import { RiMapPinRangeFill } from "react-icons/ri";
 
 export const useChecked = () => {
   const [inputPayment, setInputPayment] = useState<IPaymentInputs>({
@@ -147,15 +146,15 @@ export const useChecked = () => {
   };
 
   return {
-    handleSetRegulation,
-    dataForm,
-    handleSetData,
     inputComment,
     inputDelivery,
     inputPayment,
     inputRules,
-    handleSetComment,
-    setError,
+    dataForm,
     error,
+    handleSetComment,
+    handleSetRegulation,
+    handleSetData,
+    setError,
   };
 };

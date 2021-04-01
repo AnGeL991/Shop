@@ -17,13 +17,14 @@ const {
   ProductPage,
   Checkout,
   Delivery,
-  Payment,
+  Summary,
   Home,
   Activate,
   ForgetPassword,
   ResetPassword,
   Success,
   Cancel,
+  Payment,
 } = page;
 
 const routes = [
@@ -38,15 +39,12 @@ const routes = [
   { exact: true, path: "/registration", component: Registration },
   { exact: true, path: "/users/activate/:token", component: Activate },
   { exact: true, path: "/users/forgetPassword", component: ForgetPassword },
-  {
-    exact: true,
-    path: "/users/resetPassword/:token",
-    component: ResetPassword,
-  },
+  { exact: true, path: "/users/reset/:token", component: ResetPassword },
   { exact: true, path: "/AboutUs", component: AboutUs },
   { exact: true, path: "/product", component: ProductPage },
   { exact: true, path: "/Checkout", component: Checkout },
   { exact: true, path: "/checkout/delivery", component: Delivery },
+  { exact: true, path: "/checkout/Summary", component: Summary },
   { exact: true, path: "/checkout/payment", component: Payment },
   { exact: true, path: "/success/:token", component: Success },
   { exact: true, path: "/canceled", component: Cancel },

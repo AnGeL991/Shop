@@ -10,7 +10,11 @@ class OrderPrepare {
       );
     }, 0);
   }
-
+  static getAmount(items: Array<Inventory>) {
+    return items.reduce((amount, item) => {
+      return amount + item.amount;
+    }, 0);
+  }
   static check(items: Inventory[], id: string) {
     return items.some((el) => el._id === id);
   }
@@ -34,63 +38,74 @@ class OrderPrepare {
 }
 
 export default class OrderReduxProcesses {
+  static loadOrders(state: OrderState, action: AnyAction) {
+    const amount = OrderPrepare.getAmount(action.payload);
+    const total = OrderPrepare.getTotal(action.payload);
+    console.log(action.payload);
+    return {
+      ...state,
+      loading: false,
+      count: amount,
+      items: [...action.payload],
+      totalPrice: total,
+    };
+  }
+
   static addToOrder(state: OrderState, action: AnyAction) {
-    const { items, count } = state.order;
+    const { items, count } = state;
     const { _id, price, amount, discount } = action.payload;
     const total = OrderPrepare.getTotal(items);
     const some = OrderPrepare.check(items, _id);
     const dicountPrice = OrderPrepare.discountPrice(price, discount);
     if (some) {
       const { item } = OrderPrepare.productLogic(items, amount, _id);
+      localStorage.setItem("Order", JSON.stringify([...item]));
       return {
         loading: false,
-        order: {
-          count: count + amount,
-          items: [...item],
-          totalPrice: total + dicountPrice,
-        },
+        count: count + amount,
+        items: [...item],
+        totalPrice: total + dicountPrice,
       };
     } else
-      return {
-        ...state,
-        loading: false,
-        order: {
-          count: count + amount,
-          items: [...items, action.payload],
-          totalPrice: total + dicountPrice,
-        },
-      };
+      localStorage.setItem("Order", JSON.stringify([...items, action.payload]));
+    return {
+      ...state,
+      loading: false,
+      count: count + amount,
+      items: [...items, action.payload],
+      totalPrice: total + dicountPrice,
+    };
   }
 
   static updateOrderAmount(state: OrderState, action: AnyAction) {
-    const { items, count } = state.order;
+    const { items, count } = state;
     const { id, amount } = action.payload;
     const total = OrderPrepare.getTotal(items);
     const { item, price } = OrderPrepare.productLogic(items, amount, id);
+    localStorage.setItem("Order", JSON.stringify([...item]));
     return {
-      order: {
-        count: count + amount,
-        items: [...item],
-        totalPrice: total + price,
-      },
+      ...state,
+      count: count + amount,
+      items: [...item],
+      totalPrice: total + price,
     };
   }
 
   static removeOrder(state: OrderState, action: AnyAction) {
-    const { items, count } = state.order;
+    const { items, count } = state;
     const { product, price } = OrderPrepare.productLogic(
       items,
       0,
       action.payload
     );
     const total = OrderPrepare.getTotal(items);
+    const item = items.filter((el) => el._id !== action.payload);
+    localStorage.setItem("Order", JSON.stringify([...item]));
     return {
-      order: {
-        ...state.order,
-        count: count - product.amount,
-        items: items.filter((el) => el._id !== action.payload),
-        totalPrice: total - price,
-      },
+      ...state,
+      count: count - product.amount,
+      items: [...item],
+      totalPrice: total - price,
     };
   }
 }

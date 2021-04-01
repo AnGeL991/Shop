@@ -2,6 +2,7 @@ import { FC, ChangeEvent, useMemo } from "react";
 import { IPaymentInputs } from "components/interfaces";
 import { FieldRadio } from "components/common";
 import { paymentMethod } from "db";
+import './style/paymentMethod.scss';
 
 type PaymentMethodProps = {
   inputPayment: IPaymentInputs;

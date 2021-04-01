@@ -1,6 +1,6 @@
 import { FC, useMemo } from "react";
-import { EachFoto } from "./subcomponent/eachFoto";
-import "./galery.scss";
+import { EachFoto } from "./eachFoto";
+import "./style/galery.scss";
 
 const fotosGalery = [
   {

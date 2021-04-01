@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react";
-import { EachBox } from "./subComponent/eachBox";
+import { EachBox } from "./eachBox";
 import { Icons } from "components/common";
-import "./whyUs.scss";
+import "./style/whyUs.scss";
 const { ShoppingBag, BubbleChat, HeartIcon, CopyIcon } = Icons;
 
 const data = [

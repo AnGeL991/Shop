@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Icons } from "components/common";
-import {useToggleClick} from '_hooks';
+import { useToggleClick } from "_hooks";
 
 type EachLinkProps = {
   name: string;
@@ -16,18 +16,19 @@ export const EachLink: FC<EachLinkProps> = ({
   subLink,
   className = "nav",
 }) => {
-  const {open,handleToggle} = useToggleClick();
+  const { open, handleToggle } = useToggleClick();
 
   const { PlusIcon, MinusIcon } = Icons;
 
-  const icon = useMemo(()=>
-    open ? (
-      <MinusIcon onClick={handleToggle} className="nav__icon" />
-    ) : (
-      <PlusIcon onClick={handleToggle} className="nav__icon" />
-    )
-  ,[open,handleToggle]) 
-  
+  const icon = useMemo(
+    () =>
+      open ? (
+        <MinusIcon onClick={handleToggle} className="nav__icon" />
+      ) : (
+        <PlusIcon onClick={handleToggle} className="nav__icon" />
+      ),
+    [open, handleToggle, MinusIcon, PlusIcon]
+  );
 
   const subLinks = subLink
     ? subLink.map((el) => (

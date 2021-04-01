@@ -3,11 +3,9 @@ import { OrderActionTypes, OrderState } from "./types";
 import OrderReduxProcesses from "./orderLogic";
 
 export const initialState: OrderState = {
-  order: {
-    count: 0,
-    items: [],
-    totalPrice: 0,
-  },
+  count: 0,
+  items: [],
+  totalPrice: 0,
   errors: undefined,
   loading: false,
 };
@@ -26,10 +24,10 @@ const {
 const reducer: Reducer<OrderState> = (state = initialState, action) => {
   switch (action.type) {
     case START_LOAD_ORDER: {
-      return { ...state, loading: true };
+      return { ...state, loading: true, items: [] };
     }
     case END_LOAD_ORDER: {
-      return { ...state, loading: false, order: { ...action.payload } };
+      return OrderReduxProcesses.loadOrders(state, action);
     }
     case ERROR_LOAD_ORDER: {
       return { ...state, loading: false, errors: action.payload };

@@ -1,11 +1,5 @@
 import { Inventory } from "store/inventory";
 
-export interface Order {
-  count: number;
-  items: Inventory[];
-  totalPrice: number;
-}
-
 export enum OrderActionTypes {
   ADD_TO_ORDER = "ADD_TO_ORDER",
   ADD_TO_ORDER_FAILURE = "ADD_TO_ORDER_FAILURE",
@@ -18,7 +12,9 @@ export enum OrderActionTypes {
 }
 
 export interface OrderState {
+  count: number;
+  items: Inventory[];
+  totalPrice: number;
   loading?: boolean;
-  order: Order;
   errors?: string;
 }

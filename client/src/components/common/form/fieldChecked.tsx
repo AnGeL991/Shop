@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 import { IFieldIndput } from "components/interfaces";
-import "./form.scss";
+import "./style/form.scss";
 
 interface FieldCheckedProps extends IFieldIndput {
   children: ReactNode;

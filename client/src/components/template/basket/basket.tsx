@@ -4,7 +4,7 @@ import { Icons, Circle, BasketProduct, Button } from "components/common";
 import { useBasketLogic } from "./hooks/useBasketLogic";
 import { useToggleClick } from "_hooks/";
 import { Inventory } from "store/inventory";
-import "./basket.scss";
+import "./style/basket.scss";
 
 interface ItemProps {
   count: number;
@@ -33,6 +33,9 @@ export const Basket: FC = () => {
     count,
     items,
   ]);
+  const redirect = useMemo(() => (count === 0 ? "/order" : "/checkout"), [
+    count,
+  ]);
 
   return (
     <>
@@ -54,7 +57,7 @@ export const Basket: FC = () => {
         </div>
         <div className="basket__products ">{BasketWithItems}</div>
         <Button darkButton onClick={handleToggle}>
-          <Link to="/checkout">Przejdz do kasy</Link>
+          <Link to={redirect}>Przejdz do kasy</Link>
         </Button>
       </div>
     </>

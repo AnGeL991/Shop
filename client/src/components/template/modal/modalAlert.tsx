@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Modal } from "components/template";
-
+import './style/alert.scss';
 interface ModalAlertProps {
   title: string;
   description: string;

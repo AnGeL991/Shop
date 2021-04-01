@@ -11,7 +11,9 @@ const stripe = new Stripe(config.server.Stripe.secret, {
 export const checkoutSesion = async (req: Request, res: Response) => {
   try {
     const { items, email, deliveryCost } = req.body;
+    console.log(items);
     const line = await getProductToPayment(items);
+    console.log(line);
     const delivery = {
       name: 'delivery',
       currency: 'pln',

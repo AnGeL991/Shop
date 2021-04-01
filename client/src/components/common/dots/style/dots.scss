@@ -1,0 +1,23 @@
+@import "../../../../styles/settings.scss";
+
+.dots {
+  display: flex;
+  justify-content: center;
+  &__item {
+    margin: 5px;
+    width: 12px;
+    height: 12px;
+    border: none;
+    background-color: $color-darkGray;
+    border-radius: 50%;
+    text-indent: -9999px;
+    outline: none;
+  }
+  &__dot {
+    list-style: none;
+    line-height: 25px;
+  }
+  &__active {
+    background-color: black;
+  }
+}

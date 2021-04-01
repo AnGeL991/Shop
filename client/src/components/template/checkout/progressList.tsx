@@ -1,5 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
+import './style/progressList.scss';
+
 type ProgressProps = {
   active: number;
 };

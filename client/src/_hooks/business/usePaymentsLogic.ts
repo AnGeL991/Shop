@@ -6,10 +6,11 @@ import { history } from "_helpers/history";
 import { loadStripe } from "@stripe/stripe-js";
 import Payment from "_services/payment.service";
 import { client } from "_api";
-import { preparePaymentMethod } from "../utils";
-const stripePromise = loadStripe(
-  "pk_test_51IYXGBAoyhrXLJPmdtLQphHcSAglpKIllGkQ4VaY1eFrOr5mkhyjsUHXpK6jNuISVr7LwCNQpazH2O0GHSiRlUz600Roe4EONl"
-);
+import { preparePaymentMethod } from "_helpers/utils";
+
+const StripePK: string = process.env.REACT_APP_STRIPE_PK!;
+
+const stripePromise = loadStripe(StripePK);
 
 export const usePaymentsLogic = () => {
   const {
@@ -17,9 +18,9 @@ export const usePaymentsLogic = () => {
     inputDelivery,
     inputRules,
     inputPayment,
+    error,
     handleSetComment,
     handleSetRegulation,
-    error,
     setError,
   } = useChecked();
 
@@ -29,7 +30,8 @@ export const usePaymentsLogic = () => {
     (state: ApplicationState) => state
   );
   const { isAuthenticated } = user;
-  const { deliveryCost, delivery } = payment;
+  const { deliveryCost, delivery, paymentStatus, products } = payment;
+  const { totalPrice } = order;
 
   useEffect(() => {
     onSubmit(Payment.setPaymentComment, [inputComment]);
@@ -42,36 +44,42 @@ export const usePaymentsLogic = () => {
       ]);
   }, [inputRules]);
 
-  useEffect(() => {
-    const method = preparePaymentMethod(inputPayment);
-    onSubmit(Payment.setPaymentStatus, [method]);
-  }, [inputPayment]);
-
   const handleCheckout = async () => {
-    const session = await Payment.setPaymentIntent(
-      delivery.email,
-      order.order.items,
-      deliveryCost.cost
-    );
-    const stripe = await stripePromise;
-    const result = await stripe?.redirectToCheckout({
-      sessionId: session.id,
-    });
+    if (inputPayment.transfer) {
+      const session = await Payment.setPaymentIntent(
+        delivery.email,
+        order.items,
+        deliveryCost.cost
+      );
+      const method = preparePaymentMethod(inputPayment, session.id);
+      onSubmit(Payment.setPaymentStatus, [method, session.id]);
+    }
+    if (inputPayment.delivery) {
+      const method = preparePaymentMethod(inputPayment);
+      onSubmit(Payment.setPaymentStatus, [method]);
+    }
+  };
 
-    if (result?.error) {
-      console.log(result.error.message);
+  const handlePayment = async () => {
+    const stripe = await stripePromise;
+    if (stripe && paymentStatus.id) {
+      const result = await stripe?.redirectToCheckout({
+        sessionId: paymentStatus.id,
+      });
+      if (result?.error) {
+        console.log(result.error.message);
+      }
     }
   };
 
   const handleSendOrder = () => {
     if (!inputRules.personal && !inputRules.regulations) {
       setError({ message: "By kontynuować musisz zaakceptować zasady" });
-    } else if (inputPayment.transfer) {
-      handleCheckout();
     } else {
-      payment.products = order.order.items;
+      payment.products = order.items;
+      handleCheckout();
       client("/order", payment);
-      history.push(`/success`);
+      history.push(`/checkout/payment`);
     }
   };
 
@@ -81,11 +89,14 @@ export const usePaymentsLogic = () => {
     inputRules,
     inputPayment,
     inputDelivery,
-    handleSetComment,
-    handleSetRegulation,
-    handleSendOrder,
     error,
     delivery,
     deliveryCost,
+    products,
+    totalPrice,
+    handleSetComment,
+    handleSetRegulation,
+    handleSendOrder,
+    handlePayment,
   };
 };

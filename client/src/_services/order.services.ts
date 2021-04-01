@@ -7,9 +7,22 @@ const {
   addOrderSuccess,
   deleteOrderProduct,
   updateOrderAmount,
+  startLoadOrder,
+  endLoadOrder,
+  errorLoadOrder,
 } = OrderActions;
 
 export default class OrderProcess {
+  static loadOrderFromLocalStorage(items: Array<Inventory>) {
+    return (dispatch: Function) => {
+      dispatch(startLoadOrder());
+      try {
+        dispatch(endLoadOrder(items));
+      } catch (error) {
+        dispatch(errorLoadOrder(error.message));
+      }
+    };
+  }
   static addtoOrder(item: Inventory) {
     return (dispatch: Function) => {
       dispatch(addOrderRequest());

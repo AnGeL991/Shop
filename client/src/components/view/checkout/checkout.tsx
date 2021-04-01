@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { Header } from "components/common";
 import { LoginForm, ProgressList, GouestOption } from "components/template";
-import { useAccountLogic } from "_hooks";
 import { Redirect } from "react-router-dom";
+import { usePaymentsLogic } from "_hooks";
 import "styles/pageStyle/checkout.scss";
 
 export const Checkout: FC = () => {
-  const { isAuthenticated } = useAccountLogic();
+  const { isAuthenticated } = usePaymentsLogic();
 
   if (isAuthenticated) {
     return <Redirect to="/checkout/delivery" />;

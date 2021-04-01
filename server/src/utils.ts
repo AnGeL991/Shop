@@ -36,19 +36,22 @@ export async function errorHandler(res: Response, toRun: any, successStatus: num
     });
   }
 }
+
 export const getProductToPayment = async (items: Array<IItems>) => {
   const ArrayId = items.map((el) => el.id);
   return await Product.find({ _id: [...ArrayId] });
 };
+
 export const prepareProdutToPayment = (items: Array<IItems>, line: IProduct[], currency: string) => {
   const line_items = line.map((el) => {
     const price = Math.round((el.price - (el.price * el.discount) / 100) * 100);
-    const id = el.id;
-    const match = items.map((el) => (el.id === id ? el.amount : 1))[0];
+    const { id } = el;
+
+    const match = items.filter((el) => el.id === id)[0];
     return {
       name: el.title,
       currency: currency,
-      quantity: match,
+      quantity: match.amount,
       amount: price,
       images: [`${el.image}`]
     };

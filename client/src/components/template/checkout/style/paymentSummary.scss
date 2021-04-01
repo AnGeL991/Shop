@@ -1,0 +1,20 @@
+@import "../../../../styles/settings.scss";
+
+.paymentSummary {
+  &__summaryDetail {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    color: black;
+    font-size: 14px;
+  }
+  &__summaryBox {
+    padding: 10px 20px;
+    margin: 0 20px;
+    border-bottom: 1px solid $border-darkGray;
+  }
+  &__buttonBox {
+    padding: 10px 20px;
+    text-align: right;
+  }
+}

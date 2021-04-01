@@ -1,0 +1,32 @@
+.adressForm {
+  padding: 20px;
+  &__fieldset {
+    border: none;
+  }
+  &__legend {
+    text-align: center;
+    color: black;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 20px 0;
+  }
+  &__person {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  &__deliveryBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  &__description {
+    width: 50%;
+    color: black;
+    text-align: left;
+    font-size: 14px;
+    vertical-align: middle;
+  }
+}

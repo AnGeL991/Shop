@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { EachFilter } from "components/common";
 import { PersonalData, TrackPackage } from "components/template";
-import { useAccountLogic } from "_hooks";
-
+import { useAccountLogic } from "./hook/useAccountLogic";
+import './style/myAccount.scss';
 export const AccountFilter: FC = () => {
   const { user } = useAccountLogic();
   const { firstName, email, lastName } = user;

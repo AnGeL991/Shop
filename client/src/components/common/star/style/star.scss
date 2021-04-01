@@ -1,0 +1,13 @@
+@import "../../../../styles/settings.scss";
+
+.star {
+  margin-top: 10px;
+  color: $color-gray;
+  &:hover {
+    color: $color-star;
+  }
+
+  &--active {
+    color: $color-star;
+  }
+}

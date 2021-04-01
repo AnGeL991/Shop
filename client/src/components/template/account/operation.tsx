@@ -1,7 +1,7 @@
 import { FC, ReactNode, useMemo } from "react";
 import { Button } from "components/common";
 import { Link } from "react-router-dom";
-
+import './style/operation.scss';
 interface OperationProps {
   title: string;
   description: string;

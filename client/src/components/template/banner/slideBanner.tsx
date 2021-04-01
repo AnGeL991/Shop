@@ -1,7 +1,7 @@
 import { FC, useState, useEffect, useMemo } from "react";
-import { Slide } from "./subComponent/slide";
+import { Slide } from "./slide";
 import { mainBaner } from "db";
-import "./banner.scss";
+import "./style/slider.scss";
 
 export const SlideBanner: FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);

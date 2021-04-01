@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Icons } from "components/common";
-
+import './style/track.scss'
 
 export const TrackPackage: FC = () => {
   const { ArrowRight, ShoppingCart, HomeIcon, CheckIcon } = Icons;

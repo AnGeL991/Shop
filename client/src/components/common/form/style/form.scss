@@ -1,0 +1,85 @@
+.fild {
+  &__label {
+    text-transform: capitalize;
+    color: black;
+    font-weight: 300;
+  }
+  &__input {
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    &::placeholder {
+      font-size: 12px;
+    }
+  }
+}
+
+.checkedFild {
+  color: black;
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+  &__input {
+    margin: 10px 10px 10px 0;
+  }
+}
+.checkedRead {
+  width: 100%;
+  &__title {
+    text-transform: capitalize;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  &__description {
+    padding: 20px;
+  }
+  &__show {
+    display: block;
+  }
+  &__hide {
+    display: none;
+  }
+}
+.textArea {
+  &__label {
+    text-transform: capitalize;
+    color: black;
+    font-weight: 300;
+  }
+
+  &__block {
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    &::placeholder {
+      font-size: 10px;
+    }
+  }
+}
+.fieldRadio {
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  &__input {
+    margin-right: 15px;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 5px;
+  &_big {
+    margin-bottom: 5px;
+    color: red;
+    text-align: center;
+  }
+}

@@ -1,6 +1,7 @@
 import { FC, useMemo } from "react";
 import { Item } from "./item";
 import { useBasketLogic } from "_hooks";
+import './style/orderProduct.scss'
 
 export const OrderProduct: FC = () => {
   const { items, delivery, totalPrice } = useBasketLogic();

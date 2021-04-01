@@ -1,6 +1,6 @@
 import { FC, useMemo } from "react";
 import { IFieldIndput } from "components/interfaces";
-import "./form.scss";
+import "./style/form.scss";
 
 export const Field: FC<IFieldIndput> = ({
   name,

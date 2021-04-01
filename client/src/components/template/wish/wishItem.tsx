@@ -3,13 +3,14 @@ import { Button } from "components/common";
 import { Icons } from "components/common";
 import { Inventory } from "store/inventory";
 import { useProductBoxLogic } from "_hooks";
+import "./style/wishProduct.scss";
 
-type WishItemProps = {
+interface IWishItem {
   item: Inventory;
   onClick: (id: string) => void;
-};
+}
 
-export const WishItem: FC<WishItemProps> = ({ onClick, item }) => {
+export const WishItem: FC<IWishItem> = ({ onClick, item }) => {
   const { amount, image, title, discount } = item;
   const { addProductToOrder, discountPrice } = useProductBoxLogic(item);
 

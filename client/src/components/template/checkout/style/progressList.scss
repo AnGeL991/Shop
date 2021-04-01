@@ -1,0 +1,90 @@
+@import "../../../../styles/settings.scss";
+
+.progressList {
+  margin: 40px 0;
+  &__list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style-type: none;
+    counter-reset: i;
+    text-align: center;
+  }
+  &__item {
+    position: relative;
+    display: inline-block;
+    width: 90px;
+    vertical-align: top;
+    font-size: 14px;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 19px;
+      height: 2px;
+    }
+    &::before {
+      left: 0;
+      width: 25px;
+      background-color: $color-gray;
+    }
+    &::after {
+      right: 0;
+      width: 25px;
+      background-color: $color-gray;
+    }
+    span {
+      border-radius: 50%;
+      display: inline-block;
+      padding-top: 55px;
+      font-size: 12px;
+      width: 100%;
+      color: $color-orange;
+      font-weight: 600;
+      &::before {
+        content: counter(i);
+        counter-increment: i;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 40px;
+        height: 40px;
+        margin-left: -20px;
+        border-radius: 50%;
+        border: 2px solid $color-gray;
+        line-height: 36px;
+        font-size: 20px;
+      }
+    }
+  }
+  &__item--active {
+    &::before {
+      background-color: $color-orange;
+    }
+    &::after {
+      background: rgb(224, 150, 84);
+      background: linear-gradient(
+        90deg,
+        rgba(224, 150, 84, 1) 33%,
+        rgba(222, 222, 222, 1) 100%
+      );
+    }
+    span::before {
+      border-color: $color-orange;
+      color: $color-orange;
+    }
+  }
+  &__item--done {
+    &::before,
+    &::after {
+      background-color: black;
+    }
+    span {
+      color: black;
+      &::before {
+        border-color: black;
+        color: $color-orange;
+      }
+    }
+  }
+}

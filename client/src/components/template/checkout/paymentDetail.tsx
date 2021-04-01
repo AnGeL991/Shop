@@ -1,30 +1,53 @@
 import { FC, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Icons } from "components/common";
-import { Delivery, PaymentWay } from "store/payment";
-
+import { FieldChecked, Icons } from "components/common";
+import { PaymentWay } from "store/payment";
+import "./style/detail.scss";
 interface Detail {
-  detail: Delivery;
   title: string;
-  delivery?: PaymentWay;
+  firstName?: string;
+  surName?: string;
+  email?: string;
+  phone?: number;
   to?: string;
+  city?: string;
+  postCode?: string;
+  street?: string;
+  payment?: PaymentWay;
 }
 
-export const PaymentDetail: FC<Detail> = ({ title, delivery, detail, to }) => {
-  
-  const { firstName, surName, street, city, postCode, phone } = detail;
+const {
+  PenIcon,
+  Email,
+  PersonIcon,
+  Adress,
+  HomeIcon,
+  Phone,
+  PaymentCard,
+  DeliveryIcon,
+} = Icons;
 
+export const PaymentDetail: FC<Detail> = ({
+  title,
+  firstName,
+  surName,
+  email,
+  phone,
+  city,
+  postCode,
+  street,
+  to,
+  payment,
+}) => {
   const link = useMemo(
     () =>
       to ? (
         <Link to={`/checkout/${to}`}>
-          <Icons.PenIcon className="detail__icon" />
-          <span>Edytuj</span>
+          <PenIcon className="detail__icon" />
         </Link>
       ) : (
         <>
-          <Icons.PenIcon className="detail__icon" />
-          <span>Edytuj</span>
+          <PenIcon className="detail__icon" />
         </>
       ),
     [to]
@@ -36,15 +59,50 @@ export const PaymentDetail: FC<Detail> = ({ title, delivery, detail, to }) => {
         <div className="detail__edit">{link}</div>
         <h4 className="detail__title">{title}</h4>
         <div className="detail__box">
-          {delivery && (
-            <span className="detail__item detail__item--delivery">
-              {delivery.methodPayment}
+          {firstName && surName && (
+            <span className="detail__item">
+              <PersonIcon className="detail__itemIcon" />
+              {firstName + " " + surName}
             </span>
           )}
-          <span className="detail__item">{firstName + " " + surName}</span>
-          <span className="detail__item">{street}</span>
-          <span className="detail__item">{city + ", " + postCode}</span>
-          <span className="detail__item">{phone}</span>
+          {email && (
+            <span className="detail__item">
+              <Email className="detail__itemIcon" /> {email}
+            </span>
+          )}
+          {street && (
+            <span className="detail__item">
+              <HomeIcon className="detail__itemIcon" />
+              {street}
+            </span>
+          )}
+          {city && postCode && (
+            <span className="detail__item">
+              <Adress className="detail__itemIcon" />
+              {city + "," + postCode}
+            </span>
+          )}
+          {phone && (
+            <span className="detail__item">
+              <Phone className="detail__itemIcon" />
+              {phone}
+            </span>
+          )}
+          {payment && (
+            <span className="detail__item">
+              {payment.methodPayment === "transfer" ? (
+                <DeliveryIcon className="detail__itemIcon" />
+              ) : (
+                <PaymentCard className="detail__itemIcon" />
+              )}
+              {payment.methodPayment}
+            </span>
+          )}
+          {payment && (
+            <FieldChecked checked name="PaymentAdress" type="checkbox">
+              <span className="detail__item">Use shipping adress </span>
+            </FieldChecked>
+          )}
         </div>
       </div>
     </article>

@@ -4,7 +4,8 @@ import { useForm } from "react-hook-form";
 import { Field, FieldRadio, Button } from "components/common";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { adressPrivateSchema } from "./validateSchema";
-import { useAdressLogic } from "_hooks";
+import { useAdressLogic } from "./hook/useAdressLogic";
+import "./style/adressForm.scss";
 
 export const AdressForm: FC = () => {
   const {

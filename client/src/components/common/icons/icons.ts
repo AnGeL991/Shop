@@ -5,9 +5,10 @@ import {
   AiOutlineClose,
   AiFillStar,
   AiOutlineMail,
+  AiOutlineHome,
 } from "react-icons/ai";
 import { ImBin, ImEye } from "react-icons/im";
-import { FaShoppingCart, FaHome, FaCube } from "react-icons/fa";
+import { FaShoppingCart, FaCube } from "react-icons/fa";
 import { IoCopySharp, IoChatbubblesOutline } from "react-icons/io5";
 import { HiPlus, HiMinus } from "react-icons/hi";
 import {
@@ -16,13 +17,14 @@ import {
   MdKeyboardArrowLeft,
   MdKeyboardArrowRight,
 } from "react-icons/md";
-import { BsSearch, BsCheckBox } from "react-icons/bs";
+import { BsSearch, BsCheckBox, BsPerson } from "react-icons/bs";
 import { VscAccount } from "react-icons/vsc";
 import { GoLocation, GoThreeBars } from "react-icons/go";
 import { FiPhone, FiSend } from "react-icons/fi";
 import { GiLetterBomb } from "react-icons/gi";
 import { BiSupport, BiShoppingBag } from "react-icons/bi";
-import { RiBallPenLine } from "react-icons/ri";
+import { RiBallPenLine, RiTruckLine } from "react-icons/ri";
+import { MdPayment } from "react-icons/md";
 
 export const Icons = {
   BinIcon: ImBin,
@@ -51,8 +53,11 @@ export const Icons = {
   SendIcon: FiSend,
   BarsIcon: GoThreeBars,
   CheckIcon: BsCheckBox,
-  HomeIcon: FaHome,
+  HomeIcon: AiOutlineHome,
   BubbleChat: IoChatbubblesOutline,
   CubeIcon: FaCube,
   PenIcon: RiBallPenLine,
+  PersonIcon: BsPerson,
+  PaymentCard: MdPayment,
+  DeliveryIcon: RiTruckLine,
 };

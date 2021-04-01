@@ -4,7 +4,7 @@ import { contactField, User } from "db";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { contactSchema } from "./validateSchema";
-import "./contactForm.scss";
+import "./style/contactForm.scss";
 
 // zrób własnego hooka odpowiedzialnego za wysłanie wiadomosci na server do bazy
 

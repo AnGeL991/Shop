@@ -1,11 +1,11 @@
 import { config } from './config';
 
-export const emailData = (email: string, token: string, subject: string, htmlTemplate: (token: string) => string) => {
+export const emailData = (email: string, templateId: string, dataToTemplate: object) => {
   const data = {
     from: config.sqMail.EMAIL_FROM,
     to: email,
-    subject,
-    html: htmlTemplate(token)
+    templateId,
+    dynamicTemplateData: dataToTemplate
   };
   return data;
 };

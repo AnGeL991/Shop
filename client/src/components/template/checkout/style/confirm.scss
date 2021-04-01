@@ -1,0 +1,13 @@
+@import "../../../../styles/settings.scss";
+
+.confirm {
+  padding: 0px 20px;
+  &__wrapper {
+    padding: 20px;
+    margin: 20px 0;
+    background-color: $bgc-smokeWhite;
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+}

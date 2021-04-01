@@ -6,6 +6,7 @@ import { registerSchema } from "./validateSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegisterLogic } from "_hooks";
+import "./style/registerForm.scss";
 
 export const RegisterForm: FC = () => {
   const {

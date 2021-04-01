@@ -4,6 +4,7 @@ import { config } from '../config';
 import { Validate, CreateToken, errorHandler } from '../utils';
 import User from '../models/user';
 import sgMail from '@sendgrid/mail';
+import { emailData } from '../config';
 
 sgMail.setApiKey(config.sqMail.MAIL_KEY);
 
@@ -20,21 +21,19 @@ export const register = async (req: Request, res: Response) => {
 
     const token = CreateToken(req.body, '15m');
 
-    const emailData = {
-      from: config.sqMail.EMAIL_FROM,
-      to: email,
-      subject: 'Account activation link',
-      html: `
-              <h1>Please use the following to activate your account</h1>
-              <p> http://localhost:3000/users/activate/${token}</p>
-              <hr />
-              <p>This email may containe sensetive information</p>
-              <p> http://localhost:3000</p>
-          `
-    };
+    // const emailData = {
+    //   from: config.sqMail.EMAIL_FROM,
+    //   to: email,
+    //   templateId: 'd-711a3dbcc82143d09a6739a4613668e1',
+    //   subject: 'Verify your email adress',
+    //   dynamicTemplateData: {
+    //     link: `https://localhost:3000/users/activate/${token}`
+    //   }
+    // };
+    const emailTemplate = emailData(email, 'd-711a3dbcc82143d09a6739a4613668e1', { link: `https://localhost:3000/users/activate/${token}` });
 
     return sgMail
-      .send(emailData)
+      .send(emailTemplate)
       .then((sent) => {
         return res.json({
           message: `Email has been sent to ${email}`
@@ -67,9 +66,7 @@ export const login = async (req: Request, res: Response) => {
     if (!user) return res.status(500).send({ message: 'Email lub hasło są nie prawidłowe' });
 
     const validatePassword = await bcryptjs.compare(password, user.password);
-    // const validatePassword = User.comparePassword(password);
 
-    console.log(validatePassword);
     if (!validatePassword) return res.status(500).send({ message: 'Email lub hasło są nie prawidłowe' });
 
     const token = CreateToken({ _id: user._id }, 31556926);
@@ -97,20 +94,9 @@ export const forgetPassword = async (req: Request, res: Response) => {
 
     const token = CreateToken({ _id: user._id }, 31556926);
 
-    const emailData = {
-      from: config.sqMail.EMAIL_FROM,
-      to: email,
-      subject: `Password Reset link`,
-      html: `
-                <h1>Please use the following link to reset your password</h1>
-                <p>${config.server.hostname}:${config.server.port}/users/resetPassword/${token}</p>
-                <hr />
-                <p>This email may contain sensetive information</p>
-                <p>${config.server.hostname}:${config.server.port}</p>
-            `
-    };
+    const emailTemplate = emailData(email, 'd - b7667e8ce86748768bf618a599789f46', { link: `${config.server.hostname}:${config.server.port}/users/reset/${token}` });
 
-    return sgMail.send(emailData).then((sent) => {
+    return sgMail.send(emailTemplate).then((sent) => {
       return res.json({
         message: `Email has been sent to ${email}. Follow the instruction to activate your account`
       });

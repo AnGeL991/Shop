@@ -1,0 +1,14 @@
+@import "../../../../styles/settings.scss";
+
+.tag {
+  border: 1px solid $border-gray;
+  padding: 5px 10px;
+  background-color: transparent;
+  margin: 0 0px 10px 10px;
+  color: white;
+
+  &:hover {
+    border: 1px solid $color-orange;
+    color: $color-orange;
+  }
+}

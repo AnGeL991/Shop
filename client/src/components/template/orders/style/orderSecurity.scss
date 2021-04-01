@@ -1,0 +1,27 @@
+.security {
+  &__wrapper {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  &__info {
+    flex-basis: calc(100% / 3);
+    margin: 10px 0;
+  }
+  &__title {
+    color: black;
+    text-transform: capitalize;
+    font-weight: 500;
+    margin: 10px 0;
+  }
+  &__text {
+    font-size: 14px;
+    font-weight: 300;
+  }
+  &__basketBox {
+    text-align: right;
+    margin: 0 20px 20px;
+  }
+}

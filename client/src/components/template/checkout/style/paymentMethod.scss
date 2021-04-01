@@ -1,0 +1,21 @@
+.paymentMethod {
+  &__title {
+    color: black;
+    font-weight: 500;
+  }
+  &__img {
+    width: 100px;
+    height: auto;
+    vertical-align: bottom;
+  }
+  &__box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  &__description {
+    font-weight: 300;
+    margin-right: 10px;
+  }
+}

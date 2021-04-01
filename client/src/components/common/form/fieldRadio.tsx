@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 import { IFieldIndput } from "components/interfaces";
-
+import "./style/form.scss";
 interface IFieldRadio extends IFieldIndput {
   children: ReactNode;
   checked?: boolean;

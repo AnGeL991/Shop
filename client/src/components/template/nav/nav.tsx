@@ -4,7 +4,7 @@ import { EachLink } from "components/common";
 import { Modal } from "components/template";
 import { useModalLogic } from "_hooks";
 import { nav } from "db";
-import "./nav.scss";
+import "./style/nav.scss";
 
 export const Nav: FC = () => {
   const { showModal, handleToggleModal } = useModalLogic();

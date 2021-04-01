@@ -1,5 +1,5 @@
 import { FC } from "react";
-import "./headerIcons.scss";
+import "./style/headerIcons.scss";
 
 type CircleProps = {
   amount: Number;

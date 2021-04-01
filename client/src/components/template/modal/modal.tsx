@@ -2,7 +2,7 @@ import { CSSProperties, FC, ReactNode, useMemo } from "react";
 import { Button } from "components/common";
 import { useModalLogic } from "_hooks";
 import ReactDom from "react-dom";
-import "./modal.scss";
+import "./style/modal.scss";
 
 type Props = {
   children: ReactNode;

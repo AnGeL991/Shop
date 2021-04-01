@@ -1,0 +1,13 @@
+@import "../../../../styles/settings.scss";
+
+.comment {
+  border-top: 1px solid $border-gray;
+  border-bottom: 1px solid $border-gray;
+  padding: 20px 0;
+
+  &__title {
+    color: black;
+    font-weight: 500;
+    margin: 10px 0;
+  }
+}

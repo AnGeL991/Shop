@@ -2,7 +2,7 @@ import { FC, useMemo } from "react";
 import { Icons } from "components/common";
 import { Link } from "react-router-dom";
 import { useToggleClick } from "_hooks";
-import { useAccountLogic } from "_hooks";
+import { useAccountLogic } from "./hook/useAccountLogic";
 
 export const Account: FC = () => {
   const { open, handleToggle, handleClose } = useToggleClick();

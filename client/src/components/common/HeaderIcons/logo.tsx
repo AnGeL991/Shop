@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import "./headerIcons.scss";
+import "./style/headerIcons.scss";
 
 export const Logo: FunctionComponent = () => {
   return (

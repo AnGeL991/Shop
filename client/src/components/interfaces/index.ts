@@ -1,12 +1,14 @@
 import { ChangeEvent, Ref } from "react";
 import { RouteComponentProps } from "react-router-dom";
 
+// Match Props token and id
 export interface MatchProps
   extends RouteComponentProps<{
     token: string;
     id: string;
   }> {}
 
+// inputs
 export interface IFieldIndput {
   name: string;
   type?: string;
@@ -20,7 +22,18 @@ export interface IFieldIndput {
   reference?: Ref<HTMLInputElement>;
   error?: { message: string; type?: string };
 }
+export interface IPaymentInputs {
+  transfer: boolean;
+  delivery: boolean;
+}
 
+export interface IDeliveryOption {
+  courier: boolean;
+  own: boolean;
+  payment: boolean;
+}
+
+//acount
 export interface IUser {
   firstName?: string;
   lastName?: string;
@@ -31,6 +44,18 @@ export interface IUser {
   newsletter?: boolean;
 }
 
+export interface Account {
+  email: string;
+  password: string;
+  to?: string;
+}
+export interface Forget {
+  email: string;
+}
+export interface Password {
+  password: string;
+}
+// Banner
 export interface IBanner {
   image: string;
   title: string;
@@ -38,6 +63,15 @@ export interface IBanner {
   button?: string;
 }
 
+//Carousel
+export interface CarouselState {
+  activeIndex: number;
+  translate: number;
+  transition: number;
+  _slides: Array<{}>;
+}
+
+//Inventury
 export interface Inventory {
   _id: string;
   title: string;
@@ -52,24 +86,13 @@ export interface Inventory {
   description?: string;
   tags?: Array<string>;
 }
-export interface Option {
-  name: string;
-  text: string;
-}
 
-export interface CarouselState {
-  activeIndex: number;
-  translate: number;
-  transition: number;
-  _slides: Array<{}>;
-}
-
+//Payment option
 type Iname = {
   payment: "payment";
   courier: "courier";
   own: "own";
 };
-
 export interface IDelivery {
   name: keyof Iname;
   price: number;
@@ -95,29 +118,7 @@ export interface IRule {
   description?: string;
 }
 
-export enum deliveryCos {
+export enum deliveryCost {
   payment = 29,
   courier = 39,
-}
-
-export interface IPaymentInputs {
-  transfer: boolean;
-  delivery: boolean;
-}
-
-export interface IDeliveryOption {
-  courier: boolean;
-  own: boolean;
-  payment: boolean;
-}
-export interface Account {
-  email: string;
-  password: string;
-  to?: string;
-}
-export interface Forget {
-  email: string;
-}
-export interface Password {
-  password: string;
 }

@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode, CSSProperties, useMemo } from "react";
 import { Icons } from "components/common";
 import { useToggleClick } from "_hooks";
-import "./readMore.scss";
+import "./style/readMore.scss";
 
 type ReadMoreProps = {
   title: string;

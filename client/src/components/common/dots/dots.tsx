@@ -1,5 +1,5 @@
 import { FC, MouseEvent, useMemo } from "react";
-import "./dots.scss";
+import "./style/dots.scss";
 
 type DotsProps = {
   data: Array<{ id: number }>;

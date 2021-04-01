@@ -1,0 +1,59 @@
+@import "../../../../styles/settings.scss";
+
+.banner {
+  padding: 0 20px;
+  margin: 20px 0;
+  min-height: 115px;
+
+  &__image {
+    position: relative;
+    height: 100%;
+  }
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: inherit;
+  }
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0px;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    height: 100%;
+  }
+  &__title {
+    margin: 10px 0;
+    font-size: 16px;
+    color: white;
+  }
+  &__description {
+    font-size: 13px;
+    color: $color-secondGray;
+  }
+  &__button {
+    outline: none;
+    position: relative;
+    margin: 10px 0;
+    padding: 5px 0;
+    border: none;
+    background-color: transparent;
+
+    a {
+      color: $color-orange;
+      text-decoration: none;
+    }
+    &::after {
+      position: absolute;
+      background-color: $color-orange;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      content: "";
+    }
+  }
+}

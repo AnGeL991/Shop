@@ -1,5 +1,5 @@
 import { CSSProperties, FC } from "react";
-import "./header.scss";
+import "./style/header.scss";
 
 type HeaderProps = {
   title: string;

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { EachData } from "./eachData";
 import { IUser } from "components/interfaces";
-
+import './style/personalData.scss';
 export const PersonalData: FC<IUser> = ({ firstName, lastName, email }) => {
   return (
     <section className="personalData">

@@ -1,6 +1,5 @@
 import { ChangeEvent, FC, Ref } from "react";
-
-import "./form.scss";
+import "./style/form.scss";
 
 interface TextAreaProps {
   name?: string;

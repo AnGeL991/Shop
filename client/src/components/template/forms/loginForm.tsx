@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "./validateSchema";
 import { useLoginLogic } from "_hooks";
+import './style/loginForm.scss';
 
 type LoginFormProps = {
   to?: string;

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { IBanner } from "components/interfaces";
 import { Link } from "react-router-dom";
-import "./banner.scss";
+import "./style/banner.scss";
 
 export const Banner: FC<IBanner> = ({ image, title, description, button }) => {
   return (

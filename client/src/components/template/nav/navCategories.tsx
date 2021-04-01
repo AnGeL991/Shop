@@ -3,7 +3,7 @@ import { useModalLogic } from "_hooks";
 import { EachLink } from "components/common";
 import { Modal } from "components/template";
 import { categoryNav } from "db";
-import "./nav.scss";
+import "./style/nav.scss";
 
 export const NavCategories: FC = () => {
   const { showModal, handleToggleModal } = useModalLogic();
