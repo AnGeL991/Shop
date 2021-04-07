@@ -1,10 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect } from "react";
-import { Header } from "components/common";
 import { Filter, ProductCart } from "components/template";
-import { useDisplayProduct, useFilterValue } from "_hooks";
-
+import { useFilterValue } from "_hooks";
+import './shop.scss';
 export const Shop: FC = () => {
-  const { category } = useDisplayProduct();
+
   const { handleSetPrice } = useFilterValue();
 
   useEffect(() => {
@@ -12,8 +12,7 @@ export const Shop: FC = () => {
   }, []);
 
   return (
-    <section className="page">
-      <Header title={category === "" ? "Shop" : category} />
+    <section className="page shop">
       <ProductCart />
       <Filter />
     </section>

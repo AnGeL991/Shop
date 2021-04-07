@@ -21,3 +21,5 @@ export { DealButtons } from "../template/dealButtons/dealButtons";
 export { Stars } from "./star/star";
 export { Icons } from "./icons/icons";
 export { FieldRadio } from "./form/fieldRadio";
+export { Delivery } from "./HeaderIcons/delivery";
+export { Support } from "./HeaderIcons/support";

@@ -1,14 +1,19 @@
 import { FC, useMemo } from "react";
 import { PaymentProduct } from "components/template";
-import { usePaymentsLogic } from "_hooks";
+import { useGetState } from "_hooks";
 import "./style/confirm.scss";
 
-export const PaymentRenderProduct: FC = () => {
-  const { products } = usePaymentsLogic();
+interface IPaymentRender {
+  title?:string,
+  fullWidth?:boolean;
+}
+
+export const PaymentRenderProduct: FC<IPaymentRender> = ({ title,fullWidth }) => {
+  const { payment } = useGetState();
 
   const orderProducts = useMemo(
     () =>
-      products.map((el) => (
+      payment.products.map((el) => (
         <PaymentProduct
           key={el._id}
           title={el.title}
@@ -16,15 +21,21 @@ export const PaymentRenderProduct: FC = () => {
           amount={el.amount}
           price={el.price}
           discount={el.discount}
+          fullWidth={fullWidth}
         />
       )),
-    [products]
+    [payment.products,fullWidth]
   );
-
+  
   return (
     <section>
       <article className="confirm">
-        <div className="confirm__wrapper">{orderProducts}</div>
+        <div className="confirm__title">{title}</div>
+        <div className='confirm__amount'> Amount of products: <span>{payment.products.length}</span> </div>
+        <div className={`
+        confirm__wrapper
+        confirm__wrapper
+        `}>{orderProducts}</div>
       </article>
     </section>
   );

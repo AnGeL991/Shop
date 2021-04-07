@@ -1,17 +1,11 @@
 import { FC } from "react";
-import { Header } from "components/common";
-import { PaymentRenderProduct, PaymentSummary } from "components/template";
+import { PaymentSummary } from "components/template";
+import { MatchProps } from "components/interfaces";
 
-export const Payment: FC = () => {
+export const Payment: FC<MatchProps> = ({ match }) => {
   return (
     <section className="page">
-      <Header
-        title={`Confirm & Pay`}
-        className="checkout__header"
-        style={{ fontWeight: 500, padding: "10px" }}
-      />
-      <PaymentRenderProduct />
-      <PaymentSummary />
+      <PaymentSummary orderId={match.params.id} />
     </section>
   );
 };

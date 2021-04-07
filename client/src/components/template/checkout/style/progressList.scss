@@ -88,3 +88,33 @@
     }
   }
 }
+@media (min-width: 768px) {
+  .progressList {
+    &__item {
+      width: 180px;
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 29px;
+        height: 2px;
+      }
+      &::before {
+        width: 60px;
+      }
+      &::after {
+        width: 60px;
+      }
+      span {
+        line-height: 60px;
+        &::before {
+          width: 60px;
+          height: 60px;
+          font-size: 40px;
+          line-height: 60px;
+          margin-left: -30px;
+        }
+      }
+    }
+  }
+}

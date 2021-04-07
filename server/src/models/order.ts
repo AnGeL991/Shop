@@ -3,10 +3,11 @@ import { IOrder, IOrderModel } from '../interfaces/order';
 import { ProductSchema } from './product';
 
 const OrderSchema: Schema = new Schema({
-  id: { type: String },
+  id: { type: String || Number, required: true },
   paymentStatus: {
     method: { type: String },
-    paid: { type: Boolean }
+    paid: { type: Boolean },
+    id: { type: String }
   },
   comment: { type: String },
   deliveryCost: {
@@ -23,14 +24,30 @@ const OrderSchema: Schema = new Schema({
     city: { type: String }
   },
   regulations: { type: Boolean, required: true },
-  products: [ProductSchema]
+  products: [ProductSchema],
+  confirm: { type: Boolean, default: false }
 });
 
-OrderSchema.statics.createNewFromRequestBody = async function (props) {
+OrderSchema.statics.createNewFromRequestBody = async function (props, id) {
   try {
     const newOrder = new this(props);
-    await newOrder.save();
-    return newOrder;
+    newOrder.id = id;
+    return await newOrder.save();
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+OrderSchema.statics.getLength = async function () {
+  try {
+    return await this.countDocuments();
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+OrderSchema.statics.confirmOrder = async function (id) {
+  try {
+    return await this.findOneAndUpdate({ id }, { confirm: true });
   } catch (err) {
     throw new Error(err.message);
   }

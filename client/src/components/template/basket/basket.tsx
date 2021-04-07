@@ -52,12 +52,12 @@ export const Basket: FC = () => {
           <span className="basket__amount">(Ilość produktów: {count} )</span>
           <span className="basket__price">{totalPrice.toFixed(2)} $</span>
           <Button darkButton onClick={handleToggle}>
-            <Link to="/order">Zobacz koszyk</Link>
+            <Link to="/order">View cart</Link>
           </Button>
         </div>
         <div className="basket__products ">{BasketWithItems}</div>
         <Button darkButton onClick={handleToggle}>
-          <Link to={redirect}>Przejdz do kasy</Link>
+          <Link to={redirect}>Checkout</Link>
         </Button>
       </div>
     </>

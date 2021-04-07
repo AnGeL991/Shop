@@ -19,3 +19,32 @@
     margin-right: 10px;
   }
 }
+.payment {
+  &__products {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .payment {
+    max-width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    &__products {
+      display: block;
+      width: 50%;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .payment {
+    max-width: 1024px;
+    display: flex;
+    &__cart {
+      width: 70%;
+    }
+    &__products {
+      display: block;
+      width: 50%;
+    }
+  }
+}

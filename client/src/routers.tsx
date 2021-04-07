@@ -45,7 +45,7 @@ const routes = [
   { exact: true, path: "/Checkout", component: Checkout },
   { exact: true, path: "/checkout/delivery", component: Delivery },
   { exact: true, path: "/checkout/Summary", component: Summary },
-  { exact: true, path: "/checkout/payment", component: Payment },
+  { exact: true, path: "/checkout/payment/:id", component: Payment },
   { exact: true, path: "/success/:token", component: Success },
   { exact: true, path: "/canceled", component: Cancel },
   { exact: false, path: "*", component: PageNoFound },

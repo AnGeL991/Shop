@@ -7,6 +7,18 @@
     justify-content: center;
     align-items: center;
   }
+  &__displayWay {
+    display: none;
+    width: 50%;
+  }
+  &__eachProduct {
+    width: 50%;
+  }
+  &__icon {
+    color: black;
+    font-size: 24px;
+    margin-right: 10px;
+  }
   &__select {
     background-color: white;
     border: 1px solid $border-gray;
@@ -67,5 +79,31 @@
       background-color: $color-orange;
       color: white;
     }
+  }
+}
+@media (min-width: 768px) {
+  .productCart {
+    &__wrapper {
+      height: 80px;
+      padding: 20px;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    &__displayWay {
+      display: flex;
+    }
+    &__header {
+      text-align: left;
+      margin: 0;
+    }
+    &__eachProduct {
+      width: 25%;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .productCart {
+    order: 2;
+    width: 80%;
   }
 }

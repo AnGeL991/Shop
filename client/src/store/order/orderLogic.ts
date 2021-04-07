@@ -41,7 +41,7 @@ export default class OrderReduxProcesses {
   static loadOrders(state: OrderState, action: AnyAction) {
     const amount = OrderPrepare.getAmount(action.payload);
     const total = OrderPrepare.getTotal(action.payload);
-    console.log(action.payload);
+
     return {
       ...state,
       loading: false,

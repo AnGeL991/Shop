@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 import { Icons } from "components/common";
-import "./carousell.scss";
+import "./style/carousell.scss";
 
 interface ICarousell  {
   title: string;

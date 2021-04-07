@@ -37,11 +37,13 @@ export const Slide: FC<DealProps> = ({
       onMouseLeave={onMouseMove}
     >
       <div className="deal__context">
-        <GalerySlider data={images} padding={0} />
+        <div className="deal__images">
+          <GalerySlider data={images} padding={0} />
+        </div>
         <div className="deal__info">
           <h4 className="deal__title">{title}</h4>
           <Stars activeStart={star} />
-          <div>
+          <div className='deal__priceBox'>
             <span className="deal__price"> ${discountPrice.toFixed(2)}</span>
             <span className="deal__oldPrice"> ${price.toFixed(2)}</span>
           </div>
@@ -63,14 +65,14 @@ export const Slide: FC<DealProps> = ({
               <span>Secs</span>
             </div>
           </div>
-        </div>
-        <DealButtons
+          <DealButtons
           addToCard={addProductToOrder}
           addToWishList={addProductToWish}
           id={item._id}
           className="deal__buttons"
           styleBtn="deal__button"
         />
+        </div>
       </div>
     </div>
   );

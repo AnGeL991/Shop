@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC } from "react";
 import {
   Banner,
   BestSeller,
@@ -6,25 +6,15 @@ import {
   RecomendetProduct,
   SlideBanner,
   Brands,
-} from 'components/template';
+  TopBanner,
+  BottomBanner,
+} from "components/template";
 
 export const Home: FC = () => {
-
   return (
     <section>
       <SlideBanner />
-      <Banner
-        image="http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Sub-banner-01.jpg"
-        title="Electronic Kettle"
-        description="Now in all Color Varient Available."
-        button="Shop now"
-      />
-      <Banner
-        image="http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Sub-banner-02.jpg"
-        title="Flower Pot"
-        description="Now in all Color Varient Available."
-        button="Shop now"
-      />
+      <TopBanner />
       <BestSeller />
       <Banner
         image="http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Offer-banner.0.jpg"
@@ -34,21 +24,8 @@ export const Home: FC = () => {
       />
       <DealOfDay />
       <RecomendetProduct />
-      <Banner
-        image="http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Cms-banner-01.jpg"
-        title="Dinnerware Sets"
-        description="Now in Many design Available."
-        button="Shop now"
-      />
-      <Banner
-        image="http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Cms-banner-02.jpg"
-        title="Handmade Pots"
-        description="Now in Many Different Color Available."
-        button="Shop now"
-      />
+      <BottomBanner />
       <Brands />
     </section>
   );
 };
-
-

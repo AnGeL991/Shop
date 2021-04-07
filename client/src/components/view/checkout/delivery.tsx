@@ -1,12 +1,23 @@
-import {FC} from 'react';
-import {ProgressList,AdressForm} from 'components/template';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { FC, useEffect } from "react";
+import { ProgressList, AdressForm } from "components/template";
+import { useGetState, usePaymentsLogic } from "_hooks";
+import { Redirect } from "react-router-dom";
 
-export const Delivery:FC =()=>{
+export const Delivery: FC = () => {
+  const { SetOrderToPayment } = usePaymentsLogic();
+  const { order } = useGetState();
 
-    return (
-        <section className='page'>
-           <ProgressList active={2}/>
-           <AdressForm/>
-        </section>
-    )
-}
+  useEffect(() => {
+    SetOrderToPayment();
+  }, []);
+
+  if (order.count === 0) return <Redirect to="/order" />;
+
+  return (
+    <section className="page">
+      <ProgressList active={2} />
+      <AdressForm />
+    </section>
+  );
+};

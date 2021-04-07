@@ -1,14 +1,12 @@
 import { FC } from "react";
 import { Header } from "components/common";
-import { LoginForm, CreateAccount } from "components/template";
-
+import { LoginForm } from "components/template";
 
 export const Login: FC = () => {
   return (
-    <section className="page login">
+    <section className="page">
       <Header title="Log in" />
       <LoginForm />
-      <CreateAccount />
     </section>
   );
 };

@@ -38,6 +38,9 @@
     color: black;
     font-size: 12px;
   }
+  &__item--none {
+    text-transform: none;
+  }
   &__itemIcon {
     vertical-align: middle;
     margin: 0 5px 2px 0;

@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react";
 import { Item } from "./item";
 import { useBasketLogic } from "_hooks";
-import './style/orderProduct.scss'
+import "./style/orderProduct.scss";
 
 export const OrderProduct: FC = () => {
   const { items, delivery, totalPrice } = useBasketLogic();
@@ -20,7 +20,7 @@ export const OrderProduct: FC = () => {
   }
   return (
     <div className="content">
-      {orders}
+      <div className='content__orders'>{orders}</div>
       <div className="content__payBox">
         <div>
           <p className="content__totalPay">

@@ -1,5 +1,5 @@
 import { FunctionComponent, useMemo } from "react";
-import { Icons } from "components/common";
+import { Icons,Button } from "components/common";
 import { useToggleClick, useFilterValue } from "_hooks";
 
 export const Search: FunctionComponent = () => {
@@ -19,24 +19,26 @@ export const Search: FunctionComponent = () => {
   );
 
   const searchInput = useMemo(
-    () =>
-      open && (
-        <div className="header__search">
-          <input
-            className="input"
-            type="test"
-            placeholder="Search Products..."
-            onChange={handleSetSearch}
-          />
-          <OutLineSearch className="icon" size="24" />
-        </div>
-      ),
+    () => (
+      <div
+        className={`header__search ${open ? "header__search--active" : ""} `}
+      >
+        <input
+          className="header__input"
+          type="test"
+          placeholder="Search Products..."
+          onChange={handleSetSearch}
+        />
+        <OutLineSearch className="icon" size="24" />
+        <Button className='header__searchButton'>Search</Button>
+      </div>
+    ),
     [open, OutLineSearch, handleSetSearch]
   );
 
   return (
     <>
-      <div onClick={handleToggle} className="icon">
+      <div onClick={handleToggle} className="icon header__icon">
         {icon}
       </div>
       {searchInput}

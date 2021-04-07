@@ -2,6 +2,7 @@ import { FC, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Field, FieldRadio, Button } from "components/common";
+import { PaymentRenderProduct } from "components/template";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { adressPrivateSchema } from "./validateSchema";
 import { useAdressLogic } from "./hook/useAdressLogic";
@@ -88,6 +89,9 @@ export const AdressForm: FC = () => {
           </div>
         </fieldset>
       </form>
+      <div className='adressForm__products'>
+        <PaymentRenderProduct title='Summary' />
+      </div>
     </section>
   );
 };

@@ -8,6 +8,9 @@
     color: black;
     font-size: 14px;
   }
+  &__summaryDetail--center {
+    justify-content: center;
+  }
   &__summaryBox {
     padding: 10px 20px;
     margin: 0 20px;
@@ -16,5 +19,19 @@
   &__buttonBox {
     padding: 10px 20px;
     text-align: right;
+  }
+}
+@media (min-width: 1024px) {
+  .paymentSummary {
+    display: flex;
+    justify-content: center;
+    max-width: 1220px;
+    margin: 20px auto;
+    &__details {
+      width: 30%;
+    }
+    &__products {
+      width: 70%;
+    }
   }
 }

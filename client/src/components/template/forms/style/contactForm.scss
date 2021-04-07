@@ -2,16 +2,20 @@
 
 .contactForm {
   padding: 0 10px;
+
   &__header {
     padding: 10px;
+    width: 100%;
   }
+
   &__title {
     text-align: left;
-    font-weight: 500;
+    font-weight: 600;
     color: black;
     padding: 15px 0px;
     margin: 0 0px;
     border-bottom: 1px solid $border-gray;
+    font-size: 18px;
   }
   &__description {
     margin: 10px 0;
@@ -21,5 +25,31 @@
   }
   &__fieldset {
     border: none;
+  }
+}
+@media (min-width: 768px) {
+  .contactForm {
+    max-width: 1220px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    &__title {
+      font-size: 24px;
+    }
+    &__form {
+      margin-top: 10px;
+      width: 50%;
+    }
+    &__description {
+      margin: 30px 0;
+    }
+  }
+}
+@media (min-width: 1440px) {
+  .contactForm {
+    &__form {
+      margin-top: 10px;
+      width: 50%;
+    }
   }
 }

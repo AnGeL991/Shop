@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Icons } from "components/common";
+import './style/contactAdress.scss';
 
 export const AdressContainer: FC = () => {
   const { Adress, Phone, Email } = Icons;

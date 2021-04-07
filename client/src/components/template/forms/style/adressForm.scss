@@ -29,4 +29,31 @@
     font-size: 14px;
     vertical-align: middle;
   }
+  &__products {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .adressForm {
+    display: flex;
+
+    &__products {
+      display: block;
+      width: 70%;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .adressForm {
+    display: flex;
+    max-width: 1024px;
+    margin: 0 auto;
+    &__form {
+      width: 70%;
+    }
+    &__products {
+      display: block;
+      width: 50%;
+    }
+  }
 }

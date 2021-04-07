@@ -5,6 +5,7 @@ dotenv.config();
 const MONGO_OPTIONS = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
+  useFindAndModify: false,
   socketTimeoutMS: 30000,
   keepAlive: true,
   poolSize: 50,

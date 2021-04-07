@@ -1,9 +1,11 @@
+import { Inventory } from "store/inventory";
 import { selector } from "store/utils";
 import {
   PaymentActionType,
   Delivery,
   PaymentWay,
   IPaymentStatus,
+  PaymentState,
 } from "./types";
 
 const {
@@ -14,13 +16,15 @@ const {
   ADD_DELIVERY_OPTION,
   ADD_COMMENT_PAYMENT,
   ACCEPT_REGULATION,
+  ADD_ORDER_ID,
+  PAYMENT_LOAD,
 } = PaymentActionType;
 
 export const addPaymentAdress = (data: Delivery) =>
   selector(ADD_PAYMENT_ADDRESS, data);
 export const addPaymentStatus = (status: IPaymentStatus) =>
   selector(ADD_PAYMENT_STATUS, status);
-export const addProductPayment = (productId: Array<string>) =>
+export const addProductPayment = (productId: Inventory[]) =>
   selector(ADD_PRODUCT_PAYMENT, productId);
 export const addDeliveryOption = (paymentWay: PaymentWay) =>
   selector(ADD_DELIVERY_OPTION, paymentWay);
@@ -30,3 +34,7 @@ export const addPaymentComment = (comment: string) =>
   selector(ADD_COMMENT_PAYMENT, comment);
 export const acceptPaymentRegulation = (accept: boolean) =>
   selector(ACCEPT_REGULATION, accept);
+export const addOrderId = (orderId: string | number) =>
+  selector(ADD_ORDER_ID, orderId);
+export const paymentLoad = (state: PaymentState) =>
+  selector(PAYMENT_LOAD, state);

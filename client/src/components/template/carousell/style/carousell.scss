@@ -1,7 +1,9 @@
-@import "../../../styles/settings.scss";
+@import "../../../../styles/settings.scss";
 
 .carousel {
   overflow: hidden;
+  max-width: 1220px;
+  margin: 0 auto;
   &__header {
     color: #000000;
     margin: 0 20px;
@@ -13,6 +15,7 @@
   &__title {
     width: 80%;
     font-size: 16px;
+    font-weight: 600;
   }
   &__slider {
     display: flex;
@@ -114,5 +117,67 @@
     margin-right: 5px;
     padding: 5px 5px 0;
     font-size: 16px;
+  }
+}
+@media (min-width: 768px) {
+  .deal {
+    &__wrapper {
+      width: 50vw;
+    }
+    &__context {
+      flex-direction: row;
+      flex-wrap: wrap;
+      height: 300px;
+    }
+    &__title {
+      font-size: 16px;
+    }
+    &__priceBox {
+      margin: 10px 0;
+    }
+    &__info {
+      width: 50%;
+    }
+    &__images {
+      width: 40%;
+    }
+    &__buttons {
+      display: none;
+    }
+    &__wrapper:hover {
+      .deal__buttons {
+        display: block;
+      }
+    }
+  }
+  .carousel {
+    &__item {
+      width: calc(100vw / 4);
+    }
+    &__title {
+      font-size: 20px;
+    }
+  }
+}
+
+@media (min-width: 1220px) {
+  .deal {
+    &__wrapper {
+      width: calc(1220px / 2);
+    }
+    &__title {
+      font-size: 18px;
+    }
+    &__buttons {
+      margin: 10px 0;
+    }
+  }
+  .carousel {
+    &__item {
+      width: calc(1220px / 5);
+    }
+    &__title {
+      font-size: 20px;
+    }
   }
 }

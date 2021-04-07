@@ -1,5 +1,7 @@
 .gouest {
   padding: 20px;
+  max-width: 440px;
+  margin: 0 auto;
   &__title {
     color: black;
     font-weight: 500;
@@ -10,4 +12,6 @@
     font-weight: 300;
     color: black;
   }
+}
+@media (min-width: 768px) {
 }

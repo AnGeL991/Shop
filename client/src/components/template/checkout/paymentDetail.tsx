@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { ChangeEvent, FC, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { FieldChecked, Icons } from "components/common";
 import { PaymentWay } from "store/payment";
@@ -14,6 +14,8 @@ interface Detail {
   postCode?: string;
   street?: string;
   payment?: PaymentWay;
+  inputChecked?:boolean;
+  handleChecked?:(e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const {
@@ -38,6 +40,8 @@ export const PaymentDetail: FC<Detail> = ({
   street,
   to,
   payment,
+  inputChecked,
+  handleChecked
 }) => {
   const link = useMemo(
     () =>
@@ -66,7 +70,7 @@ export const PaymentDetail: FC<Detail> = ({
             </span>
           )}
           {email && (
-            <span className="detail__item">
+            <span className="detail__item detail__item--none">
               <Email className="detail__itemIcon" /> {email}
             </span>
           )}
@@ -79,7 +83,7 @@ export const PaymentDetail: FC<Detail> = ({
           {city && postCode && (
             <span className="detail__item">
               <Adress className="detail__itemIcon" />
-              {city + "," + postCode}
+              {city + ", " + postCode}
             </span>
           )}
           {phone && (
@@ -99,7 +103,7 @@ export const PaymentDetail: FC<Detail> = ({
             </span>
           )}
           {payment && (
-            <FieldChecked checked name="PaymentAdress" type="checkbox">
+            <FieldChecked checked={inputChecked} onChange={handleChecked} name="paymentAdress" type="checkbox">
               <span className="detail__item">Use shipping adress </span>
             </FieldChecked>
           )}

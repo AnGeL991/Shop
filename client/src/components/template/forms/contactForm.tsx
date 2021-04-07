@@ -1,5 +1,6 @@
 import { FC, useMemo } from "react";
 import { Field, Button, TextArea } from "components/common";
+import { AdressContainer } from "components/template";
 import { contactField, User } from "db";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -55,12 +56,13 @@ export const ContactForm: FC = () => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
         </p>
       </header>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className='contactForm__form'>
         <fieldset className="contactForm__fieldset">
           {contactFields}
           <Button darkButton>Send</Button>
         </fieldset>
       </form>
+      <AdressContainer />
     </section>
   );
 };

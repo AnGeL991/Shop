@@ -5,6 +5,7 @@ import { config } from './config';
 import Product from './models/product';
 import { IItems } from './interfaces/stripe';
 import { IProduct } from './interfaces/product';
+import Order from './models/order';
 
 export const Validate = (req: Request, res: Response) => {
   const errors = validationResult(req);
@@ -57,4 +58,45 @@ export const prepareProdutToPayment = (items: Array<IItems>, line: IProduct[], c
     };
   });
   return line_items;
+};
+
+export const prepareProductToOrder = (items: IProduct[]) => {
+  const product = items.map((el) => {
+    const price = (el.price - (el.price * el.discount) / 100).toFixed(2);
+    return {
+      title: el.title,
+      category: el.category,
+      img: el.image,
+      amount: el.amount,
+      currency: 'zł.',
+      price
+    };
+  });
+  return product;
+};
+
+export const prepareTotalPrice = (items: IProduct[]) => {
+  return items.reduce((total, item) => {
+    return total + (item.price - (item.price * item.discount) / 100) * item.amount;
+  }, 0);
+};
+
+function randomChar(length: number) {
+  const chars = 'abcdefghijklmnoprstuwyz';
+  let result = '';
+  for (let i = 0; i >= length; i++) {
+    result += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return result;
+}
+
+export const prepareOrderId = async () => {
+  const orderLenght = await Order.getLength();
+  const exist = await Order.find({ id: `${orderLenght + 1}` });
+  if (!exist) {
+    return orderLenght + 1;
+  } else {
+    const result = randomChar(1);
+    return orderLenght + 1 + result;
+  }
 };

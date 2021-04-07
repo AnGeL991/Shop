@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { option } from "db";
-import { ProductBox } from "components/common";
+import { ProductBox, Icons,Header } from "components/common";
 import { ProductDataPage } from "components/template";
 import { useFilterValue, useDisplayProduct } from "_hooks";
 import "./style/productCart.scss";
@@ -8,7 +8,8 @@ import "./style/productCart.scss";
 export const ProductCart: FC = () => {
   const { handleSetSort } = useFilterValue();
 
-  const { sliceArray, displayArray, handleSetSlice } = useDisplayProduct(8);
+  const { ViewGrid, Bars } = Icons;
+  const { sliceArray,category, displayArray, handleSetSlice } = useDisplayProduct(8);
 
   const options = option.map((el) => (
     <option key={el.name} value={el.name}>
@@ -17,12 +18,20 @@ export const ProductCart: FC = () => {
   ));
 
   const productsToDisplay = sliceArray.map((el) => (
-    <ProductBox key={el._id} item={el} width={50} />
+    <div className='productCart__eachProduct' key={el._id}>
+      <ProductBox  item={el} />
+    </div>
   ));
 
   return (
-    <section>
+    <section className='productCart'>
+       <Header title={category === "" ? "Shop" : category} className='productCart__header' />
       <div className="productCart__wrapper">
+        <div className="productCart__displayWay">
+          <ViewGrid className="productCart__icon" />
+          <Bars className="productCart__icon" />
+          <span> Showing 1-12 of 15 results </span>
+        </div>
         <form>
           <select
             defaultValue="Default sorting"

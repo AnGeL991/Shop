@@ -14,6 +14,9 @@ const {
   addPaymentComment,
   acceptPaymentRegulation,
   addPaymentStatus,
+  addProductPayment,
+  addOrderId,
+  paymentLoad,
 } = PaymentActions;
 
 export default class Payment {
@@ -36,8 +39,11 @@ export default class Payment {
     });
   }
 
-  static setAdressPayment(data: Delivery) {
-    return addPaymentAdress(data);
+  static setOrderToPayment(order: Inventory[]) {
+    return addProductPayment(order);
+  }
+  static setAdressPayment(adressDelivery: Delivery) {
+    return addPaymentAdress(adressDelivery);
   }
 
   static setDeliveryCos(paymentWay: PaymentWay) {
@@ -51,11 +57,21 @@ export default class Payment {
   static setRegulation(accept: boolean) {
     return acceptPaymentRegulation(accept);
   }
-
+  static setOrderId(orderId: string | number) {
+    return addOrderId(orderId);
+  }
   static setPaymentStatus(status: IPaymentStatus) {
     return addPaymentStatus(status);
   }
   static sendOrder(payment: PaymentState) {
     return client("/order", payment);
+  }
+  static confirmOrder(id: string) {
+    return client("/order", { id }, "", { method: "PUT" });
+  }
+  static loadPayment(state: PaymentState) {
+    return (dispatch: Function) => {
+      dispatch(paymentLoad(state));
+    };
   }
 }

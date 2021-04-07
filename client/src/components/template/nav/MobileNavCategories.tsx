@@ -1,11 +1,11 @@
 import { FC, useMemo } from "react";
 import { useModalLogic } from "_hooks";
-import { EachLink } from "components/common";
+import { EachLink} from "components/common";
 import { Modal } from "components/template";
 import { categoryNav } from "db";
 import "./style/nav.scss";
 
-export const NavCategories: FC = () => {
+export const MobileNavCategories: FC = () => {
   const { showModal, handleToggleModal } = useModalLogic();
 
   const category = useMemo(
@@ -22,18 +22,18 @@ export const NavCategories: FC = () => {
   );
 
   return (
-    <>
+    <div className='allCategories__mobile'>
       <div className="allCategories" onClick={handleToggleModal}>
-        All Categories
+         All Categories
       </div>
-      <Modal
-        style={{ backgroundColor: "rgba(255,255,255,0.6" }}
-        show={showModal}
-        close={handleToggleModal}
-        fullHight
-      >
-        {category}
-      </Modal>
-    </>
+        <Modal
+          style={{ backgroundColor: "rgba(255,255,255,0.6" }}
+          show={showModal}
+          close={handleToggleModal}
+          fullHight  
+        >
+          {category}
+        </Modal>
+    </div>
   );
 };

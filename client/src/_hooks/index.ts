@@ -15,3 +15,5 @@ export { useLoading } from "./generic/useLoading";
 export { useFormLogic } from "./generic/useFormLogic";
 export { useChecked } from "./generic/useChecked";
 export { usePaymentsLogic } from "./business/usePaymentsLogic";
+export { useGetState } from "./generic/useGetState";
+export { useStarLogic } from "./generic/useStarLogic";

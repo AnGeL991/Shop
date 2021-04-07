@@ -8,6 +8,7 @@ interface IPaymentProduct {
   amount: number;
   price: number;
   discount?: number;
+  fullWidth?:boolean;
 }
 
 export const PaymentProduct: FC<IPaymentProduct> = ({
@@ -16,15 +17,17 @@ export const PaymentProduct: FC<IPaymentProduct> = ({
   amount,
   price,
   discount,
+  fullWidth
 }) => {
+  
   const currentPrice = preparePrice(price, discount ? discount : 0, amount);
-
+  
   return (
-    <section>
+    <section className={`${fullWidth &&  'paymentProduct__section' }`}>
       <div className="paymentProduct">
         <h4 className="paymentProduct__title">{title}</h4>
         <div className="paymentProduct__productImg">
-          <img src={img} alt={title} />
+          <img src={img} alt={title}  className={`${fullWidth &&  'paymentProduct__img' }`} />
         </div>
         <div className="paymentProduct__productInfo">
           <div className="paymentProduct__description">

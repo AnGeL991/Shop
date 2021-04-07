@@ -3,6 +3,8 @@
 .login {
   display: flex;
   flex-direction: column;
+  max-width: 1220px;
+  margin: 0 auto;
   &__form {
     padding: 0 10px;
     margin: 20px 0;
@@ -54,5 +56,29 @@
   &__linkButton {
     color: white;
     text-decoration: none;
+  }
+}
+@media (min-width: 768px) {
+  .login {
+    flex-direction: row;
+    &__form {
+      width: 50%;
+    }
+    &__createTitle {
+      display: none;
+    }
+    &__createAccount {
+      margin: 10px;
+      border-left: 2px solid $border-gray;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .login {
+    flex-direction: row;
+    justify-content: space-evenly;
+    &__form {
+      width: 30%;
+    }
   }
 }

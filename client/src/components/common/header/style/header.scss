@@ -6,8 +6,10 @@
   text-transform: initial;
   font-size: 28px;
   color: black;
+  max-width: 1220px;
+  margin: 0 auto;
   &__title {
-    padding: 20px;
+    padding: 20px 0;
     border-bottom: 2px solid $border-gray;
   }
 }

@@ -2,6 +2,7 @@ import { Reducer } from "redux";
 import { PaymentState, PaymentActionType } from "./types";
 
 export const initialState: PaymentState = {
+  orderId: "",
   paymentStatus: { method: "", paid: false },
   delivery: {
     email: "",
@@ -31,10 +32,15 @@ const {
   ADD_DELIVERY_OPTION,
   ACCEPT_REGULATION,
   ADD_COMMENT_PAYMENT,
+  ADD_ORDER_ID,
+  PAYMENT_LOAD,
 } = PaymentActionType;
 
 const reducer: Reducer<PaymentState> = (state = initialState, action) => {
   switch (action.type) {
+    case PAYMENT_LOAD: {
+      return { ...state, ...action.payload };
+    }
     case ADD_PAYMENT_ADDRESS: {
       return { ...state, delivery: action.payload, loading: false };
     }
@@ -42,10 +48,13 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
       return { ...state };
     }
     case ADD_PAYMENT_STATUS: {
-      return { ...state, paymentStatus: action.payload };
+      return {
+        ...state,
+        paymentStatus: { ...state.paymentStatus, ...action.payload },
+      };
     }
     case ADD_PRODUCT_PAYMENT: {
-      return { ...state, order: [...action.payload] };
+      return { ...state, products: [...action.payload] };
     }
     case ADD_DELIVERY_OPTION: {
       return { ...state, deliveryCost: action.payload };
@@ -55,6 +64,9 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
     }
     case ADD_COMMENT_PAYMENT: {
       return { ...state, comment: action.payload };
+    }
+    case ADD_ORDER_ID: {
+      return { ...state, orderId: action.payload };
     }
     default:
       return state;

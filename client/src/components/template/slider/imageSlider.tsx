@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { useChangeSlider } from "_hooks";
 import { Icons } from "components/common";
 import "./style/imageSlider.scss";
@@ -10,7 +10,7 @@ type ImageProps = {
   classSlide?: string;
   duration?: number;
   opacity?: number;
-  big?:boolean;
+  big?: boolean;
 };
 
 export const ImageSlider: FC<ImageProps> = ({
@@ -20,29 +20,36 @@ export const ImageSlider: FC<ImageProps> = ({
   classImage,
   opacity,
   classSlide,
-  big
+  big,
 }) => {
   const { slide, nextSlide, prevSlide } = useChangeSlider(data, duration);
   const { transition, translate } = slide;
   const { ArrowLeft, ArrowRight } = Icons;
-  const images = data.map((el, index) => (
-    <div
-      key={index}
-      className={`images__slide ${classSlide} `}
-      style={{
-        transform: `translate(-${translate}%)`,
-        transition: `all linear  ${transition}s`,
-        opacity: `${opacity}`,
-      }}
-    >
-      <img src={el} alt="images" className={classImage} />
-    </div>
-  ));
-  const foto =data.filter((el,index)=>index === slide.activeIndex);
 
-  const  bigImage = <div className='images__bigImage'>
-    <img src={foto[0]} alt='product images' className='images__bigImg'/>
-  </div>
+  const images = useMemo(
+    () =>
+      data.map((el, index) => (
+        <div
+          key={index}
+          className={`images__slide ${classSlide} `}
+          style={{
+            transform: `translate(-${translate}%)`,
+            transition: `all linear  ${transition}s`,
+            opacity: `${opacity}`,
+          }}
+        >
+          <img src={el} alt="images" className={classImage} />
+        </div>
+      )),
+    [translate, transition, classImage, classSlide, data, opacity]
+  );
+  const foto = data.filter((el, index) => index === slide.activeIndex);
+
+  const bigImage = (
+    <div className="images__bigImage">
+      <img src={foto[0]} alt="product images" className="images__bigImg" />
+    </div>
+  );
   return (
     <section className={`images ${className}`}>
       {big && bigImage}

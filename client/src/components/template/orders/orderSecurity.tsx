@@ -13,7 +13,7 @@ export const OrderSecurity: FC = () => {
   ));
 
   return (
-    <section className="security__wrapper">
+    <section className="security">
       <ul className="security__wrapper">{Info}</ul>
       <div className="security__basketBox">
         <Button darkButton>

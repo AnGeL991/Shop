@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useFormLogic, useChecked } from "_hooks";
 import { privatePerson, delivery, business } from "db";
 import { history } from "_helpers/history";

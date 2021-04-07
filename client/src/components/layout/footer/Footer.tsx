@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { List, CopyRight } from "components/template";
-import "./footer.scss";
+import "./style/footer.scss";
 
 export const Footer: FC = () => {
   return (

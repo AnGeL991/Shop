@@ -1,7 +1,10 @@
 import { useState, ChangeEventHandler } from "react";
 import { IPaymentInputs, IDeliveryOption } from "components/interfaces";
+import { usePaymentsLogic } from "_hooks";
 
 export const useChecked = () => {
+  const { setError } = usePaymentsLogic();
+
   const [inputPayment, setInputPayment] = useState<IPaymentInputs>({
     transfer: true,
     delivery: false,
@@ -19,9 +22,10 @@ export const useChecked = () => {
     own: false,
     payment: true,
   });
+  const [inputPaymentAdress, setInputPaymentAdress] = useState(true);
 
   const [inputComment, setInputComment] = useState("");
-  const [error, setError] = useState({ message: "" });
+
   const [dataForm, setDataForm] = useState({ private: true, business: false });
 
   const handleSetData: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -134,6 +138,9 @@ export const useChecked = () => {
         }));
         break;
       }
+      case "paymentAdress": {
+        return setInputPaymentAdress((prev) => !prev);
+      }
       default: {
         return;
       }
@@ -150,11 +157,10 @@ export const useChecked = () => {
     inputDelivery,
     inputPayment,
     inputRules,
+    inputPaymentAdress,
     dataForm,
-    error,
     handleSetComment,
     handleSetRegulation,
     handleSetData,
-    setError,
   };
 };

@@ -56,3 +56,45 @@
     width: 100%;
   }
 }
+@media (min-width: 1024px) {
+  .container {
+    padding: 20px 0;
+  }
+  .filter {
+    margin: 10px 15px;
+    &__title {
+      position: relative;
+      padding: 15px;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        width: 50px;
+        height: 1px;
+        background-color: black;
+      }
+    }
+    &__hide {
+      display: block;
+    }
+    &__icon {
+      display: none;
+    }
+  }
+  .filterContext {
+    &__category {
+      border: none;
+      text-align: left;
+      font-size: 12px;
+      padding: 5px;
+      margin: 5px;
+      &:hover {
+        color: $color-orange;
+        border: none;
+      }
+    }
+    &__price {
+      font-size: 12px;
+    }
+  }
+}

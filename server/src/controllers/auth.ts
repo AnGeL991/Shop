@@ -21,16 +21,7 @@ export const register = async (req: Request, res: Response) => {
 
     const token = CreateToken(req.body, '15m');
 
-    // const emailData = {
-    //   from: config.sqMail.EMAIL_FROM,
-    //   to: email,
-    //   templateId: 'd-711a3dbcc82143d09a6739a4613668e1',
-    //   subject: 'Verify your email adress',
-    //   dynamicTemplateData: {
-    //     link: `https://localhost:3000/users/activate/${token}`
-    //   }
-    // };
-    const emailTemplate = emailData(email, 'd-711a3dbcc82143d09a6739a4613668e1', { link: `https://localhost:3000/users/activate/${token}` });
+    const emailTemplate = emailData(email, 'd-711a3dbcc82143d09a6739a4613668e1', { link: `http://localhost:3000/users/activate/${token}` });
 
     return sgMail
       .send(emailTemplate)
@@ -94,7 +85,7 @@ export const forgetPassword = async (req: Request, res: Response) => {
 
     const token = CreateToken({ _id: user._id }, 31556926);
 
-    const emailTemplate = emailData(email, 'd - b7667e8ce86748768bf618a599789f46', { link: `${config.server.hostname}:${config.server.port}/users/reset/${token}` });
+    const emailTemplate = emailData(email, 'd-b7667e8ce86748768bf618a599789f46', { link: `http://localhost:3000/users/reset/${token}` });
 
     return sgMail.send(emailTemplate).then((sent) => {
       return res.json({

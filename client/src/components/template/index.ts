@@ -1,5 +1,7 @@
 export { Account } from "./account/account";
-export { NavCategories } from "./nav/navCategories";
+export { MobileNavCategories } from "./nav/MobileNavCategories";
+export { NavCategories } from "./nav/navCategory";
+export { MobileNav } from "./nav/mobileNav";
 export { Nav } from "./nav/nav";
 export { List } from "./footer/footerList";
 export { CopyRight } from "./footer/footerCopyRight";
@@ -53,3 +55,5 @@ export { PaymentProduct } from "./products/paymentProduct";
 export { PaymentSummary } from "./checkout/paymentSummary";
 export { PaymentRenderProduct } from "./checkout/paymentRenderProduct";
 export { EmptyWish } from "./wish/emptyWish";
+export { TopBanner } from "./banner/topBanner";
+export { BottomBanner } from "./banner/bottomBanner";

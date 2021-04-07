@@ -4,7 +4,7 @@ import { ReadMore } from "components/common";
 
 export const Help: FC = () => {
   return (
-    <ReadMore title="Help">
+    <ReadMore title="Help" className='footerReadMore'>
       <ul className="footer__subList">
         <li className="footer__eachSubList">
           <Link to="/" className="footer__link">

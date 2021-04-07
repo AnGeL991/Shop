@@ -276,8 +276,6 @@ export const nav = [
   { name: "Shop", path: "/shop" },
   { name: "Blog", path: "/Blog" },
   { name: "Media", path: "/media" },
-  { name: "ShortCode", path: "/shordCode" },
-  { name: "Features", path: "/features" },
   { name: "About Us", path: "/aboutUs" },
   { name: "Contact Us", path: "/contact" },
 ];

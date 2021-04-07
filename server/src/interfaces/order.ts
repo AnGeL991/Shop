@@ -11,5 +11,7 @@ export interface IOrder extends Document {
   products: Array<IProduct>;
 }
 export interface IOrderModel extends Model<IOrder> {
-  createNewFromRequestBody(product: IOrder): Promise<void>;
+  createNewFromRequestBody(product: IOrder, id: number | string): Promise<void>;
+  getLength(): Promise<number>;
+  confirmOrder(id: string): Promise<void>;
 }

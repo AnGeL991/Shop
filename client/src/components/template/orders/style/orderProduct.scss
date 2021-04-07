@@ -7,6 +7,8 @@
   flex-wrap: wrap;
   justify-content: center;
   color: black;
+  max-width: 1220px;
+  margin: 0 auto;
   &__payBox {
     padding: 0 10px;
   }
@@ -58,7 +60,6 @@
     flex-wrap: wrap;
     flex-direction: row;
     padding: 10px 15px;
-    margin: 0 10px;
     background-color: white;
   }
   &__amountBox {
@@ -147,5 +148,32 @@
   }
   span {
     margin-left: 10px;
+  }
+}
+@media (min-width: 768px) {
+  .content {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .orderProduct {
+    &__wrapper {
+      width: 70%;
+      margin: 20px auto;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .content {
+    &__orders {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+  .orderProduct {
+    &__wrapper {
+      width: calc(50% - 40px);
+      margin: 20px;
+    }
   }
 }

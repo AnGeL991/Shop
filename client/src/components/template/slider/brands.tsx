@@ -4,6 +4,6 @@ import { ImageSlider } from "components/template";
 
 export const Brands: FC = () => (
   <section>
-    <ImageSlider data={brands} duration={2} />
+    <ImageSlider data={brands} duration={0} />
   </section>
 );

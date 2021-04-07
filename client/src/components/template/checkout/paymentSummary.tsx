@@ -1,59 +1,78 @@
 import { FC, useMemo } from "react";
-import { Button } from "components/common";
-import { PaymentDetail } from "components/template";
-import { Delivery, PaymentWay } from "store/payment";
-import { usePaymentsLogic } from "_hooks";
+import { Button,Header } from "components/common";
+import { PaymentRenderProduct } from "components/template";
+import { Details } from "./details";
+import { useGetState, usePaymentsLogic } from "_hooks";
+import { useCheckedLogic } from "./hooks/useCheckedLogic";
 import "./style/paymentSummary.scss";
 
+interface IPaymentSummary {
+  orderId: number | string;
+}
 
-const Details: FC<{ delivery: Delivery; deliveryCost: PaymentWay }> = ({
-  delivery,
-  deliveryCost,
-}) =>
-  delivery ? (
-    <>
-      <PaymentDetail email={delivery.email} title="Guest Checkout" />
-      <PaymentDetail
-        firstName={delivery.firstName}
-        surName={delivery.surName}
-        street={delivery.street}
-        city={delivery.city}
-        postCode={delivery.postCode}
-        phone={delivery.phone}
-        title="Shipping Information"
-        to="delivery"
+export const PaymentSummary: FC<IPaymentSummary> = ({ orderId }) => {
+  const { handlePayment, handleConfirmYourOrder } = usePaymentsLogic();
+  const { inputPaymentAdress, handleSetRegulation } = useCheckedLogic();
+  const { payment, order } = useGetState();
+
+  const { delivery, paymentStatus, deliveryCost } = payment;
+  const { cost } = deliveryCost;
+  const { totalPrice } = order;
+
+  const submitButton =
+    paymentStatus.method === "transfer" ? (
+      <Button darkButton onClick={handlePayment}>
+        Place your order
+      </Button>
+    ) : (
+      <Button darkButton onClick={handleConfirmYourOrder}>
+        Submit your order
+      </Button>
+    );
+
+  const details = useMemo(
+    () => (
+      <Details
+        {...{
+          delivery,
+          deliveryCost,
+          inputChecked: inputPaymentAdress,
+          handleChecked: handleSetRegulation,
+        }}
       />
-      <PaymentDetail payment={deliveryCost} title="Payment" to="delivery" />
-    </>
-  ) : null;
-
-export const PaymentSummary: FC= () => {
-  const { delivery, deliveryCost,handlePayment,totalPrice } = usePaymentsLogic();
-  const {cost} = deliveryCost
-  const details = useMemo(() => <Details {...{ delivery, deliveryCost }} />, [
-    delivery,
-    deliveryCost,
-  ]);
+    ),
+    [delivery, deliveryCost, inputPaymentAdress, handleSetRegulation]
+  );
 
   return (
     <section className="paymentSummary">
+      <div className="paymentSummary__products">
+      <Header
+        title={`Confirm & Pay`}
+        className="checkout__header"
+        style={{ fontWeight: 500, padding: "10px" }}
+      />
+        <PaymentRenderProduct fullWidth />
+      </div>
       <div className="paymentSummary__details">
         {details}
         <div className="paymentSummary__summaryBox">
+          <div className="paymentSummary__summaryDetail paymentSummary__summaryDetail--center">
+            <span>Order: #{orderId}</span>
+          </div>
           <div className="paymentSummary__summaryDetail">
             <span>Subtotal:</span> <span>${totalPrice.toFixed(2)}</span>
           </div>
           <div className="paymentSummary__summaryDetail">
-            <span>Taxes:</span> <span>{cost === 0 ? "free" : cost.toFixed(2)}</span>
+            <span>Taxes:</span>
+            <span>{cost === 0 ? "free" : cost.toFixed(2)}</span>
           </div>
           <div className="paymentSummary__summaryDetail">
-            <strong>Total price:</strong> <strong>${(cost + totalPrice).toFixed(2)}</strong>
+            <strong>Total price:</strong>
+            <strong>${(cost + totalPrice).toFixed(2)}</strong>
           </div>
         </div>
-        {/* button z przekierowaniem do płatnosci */}
-        <div className="paymentSummary__buttonBox">
-          <Button darkButton onClick={handlePayment}>Place your order</Button>
-        </div>
+        <div className="paymentSummary__buttonBox">{submitButton}</div>
       </div>
     </section>
   );

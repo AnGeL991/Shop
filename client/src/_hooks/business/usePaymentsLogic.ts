@@ -1,62 +1,45 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { ApplicationState } from "store";
-import { useChecked, useFormLogic } from "_hooks";
-import { history } from "_helpers/history";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
+import { useFormLogic, useGetState } from "_hooks";
+import { history } from "_helpers";
 import { loadStripe } from "@stripe/stripe-js";
 import Payment from "_services/payment.service";
-import { client } from "_api";
-import { preparePaymentMethod } from "_helpers/utils";
 
 const StripePK: string = process.env.REACT_APP_STRIPE_PK!;
-
 const stripePromise = loadStripe(StripePK);
 
 export const usePaymentsLogic = () => {
-  const {
-    inputComment,
-    inputDelivery,
-    inputRules,
-    inputPayment,
-    error,
-    handleSetComment,
-    handleSetRegulation,
-    setError,
-  } = useChecked();
-
   const { onSubmit } = useFormLogic();
+  const { order, payment } = useGetState();
 
-  const { user, order, payment } = useSelector(
-    (state: ApplicationState) => state
-  );
-  const { isAuthenticated } = user;
-  const { deliveryCost, delivery, paymentStatus, products } = payment;
-  const { totalPrice } = order;
-
-  useEffect(() => {
-    onSubmit(Payment.setPaymentComment, [inputComment]);
-  }, [inputComment]);
+  const {
+    deliveryCost,
+    delivery,
+    paymentStatus,
+    orderId,
+    regulations,
+  } = payment;
 
   useEffect(() => {
-    if (inputRules.regulations && inputRules.personal)
-      onSubmit(Payment.setRegulation, [
-        inputRules.regulations && inputRules.personal,
-      ]);
-  }, [inputRules]);
+    if (orderId !== "" || paymentStatus.id)
+      localStorage.setItem("Payment", JSON.stringify(payment));
+  }, [orderId, paymentStatus]);
+
+  const [error, setError] = useState({ message: "" });
+
+  function SetOrderToPayment() {
+    onSubmit(Payment.setOrderToPayment, [order.items]);
+  }
 
   const handleCheckout = async () => {
-    if (inputPayment.transfer) {
+    if ((paymentStatus.method = "transfer")) {
       const session = await Payment.setPaymentIntent(
         delivery.email,
         order.items,
         deliveryCost.cost
       );
-      const method = preparePaymentMethod(inputPayment, session.id);
-      onSubmit(Payment.setPaymentStatus, [method, session.id]);
-    }
-    if (inputPayment.delivery) {
-      const method = preparePaymentMethod(inputPayment);
-      onSubmit(Payment.setPaymentStatus, [method]);
+      onSubmit(Payment.setPaymentStatus, [{ id: session.id }]);
+      return session.id;
     }
   };
 
@@ -72,31 +55,33 @@ export const usePaymentsLogic = () => {
     }
   };
 
-  const handleSendOrder = () => {
-    if (!inputRules.personal && !inputRules.regulations) {
+  const handleSendOrder = async () => {
+    if (!regulations) {
       setError({ message: "By kontynuować musisz zaakceptować zasady" });
     } else {
-      payment.products = order.items;
       handleCheckout();
-      client("/order", payment);
-      history.push(`/checkout/payment`);
+      const result = await Payment.sendOrder(payment);
+      onSubmit(Payment.setOrderId, [result.id]);
+      history.push(`/checkout/payment/${result.id}`);
     }
   };
 
+  const handleConfirm = async () => {
+    localStorage.setItem("Payment", "[]");
+    await Payment.confirmOrder(`${payment.orderId}`);
+  };
+
+  const handleConfirmYourOrder = () => {
+    history.push(`/success/${orderId}`);
+  };
+
   return {
-    isAuthenticated,
-    inputComment,
-    inputRules,
-    inputPayment,
-    inputDelivery,
     error,
-    delivery,
-    deliveryCost,
-    products,
-    totalPrice,
-    handleSetComment,
-    handleSetRegulation,
+    setError,
     handleSendOrder,
     handlePayment,
+    SetOrderToPayment,
+    handleConfirmYourOrder,
+    handleConfirm,
   };
 };

@@ -11,9 +11,9 @@ const stripe = new Stripe(config.server.Stripe.secret, {
 export const checkoutSesion = async (req: Request, res: Response) => {
   try {
     const { items, email, deliveryCost } = req.body;
-    console.log(items);
+
     const line = await getProductToPayment(items);
-    console.log(line);
+
     const delivery = {
       name: 'delivery',
       currency: 'pln',
@@ -21,6 +21,7 @@ export const checkoutSesion = async (req: Request, res: Response) => {
       amount: deliveryCost * 100,
       images: [`https://img.freepik.com/free-vector/delivery-service-with-masks-concept_23-2148497067.jpg?size=626&ext=jpg`]
     };
+
     if (line) {
       const line_items = prepareProdutToPayment(items, line, 'pln');
 

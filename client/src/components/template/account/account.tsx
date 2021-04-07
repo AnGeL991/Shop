@@ -46,7 +46,7 @@ export const Account: FC = () => {
         <Icons.Account size="28" />
       </div>
       <div
-        className={`header__account ${open && "header__account--active"}`}
+        className={`header__account ${open ? "header__account--active" : ""}`}
         onMouseLeave={handleClose}
       >
         <ul className="list">{list}</ul>

@@ -7,7 +7,7 @@ import { Slide } from "./dealProduct";
 export const DealOfDay: FC = () => {
   const { dealProduct } = useDisplayProduct();
 
-  const { slide, nextSlide, prevSlide,handleSetOutSide } = useChangeSlider(dealProduct,2);
+  const { slide, nextSlide, prevSlide,handleSetOutSide } = useChangeSlider(dealProduct,0);
 
   const slides = dealProduct.map((el) => (
     <Slide

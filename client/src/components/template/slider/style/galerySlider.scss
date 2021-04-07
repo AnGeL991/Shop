@@ -8,7 +8,6 @@
     position: relative;
   }
   &__wrapper {
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
     display: flex;
   }
   &__imageBox {
@@ -33,5 +32,13 @@
     position: absolute;
     width: 100%;
     top: 50%;
+  }
+}
+@media (min-width: 768px) {
+  .galerySlider {
+    height: 100%;
+    &__content {
+      height: 90%;
+    }
   }
 }

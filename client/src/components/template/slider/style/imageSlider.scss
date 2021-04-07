@@ -10,6 +10,9 @@
   }
   &__box {
     position: relative;
+    max-width: 1220px;
+    margin: 40px auto;
+    overflow: hidden;
   }
   &__slide {
     width: 100%;
@@ -31,5 +34,26 @@
   &__icon {
     color: black;
     font-size: 28px;
+  }
+}
+@media (min-width: 768px) {
+  .images {
+    &__slide {
+      width: calc(100vw / 2);
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .images {
+    &__slide {
+      width: calc(100vw / 3);
+    }
+  }
+}
+@media (min-width: 1440px) {
+  .images {
+    &__slide {
+      width: calc(1220px / 4);
+    }
   }
 }

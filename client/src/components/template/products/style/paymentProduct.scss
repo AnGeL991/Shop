@@ -7,10 +7,12 @@
   margin-bottom: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid $border-darkGray;
+  max-height: 200px;
   &__productImg {
     flex-basis: 40%;
     img {
       width: 100%;
+      height: 80px;
     }
   }
   &__productInfo {
@@ -41,5 +43,31 @@
   }
   &__strongPrice {
     font-weight: 600;
+  }
+}
+@media (min-width: 550px) {
+  .paymentProduct {
+    &__section {
+      width: 50%;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .paymentProduct {
+    &__section {
+      width: calc(100% / 3);
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .paymentProduct {
+    &__section {
+      width: calc(100% / 2);
+    }
+    &__productImg {
+      img {
+        height: 80px;
+      }
+    }
   }
 }
