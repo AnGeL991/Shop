@@ -11,11 +11,20 @@ export interface IProduct extends Document {
   color?: string;
   description: string;
   category: string;
+  comment?: Array<{ name: string; body: string; email: string; star: number }>;
   tags?: Array<string>;
 }
 
+export interface IComment {
+  name: string;
+  body: string;
+  email: string;
+  star: number;
+  date: Date;
+}
 export interface IProductModel extends Model<IProduct> {
   createNewFromRequestBody(product: IProduct): Promise<void>;
   findAllProduct(): Promise<void>;
   findByCategory(category: string): Promise<void>;
+  addComment(id: string, comment: IComment): Promise<void>;
 }

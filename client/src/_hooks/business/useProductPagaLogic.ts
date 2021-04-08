@@ -14,6 +14,12 @@ export const useProductPageLogic = (item: Inventory) => {
   const currentPrice =
     discount !== 0 ? price - (price * discount) / 100 : price;
 
+  const {
+    addProductToOrder,
+    addProductToWish,
+    arrayOfStars,
+  } = useProductBoxLogic(item);
+
   const HandleSetActiveInfo: MouseEventHandler<HTMLLIElement> = (e) => {
     setActiveInfo(e.currentTarget.title);
   };
@@ -24,8 +30,6 @@ export const useProductPageLogic = (item: Inventory) => {
     setAmount((prev) => prev - 1);
   };
 
-  const { addProductToOrder, addProductToWish } = useProductBoxLogic(item);
-
   return {
     handleDecremnet,
     handleIncrement,
@@ -35,5 +39,6 @@ export const useProductPageLogic = (item: Inventory) => {
     currentPrice,
     activeInfo,
     amount,
+    arrayOfStars,
   };
 };

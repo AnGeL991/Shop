@@ -1,2 +1,7 @@
 export { history } from "./history";
-export { prepareDelivery, preparePaymentMethod, preparePrice } from "./utils";
+export {
+  prepareDelivery,
+  preparePaymentMethod,
+  preparePrice,
+  prepareActiveStar,
+} from "./utils";

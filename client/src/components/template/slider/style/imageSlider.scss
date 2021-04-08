@@ -28,7 +28,6 @@
     transform: translateY(-50%);
     display: flex;
     justify-content: space-between;
-    padding: 20px;
     color: white;
   }
   &__icon {
@@ -36,10 +35,17 @@
     font-size: 28px;
   }
 }
+.brands {
+  padding: 20px;
+}
 @media (min-width: 768px) {
   .images {
     &__slide {
       width: calc(100vw / 2);
+    }
+    &__bigImage {
+      width: 60%;
+      margin: 0 auto;
     }
   }
 }

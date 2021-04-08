@@ -1,0 +1,75 @@
+.comment {
+  width: 95%;
+  padding: 10px;
+  max-width: 650px;
+  background-color: rgb(148, 147, 147);
+  border: none;
+  &__wrapper {
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+  }
+  &__rating {
+    width: calc(90% - 20px);
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  &__stars {
+    margin-top: 15px;
+    margin-right: 10px;
+    font-weight: 300;
+    color: black;
+  }
+  &__fieldset {
+    border: none;
+  }
+  &__inputBox {
+    padding: 10px;
+    text-align: left;
+  }
+  &__textBox {
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: calc(100% - 20px);
+    margin: 10px auto;
+  }
+  &__button {
+    margin: 5px 0;
+  }
+}
+@media (min-width: 768px) {
+  .comment {
+    width: 85%;
+    padding: 10px;
+    &__rating {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    &__inputBox {
+      padding: 20px;
+    }
+    &__input {
+      width: calc(50% - 40px);
+      margin: 0 20px;
+    }
+    &__textBox {
+      width: calc(100% - 40px);
+    }
+    &__buttons {
+      flex-direction: row;
+      width: calc(100% - 40px);
+    }
+  }
+}

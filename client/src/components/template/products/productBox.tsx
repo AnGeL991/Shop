@@ -4,19 +4,20 @@ import { useProductBoxLogic } from "_hooks";
 import { Inventory } from "store/inventory";
 import "./style/productBox.scss";
 
-interface Product {
-  width?: number;
-}
 
-interface propsFromComponent {
+
+interface IProductBox {
   item: Inventory;
 }
 
-type Props = propsFromComponent & Product;
+export const ProductBox: FC<IProductBox> = ({item }) => {
 
-export const ProductBox: FC<Props> = ({ width, item }) => {
-  
-  const { addProductToOrder, discountPrice,addProductToWish } = useProductBoxLogic(item);
+  const {
+    addProductToOrder,
+    discountPrice,
+    addProductToWish,
+    arrayOfStars
+  } = useProductBoxLogic(item);
 
   const tag = item.tags ? (
     <div className="productBox__tags">
@@ -39,10 +40,8 @@ export const ProductBox: FC<Props> = ({ width, item }) => {
     <span>${item.price.toFixed(2)}</span>
   );
 
-
   return (
-    <div className="productBox" style={{ width: `${width}%` }}>
-
+    <div className="productBox">
       <div className="productBox__image">
         <img src={item.image} alt={item.title} className="productBox__img" />
         {tag}
@@ -56,7 +55,7 @@ export const ProductBox: FC<Props> = ({ width, item }) => {
       </div>
       <div className="productBox__info">
         <div>
-          <Stars activeStart={item.star} />
+          <Stars  productId={item._id} arrayOfStars={arrayOfStars} />
         </div>
         <h5 className="productBox__title">{item.title}</h5>
         <span className="productBox__price">{price}</span>

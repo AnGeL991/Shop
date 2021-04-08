@@ -17,12 +17,13 @@ export const Slide: FC<DealProps> = ({
   transition,
   onMouseMove,
 }) => {
-  const { price, title, star, description } = item;
+  const { price, title, description } = item;
   const {
     addProductToOrder,
     addProductToWish,
     discountPrice,
     images,
+    arrayOfStars,
   } = useProductBoxLogic(item);
 
   return (
@@ -42,8 +43,11 @@ export const Slide: FC<DealProps> = ({
         </div>
         <div className="deal__info">
           <h4 className="deal__title">{title}</h4>
-          <Stars activeStart={star} />
-          <div className='deal__priceBox'>
+          <Stars
+            productId={item._id}
+            arrayOfStars={arrayOfStars}
+          />
+          <div className="deal__priceBox">
             <span className="deal__price"> ${discountPrice.toFixed(2)}</span>
             <span className="deal__oldPrice"> ${price.toFixed(2)}</span>
           </div>
@@ -66,12 +70,12 @@ export const Slide: FC<DealProps> = ({
             </div>
           </div>
           <DealButtons
-          addToCard={addProductToOrder}
-          addToWishList={addProductToWish}
-          id={item._id}
-          className="deal__buttons"
-          styleBtn="deal__button"
-        />
+            addToCard={addProductToOrder}
+            addToWishList={addProductToWish}
+            id={item._id}
+            className="deal__buttons"
+            styleBtn="deal__button"
+          />
         </div>
       </div>
     </div>

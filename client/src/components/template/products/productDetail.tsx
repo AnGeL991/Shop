@@ -2,7 +2,7 @@ import { FC, useMemo } from "react";
 import { Button, Stars } from "components/common";
 import { Icons } from "components/common";
 import { Inventory } from "store/inventory";
-import { ImageSlider } from "components/template";
+import { ImageSlider, Sale } from "components/template";
 import { useProductPageLogic } from "_hooks";
 import "./style/productDetail.scss";
 
@@ -20,17 +20,10 @@ export const ProductDetail: FC<ProductPageProps> = ({ product }) => {
     HandleSetActiveInfo,
     currentPrice,
     addProductToWish,
+    arrayOfStars,
   } = useProductPageLogic(product);
 
-  const {
-    discount,
-    price,
-    images,
-    title,
-    star,
-    category,
-    description,
-  } = product;
+  const { discount, price, images, title, category, description } = product;
 
   const productPrice = useMemo(
     () =>
@@ -47,20 +40,22 @@ export const ProductDetail: FC<ProductPageProps> = ({ product }) => {
 
   return (
     <section className="product">
-      <div className="product__imageBox">
+      <article className="product__imageBox">
         <div>
           <ImageSlider
             data={images}
             classImage="product__images"
+            classSlide="product__slide"
             opacity={1}
             big
           />
         </div>
-      </div>
-      <div className="product__info">
+      </article>
+      <article className="product__info">
         <h4 className="product__title">{title}</h4>
         <div className="product__stars">
-          <Stars activeStart={star} /> <span>(1 customer review)</span>
+          <Stars arrayOfStars={arrayOfStars} />{" "}
+          <span>({arrayOfStars.length} customer review)</span>
         </div>
         <div className="product__categories">
           <p className="product__category">Categories:</p>
@@ -93,8 +88,6 @@ export const ProductDetail: FC<ProductPageProps> = ({ product }) => {
           >
             +
           </button>
-        </div>
-        <div>
           <Button
             darkButton
             className="product__add"
@@ -103,6 +96,7 @@ export const ProductDetail: FC<ProductPageProps> = ({ product }) => {
             Add TO CART
           </Button>
         </div>
+
         <div className="product__wishList" onClick={addProductToWish}>
           <Icons.HeartIcon className="product__icon" /> add to WishList
         </div>
@@ -166,7 +160,10 @@ export const ProductDetail: FC<ProductPageProps> = ({ product }) => {
             </div>
           </div>
         </div>
-      </div>
+      </article>
+      <article className="product__sale">
+        <Sale />
+      </article>
     </section>
   );
 };

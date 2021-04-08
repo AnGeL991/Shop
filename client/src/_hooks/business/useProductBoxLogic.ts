@@ -19,6 +19,7 @@ export const useProductBoxLogic = (item: Inventory) => {
       : item.price;
 
   const totalPrice = discountPrice * item.amount;
+  const arrayOfStars = item.comment.map((el) => el.star);
 
   let images = item.images.map((el, index) => ({ id: index, image: el }));
   images = [...images, { id: images.length + 1, image: item.image }];
@@ -26,12 +27,14 @@ export const useProductBoxLogic = (item: Inventory) => {
   const handleRedirectToProduct = () => {
     history.push(`/shop/${item._id}`);
   };
+
   return {
-    addProductToOrder,
     discountPrice,
     totalPrice,
-    addProductToWish,
-    handleRedirectToProduct,
     images,
+    arrayOfStars,
+    addProductToWish,
+    addProductToOrder,
+    handleRedirectToProduct,
   };
 };

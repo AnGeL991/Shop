@@ -19,7 +19,7 @@ export const ImageSlider: FC<ImageProps> = ({
   duration,
   classImage,
   opacity,
-  classSlide,
+  classSlide = "images__slide",
   big,
 }) => {
   const { slide, nextSlide, prevSlide } = useChangeSlider(data, duration);
@@ -31,7 +31,7 @@ export const ImageSlider: FC<ImageProps> = ({
       data.map((el, index) => (
         <div
           key={index}
-          className={`images__slide ${classSlide} `}
+          className={`${classSlide}`}
           style={{
             transform: `translate(-${translate}%)`,
             transition: `all linear  ${transition}s`,

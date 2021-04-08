@@ -79,12 +79,19 @@ export interface Inventory {
   images: Array<string>;
   price: number;
   category: string;
-  star: number;
   amount: number;
   time?: string;
   discount: number;
   description?: string;
   tags?: Array<string>;
+  comment: Array<IComment>;
+}
+export interface IComment {
+  name: string;
+  body: string;
+  star: number;
+  email: string;
+  date: Date;
 }
 
 //Payment option

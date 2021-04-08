@@ -6,7 +6,7 @@ import "./style/nav.scss";
 
 export const NavCategories: FC = () => {
   const { handleToggle, open } = useToggleClick();
-  console.log(open);
+
   const category = useMemo(
     () => (
       <nav className={`category  ${open === true ? "category--active" : ""}`}>

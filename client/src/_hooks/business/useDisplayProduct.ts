@@ -20,7 +20,7 @@ export const useDisplayProduct = (amountOnPage?: number) => {
 
   const dealProduct = data.filter((el) => el.discount !== 0);
 
-  const recomendedProduct = data.filter((el) => el.star >= 3);
+  const recomendedProduct = data.filter((el) => el);
 
   const sortArray = (sort: string) => {
     switch (sort) {
@@ -36,7 +36,7 @@ export const useDisplayProduct = (amountOnPage?: number) => {
         break;
       }
       case SortOption.POPULAR_SORT: {
-        return displayArray.sort((a, b) => (a.star < b.star ? 1 : -1));
+        return displayArray;
       }
       case SortOption.NEW_PRODUCTS: {
         return displayArray;

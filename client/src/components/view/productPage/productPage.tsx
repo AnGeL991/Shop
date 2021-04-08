@@ -5,12 +5,12 @@ import { MatchProps } from "components/interfaces";
 
 export const ProductPage: FC<MatchProps> = ({ match }) => {
   const { productById, productByCategory } = useDisplayProduct();
-  const product = productById(match.params.id);
-  const relatedProduct = productByCategory(product[0].category);
+  const product = productById(match.params.id)[0];
+  const relatedProduct = productByCategory(product.category);
 
   return (
     <section className="page">
-      <ProductDetail product={product[0]} />
+      <ProductDetail product={product} />
       <CarousellProduct
         title="Related Products"
         data={relatedProduct}

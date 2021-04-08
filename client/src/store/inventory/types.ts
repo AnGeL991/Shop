@@ -1,16 +1,18 @@
+import { IComment } from "components/interfaces";
+
 export interface Inventory {
   _id: string;
   title: string;
   image: string;
   price: number;
   category: string;
-  star: number;
   amount: number;
   time?: string;
   discount: number;
   description?: string;
   tags?: Array<string>;
   images: Array<string>;
+  comment: Array<IComment>;
 }
 
 export enum InventoryActionTypes {

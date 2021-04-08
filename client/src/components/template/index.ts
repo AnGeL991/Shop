@@ -57,3 +57,5 @@ export { PaymentRenderProduct } from "./checkout/paymentRenderProduct";
 export { EmptyWish } from "./wish/emptyWish";
 export { TopBanner } from "./banner/topBanner";
 export { BottomBanner } from "./banner/bottomBanner";
+export { CommentModal } from "./modal/commentModal";
+export { Sale } from "./sale/sale";
