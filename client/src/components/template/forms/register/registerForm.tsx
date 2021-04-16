@@ -2,11 +2,11 @@ import { FC, useRef, useMemo } from "react";
 import { Button, Field, FieldChecked, ReadMore } from "components/common";
 import { Modal } from "components/template";
 import { registerField } from "db";
-import { registerSchema } from "./validateSchema";
+import { registerSchema } from "../validateSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegisterLogic } from "_hooks";
-import "./style/registerForm.scss";
+import "./registerForm.scss";
 
 export const RegisterForm: FC = () => {
   const {

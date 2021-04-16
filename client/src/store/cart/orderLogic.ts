@@ -1,8 +1,8 @@
 import { AnyAction } from "redux";
 import { Inventory } from "store/inventory";
-import { OrderState } from "./types";
+import { CartState } from "./types";
 
-class OrderPrepare {
+class CartPrepare {
   static getTotal(items: Inventory[]) {
     return items.reduce((total, item) => {
       return (
@@ -37,10 +37,10 @@ class OrderPrepare {
   }
 }
 
-export default class OrderReduxProcesses {
-  static loadOrders(state: OrderState, action: AnyAction) {
-    const amount = OrderPrepare.getAmount(action.payload);
-    const total = OrderPrepare.getTotal(action.payload);
+export default class CartReduxProcesses {
+  static loadOrders(state: CartState, action: AnyAction) {
+    const amount = CartPrepare.getAmount(action.payload);
+    const total = CartPrepare.getTotal(action.payload);
 
     return {
       ...state,
@@ -51,15 +51,15 @@ export default class OrderReduxProcesses {
     };
   }
 
-  static addToOrder(state: OrderState, action: AnyAction) {
+  static addToOrder(state: CartState, action: AnyAction) {
     const { items, count } = state;
     const { _id, price, amount, discount } = action.payload;
-    const total = OrderPrepare.getTotal(items);
-    const some = OrderPrepare.check(items, _id);
-    const dicountPrice = OrderPrepare.discountPrice(price, discount);
+    const total = CartPrepare.getTotal(items);
+    const some = CartPrepare.check(items, _id);
+    const dicountPrice = CartPrepare.discountPrice(price, discount);
     if (some) {
-      const { item } = OrderPrepare.productLogic(items, amount, _id);
-      localStorage.setItem("Order", JSON.stringify([...item]));
+      const { item } = CartPrepare.productLogic(items, amount, _id);
+      localStorage.setItem("Cart", JSON.stringify([...item]));
       return {
         loading: false,
         count: count + amount,
@@ -67,7 +67,7 @@ export default class OrderReduxProcesses {
         totalPrice: total + dicountPrice,
       };
     } else
-      localStorage.setItem("Order", JSON.stringify([...items, action.payload]));
+      localStorage.setItem("Cart", JSON.stringify([...items, action.payload]));
     return {
       ...state,
       loading: false,
@@ -77,12 +77,12 @@ export default class OrderReduxProcesses {
     };
   }
 
-  static updateOrderAmount(state: OrderState, action: AnyAction) {
+  static updateOrderAmount(state: CartState, action: AnyAction) {
     const { items, count } = state;
     const { id, amount } = action.payload;
-    const total = OrderPrepare.getTotal(items);
-    const { item, price } = OrderPrepare.productLogic(items, amount, id);
-    localStorage.setItem("Order", JSON.stringify([...item]));
+    const total = CartPrepare.getTotal(items);
+    const { item, price } = CartPrepare.productLogic(items, amount, id);
+    localStorage.setItem("Cart", JSON.stringify([...item]));
     return {
       ...state,
       count: count + amount,
@@ -91,16 +91,16 @@ export default class OrderReduxProcesses {
     };
   }
 
-  static removeOrder(state: OrderState, action: AnyAction) {
+  static removeOrder(state: CartState, action: AnyAction) {
     const { items, count } = state;
-    const { product, price } = OrderPrepare.productLogic(
+    const { product, price } = CartPrepare.productLogic(
       items,
       0,
       action.payload
     );
-    const total = OrderPrepare.getTotal(items);
+    const total = CartPrepare.getTotal(items);
     const item = items.filter((el) => el._id !== action.payload);
-    localStorage.setItem("Order", JSON.stringify([...item]));
+    localStorage.setItem("Cart", JSON.stringify([...item]));
     return {
       ...state,
       count: count - product.amount,

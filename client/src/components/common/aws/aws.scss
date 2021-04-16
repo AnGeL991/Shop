@@ -1,0 +1,22 @@
+@import "../../../styles/settings.scss";
+
+.awsButton {
+  margin: 0px 20px;
+  width: calc(100% - 40px);
+  border: none;
+  text-align: center;
+  padding: 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-darkGray;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  &__icon {
+    margin: 0 10px;
+    width: 30px;
+    height: 30px;
+  }
+}

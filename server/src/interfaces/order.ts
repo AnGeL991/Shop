@@ -10,6 +10,7 @@ export interface IOrder extends Document {
   regulations: boolean;
   products: Array<IProduct>;
 }
+
 export interface IOrderModel extends Model<IOrder> {
   createNewFromRequestBody(product: IOrder, id: number | string): Promise<void>;
   getLength(): Promise<number>;

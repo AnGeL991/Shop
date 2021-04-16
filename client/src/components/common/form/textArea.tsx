@@ -27,13 +27,14 @@ export const TextArea: FC<TextAreaProps> = ({
       </label>
       <textarea
         className="textArea__block"
+        name={name}
         value={value}
         onChange={onChange}
         rows={rows}
         ref={reference}
         placeholder={placeholder}
       ></textarea>
-      <p className="error">{error?.message}</p>
+      {error && <p className="error">{error.message}</p>}
     </div>
   );
 };

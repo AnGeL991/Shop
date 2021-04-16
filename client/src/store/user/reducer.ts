@@ -2,13 +2,15 @@ import { Reducer } from "redux";
 import { UserActionType, UserState } from "./types";
 
 const initialState: UserState = {
+  cognito: false,
   token: localStorage.getItem("Token"),
   isAuthenticated: false,
   loading: false,
-  data: [],
+  data: {},
 };
 
 const {
+  USE_COGNITO,
   USER_LOADED,
   USER_LOADING,
   LOGIN_REQUEST,
@@ -51,6 +53,11 @@ const reducer: Reducer<UserState> = (state = initialState, action) => {
         isAuthenticated: false,
         data: [],
         loading: false,
+      };
+    case USE_COGNITO:
+      return {
+        ...state,
+        cognito: action.payload,
       };
     default:
       return state;

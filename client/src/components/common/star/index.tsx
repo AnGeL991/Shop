@@ -21,7 +21,7 @@ export const Stars: FC<Props> = ({ productId,arrayOfStars }) => {
   } = useStarLogic(arrayOfStars);
 
   const stars = [1, 2, 3, 4, 5].map((i) => (
-    <span key={i} className="star">
+    <span key={i} >
       {i <= ((star || hoverStar) === 0 ? average : star || hoverStar) ? (
         <Icons.Star
           className="star star--active"
@@ -62,9 +62,9 @@ export const Stars: FC<Props> = ({ productId,arrayOfStars }) => {
   );
 
   return (
-    <>
+    <div className='stars'>
       {stars}
       {newCommentModal}
-    </>
+    </div>
   );
 };

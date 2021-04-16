@@ -6,6 +6,7 @@ import Product from './models/product';
 import { IItems } from './interfaces/stripe';
 import { IProduct } from './interfaces/product';
 import Order from './models/order';
+import crypto from 'crypto';
 
 export const Validate = (req: Request, res: Response) => {
   const errors = validationResult(req);
@@ -23,18 +24,14 @@ export const CreateToken = (body: any, time: string | number) => {
   return jwt.sign(body, config.server.token.secret, { expiresIn: time });
 };
 
+export const ResponseProcessor = (res: Response, status: number, message: string | object) => res.status(status).json(message);
+
 export async function errorHandler(res: Response, toRun: any, successStatus: number, errorStatus: number, optionalBody?: any) {
   try {
     const result = await toRun;
-    return res.status(successStatus).json({
-      result: result,
-      optionalBody
-    });
+    return ResponseProcessor(res, successStatus, { result, optionalBody });
   } catch (error) {
-    return res.status(errorStatus).json({
-      message: error.message,
-      error
-    });
+    return ResponseProcessor(res, errorStatus, { message: error.message, error });
   }
 }
 
@@ -99,4 +96,11 @@ export const prepareOrderId = async () => {
     const result = randomChar(1);
     return orderLenght + 1 + result;
   }
+};
+
+export const HashSecret = (username: string, clientId: string) => {
+  return crypto
+    .createHmac('SHA256', config.awsConfig.secretHash)
+    .update(username + clientId)
+    .digest('base64');
 };

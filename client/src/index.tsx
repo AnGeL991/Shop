@@ -1,8 +1,8 @@
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
-import { history } from "_helpers/history";
-import configureStore from "./configureStore";
+import { history } from "_helpers";
+import configureStore from "configureStore";
 import { Provider } from "react-redux";
 import { initData } from "store/fetch";
 

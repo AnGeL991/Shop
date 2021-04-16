@@ -55,8 +55,18 @@ const SQMAIL = {
   MAIL_KEY: MAIL_KEY,
   EMAIL_FROM: EMAIL_FROM
 };
+
+const AWS__CONFIG = {
+  apiVersion: '2016-04-18',
+  region: 'eu-west-2',
+  secretHash: '1uk2rfska76uu4p3h6p9ssvsg8nlpkru75si97bv7ut3tsjd96nj',
+  ClientId: '3mevnbsqsid3nl1m9afe6ml274',
+  userPoolId: 'eu-west-2_nTb9f0PDg'
+};
+
 export const config = {
   mongo: MONGO,
   server: SERVER,
-  sqMail: SQMAIL
+  sqMail: SQMAIL,
+  awsConfig: AWS__CONFIG
 };

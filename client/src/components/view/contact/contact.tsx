@@ -6,6 +6,7 @@ export const Contact: FC = () => {
   return (
     <section className="page">
       <Header title="Contact Us" />
+
       <Map />
       <ContactForm />
     </section>

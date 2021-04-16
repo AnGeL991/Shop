@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { IUser, IUserModel } from '../interfaces/user';
+import { IUserDocument, IUserModel } from '../interfaces/user';
 import bcryptjs from 'bcryptjs';
 import { response } from 'express';
 
@@ -7,12 +7,12 @@ const Salt = 10;
 // https://tomanagle.medium.com/strongly-typed-models-with-mongoose-and-typescript-7bc2f7197722
 // jak otypować static
 
-const UserSchema: Schema = new Schema(
+const UserSchema = new Schema<IUserDocument, IUserModel>(
   {
     email: { type: String, required: true, trim: true, unique: true },
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-    password: { type: String, required: true },
+    firstName: { type: String },
+    lastName: { type: String },
+    password: { type: String },
     newsletter: { type: Boolean },
     regulations: { type: Boolean, required: true },
     role: { type: String, default: 'Client' }
@@ -22,12 +22,12 @@ const UserSchema: Schema = new Schema(
   }
 );
 
-UserSchema.statics.addUser = async function (userToAdd: IUser) {
+UserSchema.statics.addUser = async function (userToAdd: IUserDocument) {
   const user = new this(userToAdd);
   return await user.save();
 };
 
-UserSchema.pre('save', async function (this: IUser, next) {
+UserSchema.pre('save', async function (this: IUserDocument) {
   let user = this;
   try {
     const salt = await bcryptjs.genSalt(Salt);
@@ -41,10 +41,16 @@ UserSchema.pre('save', async function (this: IUser, next) {
   }
 });
 
-UserSchema.statics.comparePassword = async function (candidatePassword: string) {
-  return await bcryptjs.compare(candidatePassword, this.password);
+UserSchema.methods.comparePassword = function (candidatePassword: string) {
+  return bcryptjs.compare(candidatePassword, this.password);
 };
 
-const UserModel = model<IUser, IUserModel>('User', UserSchema);
+UserSchema.statics.updateHashedPassword = async function (id: string, password: string) {
+  const salt = await bcryptjs.genSalt(10);
+  const newPassword = await bcryptjs.hash(password, salt);
+  await this.findByIdAndUpdate(id, { password: newPassword });
+};
+
+const UserModel = model<IUserDocument, IUserModel>('User', UserSchema);
 
 export default UserModel;

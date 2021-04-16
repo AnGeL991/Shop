@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Order from '../models/order';
-import { prepareProductToOrder, prepareTotalPrice, prepareOrderId, errorHandler } from '../utils';
+import { prepareProductToOrder, prepareTotalPrice, ResponseProcessor, prepareOrderId, errorHandler } from '../utils';
 import sgMail from '@sendgrid/mail';
 import { emailData, config } from '../config';
 
@@ -16,6 +16,8 @@ export const addOrder = async (req: Request, res: Response) => {
 
   try {
     await Order.createNewFromRequestBody(req.body, orderId);
+    //await EmailSender.sendEmailWithFullfilledOrder(data)
+
     const emailTemplate = emailData(email, 'd-75531c57feac454cb1f07207699f2791', {
       personalData: `${firstName} ${surName}`,
       street,
@@ -31,9 +33,10 @@ export const addOrder = async (req: Request, res: Response) => {
       order: orderId
     });
     sgMail.send(emailTemplate);
-    return res.status(200).json({ id: orderId });
+
+    ResponseProcessor(res, 200, { id: orderId });
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    ResponseProcessor(res, 500, { error: err.message });
   }
 };
 

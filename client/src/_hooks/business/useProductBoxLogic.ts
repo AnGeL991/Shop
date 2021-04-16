@@ -1,11 +1,11 @@
-import OrderProcess from "_services/order.services";
+import CartProcess from "_services/cart.services";
 import { wishAction } from "store/wishList";
 import { Inventory } from "store/inventory";
 import { FactoryCallbackAction } from "../utils";
 import { history } from "_helpers";
 
 export const useProductBoxLogic = (item: Inventory) => {
-  const addProductToOrder = FactoryCallbackAction(OrderProcess.addtoOrder, [
+  const addProductToOrder = FactoryCallbackAction(CartProcess.addtoOrder, [
     item,
   ]);
 

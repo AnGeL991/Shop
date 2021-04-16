@@ -1,19 +1,24 @@
 import { history } from "_helpers/history";
 import * as userService from "_services/user.service";
+import * as cognitoService from "_services/aws.services";
 import { UserActionType, User } from "./types";
 import { AlertAction } from "../alert";
 import { selector } from "../utils";
+import { IAwsUser } from "components/interfaces";
 
 const userApi = new userService.UserApiHandler();
+const cognitoApi = new cognitoService.AwsApiHendler();
 
 const {
-  activate,
-  resetPassword,
-  register,
-  login,
-  load,
-  forgetPassword,
-} = userApi;
+  awsForgetPassword,
+  awsLoad,
+  awsLogin,
+  awsRegister,
+  awsResetPassword,
+} = cognitoApi;
+
+const { resetPassword, register, login, load, forgetPassword } = userApi;
+
 const { success, error } = AlertAction;
 
 const {
@@ -33,11 +38,11 @@ export const userFailure = (type: UserActionType, error: string) =>
 
 export const userLogout = () => selector(LOGOUT);
 
-export const loadUser = (token: string) => {
+export const loadUser = (token: string, cognito?: boolean) => {
   return async (dispatch: Function) => {
     dispatch(userRequest(USER_LOADING));
     try {
-      const user = await load(token);
+      const user = !cognito ? await load(token) : await awsLoad(token);
       dispatch(userSuccess(USER_LOADED, user.result));
     } catch (error) {
       dispatch(AlertAction.error(error.message));
@@ -45,74 +50,83 @@ export const loadUser = (token: string) => {
   };
 };
 
-export function Login(email: string, password: string, to?: string) {
+export function Login(
+  email: string,
+  password: string,
+  to?: string,
+  cognito?: boolean
+) {
   return async (dispatch: Function) => {
     dispatch(userRequest(LOGIN_REQUEST, { email }));
-    await login(email, password).then(
-      async (user) => {
-        localStorage.setItem("Token", JSON.stringify(user.token));
-        dispatch(userSuccess(LOGIN_SUCCESS, user));
-        await dispatch(loadUser(user.token));
-        history.push(to ? to : "/myAccount");
-      },
-      (err) => {
-        dispatch(error(err.message));
-      }
-    );
+    try {
+      const user = !cognito
+        ? await login(email, password)
+        : await awsLogin(email, password);
+      localStorage.setItem(
+        "Token",
+        JSON.stringify({ cognito, token: user.token })
+      );
+      dispatch(userSuccess(LOGIN_SUCCESS, user));
+      await dispatch(loadUser(user.token, cognito));
+      history.push(to ? to : "/myAccount");
+    } catch (err) {
+      dispatch(error(err.message));
+    }
   };
 }
 
-export function Register(user: User) {
+export function Register(user: User | IAwsUser, cognito: boolean) {
   return async (dispatch: Function) => {
     dispatch(AlertAction.clear());
-    await register(user).then(
-      () => {
-        dispatch(
-          dispatch(
-            AlertAction.success(
-              "Rejestracja zakończona powodzeniem dokończ veryfikacje by korzystać z konta"
-            )
-          )
-        );
-      },
-      (error) => {
-        dispatch(AlertAction.error(error.message));
-      }
-    );
+    try {
+      !cognito ? await register(user) : await awsRegister(user);
+      dispatch(
+        AlertAction.success(
+          "Rejestracja zakończona powodzeniem dokończ veryfikacje by korzystać z konta"
+        )
+      );
+    } catch (err) {
+      dispatch(AlertAction.error(err.message));
+    }
   };
 }
 
 export function ActiveAccount(token: string) {
   return async (dispatch: Function) => {
-    await activate(token).then(() => {
+    try {
+      userApi.activate(token);
       dispatch(success("Veryfikacja zakończona powodzeniem"));
-    });
+    } catch (err) {
+      dispatch(AlertAction.error(err.message));
+    }
   };
 }
 
-export function ForgetPassword(email: string) {
+export function ForgetPassword(email: string, cognito?: boolean) {
   return async (dispatch: Function) => {
-    await forgetPassword(email).then(
-      () => {
-        dispatch(success("Na email został wysłany link do zmiany hasła"));
-      },
-      (err) => {
-        dispatch(error(err.message));
-      }
-    );
+    try {
+      !cognito ? await forgetPassword(email) : await awsForgetPassword(email);
+      dispatch(success("Na email został wysłany link do zmiany hasła"));
+    } catch (err) {
+      dispatch(error(err.message));
+    }
   };
 }
 
-export function ResetPassword(token: string, password: string) {
+export function ResetPassword(
+  token: string,
+  password: string,
+  cognito?: boolean
+) {
   return async (dispatch: Function) => {
-    await resetPassword(token, password).then(
-      () => {
-        dispatch(success("Hasło zostało zmienione"));
-        history.push("/");
-      },
-      (err) => {
-        dispatch(error(err.message));
-      }
-    );
+    try {
+      !cognito
+        ? await resetPassword(token, password)
+        : await awsResetPassword(token, password);
+      dispatch(success("Hasło zostało zmienione"));
+      history.push("/");
+    } catch (err) {
+      dispatch(error(err.message));
+    }
   };
 }

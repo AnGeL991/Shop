@@ -2,6 +2,7 @@ import { FC, useMemo } from "react";
 import { EachBox } from "./eachBox";
 import { Icons } from "components/common";
 import "./style/whyUs.scss";
+
 const { ShoppingBag, BubbleChat, HeartIcon, CopyIcon } = Icons;
 
 const data = [

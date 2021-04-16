@@ -109,6 +109,51 @@ export const registerField = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,sed eveniet! Facilis, eius. Quo suscipit reprehenderitaccusantium, iusto similique eaque animi at neque ad delectus consequuntur laborum aliquid dolorem? Dolorem.",
   },
 ];
+export const cognitoRegister = [
+  {
+    type: "text",
+    name: "username",
+    required: true,
+    title: "username",
+  },
+  {
+    type: "text",
+    name: "email",
+    required: true,
+    title: "E-mail Adress",
+  },
+
+  {
+    title: "password",
+    name: "password",
+    required: true,
+    type: "password",
+  },
+  {
+    title: "confirm password",
+    name: "passwordConfirmation",
+    required: true,
+    type: "password",
+  },
+  {
+    type: "text",
+    name: "name",
+    title: "name",
+    required: true,
+  },
+  {
+    type: "text",
+    name: "family_name",
+    title: "family Name",
+    required: true,
+  },
+  {
+    type: "date",
+    name: "birthdate",
+    title: "birthdate",
+    required: true,
+  },
+];
 
 export const privatePerson = [
   {

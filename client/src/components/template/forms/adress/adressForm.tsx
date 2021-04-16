@@ -4,10 +4,12 @@ import { useForm } from "react-hook-form";
 import { Field, FieldRadio, Button } from "components/common";
 import { PaymentRenderProduct } from "components/template";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { adressPrivateSchema } from "./validateSchema";
-import { useAdressLogic } from "./hook/useAdressLogic";
-import "./style/adressForm.scss";
+import { adressPrivateSchema } from "../validateSchema";
+import { useAdressLogic } from "./useAdressLogic";
+import "./adressForm.scss";
 
+
+//
 export const AdressForm: FC = () => {
   const {
     handleSetRegulation,

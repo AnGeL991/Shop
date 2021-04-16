@@ -1,6 +1,5 @@
 import { FunctionComponent, ReactNode } from "react";
-import { Footer } from "components/layout";
-import { MainMenu } from "components/layout";
+import { Footer, MainMenu } from "components/layout";
 import "./style/mainLayout.scss";
 
 type MainLayoutProps = {

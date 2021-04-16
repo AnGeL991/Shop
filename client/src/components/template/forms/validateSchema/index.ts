@@ -19,7 +19,7 @@ export const registerSchema = yup.object().shape({
     .required("To pole jest wymagane"),
   password: yup
     .string()
-    .min(6, "Hasło musi się składać z minimum 6 znaków")
+    .min(8, "Hasło musi się składać z minimum 8 znaków")
     .required("To pole jest wymagane"),
   passwordConfirmation: yup
     .string()
@@ -31,12 +31,27 @@ export const registerSchema = yup.object().shape({
     .oneOf([true], "Musisz zaakceptować zasady"),
   newsletter: yup.boolean(),
 });
-
-export const loginSchema = yup.object().shape({
+export const cognitoRegisterSchema = yup.object().shape({
+  username: yup.string().required("To pole jest wymagane"),
   email: yup
     .string()
+    .email("Email posiada nie własciwą konstrukcję - @gmail.com")
+    .required("To pole jest wymagane"),
+  password: yup
+    .string()
+    .min(8, "Hasło musi się składać z minimum 8 znaków")
+    .required("To pole jest wymagane"),
+  passwordConfirmation: yup
+    .string()
     .required("To pole jest wymagane")
-    .email("Email posiada nie własciwą konstrukcję - @gmail.com"),
+    .oneOf([yup.ref("password"), null], "Hasła muszą być takie same"),
+  name: yup.string().required("To pole jest wymagane"),
+  family_name: yup.string().required("To pole jest wymagane"),
+  birthdate: yup.string().required("To pole jest wymagane").max(10),
+});
+
+export const loginSchema = yup.object().shape({
+  email: yup.string().required("To pole jest wymagane"),
   password: yup
     .string()
     .min(6, "Hasło musi się składać z minimum 6 znaków")

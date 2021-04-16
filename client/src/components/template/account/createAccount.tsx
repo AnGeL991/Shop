@@ -8,7 +8,6 @@ export const CreateAccount: FC = () => {
       <div className='login__createTitle'>
         <Header title="Create Account" />
       </div>
-
       <div className="login__createAccount">
         <p className="login__description">
           Don't have an account yet? <br />

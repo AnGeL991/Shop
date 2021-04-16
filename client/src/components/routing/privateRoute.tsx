@@ -13,7 +13,6 @@ export const PrivateRoute = (props: PrivateRouteProps) => {
   const { isAuthenticated } = useSelector(
     (store: ApplicationState) => store.user
   );
-
   const RenderProps = useMemo(
     () => (props: any) =>
       isAuthenticated ? (

@@ -14,6 +14,7 @@ export interface IFieldIndput {
   type?: string;
   placeholder?: string;
   required?: boolean;
+  default?: string;
   auto?: string;
   title?: string;
   value?: string | number;
@@ -43,7 +44,14 @@ export interface IUser {
   regulations?: boolean;
   newsletter?: boolean;
 }
-
+export interface IAwsUser {
+  username?: string;
+  password?: string;
+  email?: string;
+  birthdate?: string;
+  name?: string;
+  family_name?: string;
+}
 export interface Account {
   email: string;
   password: string;

@@ -12,7 +12,5 @@ export const useAccountLogic = () => {
     dispatch(userActions.userLogout());
   }
 
-  const user = data[0];
-
-  return { user, isAuthenticated, handleLogout };
+  return { data, isAuthenticated, handleLogout };
 };

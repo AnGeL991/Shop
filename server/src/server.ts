@@ -4,7 +4,7 @@ import cors from 'cors';
 import { info, config } from './config';
 import { connectToDb } from './database';
 import { loggingMiddleware } from './middlewares';
-import routes from './routes';
+import router from './routes';
 
 const NAMESPACE = 'Server';
 const app = express();
@@ -28,7 +28,7 @@ app.use(cors());
 app.use(loggingMiddleware);
 
 // routes
-app.use('/api', routes);
+app.use('/api', router);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '../client/build/index.html'));

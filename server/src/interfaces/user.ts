@@ -1,6 +1,6 @@
 import { Document, Model } from 'mongoose';
 
-export interface IUser extends Document {
+export interface IUser {
   email: string;
   password: string;
   firstName?: string;
@@ -8,13 +8,13 @@ export interface IUser extends Document {
   newsletter?: boolean;
   regulations?: Boolean;
   role: string;
-  _id?: string;
 }
-
-export interface IUserModel extends Model<IUser> {
+export interface IUserDocument extends IUser, Document {
+  comparePassword(candidatePassword: string): boolean;
+}
+export interface IUserModel extends Model<IUserDocument> {
   addUser(User: IUser): Promise<void>;
   deleteUser(UserId: string): Promise<void>;
   updateUser(UserId: string, props: IUser): Promise<void>;
-  updateHashedPassword(password: string): Promise<void>;
-  comparePassword(candidatePassword: string): Promise<void>;
+  updateHashedPassword(id: string, password: string): Promise<void>;
 }

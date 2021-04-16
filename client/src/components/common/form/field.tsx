@@ -14,6 +14,7 @@ export const Field: FC<IFieldIndput> = ({
   title,
   auto = "on",
   error,
+  
 }) => {
   const Label = useMemo(() => (required ? title + " *" : title), [
     required,
@@ -37,7 +38,7 @@ export const Field: FC<IFieldIndput> = ({
           ref={reference}
           placeholder={placeholder}
         />
-        <p className="error">{error?.message}</p>
+        {error &&<p className="error">{error.message}</p>}
       </div>
     </div>
   );

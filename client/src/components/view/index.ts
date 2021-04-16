@@ -4,7 +4,7 @@ export { Login } from "./account/login";
 export { Registration } from "./account/registration";
 export { Wish } from "./wish/wish";
 export { PageNoFound } from "./pageNoFound/pageNoFound";
-export { Media } from "./media/media";
+export { Media } from "./media/media"; // wyciągnąc do indexu
 export { AboutUs } from "./aboutUs/aboutUs";
 export { Account } from "./account/account";
 export { Order } from "./order/order";

@@ -12,7 +12,7 @@ export const PaymentComment: FC<PaymentCommentProps> = ({
   onChange,
 }) => {
   return (
-    <article className="comment">
+    <article >
       <h4 className="comment__title">Your Comment</h4>
       <TextArea
         value={inputComment}
