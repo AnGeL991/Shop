@@ -1,60 +1,48 @@
-import AWS from 'aws-sdk';
-import { Response } from 'express';
+import fetch from 'node-fetch';
 import { config } from '../config';
-import { HashSecret, errorHandler, ResponseProcessor } from '../utils';
+import { createBase64 } from '../utils';
+import qs from 'qs';
 
-const { apiVersion, region, ClientId } = config.awsConfig;
-const awsConfig = { apiVersion, region };
-
-const cognitoIdentity = new AWS.CognitoIdentityServiceProvider(awsConfig);
+const { client_id, domain, redirect_uri, grant_type } = config.awsConfig;
 
 export default class CognitoService {
-  static async signUpUser(res: Response, Username: string, Password: string, UserAttributes: Array<any>) {
-    const params = {
-      ClientId,
-      Password,
-      Username,
-      SecretHash: HashSecret(Username, ClientId),
-      UserAttributes
-    };
-    errorHandler(res, cognitoIdentity.signUp(params).promise(), 200, 400);
-  }
-
-  static async signInUser(res: Response, Username: string, password: string) {
-    const params = {
-      AuthFlow: 'USER_PASSWORD_AUTH',
-      ClientId: ClientId,
-      AuthParameters: {
-        USERNAME: Username,
-        PASSWORD: password,
-        SECRET_HASH: HashSecret(Username, ClientId)
-      }
+  static postToken = async (code: any) => {
+    let url = `${domain}/oauth2/token`;
+    let params = {
+      grant_type,
+      client_id,
+      redirect_uri,
+      code
     };
     try {
-      const result = await cognitoIdentity.initiateAuth(params).promise();
-      if (!result.AuthenticationResult) return ResponseProcessor(res, 401, { result });
-      return ResponseProcessor(res, 200, { token: result.AuthenticationResult.IdToken });
-    } catch (err) {
-      return ResponseProcessor(res, 401, { error: err.message });
+      const base64 = createBase64();
+      const response = await fetch(url, {
+        method: 'POST',
+        body: qs.stringify(params),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Authorization: `Basic ${base64}`
+        }
+      });
+      console.log(response);
+      if (response.ok) {
+        const { access_token } = await response.json();
+        return access_token;
+      }
+    } catch (error) {
+      console.log(error.message);
     }
-  }
+  };
 
-  static async forgotPassword(res: Response, Username: string) {
-    let params = {
-      ClientId,
-      Username,
-      SecretHash: HashSecret(Username, ClientId)
-    };
-    errorHandler(res, cognitoIdentity.forgotPassword(params).promise(), 200, 400);
-  }
-  static async confirmNewPassword(res: Response, Username: string, Password: string, code: string) {
-    let params = {
-      ClientId,
-      ConfirmationCode: code,
-      Username,
-      Password,
-      SecretHash: HashSecret(Username, ClientId)
-    };
-    errorHandler(res, cognitoIdentity.confirmForgotPassword(params).promise(), 200, 400);
-  }
+  static getUserInfo = async (accessToken: string) => {
+    const url = `${domain}/oauth2/userInfo`;
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
+    const { email } = await response.json();
+    return email;
+  };
 }

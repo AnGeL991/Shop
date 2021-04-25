@@ -38,7 +38,7 @@ const App: FC<MainProps> = ({ history }) => {
       <MainLayout>
         <TelegramButton {...{ handleToggle }} />
         <iframe
-          src="http://localhost:3001"
+          src="http://localhost:80"
           title="widget Chat"
           className={`webChat ${open && "webChat--active"}`}
         />

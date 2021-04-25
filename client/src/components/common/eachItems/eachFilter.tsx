@@ -1,5 +1,5 @@
-import { FC, ReactNode } from 'react';
-import { ReadMore } from 'components/common';
+import { FC, ReactNode } from "react";
+import { ReadMore } from "components/template";
 
 type EachFilterProps = {
   children: ReactNode;

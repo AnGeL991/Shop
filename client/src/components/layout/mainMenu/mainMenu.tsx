@@ -1,18 +1,12 @@
 import { FC } from "react";
-import {
-  Logo,
-  Search,
-  Basket,
-  Best,
-  Support,
-  Delivery,
-} from "components/common";
+import { Logo, Search, Best, Support, Delivery } from "components/common";
 import {
   MobileNavCategories,
   MobileNav,
   Account,
   Nav,
   NavCategories,
+  Basket,
 } from "components/template";
 import { useGetState } from "_hooks";
 import "./style/mainMenu.scss";
@@ -37,7 +31,7 @@ export const MainMenu: FC = () => {
       </div>
       <div className="header__bottom">
         <MobileNavCategories />
-        <NavCategories/>
+        <NavCategories />
         <Nav />
         <div className="header__bottomIcons">
           <MobileNav />

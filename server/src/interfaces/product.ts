@@ -1,5 +1,12 @@
 import { Document, Model } from 'mongoose';
 
+export interface IComment {
+  name: string;
+  body: string;
+  email: string;
+  star: number;
+  date: Date;
+}
 export interface IProduct extends Document {
   title: string;
   image: string;
@@ -11,17 +18,10 @@ export interface IProduct extends Document {
   color?: string;
   description: string;
   category: string;
-  comment?: Array<{ name: string; body: string; email: string; star: number }>;
+  comment?: Array<IComment>;
   tags?: Array<string>;
 }
 
-export interface IComment {
-  name: string;
-  body: string;
-  email: string;
-  star: number;
-  date: Date;
-}
 export interface IProductModel extends Model<IProduct> {
   createNewFromRequestBody(product: IProduct): Promise<void>;
   findAllProduct(): Promise<void>;

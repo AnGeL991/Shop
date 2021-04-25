@@ -1,64 +1,42 @@
 import { Reducer } from "redux";
 import { UserActionType, UserState } from "./types";
+import { UserReduxProcess } from "./userLogic";
 
 const initialState: UserState = {
-  cognito: false,
-  token: localStorage.getItem("Token"),
+  token: JSON.parse(localStorage.getItem("Token") || ""),
   isAuthenticated: false,
   loading: false,
   data: {},
+  orders: [],
+  wish: [],
 };
 
 const {
-  USE_COGNITO,
   USER_LOADED,
   USER_LOADING,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGOUT,
+  USER_ORDERS,
+  USER_WISH,
 } = UserActionType;
 
 const reducer: Reducer<UserState> = (state = initialState, action) => {
   switch (action.type) {
     case USER_LOADING:
-      return {
-        ...state,
-        loading: true,
-      };
+      return UserReduxProcess.userLoading(state, action);
     case USER_LOADED:
-      return {
-        ...state,
-        isAuthenticated: true,
-        loading: false,
-        data: action.payload,
-      };
+      return UserReduxProcess.userLoaded(state, action);
     case LOGIN_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
+      return UserReduxProcess.loginRequest(state, action);
     case LOGIN_SUCCESS:
-      return {
-        ...state,
-        ...action.payload,
-        isAuthenticated: true,
-        loading: false,
-        error: null,
-      };
+      return UserReduxProcess.loginSuccess(state, action);
     case LOGOUT:
-      localStorage.removeItem("Token");
-      return {
-        ...state,
-        token: null,
-        isAuthenticated: false,
-        data: [],
-        loading: false,
-      };
-    case USE_COGNITO:
-      return {
-        ...state,
-        cognito: action.payload,
-      };
+      return UserReduxProcess.logout(state, action);
+    case USER_ORDERS:
+      return UserReduxProcess.userOrders(state, action);
+    case USER_WISH:
+      return UserReduxProcess.userWish(state, action);
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { ReadMore } from "components/common";
+import { ReadMore } from "components/template";
 
 export const Policy: FC = () => {
   return (

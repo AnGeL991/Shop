@@ -33,13 +33,14 @@ export enum PaymentActionType {
   ADD_PAYMENT_STATUS = "ADD_PAYMENT_STATUS",
   ADD_DELIVERY_OPTION = "ADD_DELIVERY_OPTION",
   ADD_PRODUCT_PAYMENT = "ADD_PRODUCT_PAYMENT",
+  ADD_TOTAL_PRICE_PAYMENT = "ADD_TOTAL_PRICE_PAYMENT",
   ADD_COMMENT_PAYMENT = "ADD_COMMENT_PAYMENT",
   ADD_ORDER_ID = "ADD_ORDER_ID",
   ACCEPT_REGULATION = "ACCEPT_REGULATION ",
 }
 
 export interface PaymentState {
-  orderId: string | number;
+  id: string | number;
   paymentStatus: { method: string; paid: boolean; id?: string };
   delivery: Delivery;
   deliveryCost: { methodPayment: string; cost: number };
@@ -47,5 +48,6 @@ export interface PaymentState {
   regulations: boolean;
   loading?: boolean;
   products: Inventory[];
+  totalPayment: number;
   errors?: string | null;
 }

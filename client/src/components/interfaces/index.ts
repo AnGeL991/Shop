@@ -6,6 +6,7 @@ export interface MatchProps
   extends RouteComponentProps<{
     token: string;
     id: string;
+    id_token: string;
   }> {}
 
 // inputs
@@ -36,11 +37,15 @@ export interface IDeliveryOption {
 
 //acount
 export interface IUser {
+  _id?: string;
   firstName?: string;
   lastName?: string;
   email?: string;
   password?: string;
   passwordConfirmation?: string;
+  accountStatus?: number;
+  ordersId?: Array<string>;
+  wishId?: Array<string>;
   regulations?: boolean;
   newsletter?: boolean;
 }

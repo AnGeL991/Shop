@@ -24,22 +24,22 @@ const {
 const reducer: Reducer<CartState> = (state = initialState, action) => {
   switch (action.type) {
     case START_LOAD_CART: {
-      return { ...state, loading: true, items: [] };
+      return CartReduxProcesses.startLoad(state, action);
     }
     case END_LOAD_CART: {
       return CartReduxProcesses.loadOrders(state, action);
     }
     case ERROR_LOAD_CART: {
-      return { ...state, loading: false, errors: action.payload };
+      return CartReduxProcesses.errorLoad(state, action);
     }
     case ADD_TO_CART_REQUEST: {
-      return { ...state, loading: true };
+      return CartReduxProcesses.addRequest(state, action);
     }
     case ADD_TO_CART: {
       return CartReduxProcesses.addToOrder(state, action);
     }
     case ADD_TO_CART_FAILURE: {
-      return { ...state, errors: action.payload };
+      return CartReduxProcesses.addFailure(state, action);
     }
     case UPDATE_CART_AMOUNT: {
       return CartReduxProcesses.updateOrderAmount(state, action);

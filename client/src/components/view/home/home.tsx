@@ -11,6 +11,7 @@ import {
 } from "components/template";
 
 export const Home: FC = () => {
+
   return (
     <section>
       <SlideBanner />

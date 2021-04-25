@@ -22,8 +22,8 @@ export const Carousell: FC<ICarousell> = ({
     <section className="carousel">
       <header className="carousel__header">
         <h1 className="carousel__title">{title}</h1>
-        <ArrowLeft size="24" onClick={prev} />
-        <ArrowRight size="24" onClick={next} />
+        <ArrowLeft size="24" onClick={prev} className='carousel__arrow' />
+        <ArrowRight size="24" onClick={next} className='carousel__arrow' />
       </header>
       <div
         className="carousel__slide"

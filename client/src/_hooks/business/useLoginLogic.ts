@@ -11,6 +11,7 @@ export const useLoginLogic = (to?: string, token?: string) => {
   const { alert, user } = useGetState();
   const { type, message } = alert;
   const { isAuthenticated } = user;
+
   const submit = (user: Account) =>
     onSubmit(userActions.Login, [user.email, user.password, to]);
 

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Telegram from "telegram.svg";
+import {SVG} from "svg";
 import "./style/style.scss";
 
 interface ITelegramButton {
@@ -9,7 +9,7 @@ interface ITelegramButton {
 export const TelegramButton: FC<ITelegramButton> = ({ handleToggle }) => {
   return (
     <img
-      src={Telegram}
+      src={SVG.TELEGRAM}
       alt="telegram button"
       onClick={handleToggle}
       className="telegram"

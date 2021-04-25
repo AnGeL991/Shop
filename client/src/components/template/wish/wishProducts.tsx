@@ -5,12 +5,11 @@ import "./style/wishProduct.scss";
 
 interface IWishProducts  {
   data: Array<Inventory>;
-  removeWish: (id: string) => void;
 };
 
-export const WishProducts: FC<IWishProducts> = ({ data, removeWish }) => {
+export const WishProducts: FC<IWishProducts> = ({ data }) => {
   const wishes = data.map((el) => (
-    <WishItem key={el._id} onClick={removeWish} item={el} />
+    <WishItem key={el._id} item={el} />
   ));
 
   return <section className="wish">{wishes}</section>;

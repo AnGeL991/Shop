@@ -15,6 +15,7 @@ const {
   acceptPaymentRegulation,
   addPaymentStatus,
   addProductPayment,
+  addTotalPricePayment,
   addOrderId,
   paymentLoad,
 } = PaymentActions;
@@ -41,6 +42,9 @@ export default class Payment {
 
   static setOrderToPayment(order: Inventory[]) {
     return addProductPayment(order);
+  }
+  static setTotalPricePayment(totalPrice: number) {
+    return addTotalPricePayment(totalPrice);
   }
   static setAdressPayment(adressDelivery: Delivery) {
     return addPaymentAdress(adressDelivery);

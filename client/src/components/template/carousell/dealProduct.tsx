@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { GalerySlider } from "components/template";
-import { DealButtons, Stars } from "components/common";
+import { GalerySlider, DealButtons } from "components/template";
+import { Stars } from "components/common";
 import { Inventory } from "components/interfaces";
 import { useProductBoxLogic } from "_hooks";
 
@@ -43,10 +43,7 @@ export const Slide: FC<DealProps> = ({
         </div>
         <div className="deal__info">
           <h4 className="deal__title">{title}</h4>
-          <Stars
-            productId={item._id}
-            arrayOfStars={arrayOfStars}
-          />
+          <Stars productId={item._id} arrayOfStars={arrayOfStars} />
           <div className="deal__priceBox">
             <span className="deal__price"> ${discountPrice.toFixed(2)}</span>
             <span className="deal__oldPrice"> ${price.toFixed(2)}</span>

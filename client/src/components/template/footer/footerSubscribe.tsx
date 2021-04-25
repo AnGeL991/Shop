@@ -1,6 +1,6 @@
 import { useState, FC, ChangeEventHandler, ChangeEvent } from "react";
-import { ReadMore, Icons } from "components/common";
-
+import { Icons } from "components/common";
+import { ReadMore } from "components/template";
 export const Subscribe: FC = () => {
   const [value, setValue] = useState("");
 
@@ -11,21 +11,21 @@ export const Subscribe: FC = () => {
   };
 
   return (
-    <ReadMore title="Subscribe Now" className='footerReadMore'>
+    <ReadMore title="Subscribe Now" className="footerReadMore">
       <div>
         <p className="footer__subscribe">
           Subscribe to our newsletter get 10% off your first purchase at here
           for update
         </p>
-        <div className='footer__subscribeInput'>
-        <input
-          type="text"
-          className="footer__input"
-          onChange={handleChange}
-          value={value}
-          placeholder='Email'
-        />
-        <Icons.SendIcon size="28" className='footer__inputIcon' />
+        <div className="footer__subscribeInput">
+          <input
+            type="text"
+            className="footer__input"
+            onChange={handleChange}
+            value={value}
+            placeholder="Email"
+          />
+          <Icons.SendIcon size="28" className="footer__inputIcon" />
         </div>
       </div>
     </ReadMore>

@@ -1,8 +1,9 @@
 import { Reducer } from "redux";
 import { PaymentState, PaymentActionType } from "./types";
+import { PaymentReduxProcessor } from "./paymentLogic";
 
 export const initialState: PaymentState = {
-  orderId: "",
+  id: "",
   paymentStatus: { method: "", paid: false },
   delivery: {
     email: "",
@@ -18,6 +19,7 @@ export const initialState: PaymentState = {
   },
   deliveryCost: { methodPayment: "", cost: 0 },
   comment: "",
+  totalPayment: 0,
   regulations: false,
   loading: false,
   products: [],
@@ -32,6 +34,7 @@ const {
   ADD_DELIVERY_OPTION,
   ACCEPT_REGULATION,
   ADD_COMMENT_PAYMENT,
+  ADD_TOTAL_PRICE_PAYMENT,
   ADD_ORDER_ID,
   PAYMENT_LOAD,
 } = PaymentActionType;
@@ -39,34 +42,34 @@ const {
 const reducer: Reducer<PaymentState> = (state = initialState, action) => {
   switch (action.type) {
     case PAYMENT_LOAD: {
-      return { ...state, ...action.payload };
+      return PaymentReduxProcessor.paymentLoad(state, action);
     }
     case ADD_PAYMENT_ADDRESS: {
-      return { ...state, delivery: action.payload, loading: false };
+      return PaymentReduxProcessor.addAdress(state, action);
     }
     case ADD_DELIVERY_ADDRESS: {
-      return { ...state };
+      return PaymentReduxProcessor.addDeliveryAdress(state, action);
     }
     case ADD_PAYMENT_STATUS: {
-      return {
-        ...state,
-        paymentStatus: { ...state.paymentStatus, ...action.payload },
-      };
+      return PaymentReduxProcessor.addPaymentStatus(state, action);
     }
     case ADD_PRODUCT_PAYMENT: {
-      return { ...state, products: [...action.payload] };
+      return PaymentReduxProcessor.addPaymentProduct(state, action);
+    }
+    case ADD_TOTAL_PRICE_PAYMENT: {
+      return PaymentReduxProcessor.addPaymentTotalPrice(state, action);
     }
     case ADD_DELIVERY_OPTION: {
-      return { ...state, deliveryCost: action.payload };
+      return PaymentReduxProcessor.addDeliveryOption(state, action);
     }
     case ACCEPT_REGULATION: {
-      return { ...state, regulations: action.payload };
+      return PaymentReduxProcessor.acceptRegulation(state, action);
     }
     case ADD_COMMENT_PAYMENT: {
-      return { ...state, comment: action.payload };
+      return PaymentReduxProcessor.addComment(state, action);
     }
     case ADD_ORDER_ID: {
-      return { ...state, orderId: action.payload };
+      return PaymentReduxProcessor.addOrderId(state, action);
     }
     default:
       return state;

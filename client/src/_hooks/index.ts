@@ -10,7 +10,6 @@ export { useModalLogic } from "./generic/useModalLogic";
 export { useLoginLogic } from "./business/useLoginLogic";
 export { useProductPageLogic } from "./business/useProductPagaLogic";
 export { useChunkArray } from "./generic/useChunkArray";
-export { useWishLogic } from "./business/useWishLogic";
 export { useLoading } from "./generic/useLoading";
 export { useFormLogic } from "./generic/useFormLogic";
 export { useChecked } from "./generic/useChecked";

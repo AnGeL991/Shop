@@ -4,38 +4,41 @@ import { useFormLogic, useGetState } from "_hooks";
 import { history } from "_helpers";
 import { loadStripe } from "@stripe/stripe-js";
 import Payment from "_services/payment.service";
+import { UserApiHandler } from "_services/user.service";
+import { prepareTotalPrice } from "_helpers/utils";
 
 const StripePK: string = process.env.REACT_APP_STRIPE_PK!;
 const stripePromise = loadStripe(StripePK);
 
 export const usePaymentsLogic = () => {
+  const User = new UserApiHandler();
   const { onSubmit } = useFormLogic();
-  const { order, payment } = useGetState();
-
   const {
-    deliveryCost,
-    delivery,
-    paymentStatus,
-    orderId,
-    regulations,
-  } = payment;
+    order: { items },
+    payment,
+    user: { token },
+  } = useGetState();
+
+  const { deliveryCost, delivery, paymentStatus, id, regulations } = payment;
 
   useEffect(() => {
-    if (orderId !== "" || paymentStatus.id)
+    if (id !== "" || paymentStatus.id)
       localStorage.setItem("Payment", JSON.stringify(payment));
-  }, [orderId, paymentStatus]);
+  }, [id, paymentStatus]);
 
   const [error, setError] = useState({ message: "" });
 
   function SetOrderToPayment() {
-    onSubmit(Payment.setOrderToPayment, [order.items]);
+    const totalPrice = prepareTotalPrice(items);
+    onSubmit(Payment.setTotalPricePayment, [totalPrice]);
+    onSubmit(Payment.setOrderToPayment, [items]);
   }
 
   const handleCheckout = async () => {
     if ((paymentStatus.method = "transfer")) {
       const session = await Payment.setPaymentIntent(
         delivery.email,
-        order.items,
+        items,
         deliveryCost.cost
       );
       onSubmit(Payment.setPaymentStatus, [{ id: session.id }]);
@@ -61,6 +64,9 @@ export const usePaymentsLogic = () => {
     } else {
       handleCheckout();
       const result = await Payment.sendOrder(payment);
+      if (token && result) {
+        await User.addOrder(token, result._id);
+      }
       onSubmit(Payment.setOrderId, [result.id]);
       history.push(`/checkout/payment/${result.id}`);
     }
@@ -68,11 +74,11 @@ export const usePaymentsLogic = () => {
 
   const handleConfirm = async () => {
     localStorage.setItem("Payment", "[]");
-    await Payment.confirmOrder(`${payment.orderId}`);
+    await Payment.confirmOrder(`${payment.id}`);
   };
 
   const handleConfirmYourOrder = () => {
-    history.push(`/success/${orderId}`);
+    history.push(`/success/${id}`);
   };
 
   return {

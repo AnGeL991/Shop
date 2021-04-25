@@ -1,6 +1,7 @@
 import { FC, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Icons, Circle, BasketProduct, Button } from "components/common";
+import { Icons, Circle, Button } from "components/common";
+import { BasketProduct } from "components/template";
 import { useBasketLogic } from "./hooks/useBasketLogic";
 import { useToggleClick } from "_hooks/";
 import { Inventory } from "store/inventory";

@@ -1,6 +1,6 @@
 import { FC } from "react";
-import {Icons}from 'components/common';
-import { ReadMore } from "components/common";
+import { Icons } from "components/common";
+import { ReadMore } from "components/template";
 import { useChangeAmountLogic } from "_hooks";
 
 type OrderProductProps = {
@@ -26,7 +26,7 @@ export const Item: FC<OrderProductProps> = ({
 
   const currentPrice =
     discount !== 0 ? price - (price * discount) / 100 : price;
-    
+
   return (
     <div className="orderProduct__wrapper">
       <div className="orderProduct__image">

@@ -5,6 +5,9 @@ export interface IUser {
   password: string;
   firstName?: string;
   lastName?: string;
+  ordersId: Array<string>;
+  accountStatus: number | string;
+  wishId: Array<string>;
   newsletter?: boolean;
   regulations?: Boolean;
   role: string;
@@ -17,4 +20,7 @@ export interface IUserModel extends Model<IUserDocument> {
   deleteUser(UserId: string): Promise<void>;
   updateUser(UserId: string, props: IUser): Promise<void>;
   updateHashedPassword(id: string, password: string): Promise<void>;
+  updateOrder(id: string, orderId: string): Promise<void>;
+  updateWish(id: string, wishId: string): Promise<void>;
+  updateStatus(id: string, status: string | number): Promise<void>;
 }

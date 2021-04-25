@@ -6,7 +6,6 @@ import Product from './models/product';
 import { IItems } from './interfaces/stripe';
 import { IProduct } from './interfaces/product';
 import Order from './models/order';
-import crypto from 'crypto';
 
 export const Validate = (req: Request, res: Response) => {
   const errors = validationResult(req);
@@ -98,9 +97,6 @@ export const prepareOrderId = async () => {
   }
 };
 
-export const HashSecret = (username: string, clientId: string) => {
-  return crypto
-    .createHmac('SHA256', config.awsConfig.secretHash)
-    .update(username + clientId)
-    .digest('base64');
+export const createBase64 = () => {
+  return Buffer.from(config.awsConfig.client_id + ':' + config.awsConfig.secretId).toString('base64');
 };

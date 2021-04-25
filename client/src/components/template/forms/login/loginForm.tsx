@@ -1,21 +1,19 @@
 import { FC, useMemo } from "react";
-import { Link,Redirect } from "react-router-dom";
-import { Button, Field, WrongLabel } from "components/common";
-import { CreateAccount, AwsModal } from "components/template";
+import { Link, Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Button, Field, WrongLabel, AwsButton } from "components/common";
+import { CreateAccount } from "components/template";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../validateSchema";
 import { useLoginLogic } from "_hooks";
-import { FacebookButton } from "../facebook";
 import "./loginForm.scss";
 
 type LoginFormProps = {
   to?: string;
 };
 
-
 export const LoginForm: FC<LoginFormProps> = ({ to }) => {
-  const { submit, message, type,isAuthenticated } = useLoginLogic(to);
+  const { submit, message, type, isAuthenticated } = useLoginLogic(to);
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
@@ -25,9 +23,9 @@ export const LoginForm: FC<LoginFormProps> = ({ to }) => {
     message,
     type,
   ]);
-  
-  if(isAuthenticated) {
-    return <Redirect to='/myAccount'/>
+
+  if (isAuthenticated) {
+    return <Redirect to="/myAccount" />;
   }
   return (
     <section className="login">
@@ -62,8 +60,13 @@ export const LoginForm: FC<LoginFormProps> = ({ to }) => {
         <div className="login__otherWay">
           <span>Or</span>
         </div>
-        <AwsModal />
-        <FacebookButton />
+        <AwsButton icon>
+          <a href="https://shop.auth.eu-west-2.amazoncognito.com/login?response_type=token&client_id=7r47kh0gdld9pi8o4f3dkjfudh&redirect_uri=http://localhost:3000/login"
+            className='a'
+          >
+            Login with cognito
+          </a>
+        </AwsButton>
       </article>
       <CreateAccount />
     </section>

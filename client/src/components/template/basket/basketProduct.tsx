@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { Icons, ReadMore } from "components/common";
+import { Icons } from "components/common";
+import { ReadMore } from "components/template";
 import { Inventory } from "components/interfaces";
 import { useChangeAmountLogic, useProductBoxLogic } from "_hooks";
-
 
 type BasketProps = {
   item: Inventory;

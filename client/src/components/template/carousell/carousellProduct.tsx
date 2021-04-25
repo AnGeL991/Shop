@@ -1,6 +1,5 @@
 import { FC } from "react";
-import { Carousell } from "components/template";
-import { ProductBox } from "components/common";
+import { Carousell, ProductBox } from "components/template";
 import { Inventory } from "components/interfaces";
 import { useChangeSlider } from "_hooks";
 

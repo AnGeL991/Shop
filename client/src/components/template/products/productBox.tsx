@@ -1,22 +1,20 @@
 import { FC } from "react";
-import { Tag, DealButtons, Stars } from "components/common";
+import { Tag, Stars } from "components/common";
+import { DealButtons } from "components/template";
 import { useProductBoxLogic } from "_hooks";
 import { Inventory } from "store/inventory";
 import "./style/productBox.scss";
-
-
 
 interface IProductBox {
   item: Inventory;
 }
 
-export const ProductBox: FC<IProductBox> = ({item }) => {
-
+export const ProductBox: FC<IProductBox> = ({ item }) => {
   const {
     addProductToOrder,
     discountPrice,
     addProductToWish,
-    arrayOfStars
+    arrayOfStars,
   } = useProductBoxLogic(item);
 
   const tag = item.tags ? (
@@ -55,7 +53,7 @@ export const ProductBox: FC<IProductBox> = ({item }) => {
       </div>
       <div className="productBox__info">
         <div>
-          <Stars  productId={item._id} arrayOfStars={arrayOfStars} />
+          <Stars productId={item._id} arrayOfStars={arrayOfStars} />
         </div>
         <h5 className="productBox__title">{item.title}</h5>
         <span className="productBox__price">{price}</span>

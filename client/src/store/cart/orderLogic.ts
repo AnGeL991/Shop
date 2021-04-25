@@ -1,14 +1,10 @@
 import { AnyAction } from "redux";
 import { Inventory } from "store/inventory";
 import { CartState } from "./types";
-
+import { prepareTotalPrice } from "_helpers/utils";
 class CartPrepare {
   static getTotal(items: Inventory[]) {
-    return items.reduce((total, item) => {
-      return (
-        total + item.amount * (item.price - (item.price * item.discount) / 100)
-      );
-    }, 0);
+    return prepareTotalPrice(items);
   }
   static getAmount(items: Array<Inventory>) {
     return items.reduce((amount, item) => {
@@ -38,6 +34,9 @@ class CartPrepare {
 }
 
 export default class CartReduxProcesses {
+  static startLoad(state: CartState, action: AnyAction) {
+    return { ...state, loading: true, items: [] };
+  }
   static loadOrders(state: CartState, action: AnyAction) {
     const amount = CartPrepare.getAmount(action.payload);
     const total = CartPrepare.getTotal(action.payload);
@@ -50,7 +49,12 @@ export default class CartReduxProcesses {
       totalPrice: total,
     };
   }
-
+  static errorLoad(state: CartState, action: AnyAction) {
+    return { ...state, loading: false, errors: action.payload };
+  }
+  static addRequest(state: CartState, action: AnyAction) {
+    return { ...state, loading: true };
+  }
   static addToOrder(state: CartState, action: AnyAction) {
     const { items, count } = state;
     const { _id, price, amount, discount } = action.payload;
@@ -75,6 +79,9 @@ export default class CartReduxProcesses {
       items: [...items, action.payload],
       totalPrice: total + dicountPrice,
     };
+  }
+  static addFailure(state: CartState, action: AnyAction) {
+    return { ...state, errors: action.payload };
   }
 
   static updateOrderAmount(state: CartState, action: AnyAction) {

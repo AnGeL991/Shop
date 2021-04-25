@@ -3,16 +3,15 @@ import { IUserDocument, IUserModel } from '../interfaces/user';
 import bcryptjs from 'bcryptjs';
 import { response } from 'express';
 
-const Salt = 10;
-// https://tomanagle.medium.com/strongly-typed-models-with-mongoose-and-typescript-7bc2f7197722
-// jak otypować static
-
 const UserSchema = new Schema<IUserDocument, IUserModel>(
   {
     email: { type: String, required: true, trim: true, unique: true },
     firstName: { type: String },
     lastName: { type: String },
     password: { type: String },
+    accountStatus: { type: Number, default: 0 },
+    ordersId: { type: Array, default: [] },
+    wishId: { type: Array, default: [] },
     newsletter: { type: Boolean },
     regulations: { type: Boolean, required: true },
     role: { type: String, default: 'Client' }
@@ -22,7 +21,7 @@ const UserSchema = new Schema<IUserDocument, IUserModel>(
   }
 );
 
-UserSchema.statics.addUser = async function (userToAdd: IUserDocument) {
+UserSchema.statics.addUser = async function (userToAdd: IUserDocument | { email: string; regulations: boolean }) {
   const user = new this(userToAdd);
   return await user.save();
 };
@@ -30,7 +29,7 @@ UserSchema.statics.addUser = async function (userToAdd: IUserDocument) {
 UserSchema.pre('save', async function (this: IUserDocument) {
   let user = this;
   try {
-    const salt = await bcryptjs.genSalt(Salt);
+    const salt = await bcryptjs.genSalt(10);
     const hashedPassword = await bcryptjs.hash(user.password, salt);
     user.password = hashedPassword;
   } catch (err) {
@@ -49,6 +48,15 @@ UserSchema.statics.updateHashedPassword = async function (id: string, password: 
   const salt = await bcryptjs.genSalt(10);
   const newPassword = await bcryptjs.hash(password, salt);
   await this.findByIdAndUpdate(id, { password: newPassword });
+};
+UserSchema.statics.updateOrder = async function (id: string, ordersId: string) {
+  return await this.findOneAndUpdate({ _id: id }, { $addToSet: { ordersId } });
+};
+UserSchema.statics.updateWish = async function (id: string, wishId: string) {
+  return await this.findOneAndUpdate({ _id: id }, { $addToSet: { wishId } });
+};
+UserSchema.statics.updateStatus = async function (id: string, accountStatus: string | number) {
+  return await this.findOneAndUpdate({ _id: id }, { accountStatus });
 };
 
 const UserModel = model<IUserDocument, IUserModel>('User', UserSchema);

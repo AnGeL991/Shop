@@ -23,6 +23,7 @@ const OrderSchema: Schema = new Schema({
     email: { type: String },
     city: { type: String }
   },
+  totalPayment: { type: Number, default: 0 },
   regulations: { type: Boolean, required: true },
   products: [ProductSchema],
   confirm: { type: Boolean, default: false }

@@ -6,13 +6,22 @@ export interface IOrder extends Document {
   status: string;
   comment: string;
   deliveryCost: number;
-  delivery: object;
+  delivery: {
+    firstName: string;
+    surName: string;
+    street: string;
+    postCode: string;
+    phone: number;
+    email: string;
+    city: string;
+  };
+  totalPayment: number;
   regulations: boolean;
   products: Array<IProduct>;
 }
 
 export interface IOrderModel extends Model<IOrder> {
-  createNewFromRequestBody(product: IOrder, id: number | string): Promise<void>;
+  createNewFromRequestBody(product: IOrder, id: number | string): Promise<any>;
   getLength(): Promise<number>;
   confirmOrder(id: string): Promise<void>;
 }

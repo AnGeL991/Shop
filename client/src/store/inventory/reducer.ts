@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 import { InventoryActionTypes, InventoryState } from "./types";
-
+import { InventoryReduxProcesses } from "./inventoryLogic";
 export const initialState: InventoryState = {
   loading: false,
   errors: undefined,
@@ -27,31 +27,31 @@ const {
 const reducer: Reducer<InventoryState> = (state = initialState, action) => {
   switch (action.type) {
     case START_REQUEST: {
-      return { ...state, loading: true };
+      return InventoryReduxProcesses.startRequest(state, action);
     }
     case END_REQUEST: {
-      return { ...state, loading: false, data: action.payload };
+      return InventoryReduxProcesses.endRequest(state, action);
     }
     case ERROR_REQUEST: {
-      return { ...state, loading: false, errors: action.payload };
+      return InventoryReduxProcesses.errorRequest(state, action);
     }
     case SET_CATEGORY: {
-      return { ...state, category: action.payload };
+      return InventoryReduxProcesses.setCategory(state, action);
     }
     case SET_SEARCH_VALUE: {
-      return { ...state, search: action.payload };
+      return InventoryReduxProcesses.setSearch(state, action);
     }
     case SET_SORT_OPTION: {
-      return { ...state, sort: action.payload };
+      return InventoryReduxProcesses.setSortOption(state, action);
     }
     case SET_MAX_PRICE: {
-      return { ...state, maxPrice: action.payload };
+      return InventoryReduxProcesses.setMaxPrice(state, action);
     }
     case SET_MIN_PRICE: {
-      return { ...state, minPrice: action.payload };
+      return InventoryReduxProcesses.setMinPrice(state, action);
     }
     case SET_FILTER_PRICE: {
-      return { ...state, price: action.payload };
+      return InventoryReduxProcesses.setFilterPrice(state, action);
     }
     default: {
       return state;

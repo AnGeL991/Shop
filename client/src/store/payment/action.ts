@@ -13,6 +13,7 @@ const {
   ADD_PAYMENT_ADDRESS,
   ADD_PAYMENT_STATUS,
   ADD_PRODUCT_PAYMENT,
+  ADD_TOTAL_PRICE_PAYMENT,
   ADD_DELIVERY_OPTION,
   ADD_COMMENT_PAYMENT,
   ACCEPT_REGULATION,
@@ -26,6 +27,8 @@ export const addPaymentStatus = (status: IPaymentStatus) =>
   selector(ADD_PAYMENT_STATUS, status);
 export const addProductPayment = (productId: Inventory[]) =>
   selector(ADD_PRODUCT_PAYMENT, productId);
+export const addTotalPricePayment = (totalPrice: number) =>
+  selector(ADD_TOTAL_PRICE_PAYMENT, totalPrice);
 export const addDeliveryOption = (paymentWay: PaymentWay) =>
   selector(ADD_DELIVERY_OPTION, paymentWay);
 export const addDeliveryAdress = (data: Delivery) =>

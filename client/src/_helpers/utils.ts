@@ -3,6 +3,7 @@ import {
   deliveryCost,
   IPaymentInputs,
   IDeliveryOption,
+  Inventory,
 } from "components/interfaces";
 
 export const usePasswordStrength = (e: ChangeEvent<HTMLInputElement>) => {
@@ -81,4 +82,11 @@ export const prepareActiveStar = (stars?: Array<number>) => {
     );
   }
   return 0;
+};
+export const prepareTotalPrice = (items: Inventory[]) => {
+  return items.reduce((total, item) => {
+    return (
+      total + item.amount * (item.price - (item.price * item.discount) / 100)
+    );
+  }, 0);
 };

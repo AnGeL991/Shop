@@ -1,6 +1,5 @@
-import { IAwsUser, IUser } from "components/interfaces";
-
-export interface User extends IUser, IAwsUser {}
+import { Inventory, IUser } from "components/interfaces";
+import { PaymentState } from "store/payment";
 
 export enum UserActionType {
   LOGIN_REQUEST = "LOGIN_REQUEST",
@@ -8,12 +7,14 @@ export enum UserActionType {
   USER_LOADING = "USER_LOADING",
   USER_LOADED = "USER_LOADED",
   LOGOUT = "LOGOUT",
-  USE_COGNITO = "USE_COGNITO",
+  USER_ORDERS = "USER__ORDERS",
+  USER_WISH = "USER__WISH",
 }
 export interface UserState {
-  cognito: boolean;
   token: string | null;
   isAuthenticated: boolean;
   loading: boolean;
-  data: User;
+  data: IUser;
+  orders?: Array<PaymentState>;
+  wish?: Array<Inventory>;
 }

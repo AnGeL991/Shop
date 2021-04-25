@@ -1,10 +1,11 @@
 import { FC } from "react";
-import { ReadMore, Icons } from "components/common";
+import { Icons } from "components/common";
+import { ReadMore } from "components/template";
 
 export const Contact: FC = () => {
   const { Adress, LetterBomb, SupportIcon } = Icons;
   return (
-    <ReadMore title="Contact Us" className='footerReadMore'>
+    <ReadMore title="Contact Us" className="footerReadMore">
       <ul className="footer__subList">
         <li className="footer__eachSubList footer__eachSubList--contact">
           <Adress size="28" />

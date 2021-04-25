@@ -7,12 +7,15 @@ import "./style/wishProduct.scss";
 
 interface IWishItem {
   item: Inventory;
-  onClick: (id: string) => void;
 }
 
-export const WishItem: FC<IWishItem> = ({ onClick, item }) => {
+export const WishItem: FC<IWishItem> = ({ item }) => {
   const { amount, image, title, discount } = item;
-  const { addProductToOrder, discountPrice } = useProductBoxLogic(item);
+  const {
+    addProductToOrder,
+    discountPrice,
+    removeProductFromWish,
+  } = useProductBoxLogic(item);
 
   const status = useMemo(
     () => (amount ? <strong>In stock</strong> : <strong>out of stock</strong>),
@@ -58,7 +61,7 @@ export const WishItem: FC<IWishItem> = ({ onClick, item }) => {
             <Button
               darkButton
               className="wish__icon"
-              onClick={() => onClick(item._id)}
+              onClick={removeProductFromWish}
             >
               <Icons.BinIcon />
             </Button>

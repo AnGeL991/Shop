@@ -11,12 +11,12 @@ export const initData = () => {
       let products = await client(`products`, null);
       dispatch(actions.doneFetchingAppData(products.result));
       const userToken = localStorage.getItem("Token");
+
       if (!userToken) {
         throw new Error("token not saved");
       }
-      const { token, cognito } = JSON.parse(userToken);
-
-      dispatch(userActions.loadUser(token, cognito));
+      const token = JSON.parse(userToken);
+      dispatch(userActions.loadUser(token));
       const items = JSON.parse(localStorage.getItem("Cart") || "[]");
 
       dispatch(OrderProcess.loadOrderFromLocalStorage(items));

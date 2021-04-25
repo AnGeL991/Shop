@@ -2,6 +2,7 @@ import { FC, useMemo } from "react";
 import { Route, Switch } from "react-router-dom";
 import * as page from "./components/view";
 import { PrivateRoute } from "components/routing/privateRoute";
+import { TestAws } from "components/view/testAws";
 
 const {
   PageNoFound,
@@ -48,6 +49,7 @@ const routes = [
   { exact: true, path: "/checkout/payment/:id", component: Payment },
   { exact: true, path: "/success/:token", component: Success },
   { exact: true, path: "/canceled", component: Cancel },
+  { exact: true, path: "/oauth/cognito", component: TestAws },
   { exact: false, path: "*", component: PageNoFound },
 ];
 

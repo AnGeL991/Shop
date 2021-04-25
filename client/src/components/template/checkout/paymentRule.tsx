@@ -1,7 +1,8 @@
 import { FC, ChangeEvent, useMemo } from "react";
-import { FieldChecked, ReadMore } from "components/common";
+import { FieldChecked } from "components/common";
+import { ReadMore } from "components/template";
 import { paymentRule } from "db";
-import './style/paymentRule.scss';
+import "./style/paymentRule.scss";
 
 type PaymentRuleProps = {
   inputRules: { select: boolean; regulations: boolean; personal: boolean };

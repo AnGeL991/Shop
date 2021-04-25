@@ -14,6 +14,7 @@
     "@types/react-dom": "^17.0.0",
     "@types/react-redux": "^7.1.16",
     "@types/react-router-dom": "^5.1.7",
+    "aws-sdk": "^2.891.0",
     "connected-react-router": "^6.8.0",
     "gsap": "^3.6.0",
     "node-sass": "^5.0.0",

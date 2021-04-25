@@ -13,6 +13,11 @@ export const useProductBoxLogic = (item: Inventory) => {
     item,
   ]);
 
+  const removeProductFromWish = FactoryCallbackAction(
+    wishAction.removeProduct,
+    [item._id]
+  );
+
   const discountPrice =
     item.discount > 0
       ? item.price - (item.price * item.discount) / 100
@@ -36,5 +41,6 @@ export const useProductBoxLogic = (item: Inventory) => {
     addProductToWish,
     addProductToOrder,
     handleRedirectToProduct,
+    removeProductFromWish,
   };
 };

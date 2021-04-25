@@ -59,8 +59,13 @@ const SQMAIL = {
 const AWS__CONFIG = {
   apiVersion: '2016-04-18',
   region: 'eu-west-2',
-  secretHash: '1uk2rfska76uu4p3h6p9ssvsg8nlpkru75si97bv7ut3tsjd96nj',
-  ClientId: '3mevnbsqsid3nl1m9afe6ml274',
+  secretId: process.env.COGNITO_CLIENT_SECRET || '',
+  client_id: process.env.COGNITO_CLIENT_ID || '',
+  domain: process.env.COGNITO_DOMAIN_NAME_URL || '',
+  grant_type: process.env.COGNITO_LOGIN_GRANT_TYPE || '',
+  redirect_uri: process.env.COGNITO_LOGIN_REDIRECT_URL || '',
+  type: process.env.COGNITO_LOGIN_RESPONSE_TYPE || '',
+  logout: process.env.COGNITO_LOGOUT_REDIRECT_URL || '',
   userPoolId: 'eu-west-2_nTb9f0PDg'
 };
 
