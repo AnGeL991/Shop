@@ -68,8 +68,7 @@ export const PersonalData: FC<IPersonalData> = ({
               title="E-mail"
               name="email"
               value={email}
-              reference={register}
-              error={errors["email"]}
+              disable
             />
             <EachData
               title="Contacts Number"

@@ -3,7 +3,7 @@ import { UserActionType, UserState } from "./types";
 import { UserReduxProcess } from "./userLogic";
 
 const initialState: UserState = {
-  token: JSON.parse(localStorage.getItem("Token") || ""),
+  token: "",
   isAuthenticated: false,
   loading: false,
   data: {},
@@ -19,6 +19,7 @@ const {
   LOGOUT,
   USER_ORDERS,
   USER_WISH,
+  SET_TOKEN,
 } = UserActionType;
 
 const reducer: Reducer<UserState> = (state = initialState, action) => {
@@ -37,6 +38,8 @@ const reducer: Reducer<UserState> = (state = initialState, action) => {
       return UserReduxProcess.userOrders(state, action);
     case USER_WISH:
       return UserReduxProcess.userWish(state, action);
+    case SET_TOKEN:
+      return UserReduxProcess.setToken(state, action);
     default:
       return state;
   }

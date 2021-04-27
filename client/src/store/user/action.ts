@@ -19,6 +19,7 @@ const {
   USER_LOADED,
   USER_ORDERS,
   USER_WISH,
+  SET_TOKEN,
 } = UserActionType;
 
 export const userRequest = (type: UserActionType, user?: any) =>
@@ -29,7 +30,7 @@ export const userFailure = (type: UserActionType, error: string) =>
   selector(type, error);
 export const userOrders = (order: PaymentState[]) =>
   selector(USER_ORDERS, order);
-
+export const setToken = (token: string) => selector(SET_TOKEN, token);
 export const userWish = (wishItem: Inventory[]) =>
   selector(USER_WISH, wishItem);
 
@@ -40,6 +41,7 @@ export const loadUser = (token: string) => {
     dispatch(userRequest(USER_LOADING));
     try {
       const user = await load(token);
+      dispatch(setToken(token));
       dispatch(userSuccess(USER_LOADED, user.result));
     } catch (error) {
       dispatch(AlertAction.error(error.message));

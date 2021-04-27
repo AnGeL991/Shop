@@ -48,6 +48,12 @@ export class UserReduxProcess {
       error: null,
     };
   }
+  static setToken(state: UserState, action: AnyAction) {
+    return {
+      ...state,
+      token: action.payload,
+    };
+  }
   static logout(state: UserState, action: AnyAction) {
     localStorage.removeItem("Token");
     return {

@@ -26,13 +26,16 @@ export const UserOrders: FC<IOrders> = ({ active }) => {
     fetchOrder,
     handleChangeSorted,
     sortedBy,
+    orders,
   } = useOrdersLogic();
 
+ 
   useEffect(() => {
-    if (sortedOrder.length === 0) {
+    if (orders.length === 0 && (active || open)) {
       fetchOrder();
     }
-  }, []);
+  }, [active,open]);
+
 
   const yourOrders = useMemo(
     () =>
@@ -40,7 +43,7 @@ export const UserOrders: FC<IOrders> = ({ active }) => {
         ? sortedOrder.map((el, index) => (
             <EachOrder key={index} order={el} amount={amountOfProduct[index]} />
           ))
-        : [],
+        : [sortedOrder],
     [sortedOrder, amountOfProduct]
   );
 
@@ -55,11 +58,13 @@ export const UserOrders: FC<IOrders> = ({ active }) => {
     ) : (
       <Empty text="Your Orders list is empty" />
     );
+
   const Error = useMemo(() => {
     return (
       type === "ALERT_ERROR" && <span className="orders__error">{message}</span>
     );
   }, [type, message]);
+
 
   return (
     <section className={`orders ${active && "orders--active"} `}>

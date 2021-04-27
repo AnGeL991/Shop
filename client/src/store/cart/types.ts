@@ -9,6 +9,7 @@ export enum CartActionTypes {
   START_LOAD_CART = "START_LOAD_REQUEST",
   END_LOAD_CART = "END_LOAD_CART",
   ERROR_LOAD_CART = "ERROR_LOAD_CART",
+  CLEAR_CART = "CLEAR_CART",
 }
 
 export interface CartState {

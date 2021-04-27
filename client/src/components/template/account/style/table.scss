@@ -42,6 +42,7 @@
     }
     &--arrow {
       flex-grow: 0.5;
+      cursor: pointer;
     }
   }
   &__column--product {
@@ -57,7 +58,7 @@
     justify-content: flex-start;
     height: auto;
     text-align: left;
-    padding: 0 10px;
+    padding: 5px 10px;
     span {
       line-height: 10px;
     }
@@ -84,7 +85,6 @@
     border: 1px solid $border-gray;
     height: 355px;
     visibility: visible;
-    overflow: scroll;
   }
 
   &__orderImg {
@@ -137,12 +137,31 @@
     &__column--small {
       width: 30%;
     }
+    &__column--detail {
+      span {
+        line-height: 12px;
+      }
+    }
   }
 }
 @media (min-width: 1024px) {
   .table {
     &__column {
       font-size: 12px;
+    }
+    &__orderButton {
+      border-radius: 5px;
+      padding: 0;
+      margin: 0;
+      width: 60px;
+      height: 30px;
+      font-size: 10px;
+    }
+    &__column--detail {
+      padding: 0 10px;
+      span {
+        line-height: 15px;
+      }
     }
   }
 }

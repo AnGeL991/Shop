@@ -29,7 +29,7 @@ export const useOrdersLogic = () => {
 
   const fetchOrder = async () => {
     const res = await client("order/get", { ordersId });
-    if (res) {
+    if (res.result.length !== 0) {
       onSubmit(userOrders, [res.result]);
     }
   };
@@ -98,6 +98,7 @@ export const useOrdersLogic = () => {
     orderId,
     sortedBy,
     sortedOrder,
+    orders,
     handleChangeSorted,
     handleSetOrderId,
     findOrder,

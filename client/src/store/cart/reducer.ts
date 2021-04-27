@@ -19,6 +19,7 @@ const {
   ADD_TO_CART_FAILURE,
   UPDATE_CART_AMOUNT,
   REMOVE_FROM_CART,
+  CLEAR_CART,
 } = CartActionTypes;
 
 const reducer: Reducer<CartState> = (state = initialState, action) => {
@@ -27,7 +28,7 @@ const reducer: Reducer<CartState> = (state = initialState, action) => {
       return CartReduxProcesses.startLoad(state, action);
     }
     case END_LOAD_CART: {
-      return CartReduxProcesses.loadOrders(state, action);
+      return CartReduxProcesses.loadCart(state, action);
     }
     case ERROR_LOAD_CART: {
       return CartReduxProcesses.errorLoad(state, action);
@@ -36,16 +37,18 @@ const reducer: Reducer<CartState> = (state = initialState, action) => {
       return CartReduxProcesses.addRequest(state, action);
     }
     case ADD_TO_CART: {
-      return CartReduxProcesses.addToOrder(state, action);
+      return CartReduxProcesses.addToCart(state, action);
     }
     case ADD_TO_CART_FAILURE: {
       return CartReduxProcesses.addFailure(state, action);
     }
     case UPDATE_CART_AMOUNT: {
-      return CartReduxProcesses.updateOrderAmount(state, action);
+      return CartReduxProcesses.updateCartAmount(state, action);
     }
     case REMOVE_FROM_CART:
-      return CartReduxProcesses.removeOrder(state, action);
+      return CartReduxProcesses.removeCart(state, action);
+    case CLEAR_CART:
+      return CartReduxProcesses.cleanCart(state, action);
     default: {
       return state;
     }

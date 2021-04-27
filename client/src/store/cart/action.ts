@@ -11,6 +11,7 @@ const {
   START_LOAD_CART,
   END_LOAD_CART,
   ERROR_LOAD_CART,
+  CLEAR_CART,
 } = CartActionTypes;
 
 export const addCartRequest = () => selector(ADD_TO_CART_REQUEST);
@@ -25,3 +26,4 @@ export const endLoadCart = (orders: Array<Inventory>) =>
   selector(END_LOAD_CART, orders);
 export const errorLoadCart = (error: string) =>
   selector(ERROR_LOAD_CART, error);
+export const clearCart = () => selector(CLEAR_CART);

@@ -16,6 +16,5 @@ export const updateStatus = (req: Request, res: Response) => {
 };
 export const updateAccount = (req: Request, res: Response) => {
   const { updates } = req.body;
-  console.log(updates);
   errorHandler(res, User.updateAccount(res.locals.user, updates), 200, 500);
 };

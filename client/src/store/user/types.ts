@@ -9,6 +9,7 @@ export enum UserActionType {
   LOGOUT = "LOGOUT",
   USER_ORDERS = "USER__ORDERS",
   USER_WISH = "USER__WISH",
+  SET_TOKEN = "SET_TOKEN",
 }
 export interface UserState {
   token: string | null;

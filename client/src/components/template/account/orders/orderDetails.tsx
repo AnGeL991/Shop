@@ -20,12 +20,15 @@ export const OrderDetails: FC<IOrderDetails> = ({
   const product = products.map((el, index) => (
     <OrderProductDetail key={index} {...el} />
   ));
-  const maxHeight = products.length * 45 + 100
+  const maxHeight = products.length * 45 + 130
   const { firstName, surName, city, phone, postCode, email, street } = delivery;
   return (
     <tr
       className={`table__order ${open && "table__order--active"}`}
-      style={{ maxHeight: `${maxHeight}px` }}
+      style={{ 
+      maxHeight: `${maxHeight}px`,
+      overflow:`${maxHeight >355 ?'scroll':'none'}`
+    }}
     >
       <td style={{ display: "block" }}>
         <table className="table">

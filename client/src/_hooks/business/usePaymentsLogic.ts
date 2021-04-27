@@ -6,6 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Payment from "_services/payment.service";
 import { UserApiHandler } from "_services/user.service";
 import { prepareTotalPrice } from "_helpers/utils";
+import { CartActions } from "store/cart";
 
 const StripePK: string = process.env.REACT_APP_STRIPE_PK!;
 const stripePromise = loadStripe(StripePK);
@@ -63,8 +64,10 @@ export const usePaymentsLogic = () => {
       setError({ message: "By kontynuować musisz zaakceptować zasady" });
     } else {
       handleCheckout();
+      localStorage.removeItem("Cart");
+      onSubmit(CartActions.clearCart, []);
       const result = await Payment.sendOrder(payment);
-      console.log(result, token);
+      console.log("wchodze", result, token);
       if (token && result) {
         await User.addOrder(result._id, token);
       }

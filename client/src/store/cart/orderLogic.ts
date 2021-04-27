@@ -37,7 +37,7 @@ export default class CartReduxProcesses {
   static startLoad(state: CartState, action: AnyAction) {
     return { ...state, loading: true, items: [] };
   }
-  static loadOrders(state: CartState, action: AnyAction) {
+  static loadCart(state: CartState, action: AnyAction) {
     const amount = CartPrepare.getAmount(action.payload);
     const total = CartPrepare.getTotal(action.payload);
 
@@ -55,7 +55,7 @@ export default class CartReduxProcesses {
   static addRequest(state: CartState, action: AnyAction) {
     return { ...state, loading: true };
   }
-  static addToOrder(state: CartState, action: AnyAction) {
+  static addToCart(state: CartState, action: AnyAction) {
     const { items, count } = state;
     const { _id, price, amount, discount } = action.payload;
     const total = CartPrepare.getTotal(items);
@@ -84,7 +84,7 @@ export default class CartReduxProcesses {
     return { ...state, errors: action.payload };
   }
 
-  static updateOrderAmount(state: CartState, action: AnyAction) {
+  static updateCartAmount(state: CartState, action: AnyAction) {
     const { items, count } = state;
     const { id, amount } = action.payload;
     const total = CartPrepare.getTotal(items);
@@ -98,7 +98,7 @@ export default class CartReduxProcesses {
     };
   }
 
-  static removeOrder(state: CartState, action: AnyAction) {
+  static removeCart(state: CartState, action: AnyAction) {
     const { items, count } = state;
     const { product, price } = CartPrepare.productLogic(
       items,
@@ -113,6 +113,15 @@ export default class CartReduxProcesses {
       count: count - product.amount,
       items: [...item],
       totalPrice: total - price,
+    };
+  }
+  static cleanCart(state: CartState, action: AnyAction) {
+    console.log("clean");
+    return {
+      ...state,
+      count: 0,
+      items: [],
+      totalPrice: 0,
     };
   }
 }

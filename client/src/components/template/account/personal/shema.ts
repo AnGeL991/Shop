@@ -9,7 +9,6 @@ export const personalSchema = yup.object().shape({
     .string()
     .min(3, "Your last name must be at least 3 characters long")
     .required(),
-  email: yup.string().email().notRequired(),
   contact: yup
     .string()
     .min(11, "Your phone number must have 9 numbers")
