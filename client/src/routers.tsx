@@ -1,9 +1,9 @@
 import { FC, useMemo } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import * as page from "./components/view";
 import { PrivateRoute } from "components/routing/privateRoute";
-import { TestAws } from "components/view/testAws";
-
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import "./styles/fade.scss";
 const {
   PageNoFound,
   Shop,
@@ -49,11 +49,11 @@ const routes = [
   { exact: true, path: "/checkout/payment/:id", component: Payment },
   { exact: true, path: "/success/:token", component: Success },
   { exact: true, path: "/canceled", component: Cancel },
-  { exact: true, path: "/oauth/cognito", component: TestAws },
   { exact: false, path: "*", component: PageNoFound },
 ];
 
 export const Routers: FC = () => {
+  const location = useLocation();
   const router = useMemo(
     () =>
       routes.map((el, index) => (
@@ -68,9 +68,13 @@ export const Routers: FC = () => {
   );
 
   return (
-    <Switch>
-      <PrivateRoute path="/myAccount" component={Account} />
-      {router}
-    </Switch>
+    <TransitionGroup>
+      <CSSTransition timeout={250} classNames="fade" key={location.key}>
+        <Switch>
+          <PrivateRoute path="/myAccount" component={Account} />
+          {router}
+        </Switch>
+      </CSSTransition>
+    </TransitionGroup>
   );
 };
