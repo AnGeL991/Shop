@@ -1,0 +1,148 @@
+@import "../../../../styles/settings.scss";
+
+.table {
+  width: 100%;
+  &__title {
+    display: none;
+  }
+  &__img {
+    width: 40px;
+  }
+  &__row {
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    margin: 5px 0;
+    padding: 5px 0;
+    border: 1px solid $border-gray;
+  }
+  &__row--product {
+    border: none;
+    border-bottom: 1px solid $border-gray;
+    margin: 0 5px;
+  }
+  &__row--detail {
+    border: none;
+    align-items: initial;
+  }
+  &__column {
+    flex-grow: 1;
+    border-right: 1px solid $border-gray;
+    padding: 0 5px;
+    text-align: center;
+    line-height: 15px;
+    height: 30px;
+    color: black;
+    font-size: 8px;
+    &:last-of-type {
+      border-right: none;
+    }
+    span {
+      line-height: 30px;
+    }
+    &--arrow {
+      flex-grow: 0.5;
+    }
+  }
+  &__column--product {
+    width: 20%;
+    span {
+      line-height: 15px;
+    }
+  }
+  &__column--detail {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    text-align: left;
+    padding: 0 10px;
+    span {
+      line-height: 10px;
+    }
+  }
+  &__detailHeader {
+    margin: 5px 0;
+    text-align: center;
+  }
+
+  &__price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__order {
+    height: 0px;
+    transition: 0.5s linear all;
+    overflow: hidden;
+    display: block;
+    border: 0px solid $border-gray;
+  }
+  &__order--active {
+    border: 1px solid $border-gray;
+    height: 355px;
+    visibility: visible;
+    overflow: scroll;
+  }
+
+  &__orderImg {
+    width: 40px;
+  }
+  &__orderButton {
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+    width: 40px;
+    height: 30px;
+    font-size: 6px;
+  }
+  &__strong {
+    color: black;
+    font-weight: 600;
+  }
+  &__status {
+    padding: 5px 10px;
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+  }
+  &__status--pay {
+    background-color: green;
+  }
+  &__arrow {
+    margin-top: 5px;
+    color: black;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  &__icon {
+    margin-top: 8px;
+    font-size: 14px;
+    &:nth-of-type(2) {
+      margin-left: 5px;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .table {
+    &__title {
+      display: block;
+    }
+    &__column {
+      width: 100%;
+      font-size: 10px;
+    }
+    &__column--small {
+      width: 30%;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .table {
+    &__column {
+      font-size: 12px;
+    }
+  }
+}

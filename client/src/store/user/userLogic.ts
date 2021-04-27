@@ -62,6 +62,12 @@ export class UserReduxProcess {
   }
   static userOrders(state: UserState, action: AnyAction) {
     UserPrepare.checkAccountStatus([...action.payload], state.token);
+    if (state.orders.length > 0) {
+      return {
+        ...state,
+        orders: [...state.orders, ...action.payload],
+      };
+    }
     return {
       ...state,
       orders: [...action.payload],

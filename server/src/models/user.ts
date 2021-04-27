@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { IUserDocument, IUserModel } from '../interfaces/user';
+import { IUser, IUserDocument, IUserModel } from '../interfaces/user';
 import bcryptjs from 'bcryptjs';
 import { response } from 'express';
 
@@ -9,12 +9,17 @@ const UserSchema = new Schema<IUserDocument, IUserModel>(
     firstName: { type: String },
     lastName: { type: String },
     password: { type: String },
+    contact: { type: String },
+    adress: { type: String },
+    city: { type: String },
+    state: { type: String },
+    code: { type: String },
+    country: { type: String },
     accountStatus: { type: Number, default: 0 },
     ordersId: { type: Array, default: [] },
     wishId: { type: Array, default: [] },
     newsletter: { type: Boolean },
-    regulations: { type: Boolean, required: true },
-    role: { type: String, default: 'Client' }
+    regulations: { type: Boolean, required: true }
   },
   {
     timestamps: true
@@ -57,6 +62,9 @@ UserSchema.statics.updateWish = async function (id: string, wishId: string) {
 };
 UserSchema.statics.updateStatus = async function (id: string, accountStatus: string | number) {
   return await this.findOneAndUpdate({ _id: id }, { accountStatus });
+};
+UserSchema.statics.updateAccount = async function (_id: string, updateDate: IUser) {
+  return await this.findOneAndUpdate({ _id }, { ...updateDate });
 };
 
 const UserModel = model<IUserDocument, IUserModel>('User', UserSchema);

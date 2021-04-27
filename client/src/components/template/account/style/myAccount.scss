@@ -48,70 +48,6 @@
   }
 }
 
-.table {
-  width: 100%;
-  &__title {
-    display: none;
-  }
-  &__img {
-    width: 40px;
-  }
-  &__row {
-    display: flex;
-    justify-content: stretch;
-    align-items: center;
-    margin: 5px 0;
-    padding: 5px 0;
-    border: 1px solid $border-gray;
-  }
-  &__column {
-    flex-grow: 1;
-    border-right: 1px solid $border-gray;
-    padding: 0 5px;
-    font-size: 10px;
-    text-align: center;
-    line-height: 15px;
-    height: 30px;
-    color: black;
-    font-size: 8px;
-    &:last-of-type {
-      border-right: none;
-    }
-    span {
-      line-height: 30px;
-    }
-    &--arrow {
-      flex-grow: 0.5;
-    }
-  }
-
-  &__strong {
-    color: black;
-    font-weight: 600;
-  }
-  &__status {
-    padding: 5px 10px;
-    background-color: red;
-    border-radius: 5px;
-    color: white;
-  }
-  &__status--pay {
-    background-color: green;
-  }
-  &__arrow {
-    margin-top: 5px;
-    color: black;
-    font-size: 18px;
-  }
-  &__icon {
-    margin-top: 8px;
-    font-size: 14px;
-    &:nth-of-type(2) {
-      margin-left: 5px;
-    }
-  }
-}
-
 @media (min-width: 768px) {
   .myAccount {
     display: flex;
@@ -126,25 +62,6 @@
     }
     &__icon {
       display: none;
-    }
-  }
-  .table {
-    &__title {
-      display: block;
-    }
-    &__column {
-      width: 100%;
-      font-size: 10px;
-    }
-    &__column--small {
-      width: 30%;
-    }
-  }
-}
-@media (min-width: 1024px) {
-  .table {
-    &__column {
-      font-size: 12px;
     }
   }
 }

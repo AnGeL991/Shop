@@ -1,4 +1,5 @@
-import { FC, useMemo } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { FC, useMemo, useEffect } from "react";
 import {
   AccountHeader,
   EachOrder,
@@ -19,27 +20,34 @@ export const UserOrders: FC<IOrders> = ({ active }) => {
   const {
     alert: { type, message },
   } = useGetState();
-  const { orders, amountOfProduct} = useOrdersLogic();
-  
+  const {
+    sortedOrder,
+    amountOfProduct,
+    fetchOrder,
+    handleChangeSorted,
+    sortedBy,
+  } = useOrdersLogic();
+
+  useEffect(() => {
+    if (sortedOrder.length === 0) {
+      fetchOrder();
+    }
+  }, []);
+
   const yourOrders = useMemo(
     () =>
-      orders
-        ? orders.map((el, index) => (
-            <EachOrder
-              key={index}
-              order={el.id}
-              amount={amountOfProduct[index]}
-              status={el.paymentStatus.paid}
-            />
+      sortedOrder
+        ? sortedOrder.map((el, index) => (
+            <EachOrder key={index} order={el} amount={amountOfProduct[index]} />
           ))
         : [],
-    [orders, amountOfProduct]
+    [sortedOrder, amountOfProduct]
   );
 
   const ordersContent =
     yourOrders.length > 0 ? (
       <>
-        <OrdersFilter />
+        <OrdersFilter filter={sortedBy} onClick={handleChangeSorted} />
         <table className="table">
           <tbody>{yourOrders}</tbody>
         </table>

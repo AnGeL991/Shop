@@ -1,6 +1,18 @@
+import { client } from "_api";
+import { useGetState } from "_hooks";
 export const usePersonalDateLogic = (firstName?: string) => {
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const {
+    user: { token },
+  } = useGetState();
+  const onSubmit = async (updates: any) => {
+    if (token) {
+      console.log(token);
+      const result = await client("users/account", { updates }, token, {
+        method: "PUT",
+      });
+
+      console.log(result);
+    }
   };
 
   let name = "";

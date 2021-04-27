@@ -43,20 +43,19 @@ export interface IUser {
   email?: string;
   password?: string;
   passwordConfirmation?: string;
+  contact?: string;
+  adress?: string;
+  city?: string;
+  state?: string;
+  code?: string;
+  country?: string;
   accountStatus?: number;
   ordersId?: Array<string>;
   wishId?: Array<string>;
   regulations?: boolean;
   newsletter?: boolean;
 }
-export interface IAwsUser {
-  username?: string;
-  password?: string;
-  email?: string;
-  birthdate?: string;
-  name?: string;
-  family_name?: string;
-}
+
 export interface Account {
   email: string;
   password: string;
@@ -117,6 +116,20 @@ export interface IDelivery {
   name: keyof Iname;
   price: number;
   description: string;
+}
+export interface IDeliveryAdress {
+  email: string;
+  firstName: string;
+  surName: string;
+  business?: string;
+  nip?: number;
+  street: string;
+  postCode: string;
+  city: string;
+  phone: number;
+  payment?: string;
+  courier?: string;
+  own?: string;
 }
 export type IPayName = {
   transfer: "transfer";

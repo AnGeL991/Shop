@@ -5,12 +5,17 @@ export interface IUser {
   password: string;
   firstName?: string;
   lastName?: string;
+  contact?: string;
+  adress?: string;
+  city?: string;
+  state?: string;
+  code?: string;
+  country?: string;
   ordersId: Array<string>;
   accountStatus: number | string;
   wishId: Array<string>;
   newsletter?: boolean;
   regulations?: Boolean;
-  role: string;
 }
 export interface IUserDocument extends IUser, Document {
   comparePassword(candidatePassword: string): boolean;
@@ -23,4 +28,5 @@ export interface IUserModel extends Model<IUserDocument> {
   updateOrder(id: string, orderId: string): Promise<void>;
   updateWish(id: string, wishId: string): Promise<void>;
   updateStatus(id: string, status: string | number): Promise<void>;
+  updateAccount(id: string, updates: IUser): Promise<void>;
 }

@@ -15,6 +15,6 @@ export interface UserState {
   isAuthenticated: boolean;
   loading: boolean;
   data: IUser;
-  orders?: Array<PaymentState>;
+  orders: Array<PaymentState>;
   wish?: Array<Inventory>;
 }

@@ -1,11 +1,7 @@
 import { Request, Response } from 'express';
-import { config } from '../config';
 import { Validate, CreateToken, errorHandler, ResponseProcessor } from '../utils';
 import User from '../models/user';
-import sgMail from '@sendgrid/mail';
-import { emailData } from '../config';
-
-sgMail.setApiKey(config.sqMail.MAIL_KEY);
+import { EmailSender } from '../services/emailSender.services';
 
 /* Register user */
 export const register = async (req: Request, res: Response) => {
@@ -15,15 +11,7 @@ export const register = async (req: Request, res: Response) => {
     const user = await User.findOne({ email });
     if (user) return ResponseProcessor(res, 400, { message: 'Email already exists' });
     const token = CreateToken(req.body, '15m');
-    const emailTemplate = emailData(email, 'd-711a3dbcc82143d09a6739a4613668e1', { link: `http://localhost:3000/users/activate/${token}` });
-    return sgMail
-      .send(emailTemplate)
-      .then((sent) => {
-        return ResponseProcessor(res, 200, { message: `Email has been sent to ${email}` });
-      })
-      .catch((err) => {
-        return ResponseProcessor(res, 500, { error: err.message });
-      });
+    return await EmailSender.sendEmailWithVerifyAccount(res, email, token);
   } catch (err) {
     return ResponseProcessor(res, 500, { error: err.message });
   }
@@ -63,10 +51,7 @@ export const forgetPassword = async (req: Request, res: Response) => {
     const user = await User.findOne({ email });
     if (!user) return ResponseProcessor(res, 500, { message: 'Email jest nie prawidłowy' });
     const token = CreateToken({ _id: user._id }, 31556926);
-    const emailTemplate = emailData(email, 'd-b7667e8ce86748768bf618a599789f46', { link: `http://localhost:3000/users/reset/${token}` });
-    return sgMail.send(emailTemplate).then((sent) => {
-      return ResponseProcessor(res, 200, { message: `Email has been sent to ${email}. Follow the instruction to activate your account` });
-    });
+    return await EmailSender.sendEmailWithResetPasswordLink(res, email, token);
   } catch (err) {
     return ResponseProcessor(res, 500, { error: err.message });
   }
@@ -77,19 +62,6 @@ export const resetPassword = (req: Request, res: Response) => {
   const { newPassword } = req.body;
   Validate(req, res);
   return errorHandler(res, User.updateHashedPassword(res.locals.user, newPassword), 200, 500);
-};
-
-export const updateOrder = (req: Request, res: Response) => {
-  const { orderId } = req.body;
-  errorHandler(res, User.updateOrder(res.locals.user, orderId), 200, 500);
-};
-export const updateWish = (req: Request, res: Response) => {
-  const { id, wishId } = req.body;
-  errorHandler(res, User.updateWish(id, wishId), 200, 500);
-};
-export const updateAccount = (req: Request, res: Response) => {
-  const { status } = req.body;
-  errorHandler(res, User.updateStatus(res.locals.user, status), 200, 500);
 };
 
 // export const facebookController = async (req: Request, res: Response) => {
