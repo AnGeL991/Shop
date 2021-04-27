@@ -5,7 +5,10 @@ export interface IOrder extends Document {
   id: string;
   status: string;
   comment: string;
-  deliveryCost: number;
+  deliveryCost: {
+    methodPayment: string;
+    cost: number;
+  };
   delivery: {
     firstName: string;
     surName: string;

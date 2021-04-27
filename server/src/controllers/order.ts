@@ -1,40 +1,14 @@
 import { Request, Response } from 'express';
 import Order from '../models/order';
 import User from '../models/user';
-import { prepareProductToOrder, prepareTotalPrice, ResponseProcessor, prepareOrderId, errorHandler } from '../utils';
-import sgMail from '@sendgrid/mail';
-import { emailData, config } from '../config';
-
-sgMail.setApiKey(config.sqMail.MAIL_KEY);
+import { ResponseProcessor, prepareOrderId, errorHandler } from '../utils';
+import { EmailSender } from '../services/emailSender.services';
 
 export const addOrder = async (req: Request, res: Response) => {
-  const { delivery, deliveryCost, products } = req.body;
-  const { email, firstName, surName, street, city, postCode, phone } = delivery;
-
-  const orderId = await prepareOrderId();
-  const product = prepareProductToOrder(products);
-  const totalPrice = prepareTotalPrice(products);
-
   try {
+    const orderId = await prepareOrderId();
     const order = await Order.createNewFromRequestBody(req.body, orderId);
-    //await EmailSender.sendEmailWithFullfilledOrder(data)
-
-    const emailTemplate = emailData(email, 'd-75531c57feac454cb1f07207699f2791', {
-      personalData: `${firstName} ${surName}`,
-      street,
-      city,
-      postCode,
-      email,
-      phone,
-      currency: 'zł.',
-      subtotal: totalPrice.toFixed(2),
-      delivery: deliveryCost.cost.toFixed(2),
-      product,
-      total: (totalPrice + deliveryCost.cost).toFixed(2),
-      order: orderId
-    });
-    sgMail.send(emailTemplate);
-
+    EmailSender.sendEmailWithFullfilledOrder(req.body);
     ResponseProcessor(res, 200, { id: orderId, _id: order._id });
   } catch (err) {
     ResponseProcessor(res, 500, { error: err.message });
@@ -57,7 +31,7 @@ export const getOneOrder = async (req: Request, res: Response) => {
     if (!user) return ResponseProcessor(res, 500, { message: "User does't exist" });
     const order = await Order.findOne({ id });
     if (!order) return ResponseProcessor(res, 500, { message: "Order does't exist" });
-    const exist = user.ordersId.some((el) => order._id.toString() === el.toString());
+    const exist = user.ordersId.some((el) => order._id.toString() === el);
     if (exist) {
       return ResponseProcessor(res, 402, { message: 'You already have this order' });
     }

@@ -64,8 +64,9 @@ export const usePaymentsLogic = () => {
     } else {
       handleCheckout();
       const result = await Payment.sendOrder(payment);
+      console.log(result, token);
       if (token && result) {
-        await User.addOrder(token, result._id);
+        await User.addOrder(result._id, token);
       }
       onSubmit(Payment.setOrderId, [result.id]);
       history.push(`/checkout/payment/${result.id}`);

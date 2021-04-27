@@ -46,8 +46,9 @@ export interface PaymentState {
   deliveryCost: { methodPayment: string; cost: number };
   comment: "";
   regulations: boolean;
-  loading?: boolean;
   products: Inventory[];
   totalPayment: number;
+  loading?: boolean;
   errors?: string | null;
+  time: Date;
 }

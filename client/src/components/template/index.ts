@@ -73,3 +73,5 @@ export { ProductBox } from "./products/productBox";
 export { DealButtons } from "./dealButtons";
 export { AddOrderByNumber } from "./account/orders/addOrder";
 export { Status } from "./account/status";
+export { OrderDetails } from "./account/orders/orderDetails";
+export { OrderProductDetail } from "./account/orders/orderProduct";

@@ -24,6 +24,7 @@ export const initialState: PaymentState = {
   loading: false,
   products: [],
   errors: null,
+  time: new Date(),
 };
 
 const {

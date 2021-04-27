@@ -26,7 +26,8 @@ const OrderSchema: Schema = new Schema({
   totalPayment: { type: Number, default: 0 },
   regulations: { type: Boolean, required: true },
   products: [ProductSchema],
-  confirm: { type: Boolean, default: false }
+  confirm: { type: Boolean, default: false },
+  time: { type: Date }
 });
 
 OrderSchema.statics.createNewFromRequestBody = async function (props, id) {
