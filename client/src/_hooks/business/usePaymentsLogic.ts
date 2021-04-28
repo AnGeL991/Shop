@@ -5,7 +5,7 @@ import { history } from "_helpers";
 import { loadStripe } from "@stripe/stripe-js";
 import Payment from "_services/payment.service";
 import { UserApiHandler } from "_services/user.service";
-import { prepareTotalPrice } from "_helpers/utils";
+import { prepareTotalPrice, totalOrderPayment } from "_helpers/utils";
 import { CartActions } from "store/cart";
 
 const StripePK: string = process.env.REACT_APP_STRIPE_PK!;
@@ -17,7 +17,10 @@ export const usePaymentsLogic = () => {
   const {
     order: { items },
     payment,
-    user: { token },
+    user: {
+      token,
+      data: { _id, accountStatus },
+    },
   } = useGetState();
 
   const { deliveryCost, delivery, paymentStatus, id, regulations } = payment;
@@ -33,6 +36,9 @@ export const usePaymentsLogic = () => {
     const totalPrice = prepareTotalPrice(items);
     onSubmit(Payment.setTotalPricePayment, [totalPrice]);
     onSubmit(Payment.setOrderToPayment, [items]);
+    if (accountStatus) {
+      onSubmit(Payment.setDiscount, [accountStatus * 5]);
+    }
   }
 
   const handleCheckout = async () => {
@@ -40,7 +46,8 @@ export const usePaymentsLogic = () => {
       const session = await Payment.setPaymentIntent(
         delivery.email,
         items,
-        deliveryCost.cost
+        deliveryCost.cost,
+        _id
       );
       onSubmit(Payment.setPaymentStatus, [{ id: session.id }]);
       return session.id;
@@ -50,7 +57,7 @@ export const usePaymentsLogic = () => {
   const handlePayment = async () => {
     const stripe = await stripePromise;
     if (stripe && paymentStatus.id) {
-      const result = await stripe?.redirectToCheckout({
+      const result = await stripe.redirectToCheckout({
         sessionId: paymentStatus.id,
       });
       if (result?.error) {
@@ -67,7 +74,6 @@ export const usePaymentsLogic = () => {
       localStorage.removeItem("Cart");
       onSubmit(CartActions.clearCart, []);
       const result = await Payment.sendOrder(payment);
-      console.log("wchodze", result, token);
       if (token && result) {
         await User.addOrder(result._id, token);
       }
@@ -93,5 +99,6 @@ export const usePaymentsLogic = () => {
     SetOrderToPayment,
     handleConfirmYourOrder,
     handleConfirm,
+    totalOrderPayment,
   };
 };

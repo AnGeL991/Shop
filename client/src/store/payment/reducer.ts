@@ -20,6 +20,7 @@ export const initialState: PaymentState = {
   deliveryCost: { methodPayment: "", cost: 0 },
   comment: "",
   totalPayment: 0,
+  discount: 0,
   regulations: false,
   loading: false,
   products: [],
@@ -38,6 +39,7 @@ const {
   ADD_TOTAL_PRICE_PAYMENT,
   ADD_ORDER_ID,
   PAYMENT_LOAD,
+  ADD_DISCOUNT,
 } = PaymentActionType;
 
 const reducer: Reducer<PaymentState> = (state = initialState, action) => {
@@ -71,6 +73,9 @@ const reducer: Reducer<PaymentState> = (state = initialState, action) => {
     }
     case ADD_ORDER_ID: {
       return PaymentReduxProcessor.addOrderId(state, action);
+    }
+    case ADD_DISCOUNT: {
+      return PaymentReduxProcessor.addDiscount(state, action);
     }
     default:
       return state;

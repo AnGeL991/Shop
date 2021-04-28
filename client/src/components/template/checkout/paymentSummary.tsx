@@ -11,13 +11,17 @@ interface IPaymentSummary {
 }
 
 export const PaymentSummary: FC<IPaymentSummary> = ({ orderId }) => {
-  const { handlePayment, handleConfirmYourOrder } = usePaymentsLogic();
+  const {
+    handlePayment,
+    handleConfirmYourOrder,
+    totalOrderPayment,
+  } = usePaymentsLogic();
   const { inputPaymentAdress, handleSetRegulation } = useCheckedLogic();
   const {
-    payment: { delivery, paymentStatus, deliveryCost,totalPayment },
+    payment: { delivery, paymentStatus, deliveryCost, totalPayment, discount },
   } = useGetState();
   const { cost } = deliveryCost;
-
+  const totalPrice = totalOrderPayment(totalPayment,cost,discount);
   const submitButton =
     paymentStatus.method === "transfer" ? (
       <Button darkButton onClick={handlePayment}>
@@ -42,6 +46,14 @@ export const PaymentSummary: FC<IPaymentSummary> = ({ orderId }) => {
     ),
     [delivery, deliveryCost, inputPaymentAdress, handleSetRegulation]
   );
+    
+  const discountBox =
+    discount !== 0 ? (
+      <div className="paymentSummary__summaryDetail">
+        <strong>Discount:</strong>
+        <strong>{discount} %</strong>
+      </div>
+    ) : null;
 
   return (
     <section className="paymentSummary">
@@ -66,9 +78,10 @@ export const PaymentSummary: FC<IPaymentSummary> = ({ orderId }) => {
             <span>Taxes:</span>
             <span>{cost === 0 ? "free" : cost.toFixed(2)} $</span>
           </div>
+          {discountBox}
           <div className="paymentSummary__summaryDetail">
             <strong>Total price:</strong>
-            <strong>${(cost + totalPayment).toFixed(2)} $</strong>
+            <strong>{totalPrice.toFixed(2)} $</strong>
           </div>
         </div>
         <div className="paymentSummary__buttonBox">{submitButton}</div>

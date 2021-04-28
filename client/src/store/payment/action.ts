@@ -19,6 +19,7 @@ const {
   ACCEPT_REGULATION,
   ADD_ORDER_ID,
   PAYMENT_LOAD,
+  ADD_DISCOUNT,
 } = PaymentActionType;
 
 export const addPaymentAdress = (data: Delivery) =>
@@ -41,3 +42,5 @@ export const addOrderId = (orderId: string | number) =>
   selector(ADD_ORDER_ID, orderId);
 export const paymentLoad = (state: PaymentState) =>
   selector(PAYMENT_LOAD, state);
+export const addDiscount = (discount: number) =>
+  selector(ADD_DISCOUNT, discount);

@@ -6,6 +6,7 @@ import Product from './models/product';
 import { IItems } from './interfaces/stripe';
 import { IProduct } from './interfaces/product';
 import Order from './models/order';
+import Stripe from 'stripe';
 
 export const Validate = (req: Request, res: Response) => {
   const errors = validationResult(req);
@@ -99,4 +100,54 @@ export const prepareOrderId = async () => {
 
 export const createBase64 = () => {
   return Buffer.from(config.awsConfig.client_id + ':' + config.awsConfig.secretId).toString('base64');
+};
+export const stripeParams = (req: Request, email: string, line_items: any, shipping: string, coupon?: string) => {
+  const params: Stripe.Checkout.SessionCreateParams = {
+    payment_method_types: ['card', 'p24'],
+    customer_email: email,
+    line_items: [...line_items],
+    mode: 'payment',
+    success_url: `${req.headers.origin}/success/{CHECKOUT_SESSION_ID}`,
+    cancel_url: `${req.headers.origin}/canceled`,
+    discounts: [{ coupon }],
+    shipping_rates: [shipping],
+    shipping_address_collection: { allowed_countries: ['PL'] }
+  };
+  return params;
+};
+
+export const stripeCupon = async (accountStatus: number | string, stripe: Stripe) => {
+  const coupons = await stripe.coupons.list({
+    limit: 5
+  });
+  switch (accountStatus) {
+    case 1:
+      return coupons.data.find((el) => el.percent_off === 5);
+    case 2:
+      return coupons.data.find((el) => el.percent_off === 10);
+    case 3:
+      return coupons.data.find((el) => el.percent_off === 15);
+    case 4:
+      return coupons.data.find((el) => el.percent_off === 20);
+    case 5:
+      return coupons.data.find((el) => el.percent_off === 25);
+    default:
+      return;
+  }
+};
+export const stripeCharge = async (delivery: any) => {
+  switch (delivery) {
+    case 29: {
+      return 'shr_1Ikz0bAoyhrXLJPmh5nHMiA5';
+    }
+    case 0: {
+      return 'shr_1Ikz2OAoyhrXLJPmB0RuRVlY';
+    }
+    case 30: {
+      return 'shr_1Il8h6AoyhrXLJPmQtXVDGR7';
+    }
+    default: {
+      return '';
+    }
+  }
 };

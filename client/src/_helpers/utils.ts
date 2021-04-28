@@ -90,3 +90,13 @@ export const prepareTotalPrice = (items: Inventory[]) => {
     );
   }, 0);
 };
+
+export const totalOrderPayment = (
+  price: number,
+  delivery: number,
+  discount?: number
+) => {
+  return discount
+    ? price + delivery - (price * discount) / 100
+    : price + delivery;
+};

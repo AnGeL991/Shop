@@ -37,6 +37,7 @@ export enum PaymentActionType {
   ADD_COMMENT_PAYMENT = "ADD_COMMENT_PAYMENT",
   ADD_ORDER_ID = "ADD_ORDER_ID",
   ACCEPT_REGULATION = "ACCEPT_REGULATION ",
+  ADD_DISCOUNT = "ADD_DISCOUNT",
 }
 
 export interface PaymentState {
@@ -46,6 +47,7 @@ export interface PaymentState {
   deliveryCost: { methodPayment: string; cost: number };
   comment: "";
   regulations: boolean;
+  discount: number;
   products: Inventory[];
   totalPayment: number;
   loading?: boolean;

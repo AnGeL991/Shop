@@ -35,4 +35,7 @@ export class PaymentReduxProcessor {
   static addOrderId(state: PaymentState, action: AnyAction) {
     return { ...state, orderId: action.payload };
   }
+  static addDiscount(state: PaymentState, action: AnyAction) {
+    return { ...state, discount: action.payload };
+  }
 }

@@ -18,6 +18,7 @@ const {
   addTotalPricePayment,
   addOrderId,
   paymentLoad,
+  addDiscount,
 } = PaymentActions;
 
 export default class Payment {
@@ -30,13 +31,15 @@ export default class Payment {
   static async setPaymentIntent(
     email: string,
     items: Inventory[],
-    deliveryCost: number
+    deliveryCost: number,
+    id?: string
   ) {
     const paymentItems = this.prepareOrderToPayment(items);
     return await client("create-payment-intent", {
       items: paymentItems,
       email,
       deliveryCost,
+      id,
     });
   }
 
@@ -72,6 +75,9 @@ export default class Payment {
   }
   static confirmOrder(id: string) {
     return client("/order", { id }, "", { method: "PUT" });
+  }
+  static setDiscount(discount: number) {
+    return addDiscount(discount);
   }
   static loadPayment(state: PaymentState) {
     return (dispatch: Function) => {
