@@ -7,23 +7,27 @@ import "./style/productBox.scss";
 
 interface IProductBox {
   item: Inventory;
+  displayWay?: boolean;
 }
 
-export const ProductBox: FC<IProductBox> = ({ item }) => {
+export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
   const {
     addProductToOrder,
     discountPrice,
     addProductToWish,
     arrayOfStars,
   } = useProductBoxLogic(item);
-
   const tag = item.tags ? (
-    <div className="productBox__tags">
+    <div
+      className={`productBox__tags ${
+        displayWay && "productBox__tag--horizontal"
+      }`}
+    >
       {item.tags.map((el) => (
         <Tag
           key={el}
           name={el === "discount" ? `-${item.discount.toString()}%` : el}
-          className={` productBox__tag productBox__${el}`}
+          className={` productBox__tag productBox__${el} `}
         />
       ))}
     </div>
@@ -39,24 +43,48 @@ export const ProductBox: FC<IProductBox> = ({ item }) => {
   );
 
   return (
-    <div className="productBox">
-      <div className="productBox__image">
+    <div className={`productBox ${displayWay && "productBox--horizontal"}`}>
+      <div
+        className={`productBox__image ${
+          displayWay && "productBox__image--horizontal"
+        } `}
+      >
         <img src={item.image} alt={item.title} className="productBox__img" />
         {tag}
         <DealButtons
           addToCard={addProductToOrder}
           id={item._id}
-          className="productBox__buttons"
-          styleBtn="productBox__button"
+          className={`productBox__buttons ${
+            displayWay && "productBox__buttons--horizontal"
+          }`}
+          styleBtn={`productBox__button ${
+            displayWay && "productBox__button--horizontal"
+          }`}
           addToWishList={addProductToWish}
         />
       </div>
-      <div className="productBox__info">
-        <div>
+      <div
+        className={`productBox__info ${
+          displayWay && "productBox__info--horizontal"
+        }`}
+      >
+        <div className="productBox__star--horizontal">
           <Stars productId={item._id} arrayOfStars={arrayOfStars} />
+          {displayWay && (
+            <span className="productBox__comment">
+              ({item.comment.length} customer review)
+            </span>
+          )}
         </div>
         <h5 className="productBox__title">{item.title}</h5>
-        <span className="productBox__price">{price}</span>
+        {displayWay && <div className='productBox__description'>{item.description}</div>}
+        <span
+          className={`productBox__price ${
+            displayWay && "productBox__price--horizontal"
+          }`}
+        >
+          {price}
+        </span>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { FC, useMemo } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import * as page from "./components/view";
+import { ScrollToTop } from "_helpers";
 import { PrivateRoute } from "components/routing/privateRoute";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./styles/fade.scss";
@@ -26,6 +27,7 @@ const {
   Success,
   Cancel,
   Payment,
+  Blog,
 } = page;
 
 const routes = [
@@ -49,6 +51,7 @@ const routes = [
   { exact: true, path: "/checkout/payment/:id", component: Payment },
   { exact: true, path: "/success/:token", component: Success },
   { exact: true, path: "/canceled", component: Cancel },
+  { exact: true, path: "/blog", component: Blog },
   { exact: false, path: "*", component: PageNoFound },
 ];
 
@@ -69,6 +72,7 @@ export const Routers: FC = () => {
 
   return (
     <TransitionGroup>
+      <ScrollToTop />
       <CSSTransition timeout={250} classNames="fade" key={location.key}>
         <Switch>
           <PrivateRoute path="/myAccount" component={Account} />

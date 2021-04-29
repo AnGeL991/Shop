@@ -9,8 +9,8 @@ export const NavCategories: FC = () => {
 
   const category = useMemo(
     () => (
-      <nav className={`category  ${open === true ? "category--active" : ""}`}>
-        <ul className="category__list">
+      <nav className={`category  ${open && "category--active"}`}>
+        <ul className={`category__list ${open &&'category__list--active'} `}>
           {categoryNav.map((el) => (
             <EachLink key={el.name} {...el} className="category" />
           ))}

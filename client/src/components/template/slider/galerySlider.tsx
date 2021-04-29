@@ -10,12 +10,14 @@ type Props = {
   arrows?: boolean;
   padding?: number;
   duration?: number;
+  className?:string;
 };
 export const GalerySlider: FC<Props> = ({
   data,
   arrows,
   padding,
   duration,
+  className
 }) => {
   const { slide, nextSlide, prevSlide, handleClick } = useChangeSlider(
     data,
@@ -30,6 +32,7 @@ export const GalerySlider: FC<Props> = ({
       image={el.image}
       translate={slide.translate}
       transition={slide.transition}
+      className={className}
     />
   ));
 

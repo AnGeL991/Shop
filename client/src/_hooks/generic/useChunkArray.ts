@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useGetState } from "_hooks";
 
 export const useChunkArray = (
   array: Array<{}>,
@@ -6,6 +7,14 @@ export const useChunkArray = (
   handleSetSlice: (slice: number) => void
 ) => {
   const [activePage, setActivePage] = useState(1);
+  const {
+    inventory: { category },
+  } = useGetState();
+
+  useEffect(() => {
+    setActivePage(1);
+    handleSetSlice(1);
+  }, [category]);
 
   const chunk = array.reduce((chunk: number) => {
     chunk = Math.ceil(array.length / amountInChunk);

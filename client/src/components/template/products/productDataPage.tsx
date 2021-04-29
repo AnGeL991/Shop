@@ -17,6 +17,7 @@ export const ProductDataPage: FC<Props> = ({ array, value, handleSlice }) => {
     handleSetPage,
   } = useChunkArray(array, value, handleSlice);
   const {ArrowLeft,ArrowRight} = Icons;
+  
   const dots =
     chunk > 2 && activePage + 1 !== chunk ? (
       <li className="productCart__item">...</li>

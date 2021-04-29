@@ -6,25 +6,14 @@ import { useSelector } from "react-redux";
 import "./style/filter.scss";
 
 const data = [
-  { name: "sofa", path: "/shop/sofa" },
-  {
-    name: "bed",
-    path: "/shop/bed",
-    subLink: [
-      { name: "Single", path: "/shop/bed/single" },
-      { name: "Double", path: "/shop/bed/double" },
-    ],
-  },
-  {
-    name: "table",
-    path: "/shop/table",
-    subLink: [{ name: "Long table", path: "/shop/table/long" }],
-  },
-  { name: "accessories", path: "/shop/accesories" },
-  { name: "chair", path: "/shop" },
+  { name: "sofa" },
+  { name: "bed" },
+  { name: "table" },
+  { name: "accessories" },
+  { name: "chair" },
 ];
 
-const dataTag = [{ name: "Summer" }, { name: "Winter" }];
+const dataTag = [{ name: "New" }, { name: "BestSeller" }];
 
 export const Filter: FC = () => {
   const { minPrice, maxPrice, price } = useSelector(
@@ -59,7 +48,9 @@ export const Filter: FC = () => {
           </p>
         </div>
       </EachFilter>
-      <EachFilter title="Product tags">{tagData}</EachFilter>
+      <EachFilter title="Product tags">
+        <div className='filterContext__tags'>{tagData}</div>
+      </EachFilter>
     </section>
   );
 };

@@ -4,14 +4,15 @@ import { WishProducts, EmptyWish } from "components/template";
 import { useGetState } from "_hooks";
 
 export const Wish: FC = () => {
-  const { wish } = useGetState();
-  const { data } = wish;
+  const {
+    wish: { data },
+  } = useGetState();
   if (data.length === 0) {
     return <EmptyWish />;
   }
 
   return (
-    <section className="page">
+    <section>
       <Header title="Wish List" />
       <WishProducts data={data} />
     </section>

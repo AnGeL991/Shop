@@ -20,17 +20,18 @@ export interface User {
 
 export const securityInfo = [
   {
-    title: "Gwarancja",
-    text: "Na wszystkie meble obowiązuje gwarancja ważna 24 miesiące.",
+    title: "Warranty",
+    text: "All furniture is covered by a 24-month warranty.",
   },
   {
-    title: "zwroty",
+    title: "Returns",
     text:
-      "Pamietaj, ze masz pełne prawo do zwrotu mebli w ciągu 14 dni. kupuj bez presji.",
+      "Remember that you have the full right to return the furniture within 14 days. buy without pressure.",
   },
   {
-    title: "Reklamacja",
-    text: "Jeśli coś z meblami będzie nie tak wymienimy je na nasz koszt.",
+    title: "Complaint",
+    text:
+      "If something is wrong with the furniture, we will replace it at our expense.",
   },
 ];
 
@@ -319,7 +320,7 @@ export const brands = [
 export const nav = [
   { name: "Home", path: "/" },
   { name: "Shop", path: "/shop" },
-  { name: "Blog", path: "/Blog" },
+  { name: "Blog", path: "/blog" },
   { name: "Media", path: "/media" },
   { name: "About Us", path: "/aboutUs" },
   { name: "Contact Us", path: "/contact" },

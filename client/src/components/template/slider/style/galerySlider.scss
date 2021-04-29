@@ -2,21 +2,22 @@
 
 .galerySlider {
   padding: 20px;
+  margin: 0px auto;
+  max-width: 1220px;
   &__content {
-    background-color: white;
     overflow: hidden;
     position: relative;
+    margin-bottom: 5px;
   }
   &__wrapper {
     display: flex;
+    height: 100%;
   }
   &__imageBox {
     position: relative;
     padding: 5px;
-    height: 200px;
   }
   &__img {
-    margin-right: 10px;
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -39,6 +40,26 @@
     height: 100%;
     &__content {
       height: 90%;
+    }
+    &__icon {
+      color: white;
+    }
+    &__img {
+      width: calc(50vw - 30px);
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .galerySlider {
+    &__img {
+      width: calc(100vw / 3 - 23px);
+    }
+  }
+}
+@media (min-width: 1220px) {
+  .galerySlider {
+    &__img {
+      width: calc(1220px / 3 - 23px);
     }
   }
 }

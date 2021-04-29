@@ -46,7 +46,9 @@ export const WhyUs: FC = () => {
   return (
     <section className="whyUs">
       <h4 className="whyUs__title">Why Us</h4>
+      <div className='whyUs__wrapper'>
       {items}
+      </div>
     </section>
   );
 };

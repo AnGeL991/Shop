@@ -24,7 +24,7 @@ export const ProductDetail: FC<ProductPageProps> = ({ product }) => {
   } = useProductPageLogic(product);
 
   const { discount, price, images, title, category, description } = product;
-
+  console.log(images);
   const productPrice = useMemo(
     () =>
       discount !== 0 ? (
@@ -54,7 +54,7 @@ export const ProductDetail: FC<ProductPageProps> = ({ product }) => {
       <article className="product__info">
         <h4 className="product__title">{title}</h4>
         <div className="product__stars">
-          <Stars arrayOfStars={arrayOfStars} />{" "}
+          <Stars arrayOfStars={arrayOfStars} />
           <span>({arrayOfStars.length} customer review)</span>
         </div>
         <div className="product__categories">

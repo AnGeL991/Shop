@@ -45,6 +45,7 @@
   }
   &__context {
     background-color: white;
+    overflow: hidden;
     margin: 20px;
     padding: 10px;
     height: 500px;
@@ -59,9 +60,14 @@
     height: 200px;
     margin: 10px;
   }
-  &__img {
+  &__imageBox {
+    text-align: center;
     width: 100%;
-    height: 100%;
+  }
+  &__img {
+    width: 85%;
+    max-height: 250px;
+    max-width: 300px;
   }
   &__title {
     color: black;
@@ -151,6 +157,13 @@
       .deal__buttons {
         display: block;
       }
+    }
+    &__imageBox {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
     }
   }
   .carousel {

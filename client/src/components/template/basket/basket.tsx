@@ -49,8 +49,10 @@ export const Basket: FC = () => {
         onMouseLeave={handleClose}
       >
         <div className="basket__context">
-          <h4 className="basket__subTitle">Wartość twoje zamówienia</h4>
-          <span className="basket__amount">(Ilość produktów: {count} )</span>
+          <h4 className="basket__subTitle">Value of your order</h4>
+          <span className="basket__amount">
+            ( amount of products: {count} )
+          </span>
           <span className="basket__price">{totalPrice.toFixed(2)} $</span>
           <Button darkButton onClick={handleToggle}>
             <Link to="/order">View cart</Link>

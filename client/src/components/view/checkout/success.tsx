@@ -12,7 +12,7 @@ export const Success: FC = () => {
   },[handleConfirm]);
   
   return (
-    <section className="page">
+    <section>
       <Operation
         title="Payment successful"
         description="Thank you for your order."

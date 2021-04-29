@@ -18,3 +18,4 @@ export { useGetState } from "./generic/useGetState";
 export { useStarLogic } from "./generic/useStarLogic";
 export { useCommentLogic } from "./business/useCommentLogic";
 export { useFetchLogic } from "./generic/useFetchLogic";
+export { useSetFixed } from "./generic/useSetFixed";

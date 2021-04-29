@@ -75,3 +75,4 @@ export { AddOrderByNumber } from "./account/orders/addOrder";
 export { Status } from "./account/status";
 export { OrderDetails } from "./account/orders/orderDetails";
 export { OrderProductDetail } from "./account/orders/orderProduct";
+export { ModalGalery } from "./modal/modalGalery";

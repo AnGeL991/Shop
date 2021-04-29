@@ -7,7 +7,7 @@ import "./style/productCart.scss";
 
 export const ProductCart: FC = () => {
   const { handleSetSort } = useFilterValue();
-
+  const {displayWay,handleChangeDisplayWay} = useDisplayProduct();
   const { ViewGrid, Bars } = Icons;
   const {
     sliceArray,
@@ -23,9 +23,9 @@ export const ProductCart: FC = () => {
   ));
 
   const productsToDisplay = sliceArray.map((el) => (
-    <div className="productCart__eachProduct" key={el._id}>
-      <ProductBox item={el} />
-    </div>
+    <div className={`productCart__eachProduct ${displayWay.list && 'productCart__eachProduct--horizontal'} `} key={el._id}>
+      <ProductBox item={el} displayWay={displayWay.list} />
+   </div> 
   ));
 
   return (
@@ -36,8 +36,8 @@ export const ProductCart: FC = () => {
       />
       <div className="productCart__wrapper">
         <div className="productCart__displayWay">
-          <ViewGrid className="productCart__icon" />
-          <Bars className="productCart__icon" />
+          <ViewGrid className="productCart__icon" onClick={()=>handleChangeDisplayWay(2)} />
+          <Bars className="productCart__icon" onClick={()=>handleChangeDisplayWay(1)} />
           <span> Showing 1-12 of 15 results </span>
         </div>
         <form>

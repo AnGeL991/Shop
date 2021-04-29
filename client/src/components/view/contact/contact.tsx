@@ -4,7 +4,7 @@ import { ContactForm, Map } from "components/template";
 
 export const Contact: FC = () => {
   return (
-    <section className="page">
+    <section>
       <Header title="Contact Us" />
 
       <Map />

@@ -1,6 +1,8 @@
 @import "../../../../styles/settings.scss";
 .whyUs {
   padding: 20px;
+  margin: 0 auto;
+  max-width: 1220px;
   &__title {
     color: black;
     padding: 10px 0;
@@ -26,5 +28,19 @@
   &__description {
     text-align: left;
     line-height: 1.4;
+  }
+}
+@media (min-width: 1024px) {
+  .whyUs {
+    &__wrapper {
+      display: flex;
+      justify-content: center;
+    }
+    &__box {
+      margin-right: 20px;
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
   }
 }

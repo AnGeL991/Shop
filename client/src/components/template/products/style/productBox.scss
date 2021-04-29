@@ -1,7 +1,20 @@
 @import "../../../../styles/settings.scss";
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
 .productBox {
   padding: 10px;
+  animation: fadeIn 1s;
+
   &__image {
     position: relative;
     display: flex;
@@ -13,6 +26,7 @@
       opacity: 1;
     }
   }
+
   &__img {
     width: 100%;
     object-fit: contain;
@@ -59,6 +73,12 @@
   &__discount {
     background-color: $color-orange;
   }
+  &__comment {
+    display: none;
+  }
+  &__description {
+    display: none;
+  }
   &__buttons {
     position: absolute;
     bottom: 10px;
@@ -69,6 +89,7 @@
     transition: 0.3s linear all;
   }
 }
+
 @media (min-width: 768px) {
   .productBox {
     &__image {
@@ -92,6 +113,50 @@
       top: 0;
       right: 0;
       margin: 10px;
+    }
+    &__comment {
+      font-size: 12px;
+    }
+    &--horizontal {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      position: relative;
+    }
+    &__info--horizontal {
+      margin: 0 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+    &__image--horizontal {
+      width: 40%;
+      position: static;
+    }
+    &__tag--horizontal {
+      top: 15px;
+      left: 15px;
+    }
+    &__star--horizontal {
+      order: 1;
+      span {
+        color: black;
+      }
+    }
+    &__price--horizontal {
+      order: 2;
+    }
+    &__buttons--horizontal {
+      visibility: visible;
+      opacity: 1;
+      flex-direction: row;
+      align-items: flex-end;
+    }
+    &__button--horizontal {
+      margin: 0 5px;
+      min-width: 40px;
+      height: 40px;
+      font-size: 20px;
     }
   }
 }

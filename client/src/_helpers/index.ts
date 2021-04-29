@@ -5,3 +5,4 @@ export {
   preparePrice,
   prepareActiveStar,
 } from "./utils";
+export { ScrollToTop } from "./srollToTop";

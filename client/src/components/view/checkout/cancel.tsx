@@ -8,7 +8,7 @@ export const Cancel: FC = () => {
   });
 
   return (
-    <section className="page">
+    <section >
       <Operation
         title="Payment canceled"
         btnText="Back"

@@ -11,10 +11,14 @@ import {
 import { useGetState } from "_hooks";
 import "./style/mainMenu.scss";
 
-export const MainMenu: FC = () => {
+interface IMainMenu {
+  fixed?: boolean;
+}
+
+export const MainMenu: FC<IMainMenu> = ({ fixed }) => {
   const { order } = useGetState();
   return (
-    <header className="header">
+    <header className={`header ${fixed && "header--fixed"}`}>
       <div className="header__border">
         <div className="header__top">
           <Logo />

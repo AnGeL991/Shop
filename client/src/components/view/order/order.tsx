@@ -4,7 +4,7 @@ import { Header } from "components/common";
 
 export const Order: FC = () => {
   return (
-    <section className="page">
+    <section>
       <Header title="Basket" />
       <OrderProduct />
       <OrderSecurity />

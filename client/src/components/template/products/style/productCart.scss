@@ -15,9 +15,14 @@
     width: 50%;
   }
   &__icon {
+    cursor: pointer;
     color: black;
     font-size: 24px;
     margin-right: 10px;
+    transition: 0.3s linear all;
+    &:hover {
+      color: $color-orange;
+    }
   }
   &__select {
     background-color: white;
@@ -62,6 +67,7 @@
     }
   }
   &__item {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,6 +89,7 @@
 }
 @media (min-width: 768px) {
   .productCart {
+    overflow: hidden;
     &__wrapper {
       height: 80px;
       padding: 20px;
@@ -98,6 +105,9 @@
     }
     &__eachProduct {
       width: 25%;
+    }
+    &__eachProduct--horizontal {
+      width: 100%;
     }
   }
 }

@@ -118,18 +118,28 @@
     transform: translateX(0);
     top: 0;
     left: 0;
-    height: auto;
     width: 200px;
     padding: 0;
-    height: 0;
-    display: none;
-    transition: 0s all;
+    height: 0px;
+    display: block;
+    visibility: hidden;
+    max-height: 323px;
+    transition: 0.5s linear all;
     &--active {
-      height: auto;
-      display: block;
+      height: 325px;
+      visibility: visible;
     }
     &__list {
+      height: 0px;
+      visibility: hidden;
+      overflow: hidden;
       padding: 0;
+      max-height: 323px;
+      transition: 0.5s linear all;
+    }
+    &__list--active {
+      height: 323px;
+      visibility: visible;
     }
     &__desktop {
       display: block;

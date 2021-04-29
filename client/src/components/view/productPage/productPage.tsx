@@ -9,7 +9,7 @@ export const ProductPage: FC<MatchProps> = ({ match }) => {
   const relatedProduct = productByCategory(product.category);
 
   return (
-    <section className="page">
+    <section >
       <ProductDetail product={product} />
       <CarousellProduct
         title="Related Products"

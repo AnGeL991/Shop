@@ -39,7 +39,7 @@ export const Slide: FC<DealProps> = ({
     >
       <div className="deal__context">
         <div className="deal__images">
-          <GalerySlider data={images} padding={0} />
+          <GalerySlider data={images} padding={0} className='deal' />
         </div>
         <div className="deal__info">
           <h4 className="deal__title">{title}</h4>

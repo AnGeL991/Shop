@@ -1,15 +1,29 @@
 @import "../../../../styles/settings.scss";
 
+@keyframes show {
+  from {
+    height: 0px;
+    padding: 0px;
+    visibility: hidden;
+  }
+  to {
+    height: 150px;
+    padding: 20px;
+    visibility: visible;
+  }
+}
+
 .product {
   padding: 20px;
   max-width: 1220px;
   margin: 0 auto;
 
   &__images {
-    width: 50%;
-    height: auto;
+    width: 40%;
+    height: 100%;
   }
   &__slide {
+    height: auto;
     text-align: center;
   }
   &__sale {
@@ -69,6 +83,7 @@
     margin: 20px 0;
   }
   &__amountBtn {
+    cursor: pointer;
     width: 45px;
     background-color: white;
     border: 1px solid $border-darkGray;
@@ -93,12 +108,17 @@
     margin-right: 10px;
   }
   &__wishList {
+    cursor: pointer;
     margin: 10px 0;
     font-weight: 300;
     font-size: 16px;
     color: black;
     display: flex;
     text-transform: capitalize;
+    transition: 0.3s ease-in all;
+    &:hover {
+      color: $color-orange;
+    }
   }
   &__add {
     border-radius: 0px;
@@ -106,7 +126,6 @@
     text-transform: uppercase;
     font-weight: 600;
     padding: 13px 20px 11px;
-
     font-size: 14px;
   }
   &__list {
@@ -114,6 +133,7 @@
     text-align: center;
   }
   &__item {
+    cursor: pointer;
     padding: 10px;
     margin: 10px 0;
     color: black;
@@ -125,26 +145,25 @@
     font-weight: 500;
   }
   &__itemBox {
+    border-top: 1px solid black;
     position: relative;
-    min-height: 250px;
-    overflow: hidden;
-    background-color: white;
   }
   &__itemInfo {
-    position: absolute;
+    overflow: hidden;
+    height: 0px;
     background-color: white;
-    padding: 20px;
     line-height: 1.5;
     font-weight: 300;
     font-size: 14px;
-    transition: 0.5s linear all;
+    color: black;
     visibility: hidden;
-    transform: translateY(200px);
   }
   &__itemInfo--active {
+    animation: show 1.5s;
+    padding: 20px;
+    height: 150px;
+    width: 100%;
     visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 @media (min-width: 768px) {
@@ -161,12 +180,15 @@
     &__imageBox {
       width: 80%;
       margin: 0 auto;
+      max-width: 400px;
     }
     &__images {
-      width: 50%;
+      width: 90%;
+      max-height: 80px;
+      object-fit: contain;
     }
     &__slide {
-      width: calc(100vw / 3 * 0.8 - 10px);
+      width: calc(400px / 2);
     }
     &__add {
       margin-left: 10px;
@@ -177,15 +199,14 @@
   .product {
     &__imageBox {
       margin: 30px auto;
-      width: calc(100% / 3);
+      max-width: 450px;
     }
     &__slide {
-      width: calc(50vw / 3 * 0.8 - 35px);
+      width: calc(450px / 3);
     }
     &__images {
-      width: 85%;
-      padding-right: 10px;
-      margin-left: 25px;
+      width: 95%;
+      max-height: 100px;
     }
     &__sale {
       width: 100%;

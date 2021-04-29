@@ -19,3 +19,4 @@ export { ResetPassword } from "./account/resetPassword";
 export { Cancel } from "./checkout/cancel";
 export { Success } from "./checkout/success";
 export { Payment } from "./checkout/payment";
+export { Blog } from "./blog/blog";

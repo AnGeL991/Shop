@@ -8,7 +8,31 @@ export const useDisplayProduct = (amountOnPage?: number) => {
     (store: ApplicationState) => store.inventory
   );
   const [slice, setSlice] = useState(0);
-
+  const [displayWay, setDisplayWay] = useState({
+    list: true,
+    gallery: false,
+  });
+  const handleChangeDisplayWay = (option: number) => {
+    switch (option) {
+      case 1: {
+        setDisplayWay({
+          list: true,
+          gallery: false,
+        });
+        break;
+      }
+      case 2: {
+        setDisplayWay({
+          list: false,
+          gallery: true,
+        });
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  };
   const handleSetSlice = (amount: number) => setSlice(amount - 1);
 
   const productById = (id: string) => data.filter((el) => el._id === id);
@@ -71,9 +95,11 @@ export const useDisplayProduct = (amountOnPage?: number) => {
     sliceArray,
     dealProduct,
     recomendedProduct,
-    productById,
+    displayWay,
     category,
+    productById,
     handleSetSlice,
     productByCategory,
+    handleChangeDisplayWay,
   };
 };

@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { FC } from "react";
 import { useChangeSlider } from "_hooks";
 import { Icons } from "components/common";
 import "./style/imageSlider.scss";
@@ -26,28 +26,25 @@ export const ImageSlider: FC<ImageProps> = ({
   const { transition, translate } = slide;
   const { ArrowLeft, ArrowRight } = Icons;
 
-  const images = useMemo(
-    () =>
-      data.map((el, index) => (
-        <div
-          key={index}
-          className={`${classSlide}`}
-          style={{
-            transform: `translate(-${translate}%)`,
-            transition: `all linear  ${transition}s`,
-            opacity: `${opacity}`,
-          }}
-        >
-          <img src={el} alt="images" className={classImage} />
-        </div>
-      )),
-    [translate, transition, classImage, classSlide, data, opacity]
-  );
-  const foto = data.filter((el, index) => index === slide.activeIndex);
+  const images = data.map((el, index) => (
+    <div
+      key={index}
+      className={`${classSlide}`}
+      style={{
+        transform: `translate(-${translate}%)`,
+        transition: `all linear  ${transition}s`,
+        opacity: `${opacity}`,
+      }}
+    >
+      <img src={el} alt="images" className={classImage} />
+    </div>
+  ));
+
+  const foto = data.find((el, index) => index === slide.activeIndex);
 
   const bigImage = (
     <div className="images__bigImage">
-      <img src={foto[0]} alt="product images" className="images__bigImg" />
+      <img src={foto} alt="product images" className="images__bigImg" />
     </div>
   );
   return (

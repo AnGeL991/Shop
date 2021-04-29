@@ -28,7 +28,7 @@ export const BasketProduct: FC<BasketProps> = ({ item }) => {
         onClick={handleRedirectToProduct}
       >
         <h4 className="basketProduct__title">{title}</h4>
-        <ReadMore title="Wiecej szczegółów" className="basketRead">
+        <ReadMore title="More Details" className="basketRead">
           <p className="basketProduct__description">{time}</p>
         </ReadMore>
         <p className="basketProduct__price">

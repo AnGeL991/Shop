@@ -1,5 +1,5 @@
 import {FC} from 'react';
 
 export const PageNoFound:FC=()=>{
-  return <section className='page'>Strona nie została znaleziona</section>
+  return <section style={{padding:'20px'}} >Page no found</section>
 }

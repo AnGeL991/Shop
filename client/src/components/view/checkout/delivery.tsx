@@ -15,7 +15,7 @@ export const Delivery: FC = () => {
   if (order.count === 0) return <Redirect to="/order" />;
 
   return (
-    <section className="page">
+    <section >
       <ProgressList active={2} />
       <AdressForm />
     </section>

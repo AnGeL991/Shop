@@ -13,7 +13,7 @@ export const Shop: FC = () => {
   }, []);
 
   return (
-    <section className="page shop">
+    <section className="shop">
       <ProductCart />
       <Filter />
     </section>

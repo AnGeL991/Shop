@@ -1,18 +1,18 @@
 @import "../../../../styles/settings.scss";
 
 .basket {
-  visibility: hidden;
+  visibility: visible;
   overflow: hidden;
   z-index: 999;
   background-color: $bgc-gray;
   position: absolute;
   width: 100%;
-  padding: 20px;
   bottom: 0;
   right: 0;
-  transform: translateY(130%);
-  transition: 0.3s linear all;
-  opacity: 0;
+  height: 0px;
+  padding: 0px 20px;
+  transform: translateY(100%);
+  transition: 0.5s linear all;
   max-height: 400px;
   max-width: 320px;
   &__empty {
@@ -58,6 +58,8 @@
   }
   &__active {
     visibility: visible;
+    height: 400px;
+    padding: 20px;
     transform: translateY(100%);
     opacity: 1;
   }
@@ -115,6 +117,7 @@
   }
   &__amountInput,
   &__btn {
+    cursor: pointer;
     border-radius: 3px;
     font-weight: 500;
     width: 25px;

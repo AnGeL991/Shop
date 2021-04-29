@@ -4,7 +4,7 @@ import { MatchProps } from "components/interfaces";
 
 export const Payment: FC<MatchProps> = ({ match }) => {
   return (
-    <section className="page">
+    <section>
       <PaymentSummary orderId={match.params.id} />
     </section>
   );

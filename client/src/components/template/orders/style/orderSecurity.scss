@@ -12,7 +12,8 @@
   }
   &__info {
     flex-basis: calc(100% / 3);
-    margin: 10px 0;
+    margin: 10px;
+    line-height: 20px;
   }
   &__title {
     color: black;

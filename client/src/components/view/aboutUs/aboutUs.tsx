@@ -23,10 +23,9 @@ const data = [
 
 export const AboutUs: FC = () => {
   return (
-    <section className="page">
+    <section  >
       <Header title="About Us" />
       <GalerySlider data={data} arrows={true} />
-      {/* <OurHistory/>  */}
       <WhyUs />
     </section>
   );
