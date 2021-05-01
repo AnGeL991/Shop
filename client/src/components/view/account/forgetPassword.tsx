@@ -3,7 +3,7 @@ import { ForgetPasswordForm } from "components/template";
 
 export const ForgetPassword: FC = () => {
   return (
-    <section className="page">
+    <section >
       <ForgetPasswordForm />
     </section>
   );

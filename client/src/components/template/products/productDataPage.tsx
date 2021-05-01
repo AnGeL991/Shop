@@ -22,8 +22,9 @@ export const ProductDataPage: FC<Props> = ({ array, value, handleSlice }) => {
     chunk > 2 && activePage + 1 !== chunk ? (
       <li className="productCart__item">...</li>
     ) : null;
-
+  
   return (
+    
     <div className="productCart__pages">
       <div className="productCart__amountBox">
         <ul className="productCart__list">

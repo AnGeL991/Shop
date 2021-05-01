@@ -35,7 +35,7 @@ export const WishItem: FC<IWishItem> = ({ item }) => {
   );
 
   return (
-    <article>
+    <article className='wish__wrapper'>
       <div className={`wish__product ${!amount ? "wish__product--out" : ""}`}>
         {amountDiscount}
         {out}

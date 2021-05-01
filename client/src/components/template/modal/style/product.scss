@@ -1,0 +1,15 @@
+@import "../../../../styles/settings.scss";
+.productModal {
+  display: flex;
+  flex-direction: column;
+  color: $color-orange;
+  background-color: transparent;
+  overflow: hidden;
+  &__wrapper {
+    height: 200px;
+    text-align: center;
+  }
+  &__status {
+    padding: 15px;
+  }
+}

@@ -6,13 +6,13 @@ import { Redirect } from "react-router-dom";
 
 export const Delivery: FC = () => {
   const { SetOrderToPayment } = usePaymentsLogic();
-  const { order } = useGetState();
+  const { cart:{count} } = useGetState();
 
   useEffect(() => {
     SetOrderToPayment();
   }, []);
 
-  if (order.count === 0) return <Redirect to="/order" />;
+  if (count === 0) return <Redirect to="/order" />;
 
   return (
     <section >

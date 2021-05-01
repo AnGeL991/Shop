@@ -27,7 +27,7 @@ export const Activate: FC<MatchProps> = ({ match }) => {
   );
 
   return (
-    <section className="page">
+    <section>
       {modalAlert}
       <Operation
         title="Veryfikacja konta"

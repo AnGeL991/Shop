@@ -1,22 +1,32 @@
 import CartProcess from "_services/cart.services";
+import WishProcess from "_services/wish.services";
 import { wishAction } from "store/wishList";
 import { Inventory } from "store/inventory";
-import { FactoryCallbackAction } from "../utils";
 import { history } from "_helpers";
+import { useGetState, useFormLogic, useModalLogic } from "_hooks";
 
 export const useProductBoxLogic = (item: Inventory) => {
-  const addProductToOrder = FactoryCallbackAction(CartProcess.addtoOrder, [
-    item,
-  ]);
+  const {
+    cart: { loading },
+    wish,
+    alert: { message },
+  } = useGetState();
+  const { onSubmit } = useFormLogic();
+  const { removeProduct } = wishAction;
+  const { handleToggleModal, showModal } = useModalLogic();
 
-  const addProductToWish = FactoryCallbackAction(wishAction.AddProductToWish, [
-    item,
-  ]);
-
-  const removeProductFromWish = FactoryCallbackAction(
-    wishAction.removeProduct,
-    [item._id]
-  );
+  const addProductToOrder = () => {
+    handleToggleModal();
+    onSubmit(CartProcess.addtoOrder, [item]);
+  };
+  const addProductToWish = () => {
+    handleToggleModal();
+    onSubmit(WishProcess.AddProductToWish, [item]);
+  };
+  const removeProductFromWish = () => {
+    handleToggleModal();
+    onSubmit(removeProduct, [item._id]);
+  };
 
   const discountPrice =
     item.discount > 0
@@ -38,9 +48,14 @@ export const useProductBoxLogic = (item: Inventory) => {
     totalPrice,
     images,
     arrayOfStars,
+    loading,
+    wish,
+    message,
+    showModal,
     addProductToWish,
     addProductToOrder,
     handleRedirectToProduct,
     removeProductFromWish,
+    handleToggleModal,
   };
 };

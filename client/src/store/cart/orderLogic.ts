@@ -116,7 +116,6 @@ export default class CartReduxProcesses {
     };
   }
   static cleanCart(state: CartState, action: AnyAction) {
-    console.log("clean");
     return {
       ...state,
       count: 0,

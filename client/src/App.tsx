@@ -7,10 +7,9 @@ import { History } from "history";
 import { Routers } from "routers";
 import { AlertAction } from "store/alert";
 import { useLoading, useToggleClick } from "_hooks";
+import { TelegramButton } from "components/common";
 import "normalize.css";
 import "styles/global.scss";
-import { TelegramButton } from "components/common";
-
 interface MainProps {
   history: History;
 }

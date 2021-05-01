@@ -20,3 +20,4 @@ export { Delivery } from "./HeaderIcons/delivery";
 export { Support } from "./HeaderIcons/support";
 export { AwsButton } from "./aws";
 export { TelegramButton } from "./telegramButton";
+export { Spinner } from "./spinner";

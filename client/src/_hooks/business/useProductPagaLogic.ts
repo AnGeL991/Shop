@@ -1,5 +1,4 @@
 import { useState, MouseEventHandler } from "react";
-import { useProductBoxLogic } from "_hooks";
 import { Inventory } from "store/inventory";
 
 export const useProductPageLogic = (item: Inventory) => {
@@ -13,12 +12,6 @@ export const useProductPageLogic = (item: Inventory) => {
 
   const currentPrice =
     discount !== 0 ? price - (price * discount) / 100 : price;
-
-  const {
-    addProductToOrder,
-    addProductToWish,
-    arrayOfStars,
-  } = useProductBoxLogic(item);
 
   const HandleSetActiveInfo: MouseEventHandler<HTMLLIElement> = (e) => {
     setActiveInfo(e.currentTarget.title);
@@ -34,11 +27,8 @@ export const useProductPageLogic = (item: Inventory) => {
     handleDecremnet,
     handleIncrement,
     HandleSetActiveInfo,
-    addProductToOrder,
-    addProductToWish,
     currentPrice,
     activeInfo,
     amount,
-    arrayOfStars,
   };
 };

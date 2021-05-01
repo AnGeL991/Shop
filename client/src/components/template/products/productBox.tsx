@@ -1,7 +1,7 @@
-import { FC } from "react";
+import { FC,  } from "react";
 import { Tag, Stars } from "components/common";
-import { DealButtons } from "components/template";
-import { useProductBoxLogic } from "_hooks";
+import { DealButtons, ModalProduct } from "components/template";
+import {useProductBoxLogic } from "_hooks";
 import { Inventory } from "store/inventory";
 import "./style/productBox.scss";
 
@@ -16,7 +16,13 @@ export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
     discountPrice,
     addProductToWish,
     arrayOfStars,
+    loading,
+    showModal,
+    wish,
+    handleToggleModal
   } = useProductBoxLogic(item);
+
+
   const tag = item.tags ? (
     <div
       className={`productBox__tags ${
@@ -33,9 +39,17 @@ export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
     </div>
   ) : null;
 
+  const modal = showModal && (
+    <ModalProduct
+      showModal={showModal}
+      loading={loading || wish.loading}
+      handleToggle={handleToggleModal}
+    />
+  );
+
   const price = discountPrice ? (
     <>
-      <span className="productBox__oldPrice">${item.price.toFixed(2)}</span>{" "}
+      <span className="productBox__oldPrice">${item.price.toFixed(2)}</span>
       <span>${discountPrice.toFixed(2)}</span>
     </>
   ) : (
@@ -43,49 +57,54 @@ export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
   );
 
   return (
-    <div className={`productBox ${displayWay && "productBox--horizontal"}`}>
-      <div
-        className={`productBox__image ${
-          displayWay && "productBox__image--horizontal"
-        } `}
-      >
-        <img src={item.image} alt={item.title} className="productBox__img" />
-        {tag}
-        <DealButtons
-          addToCard={addProductToOrder}
-          id={item._id}
-          className={`productBox__buttons ${
-            displayWay && "productBox__buttons--horizontal"
-          }`}
-          styleBtn={`productBox__button ${
-            displayWay && "productBox__button--horizontal"
-          }`}
-          addToWishList={addProductToWish}
-        />
-      </div>
-      <div
-        className={`productBox__info ${
-          displayWay && "productBox__info--horizontal"
-        }`}
-      >
-        <div className="productBox__star--horizontal">
-          <Stars productId={item._id} arrayOfStars={arrayOfStars} />
-          {displayWay && (
-            <span className="productBox__comment">
-              ({item.comment.length} customer review)
-            </span>
-          )}
+    <>
+      {modal}
+      <div className={`productBox ${displayWay && "productBox--horizontal"}`}>
+        <div
+          className={`productBox__image ${
+            displayWay && "productBox__image--horizontal"
+          } `}
+        >
+          <img src={item.image} alt={item.title} className="productBox__img" />
+          {tag}
+          <DealButtons
+            addToCard={addProductToOrder}
+            id={item._id}
+            className={`productBox__buttons ${
+              displayWay && "productBox__buttons--horizontal"
+            }`}
+            styleBtn={`productBox__button ${
+              displayWay && "productBox__button--horizontal"
+            }`}
+            addToWishList={addProductToWish}
+          />
         </div>
-        <h5 className="productBox__title">{item.title}</h5>
-        {displayWay && <div className='productBox__description'>{item.description}</div>}
-        <span
-          className={`productBox__price ${
-            displayWay && "productBox__price--horizontal"
+        <div
+          className={`productBox__info ${
+            displayWay && "productBox__info--horizontal"
           }`}
         >
-          {price}
-        </span>
+          <div className="productBox__star--horizontal">
+            <Stars productId={item._id} arrayOfStars={arrayOfStars} />
+            {displayWay && (
+              <span className="productBox__comment">
+                ({item.comment.length} customer review)
+              </span>
+            )}
+          </div>
+          <h5 className="productBox__title">{item.title}</h5>
+          {displayWay && (
+            <div className="productBox__description">{item.description}</div>
+          )}
+          <span
+            className={`productBox__price ${
+              displayWay && "productBox__price--horizontal"
+            }`}
+          >
+            {price}
+          </span>
+        </div>
       </div>
-    </div>
+    </>
   );
 };

@@ -1,10 +1,9 @@
-import { useSelector } from "react-redux";
-import { ApplicationState } from "store";
-
+import { useGetState } from "_hooks";
 export const useBasketLogic = (_id?: string) => {
-  const { items, totalPrice, count } = useSelector(
-    (store: ApplicationState) => store.order
-  );
+  const {
+    cart: { items, totalPrice, count },
+  } = useGetState();
+
   const delivery = 49;
 
   return { count, items, totalPrice, delivery };

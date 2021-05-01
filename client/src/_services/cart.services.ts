@@ -1,6 +1,6 @@
 import { Inventory } from "store/inventory";
 import { CartActions } from "store/cart";
-
+import { AlertAction } from "store/alert";
 const {
   addCartFailure,
   addCartRequest,
@@ -12,6 +12,7 @@ const {
   errorLoadCart,
 } = CartActions;
 
+const { success, error } = AlertAction;
 export default class CartProcess {
   static loadOrderFromLocalStorage(items: Array<Inventory>) {
     return (dispatch: Function) => {
@@ -27,9 +28,13 @@ export default class CartProcess {
     return (dispatch: Function) => {
       dispatch(addCartRequest());
       try {
-        dispatch(addCartSuccess(item));
-      } catch (error) {
-        dispatch(addCartFailure(error.message));
+        setTimeout(() => {
+          dispatch(success("Product added to cart"));
+          dispatch(addCartSuccess(item));
+        }, 3000);
+      } catch (err) {
+        dispatch(error(err.message));
+        dispatch(addCartFailure(err.message));
       }
     };
   }

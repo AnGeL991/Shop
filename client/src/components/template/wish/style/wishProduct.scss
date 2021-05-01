@@ -3,10 +3,15 @@
 .empty {
   line-height: 50vh;
   text-align: center;
+  max-width: 1220px;
+  margin: 0 auto;
 }
 
 .wish {
   padding: 20px;
+  max-width: 1220px;
+  margin: 0 auto;
+
   &__product {
     padding: 10px 0 0;
     display: flex;
@@ -91,5 +96,20 @@
   }
   &__button--disable {
     opacity: 0.2;
+  }
+}
+@media (min-width: 768px) {
+  .wish {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    &__wrapper {
+      margin: 0 10px;
+      width: calc(50% - 40px);
+    }
+    &__product {
+      width: 100%;
+    }
   }
 }

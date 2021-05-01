@@ -76,3 +76,4 @@ export { Status } from "./account/status";
 export { OrderDetails } from "./account/orders/orderDetails";
 export { OrderProductDetail } from "./account/orders/orderProduct";
 export { ModalGalery } from "./modal/modalGalery";
+export { ModalProduct } from "./modal/modalProduct";

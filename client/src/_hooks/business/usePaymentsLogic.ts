@@ -15,7 +15,7 @@ export const usePaymentsLogic = () => {
   const User = new UserApiHandler();
   const { onSubmit } = useFormLogic();
   const {
-    order: { items },
+    cart: { items },
     payment,
     user: {
       token,

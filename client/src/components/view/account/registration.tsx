@@ -5,7 +5,7 @@ import { RegisterForm } from 'components/template';
 
 export const Registration: FC = () => {
   return (
-    <section className="page">
+    <section>
       <Header title="Create Account" />
       <article>
         <RegisterForm />

@@ -3,6 +3,7 @@ import { userActions } from "store/user";
 import OrderProcess from "_services/cart.services";
 import Payment from "_services/payment.service";
 import { actions } from "store/inventory";
+import WishProcess from "_services/wish.services";
 
 export const useFetchLogic = () => {
   const fetchProduct = async (dispatch: Function) => {
@@ -22,11 +23,14 @@ export const useFetchLogic = () => {
     const items = JSON.parse(localStorage.getItem("Cart") || "[]");
     dispatch(OrderProcess.loadOrderFromLocalStorage(items));
   };
+  const loadWish = (dispatch: Function) => {
+    const wish = JSON.parse(localStorage.getItem("Wish") || "[]");
+    dispatch(WishProcess.loadWishFromLocalStorage(wish));
+  };
   const loadPayment = (dispatch: Function) => {
     const payment = JSON.parse(localStorage.getItem("Payment") || "[]");
-
     dispatch(Payment.loadPayment(payment));
   };
 
-  return { fetchProduct, fetchUser, loadOrder, loadPayment };
+  return { fetchProduct, fetchUser, loadOrder, loadPayment, loadWish };
 };

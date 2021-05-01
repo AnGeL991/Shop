@@ -16,7 +16,7 @@ interface IMainMenu {
 }
 
 export const MainMenu: FC<IMainMenu> = ({ fixed }) => {
-  const { order } = useGetState();
+  const { cart:{totalPrice} } = useGetState();
   return (
     <header className={`header ${fixed && "header--fixed"}`}>
       <div className="header__border">
@@ -45,7 +45,7 @@ export const MainMenu: FC<IMainMenu> = ({ fixed }) => {
             <Basket />
             <p className="header__myCart">
               <span className="header__myCartTitle">My cart</span>
-              <br />${order.totalPrice.toFixed(2)}
+              <br />${totalPrice.toFixed(2)}
             </p>
           </div>
         </div>

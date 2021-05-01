@@ -9,7 +9,7 @@ import { WishState, WishReducer } from "./wishList";
 import { PaymentState, PaymentReducer } from "./payment";
 
 export interface ApplicationState {
-  order: CartState;
+  cart: CartState;
   payment: PaymentState;
   inventory: InventoryState;
   user: UserState;
@@ -20,7 +20,7 @@ export interface ApplicationState {
 
 export const createRootReducer = (history: History) =>
   combineReducers({
-    order: OrderReducer,
+    cart: OrderReducer,
     payment: PaymentReducer,
     inventory: InventoryReducer,
     user: UserReducer,
