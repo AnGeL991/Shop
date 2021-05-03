@@ -24,7 +24,7 @@ import { GoLocation, GoThreeBars } from "react-icons/go";
 import { FiPhone, FiSend } from "react-icons/fi";
 import { GiLetterBomb } from "react-icons/gi";
 import { BiSupport, BiShoppingBag, BiGridAlt } from "react-icons/bi";
-import { RiBallPenLine, RiTruckLine } from "react-icons/ri";
+import { RiBallPenLine, RiTruckLine, RiLockPasswordLine } from "react-icons/ri";
 import { MdPayment } from "react-icons/md";
 
 export const Icons = {
@@ -64,4 +64,5 @@ export const Icons = {
   Bars: AiOutlineBars,
   ListIcon: ImList,
   ViewGrid: BiGridAlt,
+  PasswordIcon: RiLockPasswordLine,
 };

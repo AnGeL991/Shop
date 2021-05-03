@@ -6,3 +6,4 @@ export {
   prepareActiveStar,
 } from "./utils";
 export { ScrollToTop } from "./srollToTop";
+export * from "./validateSchema";

@@ -46,6 +46,9 @@
     list-style-type: none;
     margin: 10px 5px;
   }
+  &__button {
+    cursor: pointer;
+  }
 }
 .allCategories {
   color: white;

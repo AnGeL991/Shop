@@ -35,11 +35,7 @@ export const PersonalData: FC<IPersonalData> = ({
 
   return (
     <section className={`personalData ${active && "personalData--active"} `}>
-      <AccountHeader
-        open={open}
-        handleToggle={handleToggle}
-        text="Edit Profile"
-      />
+      <AccountHeader {...{ open, handleToggle, text: "Edit Profile" }} />
       <article
         className={`personalData__content ${
           open && "personalData__content--active"
@@ -64,12 +60,7 @@ export const PersonalData: FC<IPersonalData> = ({
               reference={register}
               error={errors["lastName"]}
             />
-            <EachData
-              title="E-mail"
-              name="email"
-              value={email}
-              disable
-            />
+            <EachData title="E-mail" name="email" value={email} disable />
             <EachData
               title="Contacts Number"
               name="contact"

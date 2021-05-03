@@ -35,7 +35,7 @@ export const Item: FC<OrderProductProps> = ({
       <div className="orderProduct__productInfo">
         <h4 className="orderProduct__title">{title}</h4>
         <ReadMore
-          title="Wiecej Szegółów"
+          title="More details"
           className="basketRead"
           style={{ width: "100%" }}
         >

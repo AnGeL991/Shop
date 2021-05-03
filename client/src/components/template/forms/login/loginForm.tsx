@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Button, Field, WrongLabel, AwsButton } from "components/common";
 import { CreateAccount } from "components/template";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "../validateSchema";
+import { loginSchema } from "_helpers";
 import { useLoginLogic } from "_hooks";
 import "./loginForm.scss";
 

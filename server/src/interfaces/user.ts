@@ -27,6 +27,7 @@ export interface IUserModel extends Model<IUserDocument> {
   updateHashedPassword(id: string, password: string): Promise<void>;
   updateOrder(id: string, orderId: string): Promise<void>;
   updateWish(id: string, wishId: string): Promise<void>;
+  removeWish(id: string, wishId: string): Promise<void>;
   updateStatus(id: string, status: string | number): Promise<void>;
   updateAccount(id: string, updates: IUser): Promise<void>;
 }

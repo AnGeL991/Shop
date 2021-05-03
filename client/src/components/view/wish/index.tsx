@@ -12,7 +12,7 @@ export const Wish: FC = () => {
   }
 
   return (
-    <section>
+    <section className='height'>
       <Header title="Wish List" />
       <WishProducts data={data} />
     </section>

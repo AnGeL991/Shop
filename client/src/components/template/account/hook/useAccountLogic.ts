@@ -8,6 +8,7 @@ export const useAccountLogic = () => {
     profile: true,
     orders: false,
     wish: false,
+    reset: false,
   });
   const {
     user: { data, isAuthenticated },
@@ -20,6 +21,7 @@ export const useAccountLogic = () => {
           profile: true,
           orders: false,
           wish: false,
+          reset: false,
         });
         break;
       }
@@ -28,6 +30,7 @@ export const useAccountLogic = () => {
           profile: false,
           orders: true,
           wish: false,
+          reset: false,
         });
         break;
       }
@@ -36,8 +39,17 @@ export const useAccountLogic = () => {
           profile: false,
           orders: false,
           wish: true,
+          reset: false,
         });
         break;
+      }
+      case "reset": {
+        setOpenOption({
+          profile: false,
+          orders: false,
+          wish: false,
+          reset: true,
+        });
       }
     }
   };

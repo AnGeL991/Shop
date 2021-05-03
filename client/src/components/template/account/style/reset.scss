@@ -1,0 +1,61 @@
+.reset {
+  padding: 10px;
+  background-color: white;
+  margin: 0px 20px;
+  overflow: hidden;
+  &__wrapper {
+    display: none;
+  }
+  &__wrapper--active {
+    display: block;
+  }
+  &__buttons {
+    width: 100%;
+    margin: 10px 0;
+    text-align: center;
+  }
+  &__description {
+    font-size: 12px;
+    padding: 10px;
+    color: black;
+    line-height: 16px;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  &__subtitle {
+    font-weight: 400;
+  }
+  &__password {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  &__rules {
+    margin: 10px 20px;
+  }
+  &__fieldset {
+    border: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .reset {
+    width: 100%;
+    display: none;
+    margin: 10px 20px 0px 0px;
+    border-radius: 0px 10px 10px 0px;
+    padding: 20px;
+    &__form {
+      width: 100%;
+      margin: 0 auto;
+    }
+    &__wrapper {
+      display: block;
+    }
+    &__description {
+      font-size: 14px;
+    }
+    &--active {
+      display: block;
+    }
+  }
+}

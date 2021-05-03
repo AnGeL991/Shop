@@ -2,7 +2,7 @@ import { FC, useRef, useMemo } from "react";
 import { Button, Field, FieldChecked } from "components/common";
 import { Modal, ReadMore } from "components/template";
 import { registerField } from "db";
-import { registerSchema } from "../validateSchema";
+import { registerSchema } from "_helpers";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegisterLogic } from "_hooks";

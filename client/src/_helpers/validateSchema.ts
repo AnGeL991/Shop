@@ -87,10 +87,21 @@ export const forgetPasswordSchema = yup.object().shape({
     .email("Email posiada nie własciwą konstrukcję - @gmail.com"),
 });
 
+export const newPasswordFromAccount = yup.object().shape({
+  newPassword: yup
+    .string()
+    .min(8, "Your new Password have to at least 8 chars.")
+    .required("To pole jest obowiązkowe"),
+  confirmPassword: yup
+    .string()
+    .required("To pole jest wymagane")
+    .oneOf([yup.ref("newPassword"), null], "Hasła muszą być takie same"),
+});
+
 export const newPasswordSchema = yup.object().shape({
   password: yup
     .string()
-    .min(6, "Hasło musi się składać z minimum 6 znaków")
+    .min(8, "Hasło musi się składać z minimum 8 znaków")
     .required("To pole jest wymagane"),
   passwordConfirmation: yup
     .string()

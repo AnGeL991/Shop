@@ -2,7 +2,7 @@
 
 .myAccount {
   max-width: 1220px;
-  margin: 0 auto;
+  margin: 0 auto 20px;
   position: relative;
   &__entryTitle {
     margin: 10px 20px 0;
@@ -36,6 +36,7 @@
     display: none;
   }
   &__option {
+    font-size: 13px;
     display: flex;
     justify-content: space-between;
     color: white;

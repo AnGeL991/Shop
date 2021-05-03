@@ -27,12 +27,15 @@ export class UserApiHandler {
     localStorage.removeItem("Token");
   }
   addWishList(wishId: string, token: string) {
-    return client("users/wish", { wishId }, token);
+    return client("users/wish", { wishId }, token, { method: "PUT" });
   }
   addOrder(orderId: string, token: string) {
     return client("users/order", { orderId }, token, {
       method: "PUT",
     });
+  }
+  removeFromWishList(wishId: string, token: string) {
+    return client("users/wish/remove", { wishId }, token, { method: "PUT" });
   }
   findOrder(id: string, token: string) {
     return client("order/getOne", { id }, token);

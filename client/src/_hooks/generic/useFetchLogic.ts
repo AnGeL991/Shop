@@ -25,7 +25,7 @@ export const useFetchLogic = () => {
   };
   const loadWish = (dispatch: Function) => {
     const wish = JSON.parse(localStorage.getItem("Wish") || "[]");
-    dispatch(WishProcess.loadWishFromLocalStorage(wish));
+    dispatch(WishProcess.loadWish(wish));
   };
   const loadPayment = (dispatch: Function) => {
     const payment = JSON.parse(localStorage.getItem("Payment") || "[]");

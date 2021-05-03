@@ -28,11 +28,10 @@ export default class WishProcess {
     };
   };
 
-  static loadWishFromLocalStorage(wish: Array<WishProduct>) {
+  static loadWish(wish: Array<WishProduct>) {
     return (dispatch: Function) => {
       dispatch(loadRequest());
       try {
-        console.log(wish);
         dispatch(loadSuccess(wish));
       } catch (err) {
         dispatch(loadFailure(err.message));

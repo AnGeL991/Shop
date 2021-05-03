@@ -4,7 +4,7 @@ import { AdressContainer } from "components/template";
 import { contactField, User } from "db";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { contactSchema } from "../validateSchema";
+import { contactSchema } from "_helpers";
 import "./contactForm.scss";
 
 // zrób własnego hooka odpowiedzialnego za wysłanie wiadomosci na server do bazy

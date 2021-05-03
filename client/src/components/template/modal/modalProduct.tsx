@@ -4,14 +4,14 @@ import { Spinner } from "components/common";
 import { Modal } from "components/template";
 import "./style/product.scss";
 
-interface ModalAlertProps {
+interface IModalProduct {
   status?: string;
   loading?: boolean;
   showModal: boolean;
   handleToggle: () => void;
 }
 
-export const ModalProduct: FC<ModalAlertProps> = ({
+export const ModalProduct: FC<IModalProduct> = ({
   loading,
   showModal,
   handleToggle,

@@ -1,6 +1,6 @@
 import { FC, useMemo } from "react";
 import { Item } from "./item";
-import {Button} from 'components/common';
+import { Button } from "components/common";
 import { useBasketLogic } from "_hooks";
 import { Link } from "react-router-dom";
 import "./style/orderProduct.scss";
@@ -21,7 +21,7 @@ export const OrderProduct: FC = () => {
     );
   }
   return (
-    <div className="content">
+    <div className="content ">
       <div className="content__orders">{orders}</div>
       <div className="content__payBox">
         <div>
@@ -37,7 +37,7 @@ export const OrderProduct: FC = () => {
             Total Payment: <span>{(delivery + totalPrice).toFixed(2)}$</span>
           </p>
           <p className="content__discountCode">I have a coupon</p>
-          <Link to='/checkout'>
+          <Link to="/checkout">
             <Button className="content__submitBtn">Checkout</Button>
           </Link>
         </div>

@@ -110,51 +110,6 @@ export const registerField = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,sed eveniet! Facilis, eius. Quo suscipit reprehenderitaccusantium, iusto similique eaque animi at neque ad delectus consequuntur laborum aliquid dolorem? Dolorem.",
   },
 ];
-export const cognitoRegister = [
-  {
-    type: "text",
-    name: "username",
-    required: true,
-    title: "username",
-  },
-  {
-    type: "text",
-    name: "email",
-    required: true,
-    title: "E-mail Adress",
-  },
-
-  {
-    title: "password",
-    name: "password",
-    required: true,
-    type: "password",
-  },
-  {
-    title: "confirm password",
-    name: "passwordConfirmation",
-    required: true,
-    type: "password",
-  },
-  {
-    type: "text",
-    name: "name",
-    title: "name",
-    required: true,
-  },
-  {
-    type: "text",
-    name: "family_name",
-    title: "family Name",
-    required: true,
-  },
-  {
-    type: "date",
-    name: "birthdate",
-    title: "birthdate",
-    required: true,
-  },
-];
 
 export const privatePerson = [
   {
@@ -356,5 +311,52 @@ export const mainBaner = [
     subTitle: "Trumblers cups & ceramic",
     description: "Understand introductions to ceramic materials",
     buttons: ["shop now"],
+  },
+];
+export const fotosGalery = [
+  {
+    image:
+      "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/9.jpg",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
+  },
+  {
+    image:
+      "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/10.jpg",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
+  },
+  {
+    image:
+      "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/11.jpg",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1516081073616-833a87ca7516?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGZ1cm5pdHVyZXMlMjBkYXJrfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1532055446-f82ed0ab8fda?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGZ1cm5pdHVyZXMlMjBkYXJrfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1616693153250-bb03055788eb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzB8fGZ1cm5pdHVyZXMlMjBkYXJrfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1573544198019-f2fe658145d5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTIyfHxmdXJuaXR1cmVzJTIwZGFya3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1615480790440-857ddab70034?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTI3fHxmdXJuaXR1cmVzJTIwZGFya3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1571898231547-11cd8a41ed84?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjAyfHxmdXJuaXR1cmVzJTIwZGFya3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60",
+    text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
   },
 ];

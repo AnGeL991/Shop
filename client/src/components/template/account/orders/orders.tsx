@@ -29,13 +29,11 @@ export const UserOrders: FC<IOrders> = ({ active }) => {
     orders,
   } = useOrdersLogic();
 
- 
   useEffect(() => {
     if (orders.length === 0 && (active || open)) {
       fetchOrder();
     }
-  }, [active,open]);
-
+  }, [active, open]);
 
   const yourOrders = useMemo(
     () =>
@@ -65,14 +63,9 @@ export const UserOrders: FC<IOrders> = ({ active }) => {
     );
   }, [type, message]);
 
-
   return (
     <section className={`orders ${active && "orders--active"} `}>
-      <AccountHeader
-        open={open}
-        handleToggle={handleToggle}
-        text="Your orders"
-      />
+      <AccountHeader {...{ open, handleToggle, text: "Your orders" }} />
       <article
         className={`orders__wrapper ${open && "orders__wrapper--active"}`}
       >

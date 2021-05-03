@@ -3,7 +3,7 @@ import { Field, WrongLabel } from "components/common";
 import { Operation, ModalAlert } from "components/template";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { newPasswordSchema } from "./validateSchema";
+import { newPasswordSchema } from "_helpers";
 import { useLoginLogic } from "_hooks";
 
 export const ResetPasswordForm: FC<{ token: string }> = ({ token }) => {

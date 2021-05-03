@@ -3,7 +3,7 @@ import { Field, WrongLabel } from "components/common";
 import { Operation, ModalAlert } from "components/template";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { forgetPasswordSchema } from "./validateSchema";
+import { forgetPasswordSchema } from "_helpers";
 import { useLoginLogic } from "_hooks";
 
 export const ForgetPasswordForm: FC = () => {

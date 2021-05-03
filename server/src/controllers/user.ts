@@ -7,8 +7,12 @@ export const updateOrder = (req: Request, res: Response) => {
   errorHandler(res, User.updateOrder(res.locals.user, orderId), 200, 500);
 };
 export const updateWish = (req: Request, res: Response) => {
-  const { id, wishId } = req.body;
-  errorHandler(res, User.updateWish(id, wishId), 200, 500);
+  const { wishId } = req.body;
+  errorHandler(res, User.updateWish(res.locals.user, wishId), 200, 500);
+};
+export const removeWish = (req: Request, res: Response) => {
+  const { wishId } = req.body;
+  errorHandler(res, User.removeWish(res.locals.user, wishId), 200, 500);
 };
 export const updateStatus = (req: Request, res: Response) => {
   const { status } = req.body;

@@ -5,7 +5,7 @@ import { validateLogin, validateSign, forgetPasswordValidator, resetPasswordVali
 
 const router = express.Router();
 const { register, login, getUser, activation, forgetPassword, resetPassword } = AuthController;
-const { updateAccount, updateOrder, updateStatus, updateWish } = UserController;
+const { updateAccount, updateOrder, updateStatus, updateWish, removeWish } = UserController;
 
 router.get('/users/validate-Token', extractJWT, getUser);
 router.post('/users/register', validateSign, register);
@@ -16,6 +16,7 @@ router.post('/users/resetPassword', resetPasswordValidator, extractJWT, resetPas
 router.put('/users/status', extractJWT, updateStatus);
 router.put('/users/order', extractJWT, updateOrder);
 router.put('/users/wish', extractJWT, updateWish);
+router.put('/users/wish/remove', extractJWT, removeWish);
 router.put('/users/account', extractJWT, updateAccount);
 
 export = router;

@@ -85,4 +85,16 @@ export class UserReduxProcess {
       wish: [...action.payload],
     };
   }
+  static userRemoveWish(state: UserState, action: AnyAction) {
+    if (state.wish) {
+      const wishList = state.wish?.filter((el) => el._id !== action.payload);
+      const user = state.data.wishId?.filter((el) => el !== action.payload);
+      return {
+        ...state,
+        data: { ...user },
+        wish: [...wishList],
+      };
+    }
+    return;
+  }
 }

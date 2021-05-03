@@ -4,7 +4,7 @@ import { Galery } from "components/template";
 
 export const Media: FC = () => {
   return (
-    <section>
+    <section className='height'>
       <Header title="Media" />
       <Galery />
     </section>

@@ -19,6 +19,7 @@ const {
   USER_LOADED,
   USER_ORDERS,
   USER_WISH,
+  USER_REMOVE_WISH,
   SET_TOKEN,
 } = UserActionType;
 
@@ -33,6 +34,8 @@ export const userOrders = (order: PaymentState[]) =>
 export const setToken = (token: string) => selector(SET_TOKEN, token);
 export const userWish = (wishItem: Inventory[]) =>
   selector(USER_WISH, wishItem);
+export const userRemoveWish = (wishId: string) =>
+  selector(USER_REMOVE_WISH, wishId);
 
 export const userLogout = () => selector(LOGOUT);
 
@@ -102,11 +105,7 @@ export function ForgetPassword(email: string, cognito?: boolean) {
   };
 }
 
-export function ResetPassword(
-  token: string,
-  password: string,
-  cognito?: boolean
-) {
+export function ResetPassword(token: string, password: string) {
   return async (dispatch: Function) => {
     try {
       await resetPassword(token, password);

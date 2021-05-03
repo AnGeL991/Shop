@@ -23,7 +23,7 @@ const data = [
 
 export const AboutUs: FC = () => {
   return (
-    <section  >
+    <section className='height' >
       <Header title="About Us" />
       <GalerySlider data={data} arrows={true} />
       <WhyUs />

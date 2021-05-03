@@ -1,9 +1,14 @@
 import { FC } from "react";
 import { Icons } from "components/common";
-const { Account, DeliveryIcon, LetterBomb } = Icons;
+const { Account, DeliveryIcon, LetterBomb, PasswordIcon } = Icons;
 
 interface IAccountAside {
-  openOption: { profile: boolean; orders: boolean; wish: boolean };
+  openOption: {
+    profile: boolean;
+    orders: boolean;
+    wish: boolean;
+    reset: boolean;
+  };
   handleOpenOption: (option: string) => void;
 }
 
@@ -37,6 +42,14 @@ export const AccountAside: FC<IAccountAside> = ({
         onClick={() => handleOpenOption("wish")}
       >
         <LetterBomb /> Wish Item
+      </div>
+      <div
+        className={`myAccount__option ${
+          openOption.reset && "myAccount__option--active"
+        } `}
+        onClick={() => handleOpenOption("reset")}
+      >
+        <PasswordIcon /> Reset password
       </div>
     </aside>
   );

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Field, FieldRadio, Button } from "components/common";
 import { PaymentRenderProduct } from "components/template";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { adressPrivateSchema } from "../validateSchema";
+import { adressPrivateSchema } from "_helpers";
 import { useAdressLogic } from "./useAdressLogic";
 import "./adressForm.scss";
 

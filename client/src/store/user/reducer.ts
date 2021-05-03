@@ -19,6 +19,7 @@ const {
   LOGOUT,
   USER_ORDERS,
   USER_WISH,
+  USER_REMOVE_WISH,
   SET_TOKEN,
 } = UserActionType;
 
@@ -38,6 +39,8 @@ const reducer: Reducer<UserState> = (state = initialState, action) => {
       return UserReduxProcess.userOrders(state, action);
     case USER_WISH:
       return UserReduxProcess.userWish(state, action);
+    case USER_REMOVE_WISH:
+      return UserReduxProcess.userRemoveWish(state, action);
     case SET_TOKEN:
       return UserReduxProcess.setToken(state, action);
     default:

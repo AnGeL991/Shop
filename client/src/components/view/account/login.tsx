@@ -4,7 +4,7 @@ import { LoginForm } from "components/template";
 
 export const Login: FC = () => {
   return (
-    <section>
+    <section className='height'>
       <Header title="Log in" />
       <LoginForm />
     </section>

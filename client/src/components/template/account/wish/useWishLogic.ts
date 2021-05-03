@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
 import { useGetState, useFormLogic } from "_hooks";
 import { client } from "_api";
 import { userActions } from "store/user";
+import { useEffect } from "react";
 
 export const useWishLogic = () => {
   const { userWish } = userActions;
@@ -26,5 +26,5 @@ export const useWishLogic = () => {
     fetchWish();
   }, []);
 
-  return { wish };
+  return { wish, fetchWish };
 };

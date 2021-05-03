@@ -8,6 +8,7 @@
   justify-content: center;
   color: black;
   max-width: 1220px;
+
   margin: 0 auto;
   &__payBox {
     padding: 0 10px;
@@ -174,6 +175,10 @@
     &__wrapper {
       width: calc(50% - 40px);
       margin: 20px;
+    }
+    &__image {
+      width: 140px;
+      height: 140px;
     }
   }
 }

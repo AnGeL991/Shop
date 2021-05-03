@@ -1,7 +1,9 @@
 import { FC } from "react";
-import { useChangeSlider } from "_hooks";
+import { useChangeSlider, useModalLogic } from "_hooks";
 import { Icons } from "components/common";
+import { ModalGalery } from "components/template";
 import "./style/imageSlider.scss";
+const { ArrowLeft, ArrowRight } = Icons;
 
 type ImageProps = {
   data: Array<string>;
@@ -22,9 +24,12 @@ export const ImageSlider: FC<ImageProps> = ({
   classSlide = "images__slide",
   big,
 }) => {
-  const { slide, nextSlide, prevSlide } = useChangeSlider(data, duration);
-  const { transition, translate } = slide;
-  const { ArrowLeft, ArrowRight } = Icons;
+  const {
+    slide: { transition, translate, activeIndex },
+    nextSlide,
+    prevSlide,
+  } = useChangeSlider(data, duration);
+  const { showModal, handleToggleModal } = useModalLogic();
 
   const images = data.map((el, index) => (
     <div
@@ -40,28 +45,38 @@ export const ImageSlider: FC<ImageProps> = ({
     </div>
   ));
 
-  const foto = data.find((el, index) => index === slide.activeIndex);
+  const foto = data.find((el, index) => index === activeIndex);
 
   const bigImage = (
-    <div className="images__bigImage">
+    <div className="images__bigImage" onClick={handleToggleModal}>
       <img src={foto} alt="product images" className="images__bigImg" />
     </div>
   );
   return (
-    <section className={`images ${className}`}>
-      {big && bigImage}
-      <div className="images__box">
-        <div
-          className="images__wrapper"
-          style={{ width: `${data.length * 100}%` }}
-        >
-          {images}
-          <div className="images__arrow">
-            <ArrowLeft className="images__icon" onClick={prevSlide} />
-            <ArrowRight className="images__icon" onClick={nextSlide} />
+    <>
+      <ModalGalery
+        {...{
+          img: data[0],
+          images: data,
+          handleToggle: handleToggleModal,
+          showModal,
+        }}
+      />
+      <section className={`images ${className}`}>
+        {big && bigImage}
+        <div className="images__box">
+          <div
+            className="images__wrapper"
+            style={{ width: `${data.length * 100}%` }}
+          >
+            {images}
+            <div className="images__arrow">
+              <ArrowLeft className="images__icon" onClick={prevSlide} />
+              <ArrowRight className="images__icon" onClick={nextSlide} />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };

@@ -60,6 +60,9 @@ UserSchema.statics.updateOrder = async function (id: string, ordersId: string) {
 UserSchema.statics.updateWish = async function (id: string, wishId: string) {
   return await this.findOneAndUpdate({ _id: id }, { $addToSet: { wishId } });
 };
+UserSchema.statics.removeWish = async function (id: string, wishId: string) {
+  return await this.findOneAndUpdate({ _id: id }, { $pull: { wishId } });
+};
 UserSchema.statics.updateStatus = async function (id: string, accountStatus: string | number) {
   return await this.findOneAndUpdate({ _id: id }, { accountStatus });
 };

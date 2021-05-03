@@ -4,7 +4,7 @@ import { AccountFilter } from "components/template";
 
 export const Account: FC = () => {
   return (
-    <section>
+    <section className='height'>
       <Header title="My Account" />
       <AccountFilter />
     </section>

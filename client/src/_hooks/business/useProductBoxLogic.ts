@@ -1,31 +1,45 @@
 import CartProcess from "_services/cart.services";
 import WishProcess from "_services/wish.services";
+import { UserApiHandler } from "_services/user.service";
 import { wishAction } from "store/wishList";
 import { Inventory } from "store/inventory";
 import { history } from "_helpers";
 import { useGetState, useFormLogic, useModalLogic } from "_hooks";
 
 export const useProductBoxLogic = (item: Inventory) => {
+  const User = new UserApiHandler();
   const {
     cart: { loading },
     wish,
     alert: { message },
+    user: {
+      token,
+      data: { wishId },
+    },
   } = useGetState();
   const { onSubmit } = useFormLogic();
-  const { removeProduct } = wishAction;
   const { handleToggleModal, showModal } = useModalLogic();
 
   const addProductToOrder = () => {
     handleToggleModal();
     onSubmit(CartProcess.addtoOrder, [item]);
   };
-  const addProductToWish = () => {
+  const addProductToWish = async () => {
     handleToggleModal();
     onSubmit(WishProcess.AddProductToWish, [item]);
+    if (token) {
+      await User.addWishList(item._id, token);
+    }
   };
-  const removeProductFromWish = () => {
+  const removeProductFromWish = async () => {
+    if (wishId && token) {
+      const exist = wishId?.find((el) => el === item._id);
+      if (exist) {
+        await User.removeFromWishList(exist, token);
+      }
+    }
     handleToggleModal();
-    onSubmit(removeProduct, [item._id]);
+    onSubmit(wishAction.removeProduct, [item._id]);
   };
 
   const discountPrice =

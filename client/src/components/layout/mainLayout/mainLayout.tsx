@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from "react";
 import { Footer, MainMenu, Container } from "components/layout";
-import { useSetFixed} from '_hooks';
+import { useSetFixed } from "_hooks";
 import "./style/mainLayout.scss";
 
 type MainLayoutProps = {
@@ -10,11 +10,11 @@ type MainLayoutProps = {
 export const MainLayout: FunctionComponent<MainLayoutProps> = ({
   children,
 }) => {
-  const {fixed} = useSetFixed();
+  const { fixed } = useSetFixed();
   return (
     <section className="mainLayout">
-      <MainMenu  {...{fixed}}/>
-      <Container  {...{fixed}}>{children}</Container>
+      <MainMenu {...{ fixed }} />
+      <Container {...{ fixed }}>{children}</Container>
       <Footer />
     </section>
   );
