@@ -1,0 +1,76 @@
+@import "../../../styles/settings.scss";
+
+.loading {
+  height: 100vh;
+  background-color: $bgc-black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow: hidden;
+  &__circle {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    &::after {
+      content: "";
+      border-left: 2px solid $color-orange;
+      border-right: 2px solid $color-orange;
+      height: 250px;
+      width: 250px;
+      position: absolute;
+      border-radius: 50%;
+      transform: rotate(0deg);
+    }
+    &::before {
+      content: "";
+      border-top: 2px solid $color-orange;
+      border-bottom: 2px solid $color-orange;
+      height: 270px;
+      width: 270px;
+      position: absolute;
+      border-radius: 50%;
+      transform: rotate(0deg);
+    }
+  }
+  &__subtitle {
+    padding: 10px 0;
+    border-top: 0.5px solid $color-orangeLight;
+    border-bottom: 0.5px solid $color-orangeLight;
+    font-size: 12px;
+  }
+  &__title {
+    color: white;
+    padding: 20px 0;
+    font-size: 18px;
+  }
+  &__description {
+    color: $color-orange;
+    font-size: 10px;
+    padding: 10px 0;
+    border-top: 0.5px solid $color-orangeLight;
+    border-bottom: 0.5px solid $color-orangeLight;
+  }
+  &__dots {
+    margin: 5px 0;
+  }
+  &__dot {
+    width: 10px;
+    height: 10px;
+  }
+  &__slice {
+    width: 100%;
+    border-top: 2px dashed $color-orange;
+    bottom: 50px;
+  }
+  &__slice--bottom {
+    bottom: 50px;
+  }
+  &__slice--top {
+    top: 50px;
+  }
+}
