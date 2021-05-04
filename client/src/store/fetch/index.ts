@@ -12,11 +12,11 @@ export const initData = () => {
     } = useFetchLogic();
     dispatch(actions.startLoading());
     try {
-      await fetchProduct(dispatch);
-      await fetchUser(dispatch);
       loadOrder(dispatch);
       loadWish(dispatch);
       loadPayment(dispatch);
+      await fetchProduct(dispatch);
+      await fetchUser(dispatch);
     } catch (e) {
       return dispatch(actions.errorFetchingAppData(e));
     }
