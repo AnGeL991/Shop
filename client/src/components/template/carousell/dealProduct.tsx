@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { GalerySlider, DealButtons,ModalProduct } from "components/template";
+import { GalerySlider, DealButtons } from "components/template";
 import { Stars } from "components/common";
 import { Inventory } from "components/interfaces";
 import { useProductBoxLogic } from "_hooks";
@@ -21,26 +21,13 @@ export const Slide: FC<DealProps> = ({
   const {
     addProductToOrder,
     addProductToWish,
-    handleToggleModal,
     discountPrice,
     images,
     arrayOfStars,
-    showModal,
-    loading,
-    wish,
   } = useProductBoxLogic(item);
-
-  const modal = showModal && (
-    <ModalProduct
-      showModal={showModal}
-      loading={loading || wish.loading}
-      handleToggle={handleToggleModal}
-    />
-  );
+  const galeryData = images.map((el, index) => ({ id: index, image: el }));
 
   return (
-    <>
-    {modal}
     <div
       className="deal__wrapper"
       style={{
@@ -53,7 +40,7 @@ export const Slide: FC<DealProps> = ({
     >
       <div className="deal__context">
         <div className="deal__images">
-          <GalerySlider data={images} padding={0} className='deal' />
+          <GalerySlider data={galeryData} padding={0} className="deal" />
         </div>
         <div className="deal__info">
           <h4 className="deal__title">{title}</h4>
@@ -90,6 +77,5 @@ export const Slide: FC<DealProps> = ({
         </div>
       </div>
     </div>
-    </>
   );
 };

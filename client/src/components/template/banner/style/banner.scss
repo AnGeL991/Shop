@@ -3,7 +3,7 @@
 .banner {
   padding: 0 20px;
   min-height: 115px;
-  max-width: 1220px;
+  max-width: 1260px;
   margin: 20px auto;
   &__image {
     position: relative;
@@ -85,7 +85,7 @@
 }
 @media (min-width: 1440px) {
   .doubleBanner {
-    max-width: 1220px;
+    max-width: 1260px;
     margin: 0 auto;
   }
   .banner {

@@ -4,12 +4,11 @@ import { UserApiHandler } from "_services/user.service";
 import { wishAction } from "store/wishList";
 import { Inventory } from "store/inventory";
 import { history } from "_helpers";
-import { useGetState, useFormLogic, useModalLogic } from "_hooks";
+import { useGetState, useFormLogic } from "_hooks";
 
 export const useProductBoxLogic = (item: Inventory) => {
   const User = new UserApiHandler();
   const {
-    cart: { loading },
     wish,
     alert: { message },
     user: {
@@ -18,14 +17,10 @@ export const useProductBoxLogic = (item: Inventory) => {
     },
   } = useGetState();
   const { onSubmit } = useFormLogic();
-  const { handleToggleModal, showModal } = useModalLogic();
 
-  const addProductToOrder = () => {
-    handleToggleModal();
-    onSubmit(CartProcess.addtoOrder, [item]);
-  };
+  const addProductToOrder = () => onSubmit(CartProcess.addtoOrder, [item]);
+
   const addProductToWish = async () => {
-    handleToggleModal();
     onSubmit(WishProcess.AddProductToWish, [item]);
     if (token) {
       await User.addWishList(item._id, token);
@@ -38,7 +33,6 @@ export const useProductBoxLogic = (item: Inventory) => {
         await User.removeFromWishList(exist, token);
       }
     }
-    handleToggleModal();
     onSubmit(wishAction.removeProduct, [item._id]);
   };
 
@@ -50,8 +44,7 @@ export const useProductBoxLogic = (item: Inventory) => {
   const totalPrice = discountPrice * item.amount;
   const arrayOfStars = item.comment.map((el) => el.star);
 
-  let images = item.images.map((el, index) => ({ id: index, image: el }));
-  images = [...images, { id: images.length + 1, image: item.image }];
+  const images = [item.image, ...item.images];
 
   const handleRedirectToProduct = () => {
     history.push(`/shop/${item._id}`);
@@ -62,14 +55,11 @@ export const useProductBoxLogic = (item: Inventory) => {
     totalPrice,
     images,
     arrayOfStars,
-    loading,
     wish,
     message,
-    showModal,
     addProductToWish,
     addProductToOrder,
     handleRedirectToProduct,
     removeProductFromWish,
-    handleToggleModal,
   };
 };

@@ -6,7 +6,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { History } from "history";
 import { Routers } from "routers";
 import { AlertAction } from "store/alert";
-import { useLoading, useToggleClick } from "_hooks";
+import { useGetState, useToggleClick } from "_hooks";
 import { TelegramButton } from "components/common";
 import { Listener } from "components/view";
 import "normalize.css";
@@ -16,7 +16,7 @@ interface MainProps {
 }
 
 const App: FC<MainProps> = ({ history }) => {
-  const { inventoryLoading, alert } = useLoading();
+  const { alert } = useGetState();
   const { handleToggle, open } = useToggleClick();
   const dispatch = useDispatch();
 
@@ -27,14 +27,10 @@ const App: FC<MainProps> = ({ history }) => {
       });
     }
   }, [alert.message]);
-  let loading = true;
-  if (loading) {
-    return  <Listener />;
-  }
 
   return (
     <ConnectedRouter history={history}>
-     
+      <Listener />
       <MainLayout>
         <TelegramButton {...{ handleToggle }} />
         <iframe

@@ -6,10 +6,13 @@ import { MatchProps } from "components/interfaces";
 export const ProductPage: FC<MatchProps> = ({ match }) => {
   const { productById, productByCategory } = useDisplayProduct();
   const product = productById(match.params.id)[0];
+  if (!product) {
+    return <div>Loading</div>;
+  }
   const relatedProduct = productByCategory(product.category);
 
   return (
-    <section >
+    <section>
       <ProductDetail product={product} />
       <CarousellProduct
         title="Related Products"

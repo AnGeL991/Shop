@@ -1,7 +1,7 @@
-import { FC,  } from "react";
+import { FC } from "react";
 import { Tag, Stars } from "components/common";
-import { DealButtons, ModalProduct } from "components/template";
-import {useProductBoxLogic } from "_hooks";
+import { DealButtons } from "components/template";
+import { useProductBoxLogic } from "_hooks";
 import { Inventory } from "store/inventory";
 import "./style/productBox.scss";
 
@@ -16,12 +16,7 @@ export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
     discountPrice,
     addProductToWish,
     arrayOfStars,
-    loading,
-    showModal,
-    wish,
-    handleToggleModal
   } = useProductBoxLogic(item);
-
 
   const tag = item.tags ? (
     <div
@@ -39,14 +34,6 @@ export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
     </div>
   ) : null;
 
-  const modal = showModal && (
-    <ModalProduct
-      showModal={showModal}
-      loading={loading || wish.loading}
-      handleToggle={handleToggleModal}
-    />
-  );
-
   const price = discountPrice ? (
     <>
       <span className="productBox__oldPrice">${item.price.toFixed(2)}</span>
@@ -58,7 +45,6 @@ export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
 
   return (
     <>
-      {modal}
       <div className={`productBox ${displayWay && "productBox--horizontal"}`}>
         <div
           className={`productBox__image ${

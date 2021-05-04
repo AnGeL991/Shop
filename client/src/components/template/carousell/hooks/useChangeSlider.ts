@@ -1,7 +1,7 @@
 import { useState, MouseEvent, useEffect } from "react";
 import { CarouselState } from "components/interfaces";
 
-export const useChangeSlider = (data: Array<{}>, autoPlay?: number) => {
+export const useChangeSlider = (data: Array<any>, autoPlay?: number) => {
   const firstSlide = data[0];
   const secundSlide = data[1];
   const lastSlide = data[data.length - 1];

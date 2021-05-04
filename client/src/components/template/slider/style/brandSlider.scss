@@ -1,0 +1,68 @@
+@import "../../../../styles/settings.scss";
+.brands {
+  &__wrapper {
+    display: flex;
+    overflow: hidden;
+  }
+  &__box {
+    position: relative;
+    max-width: 1220px;
+    margin: 40px auto;
+    overflow: hidden;
+  }
+  &__slide {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    opacity: 0.3;
+  }
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    color: white;
+  }
+  &__icon {
+    color: black;
+    font-size: 28px;
+    cursor: pointer;
+    transition: 0.3s linear all;
+    border-radius: 50%;
+    &:hover {
+      color: white;
+      background-color: $color-orange;
+    }
+  }
+}
+.brands {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .images {
+    &__slide {
+      width: calc(100vw / 2);
+    }
+    &__bigImage {
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .images {
+    &__slide {
+      width: calc(100vw / 3);
+    }
+  }
+}
+@media (min-width: 1440px) {
+  .images {
+    &__slide {
+      width: calc(1220px / 4);
+    }
+  }
+}

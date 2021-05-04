@@ -80,7 +80,7 @@ export interface CarouselState {
   activeIndex: number;
   translate: number;
   transition: number;
-  _slides: Array<{}>;
+  _slides: Array<any>;
 }
 
 //Inventury

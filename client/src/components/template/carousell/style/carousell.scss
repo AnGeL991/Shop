@@ -3,10 +3,10 @@
 .carousel {
   overflow: hidden;
   max-width: 1220px;
+  width: calc(100vw - 40px);
   margin: 0 auto;
   &__header {
     color: #000000;
-    margin: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,13 +22,15 @@
     margin: 20px;
   }
   &__slide {
+    padding-right: 20px;
     overflow: hidden;
     display: flex;
   }
   &__item {
     transition: 0.3s linear all;
-    padding: 10px;
-    width: 50vw;
+    padding-right: 20px;
+    padding-top: 10px;
+    width: calc(50vw - 10px);
   }
   &__arrow {
     cursor: pointer;
@@ -46,8 +48,8 @@
   &__context {
     background-color: white;
     overflow: hidden;
-    margin: 20px;
-    padding: 10px;
+    margin: 20px 10px;
+    padding: 15px;
     height: 500px;
     display: flex;
     flex-direction: column;
@@ -131,12 +133,15 @@
 @media (min-width: 768px) {
   .deal {
     &__wrapper {
-      width: 50vw;
+      background-color: transparent;
+      width: calc(50vw - 14px);
+      padding-right: 15px;
     }
     &__context {
       flex-direction: row;
       flex-wrap: wrap;
       height: 300px;
+      margin: 20px 0;
     }
     &__title {
       font-size: 16px;
@@ -168,9 +173,7 @@
   }
   .carousel {
     &__item {
-      margin: 10px;
-      padding: 0;
-      width: calc(100vw / 4 - 20px);
+      width: calc((100vw - 20px) / 4);
     }
     &__title {
       font-size: 20px;
@@ -181,7 +184,7 @@
 @media (min-width: 1220px) {
   .deal {
     &__wrapper {
-      width: calc(1220px / 2);
+      width: calc((1220px + 15px) / 2);
     }
     &__title {
       font-size: 18px;
@@ -192,7 +195,7 @@
   }
   .carousel {
     &__item {
-      width: calc(1220px / 5 - 20px);
+      width: calc((1220px + 20px) / 5);
     }
     &__title {
       font-size: 20px;

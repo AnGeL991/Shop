@@ -1,6 +1,5 @@
 import { FC, useMemo } from "react";
-import { Button } from "components/common";
-import { Icons } from "components/common";
+import { Button, Icons } from "components/common";
 import { Inventory } from "store/inventory";
 import { useProductBoxLogic } from "_hooks";
 import "./style/wishProduct.scss";
@@ -13,8 +12,8 @@ export const WishItem: FC<IWishItem> = ({ item }) => {
   const { amount, image, title, discount } = item;
   const {
     addProductToOrder,
-    discountPrice,
     removeProductFromWish,
+    discountPrice,
   } = useProductBoxLogic(item);
 
   const status = useMemo(
@@ -35,7 +34,7 @@ export const WishItem: FC<IWishItem> = ({ item }) => {
   );
 
   return (
-    <article className='wish__wrapper'>
+    <article className="wish__wrapper">
       <div className={`wish__product ${!amount ? "wish__product--out" : ""}`}>
         {amountDiscount}
         {out}

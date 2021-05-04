@@ -1,82 +1,42 @@
 import { FC } from "react";
-import { useChangeSlider, useModalLogic } from "_hooks";
 import { Icons } from "components/common";
-import { ModalGalery } from "components/template";
+import { useChangeImage } from "_hooks";
 import "./style/imageSlider.scss";
 const { ArrowLeft, ArrowRight } = Icons;
+interface IImageSlider {
+  images: Array<string>;
+}
 
-type ImageProps = {
-  data: Array<string>;
-  className?: string;
-  classImage?: string;
-  classSlide?: string;
-  duration?: number;
-  opacity?: number;
-  big?: boolean;
-};
-
-export const ImageSlider: FC<ImageProps> = ({
-  data,
-  className,
-  duration,
-  classImage,
-  opacity,
-  classSlide = "images__slide",
-  big,
-}) => {
-  const {
-    slide: { transition, translate, activeIndex },
-    nextSlide,
-    prevSlide,
-  } = useChangeSlider(data, duration);
-  const { showModal, handleToggleModal } = useModalLogic();
-
-  const images = data.map((el, index) => (
-    <div
-      key={index}
-      className={`${classSlide}`}
-      style={{
-        transform: `translate(-${translate}%)`,
-        transition: `all linear  ${transition}s`,
-        opacity: `${opacity}`,
-      }}
-    >
-      <img src={el} alt="images" className={classImage} />
-    </div>
+export const ImageSlider: FC<IImageSlider> = ({ images }) => {
+  const { slide, nextSlide, prevSlide } = useChangeImage(images);
+  const otherImages = slide.map((el, index) => (
+    <img key={index} src={el} alt="foto" className="images__eachFoto" />
   ));
 
-  const foto = data.find((el, index) => index === activeIndex);
-
-  const bigImage = (
-    <div className="images__bigImage" onClick={handleToggleModal}>
-      <img src={foto} alt="product images" className="images__bigImg" />
+  const arrows = (
+    <div className="images__arrows">
+      <div className="images__left">
+        <ArrowLeft className="images__icon" onClick={prevSlide} />
+      </div>
+      <div className="images__right">
+        <ArrowRight className="images__icon" onClick={nextSlide} />
+      </div>
     </div>
   );
+
   return (
-    <>
-      <ModalGalery
-        {...{
-          img: data[0],
-          images: data,
-          handleToggle: handleToggleModal,
-          showModal,
-        }}
-      />
-      <section className={`images ${className}`}>
-        {big && bigImage}
-        <div className="images__box">
-          <div
-            className="images__wrapper"
-            style={{ width: `${data.length * 100}%` }}
-          >
-            {images}
-            <div className="images__arrow">
-              <ArrowLeft className="images__icon" onClick={prevSlide} />
-              <ArrowRight className="images__icon" onClick={nextSlide} />
-            </div>
-          </div>
+    <div className="images">
+      <div className="images__wrapper">
+        <div className="images__imageBox">
+          <img src={slide[1]} alt="foto" className="images__img" />
+          {arrows}
         </div>
-      </section>
-    </>
+      </div>
+      <div className="images__box">
+        <div className="images__border"></div>
+        <div className="images__slider">{otherImages}</div>
+        {arrows}
+      </div>
+    </div>
   );
 };

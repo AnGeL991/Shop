@@ -3,6 +3,7 @@
 .star {
   margin-top: 10px;
   color: $color-gray;
+  cursor: pointer;
   &:hover {
     color: $color-star;
   }
