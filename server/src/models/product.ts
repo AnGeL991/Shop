@@ -57,7 +57,7 @@ ProductSchema.statics.addComment = async function (id, newComment) {
   }
 };
 
-const ProductModel = model<IProduct, IProductModel>('Product', ProductSchema);
+const ProductModel = model<IProduct, IProductModel>('Invenotry', ProductSchema);
 
 export { ProductSchema };
 export default ProductModel;
