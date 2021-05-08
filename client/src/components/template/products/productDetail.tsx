@@ -132,9 +132,11 @@ export const ProductDetail: FC<ProductPageProps> = ({ product }) => {
                 activeInfo === "delivery" ? "product__itemInfo--active" : null
               }`}
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptatibus nostrum deserunt dignissimos voluptas, esse magni
-              porro
+  
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptatibus nostrum deserunt dignissimos voluptas, esse magni
+                porro
+              
             </div>
             <div
               className={`product__itemInfo ${

@@ -8,6 +8,11 @@
     text-align: center;
     padding: 20px;
     opacity: 0.3;
+    transition: 0.3s linear all;
+    &:hover {
+      color: black;
+      opacity: 1;
+    }
   }
   &__next,
   &__prev {
