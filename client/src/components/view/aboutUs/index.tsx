@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Header } from 'components/common';
-import { WhyUs, GalerySlider } from 'components/template';
+import { WhyUs, GalerySlick } from 'components/template';
 
 
 const data = [
@@ -25,7 +25,7 @@ export const AboutUs: FC = () => {
   return (
     <section className='height' >
       <Header title="About Us" />
-      <GalerySlider data={data} arrows={true} />
+      <GalerySlick data={data} arrows />
       <WhyUs />
     </section>
   );

@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react";
 import { Button, Stars, Icons } from "components/common";
 import { Inventory } from "store/inventory";
-import { ImageSlider, Sale } from "components/template";
+import { Sale, ResponsiveSlider } from "components/template";
 import { useProductPageLogic, useProductBoxLogic } from "_hooks";
 import "./style/productDetail.scss";
 
@@ -43,7 +43,11 @@ export const ProductDetail: FC<ProductPageProps> = ({ product }) => {
     <section className="product">
       <article className="product__imageBox">
         <div>
-          <ImageSlider {...{ images }} />
+          <ResponsiveSlider>
+            {images.map((el) => {
+              return <img src={el} alt="foto" className="image" />;
+            })}
+          </ResponsiveSlider>
         </div>
       </article>
       <article className="product__info">

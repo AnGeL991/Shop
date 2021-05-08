@@ -18,6 +18,6 @@ export { Icons } from "./icons";
 export { FieldRadio } from "./form/fieldRadio";
 export { Delivery } from "./HeaderIcons/delivery";
 export { Support } from "./HeaderIcons/support";
-export { AwsButton } from "./aws";
+export { Google, Facebook } from "./media";
 export { TelegramButton } from "./telegramButton";
 export { Spinner } from "./spinner";

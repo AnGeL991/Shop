@@ -1,35 +1,31 @@
 @import "../../../../styles/settings.scss";
-.brands {
-  max-width: 1220px;
-  margin: 0 auto;
-  padding: 0 20px;
-  &__slide {
-    width: 100%;
-    text-align: center;
-    padding: 20px;
-    opacity: 0.3;
-  }
+.arrow {
   &__next,
   &__prev {
     font-size: 0;
     line-height: 0;
     position: absolute;
-    top: 50%;
+    top: 5%;
     padding: 0;
     transform: translate(0, -50%);
     color: transparent;
     background-color: transparent;
     border: none;
   }
-  &__next {
-    right: -15px;
-  }
-  &__prev {
-    left: -15px;
-  }
-  &__icon {
+  .arrowIcon {
     cursor: pointer;
     font-size: 22px;
     color: black;
   }
+  &__next {
+    top: -20px;
+    right: 0px;
+  }
+  &__prev {
+    top: -20px;
+    right: 30px;
+  }
+}
+.slick-dots {
+  margin: 0;
 }

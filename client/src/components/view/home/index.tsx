@@ -5,9 +5,9 @@ import {
   DealOfDay,
   RecomendetProduct,
   SlideBanner,
-  Brands,
   TopBanner,
   BottomBanner,
+  BrandSlider
 } from "components/template";
 
 export const Home: FC = () => {
@@ -25,7 +25,7 @@ export const Home: FC = () => {
       <DealOfDay />
       <RecomendetProduct />
       <BottomBanner />
-      <Brands />
+      <BrandSlider />
     </section>
   );
 };

@@ -1,0 +1,88 @@
+@import "../../../../styles/settings.scss";
+
+.slick-dots li button::before {
+  font-size: 12px;
+}
+.slick-slide {
+  padding: 5px;
+  margin: 0px auto;
+  color: #fff;
+}
+.slick-slide .image {
+  padding: 5px;
+  border: 5px solid white;
+}
+.slick-slide img {
+  display: block;
+  margin: auto;
+  cursor: pointer;
+  transition: 0.3s linear all;
+}
+.slick-slide img.slick-loading {
+  border: 0;
+}
+.slick-arrow {
+  border-radius: 50%;
+  width: 16px;
+  height: 15px;
+  background-color: $color-orange;
+  opacity: 0.75;
+  .arrowIcon {
+    font-size: 16px;
+    margin: 0px -2px;
+    color: white;
+  }
+  &::before {
+    display: none;
+  }
+}
+
+.slick-prev {
+  left: -15px;
+}
+.slick-next {
+  right: -15px;
+}
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+  background: $color-orange;
+  color: white;
+}
+@media (min-width: 768px) {
+  .slick-slider {
+    top: 25%;
+  }
+
+  .slick-arrow {
+    width: 20px;
+    height: 20px;
+    .arrowIcon {
+      font-size: 20px;
+      margin: 1px -1px;
+    }
+  }
+  .slick-prev {
+    left: -20px;
+  }
+  .slick-next {
+    right: -20px;
+  }
+}
+@media (min-width: 1024px) {
+  .slick-arrow {
+    width: 30px;
+    height: 30px;
+    .arrowIcon {
+      font-size: 30px;
+      margin: 1px -1px;
+    }
+  }
+  .slick-prev {
+    left: -30px;
+  }
+  .slick-next {
+    right: -30px;
+  }
+}

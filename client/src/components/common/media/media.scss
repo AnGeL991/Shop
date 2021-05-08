@@ -1,6 +1,6 @@
 @import "../../../styles/settings.scss";
 
-.awsButton {
+.media {
   margin: 0px 20px;
   width: calc(100% - 40px);
   border: none;
@@ -9,18 +9,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $color-darkGray;
+  background-color: white;
   text-transform: uppercase;
   font-weight: 700;
-  color: white;
   cursor: pointer;
-  &__icon {
+  box-shadow: 2px 6px 9px -1px rgba(149, 149, 149, 0.4);
+  font-family: $font-roboto;
+  display: flex;
+  justify-content: space-evenly;
+  &--google {
+    margin-bottom: 10px;
+  }
+  &--facebook {
+    background-color: #3a5999;
+  }
+  &__logo {
     margin: 0 10px;
     width: 30px;
     height: 30px;
   }
   &__link {
-    color: white;
+    color: black;
     text-decoration: none;
+  }
+  &__link--white {
+    color: white;
   }
 }

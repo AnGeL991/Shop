@@ -1,10 +1,11 @@
 import { FC } from "react";
 import { CarousellProduct } from "components/template";
-import { useSelector } from "react-redux";
-import { ApplicationState } from "store/index";
+import { useGetState } from "_hooks";
 
 export const BestSeller: FC = () => {
-  const {data} = useSelector((state: ApplicationState) => state.inventory);
+  const {
+    inventory: { data },
+  } = useGetState();
 
   return (
     <section>

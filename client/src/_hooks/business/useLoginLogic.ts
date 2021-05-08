@@ -2,27 +2,45 @@ import { useEffect } from "react";
 import { history } from "_helpers/history";
 import { userActions } from "store/user";
 import { useFormLogic, useModalLogic, useGetState } from "_hooks";
-import { Account, Forget, Password } from "components/interfaces";
+import { Account, Forget, Password, MatchProps } from "components/interfaces";
+import { client } from "_api";
 
 export const useLoginLogic = (to?: string, token?: string) => {
   const { onSubmit } = useFormLogic();
   const { showModal, handleToggleModal, setShowModal } = useModalLogic();
-
-  const { alert, user } = useGetState();
-  const { type, message } = alert;
-  const { isAuthenticated } = user;
+  const {
+    Login,
+    ForgetPassword,
+    ResetPassword,
+    ActiveAccount,
+    loadUser,
+  } = userActions;
+  const {
+    alert: { type, message },
+    user: { isAuthenticated },
+  } = useGetState();
 
   const submit = (user: Account) =>
-    onSubmit(userActions.Login, [user.email, user.password, to]);
+    onSubmit(Login, [user.email, user.password, to]);
 
   const forgetSubmit = (props: Forget) =>
-    onSubmit(userActions.ForgetPassword, [props.email]);
+    onSubmit(ForgetPassword, [props.email]);
 
   const newPasswordSubmit = (props: Password) => {
-    onSubmit(userActions.ResetPassword, [props.password, token]);
+    onSubmit(ResetPassword, [props.password, token]);
   };
   const activateAccount = () => {
-    onSubmit(userActions.ActiveAccount, [token]);
+    onSubmit(ActiveAccount, [token]);
+  };
+  const LoginWithCognito = async (props: MatchProps) => {
+    const code = props.location.search.split("?code=")[1];
+    const result = await client("oauth/cognito", { code }, "", {
+      method: "POST",
+    });
+    if (result) {
+      localStorage.setItem("Token", JSON.stringify(result.token));
+      onSubmit(loadUser, [result.token]);
+    }
   };
 
   useEffect(() => {
@@ -46,5 +64,6 @@ export const useLoginLogic = (to?: string, token?: string) => {
     newPasswordSubmit,
     activateAccount,
     handleToggle,
+    LoginWithCognito,
   };
 };

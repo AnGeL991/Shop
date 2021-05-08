@@ -1,16 +1,49 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import Slick from "react-slick";
-import { brands } from "db";
 import { Icons } from "components/common";
-import "./style/brandSlider.scss";
+import "./style/slideCarousel.scss";
 const { ArrowLeft, ArrowRight } = Icons;
 
-export const BrandSlider: FC = () => {
+interface ICarouselSlider {
+  children: ReactNode;
+  deal?: boolean;
+}
+
+export const CarouselSlider: FC<ICarouselSlider> = ({ children, deal }) => {
+  const dealSettings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    Infinity: true,
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 0,
+          infinite: true,
+        },
+      },
+    ],
+  };
+
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -37,7 +70,7 @@ export const BrandSlider: FC = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
           slidesToScroll: 1,
           infinite: true,
         },
@@ -45,25 +78,27 @@ export const BrandSlider: FC = () => {
       {
         breakpoint: 1220,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 5,
           slidesToScroll: 1,
           Infinity: true,
         },
       },
     ],
   };
+  const slickConfig = deal ? dealSettings : settings;
+
   const SlickArrowPrew = ({ currentSlide, slideCount, ...props }: any) => {
     return (
       <button
         {...props}
         className={
-          "brands__prev arrow" + (currentSlide === 0 ? " slick-disabled" : "")
+          "arrow__prev arrow " + (currentSlide === 0 ? " slick-disabled" : "")
         }
         aria-hidden="true"
         aria-disabled={currentSlide === 0 ? true : false}
         type="button"
       >
-        <ArrowLeft className="brands__icon" />
+        <ArrowLeft className="arrowIcon" />
       </button>
     );
   };
@@ -72,33 +107,25 @@ export const BrandSlider: FC = () => {
       <button
         {...props}
         className={
-          "brands__next " +
+          "arrow__next arrow " +
           (currentSlide === slideCount - 1 ? " slick-disabled" : "")
         }
         aria-hidden="true"
         aria-disabled={currentSlide === slideCount - 1 ? true : false}
         type="button"
       >
-        <ArrowRight className="brands__icon" />
+        <ArrowRight className="arrowIcon" />
       </button>
     );
   };
 
-  const data = brands.map((el, index) => (
-    <div key={index} className="brands__slide">
-      <img src={el} alt="brands" />
-    </div>
-  ));
-
   return (
-    <section className="brands">
-      <Slick
-        {...settings}
-        prevArrow={<SlickArrowPrew />}
-        nextArrow={<SlickArrowNext />}
-      >
-        {data}
-      </Slick>
-    </section>
+    <Slick
+      {...slickConfig}
+      prevArrow={<SlickArrowPrew />}
+      nextArrow={<SlickArrowNext />}
+    >
+      {children}
+    </Slick>
   );
 };

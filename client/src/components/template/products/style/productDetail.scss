@@ -33,9 +33,11 @@
     padding: 0 10px;
   }
   &__info {
+    text-align: center;
     margin: 20px 0;
   }
   &__title {
+    font-size: 28px;
     color: black;
     padding: 10px 0;
   }
@@ -46,6 +48,7 @@
   }
   &__categories {
     display: flex;
+    justify-content: center;
     padding: 10px 0;
     color: black;
     font-size: 14px;
@@ -114,6 +117,7 @@
     font-size: 16px;
     color: black;
     display: flex;
+    justify-content: center;
     text-transform: capitalize;
     transition: 0.3s ease-in all;
     &:hover {
@@ -172,15 +176,15 @@
     display: flex;
     flex-wrap: wrap;
     &__info {
-      width: 50%;
+      width: 25%;
     }
     &__sale {
       width: 50%;
     }
     &__imageBox {
-      width: 80%;
+      width: 60%;
       margin: 0 auto;
-      max-width: 400px;
+      max-width: 1000px;
     }
     &__images {
       width: 90%;
@@ -199,7 +203,6 @@
   .product {
     &__imageBox {
       margin: 30px auto;
-      max-width: 450px;
     }
     &__slide {
       width: calc(450px / 3);

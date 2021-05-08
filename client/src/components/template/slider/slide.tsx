@@ -2,20 +2,12 @@ import { FC } from "react";
 
 type Props = {
   image: string;
-  translate: number;
-  transition?: number;
-  className?:string;
+  className?: string;
 };
 
-export const Slide: FC<Props> = ({ image, translate, transition,className='galerySlider' }) => {
+export const Slide: FC<Props> = ({ image, className = "galerySlider" }) => {
   return (
-    <div
-      className={`${className}__imageBox`}
-      style={{
-        transform: `translate(-${translate}%)`,
-        transition: `all linear  ${transition}s`,
-      }}
-    >
+    <div className={`${className}__imageBox`}>
       <img className={`${className}__img`} src={image} alt="galeryFoto" />
     </div>
   );

@@ -1,36 +1,20 @@
 import { FC, ReactNode } from "react";
-import { Icons } from "components/common";
+import { CarouselSlider } from "components/template";
 import "./style/carousell.scss";
 
-interface ICarousell  {
+interface ICarousell {
   title: string;
   children: ReactNode;
-  next: () => void;
-  prev: () => void;
-  length?: number;
-};
+  deal?: boolean;
+}
 
-export const Carousell: FC<ICarousell> = ({
-  title,
-  children,
-  next,
-  prev,
-  length,
-}) => {
-  const { ArrowLeft, ArrowRight } = Icons;
+export const Carousell: FC<ICarousell> = ({ title, children, deal }) => {
   return (
     <section className="carousel">
       <header className="carousel__header">
         <h1 className="carousel__title">{title}</h1>
-        <ArrowLeft size="24" onClick={prev} className='carousel__arrow' />
-        <ArrowRight size="24" onClick={next} className='carousel__arrow' />
       </header>
-      <div
-        className="carousel__slide"
-        style={{ width: `${(length ? length : 1) * 100}%` }}
-      >
-        {children}
-      </div>
+      <CarouselSlider {...{ deal }}>{children}</CarouselSlider>
     </section>
   );
 };

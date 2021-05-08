@@ -1,5 +1,4 @@
 export { useBasketLogic } from "../components/template/basket/hooks/useBasketLogic";
-export { useChangeSlider } from "../components/template/carousell/hooks/useChangeSlider";
 export { useProductBoxLogic } from "./business/useProductBoxLogic";
 export { useChangeAmountLogic } from "./business/useChangeAmountLogic";
 export { useFilterValue } from "./business/useFilterValue";

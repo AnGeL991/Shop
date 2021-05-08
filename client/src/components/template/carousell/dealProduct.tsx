@@ -1,21 +1,16 @@
 import { FC } from "react";
-import { GalerySlider, DealButtons } from "components/template";
+import {  DealButtons,GalerySlick } from "components/template";
 import { Stars } from "components/common";
 import { Inventory } from "components/interfaces";
 import { useProductBoxLogic } from "_hooks";
 
 type DealProps = {
   item: Inventory;
-  translate: number;
-  transition: number;
-  onMouseMove?: () => void;
+
 };
 
 export const Slide: FC<DealProps> = ({
   item,
-  translate,
-  transition,
-  onMouseMove,
 }) => {
   const { price, title, description } = item;
   const {
@@ -30,17 +25,10 @@ export const Slide: FC<DealProps> = ({
   return (
     <div
       className="deal__wrapper"
-      style={{
-        transform: `translateX(-${translate}%)`,
-        transition: `all linear  ${transition}s`,
-      }}
-      onClick={onMouseMove}
-      onMouseEnter={onMouseMove}
-      onMouseLeave={onMouseMove}
     >
       <div className="deal__context">
         <div className="deal__images">
-          <GalerySlider data={galeryData} padding={0} className="deal" />
+          <GalerySlick data={galeryData} className="deal" />
         </div>
         <div className="deal__info">
           <h4 className="deal__title">{title}</h4>

@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Header } from "components/common";
+
 export const Blog: FC = () => {
   return (
     <section className='height'>
