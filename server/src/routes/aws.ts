@@ -5,5 +5,5 @@ const { awsController } = AwsController;
 
 const router = Router();
 
-router.get('/oauth/cognito', awsController);
+router.post('/oauth/cognito', awsController);
 export = router;

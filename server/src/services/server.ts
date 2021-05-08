@@ -5,7 +5,7 @@ import router from '../routes';
 import { info, config } from '../config';
 import { connectToDb } from '../database';
 import { loggingMiddleware } from '../middlewares';
-import AWSRouter from '../routes/aws';
+
 const NAMESPACE = 'Server';
 
 class Server {
@@ -17,7 +17,6 @@ class Server {
     app.use(cors());
   }
   static addRouting(app: any) {
-    app.use(AWSRouter);
     app.use('/api', router);
     app.get('*', (req: Request, res: Response) => {
       res.sendFile(path.join(__dirname + '../../../client/build/index.html'));

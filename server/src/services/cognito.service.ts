@@ -24,7 +24,6 @@ export default class CognitoService {
           Authorization: `Basic ${base64}`
         }
       });
-      console.log(response);
       if (response.ok) {
         const { access_token } = await response.json();
         return access_token;
