@@ -1,7 +1,7 @@
-import { FC, useMemo } from "react";
+import { FC, useMemo } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Button, Field, WrongLabel, AwsButton } from "components/common";
+import { Button, Field, WrongLabel, Google, Facebook } from "components/common";
 import { CreateAccount } from "components/template";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "_helpers";
@@ -60,13 +60,8 @@ export const LoginForm: FC<LoginFormProps> = ({ to }) => {
         <div className="login__otherWay">
           <span>Or</span>
         </div>
-        <AwsButton icon>
-          <a href="https://shop.auth.eu-west-2.amazoncognito.com/login?response_type=token&client_id=7r47kh0gdld9pi8o4f3dkjfudh&redirect_uri=http://localhost:3000/login"
-            className='a'
-          >
-            Login with cognito
-          </a>
-        </AwsButton>
+        <Google />
+        <Facebook />
       </article>
       <CreateAccount />
     </section>

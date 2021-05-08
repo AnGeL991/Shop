@@ -2,17 +2,15 @@ import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import { history } from "_helpers";
-import configureStore from "configureStore";
 import { Provider } from "react-redux";
 import { initData } from "store/fetch";
+import store from "configureStore";
 
 function onLoad(store: any) {
   store.dispatch(initData());
 }
 
 function initApp() {
-  const initialState: any = {};
-  const store = configureStore(history, initialState);
   onLoad(store);
 
   ReactDOM.render(

@@ -1,12 +1,12 @@
 import { ChangeEvent, Ref } from "react";
 import { RouteComponentProps } from "react-router-dom";
 
-// Match Props token and id
+// Match Props token,id,code
 export interface MatchProps
   extends RouteComponentProps<{
     token: string;
     id: string;
-    id_token: string;
+    code: string;
   }> {}
 
 // inputs

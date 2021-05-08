@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { createLogger } from "redux-logger";
 import { routerMiddleware } from "connected-react-router";
 import { History } from "history";
+import { history } from "_helpers";
 import { ApplicationState, createRootReducer } from "./store";
 
 declare global {
@@ -11,7 +12,7 @@ declare global {
   }
 }
 
-export default function configureStore(
+function configureStore(
   history: History,
   initialState: ApplicationState
 ): Store<ApplicationState> {
@@ -28,3 +29,7 @@ export default function configureStore(
 
   return store;
 }
+const initialState: any = {};
+const store = configureStore(history, initialState);
+
+export default store;

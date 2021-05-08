@@ -1,7 +1,8 @@
 import { FC, useEffect } from "react";
 import gsap from "gsap";
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
-
+import { CSSPlugin } from "gsap/CSSPlugin";
+gsap.registerPlugin(CSSPlugin, CSSRulePlugin);
 interface ILoading {
   active: boolean;
 }
@@ -15,7 +16,7 @@ export const Loading: FC<ILoading> = ({ active }) => {
     const description = ".loading__description";
     const slice = ".loading__slice";
     gsap.set([subtitle, title, description], { autoAlpha: 0 });
-    gsap.registerPlugin(CSSRulePlugin);
+  
 
     const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
     tl.fromTo(
