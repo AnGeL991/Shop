@@ -3,8 +3,7 @@ import { Header } from "components/common";
 import { LoginForm, ProgressList, GouestOption } from "components/template";
 import { Redirect } from "react-router-dom";
 import { useGetState } from "_hooks";
-import "styles/pageStyle/checkout.scss";
-
+import './checkout.scss';
 export const Checkout: FC = () => {
   const { user } = useGetState();
 

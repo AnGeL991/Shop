@@ -3,7 +3,7 @@ import { Button, Header } from "components/common";
 import { PaymentRenderProduct } from "components/template";
 import { Details } from "./details";
 import { useGetState, usePaymentsLogic } from "_hooks";
-import { useCheckedLogic } from "./hooks/useCheckedLogic";
+import { useChecked } from "_hooks";
 import "./style/paymentSummary.scss";
 
 interface IPaymentSummary {
@@ -16,12 +16,12 @@ export const PaymentSummary: FC<IPaymentSummary> = ({ orderId }) => {
     handleConfirmYourOrder,
     totalOrderPayment,
   } = usePaymentsLogic();
-  const { inputPaymentAdress, handleSetRegulation } = useCheckedLogic();
+  const { inputPaymentAdress, handleSetRegulation } = useChecked();
   const {
     payment: { delivery, paymentStatus, deliveryCost, totalPayment, discount },
   } = useGetState();
   const { cost } = deliveryCost;
-  const totalPrice = totalOrderPayment(totalPayment,cost,discount);
+  const totalPrice = totalOrderPayment(totalPayment, cost, discount);
   const submitButton =
     paymentStatus.method === "transfer" ? (
       <Button darkButton onClick={handlePayment}>
@@ -46,7 +46,7 @@ export const PaymentSummary: FC<IPaymentSummary> = ({ orderId }) => {
     ),
     [delivery, deliveryCost, inputPaymentAdress, handleSetRegulation]
   );
-    
+
   const discountBox =
     discount !== 0 ? (
       <div className="paymentSummary__summaryDetail">

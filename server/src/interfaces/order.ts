@@ -3,7 +3,11 @@ import { IProduct } from './product';
 
 export interface IOrder extends Document {
   id: string;
-  status: string;
+  paymentStatus: {
+    method: string;
+    paid: boolean;
+    id: string;
+  };
   comment: string;
   deliveryCost: {
     methodPayment: string;
@@ -27,4 +31,5 @@ export interface IOrderModel extends Model<IOrder> {
   createNewFromRequestBody(product: IOrder, id: number | string): Promise<any>;
   getLength(): Promise<number>;
   confirmOrder(id: string): Promise<void>;
+  confirmPayment(id: string): Promise<void>;
 }

@@ -43,16 +43,16 @@ export const PaymentCard: FC = () => {
           <div className="buttons">
             <Button darkButton className="buttons__dark">
               <Link to="/checkout/delivery">
-                Wróc do wyboru sposobu dostawy
+                back to the choice of delivery
               </Link>
             </Button>
             <Button className="buttons__btn" onClick={handleSendOrder}>
-              Kupuje i płacę
+              Buy and pay
             </Button>
           </div>
         </div>
         <div className="payment__products">
-          <PaymentRenderProduct title='summary'/>
+          <PaymentRenderProduct title="summary" />
         </div>
       </section>
     );

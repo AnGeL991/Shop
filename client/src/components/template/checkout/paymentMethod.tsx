@@ -33,7 +33,7 @@ export const PaymentMethod: FC<PaymentMethodProps> = ({
 
   return (
     <article className="paymentMethod">
-      <h4 className="paymentMethod__title">Metoda płatności:</h4>
+      <h4 className="paymentMethod__title">Payment method:</h4>
       {Payment}
     </article>
   );

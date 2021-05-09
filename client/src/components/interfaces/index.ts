@@ -1,4 +1,4 @@
-import { ChangeEvent, Ref } from "react";
+import { ChangeEvent, Ref, ReactNode } from "react";
 import { RouteComponentProps } from "react-router-dom";
 
 // Match Props token,id,code
@@ -115,6 +115,7 @@ type Iname = {
 export interface IDelivery {
   name: keyof Iname;
   price: number;
+  icon?: ReactNode;
   description: string;
 }
 export interface IDeliveryAdress {

@@ -24,6 +24,10 @@ export const getOrders = (req: Request, res: Response) => {
   const { ordersId } = req.body;
   errorHandler(res, Order.find({ _id: [...ordersId] }), 200, 500);
 };
+export const confirmPayment = (req: Request, res: Response) => {
+  const { id } = req.body;
+  errorHandler(res, Order.confirmPayment(id), 200, 500);
+};
 export const getOneOrder = async (req: Request, res: Response) => {
   const { id } = req.body;
   try {

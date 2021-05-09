@@ -1,22 +1,41 @@
 import { FC, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Field, FieldRadio, Button } from "components/common";
+import { Field, FieldRadio, Button, Icons } from "components/common";
 import { PaymentRenderProduct } from "components/template";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { adressPrivateSchema } from "_helpers";
 import { useAdressLogic } from "./useAdressLogic";
+import { IDelivery } from "components/interfaces";
 import "./adressForm.scss";
 
+const { DeliveryIcon, HomeIcon } = Icons;
 
-//
+const delivery: Array<IDelivery> = [
+  {
+    price: 29,
+    name: "payment",
+    icon: <DeliveryIcon className="adressForm__icon" />,
+    description: "Standard home delivery.",
+  },
+  {
+    price: 39,
+    name: "courier",
+    icon: <DeliveryIcon className="adressForm__icon" />,
+    description: "Nominated day delivery.",
+  },
+  {
+    price: 0,
+    name: "own",
+    icon: <HomeIcon className="adressForm__icon" />,
+    description: "Collect from store: (FREE)",
+  },
+];
+
 export const AdressForm: FC = () => {
   const {
     handleSetRegulation,
     inputDelivery,
-    handleSetData,
-    dataForm,
-    delivery,
     fieldsData,
     submit,
   } = useAdressLogic();
@@ -39,10 +58,12 @@ export const AdressForm: FC = () => {
               ${el.price.toFixed(2)}
             </FieldRadio>
           </div>
-          <div className="adressForm__description">{el.description}</div>
+          <div className="adressForm__description">
+            {el.icon} {el.description}
+          </div>
         </div>
       )),
-    [delivery, errors, inputDelivery, handleSetRegulation]
+    [errors, inputDelivery, handleSetRegulation]
   );
 
   const fields = useMemo(
@@ -62,25 +83,8 @@ export const AdressForm: FC = () => {
     <section className="adressForm">
       <form className="adressForm__form" onSubmit={handleSubmit(submit)}>
         <fieldset className="adressForm__fieldset">
-          <legend className="adressForm__legend">
-            Your data - Delivery address
-          </legend>
-          <div className="adressForm__person">
-            <FieldRadio
-              name="private"
-              checked={dataForm.private}
-              onChange={handleSetData}
-            >
-              Osoba fizyczna
-            </FieldRadio>
-            <FieldRadio
-              name="business"
-              checked={dataForm.business}
-              onChange={handleSetData}
-            >
-              Firma
-            </FieldRadio>
-          </div>
+          <legend className="adressForm__legend">Delivery address</legend>
+          <div className="adressForm__person"></div>
           {fields}
           {fieldsDelivery}
           <div className="buttons">
@@ -91,8 +95,8 @@ export const AdressForm: FC = () => {
           </div>
         </fieldset>
       </form>
-      <div className='adressForm__products'>
-        <PaymentRenderProduct title='Summary' />
+      <div className="adressForm__products">
+        <PaymentRenderProduct title="Summary" />
       </div>
     </section>
   );

@@ -4,7 +4,7 @@ import { useDisplayProduct } from "_hooks";
 import { MatchProps } from "components/interfaces";
 
 export const ProductPage: FC<MatchProps> = ({ match }) => {
-  const { productById, productByCategory } = useDisplayProduct();
+  const { productById, productByCategory } = useDisplayProduct(1);
   const product = productById(match.params.id)[0];
   if (!product) {
     return <div>Loading</div>;

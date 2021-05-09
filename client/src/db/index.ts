@@ -1,6 +1,7 @@
 import { SortOption } from "store/inventory";
 import { IDelivery, IPayment, IRule } from "components/interfaces";
-
+import { Icons } from "components/common";
+const { HomeIcon, DeliveryIcon } = Icons;
 export const option = [
   { name: SortOption.DEFAULT, text: "Default sorting" },
   { name: SortOption.TO_HIGHT_PRICE, text: "Sort by price: low to hight" },

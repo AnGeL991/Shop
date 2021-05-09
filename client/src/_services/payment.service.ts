@@ -71,10 +71,13 @@ export default class Payment {
     return addPaymentStatus(status);
   }
   static sendOrder(payment: PaymentState) {
-    return client("/order", payment);
+    return client("order", payment);
   }
   static confirmOrder(id: string) {
-    return client("/order", { id }, "", { method: "PUT" });
+    return client("order/confirm", { id }, "", { method: "PUT" });
+  }
+  static confirmPayment(id: string) {
+    return client("order/payment", { id }, "", { method: "PUT" });
   }
   static setDiscount(discount: number) {
     return addDiscount(discount);

@@ -23,12 +23,19 @@ export const usePaymentsLogic = () => {
     },
   } = useGetState();
 
-  const { deliveryCost, delivery, paymentStatus, id, regulations } = payment;
+  const {
+    deliveryCost,
+    delivery,
+    paymentStatus,
+    id,
+    regulations,
+    products,
+  } = payment;
 
   useEffect(() => {
-    if (id !== "" || paymentStatus.id)
-      localStorage.setItem("Payment", JSON.stringify(payment));
-  }, [id, paymentStatus]);
+    if (id !== "" || paymentStatus.id !== undefined) console.log("wchodze");
+    localStorage.setItem("Payment", JSON.stringify(payment));
+  }, [id, paymentStatus.id]);
 
   const [error, setError] = useState({ message: "" });
 
@@ -45,12 +52,11 @@ export const usePaymentsLogic = () => {
     if ((paymentStatus.method = "transfer")) {
       const session = await Payment.setPaymentIntent(
         delivery.email,
-        items,
+        products,
         deliveryCost.cost,
         _id
       );
       onSubmit(Payment.setPaymentStatus, [{ id: session.id }]);
-      return session.id;
     }
   };
 
@@ -82,11 +88,13 @@ export const usePaymentsLogic = () => {
     }
   };
 
-  const handleConfirm = async () => {
+  const handleConfirmOrder = async () => {
     localStorage.setItem("Payment", "[]");
     await Payment.confirmOrder(`${payment.id}`);
   };
-
+  const handleConfirmPayment = async () => {
+    await Payment.confirmPayment(`${payment.id}`);
+  };
   const handleConfirmYourOrder = () => {
     history.push(`/success/${id}`);
   };
@@ -98,7 +106,8 @@ export const usePaymentsLogic = () => {
     handlePayment,
     SetOrderToPayment,
     handleConfirmYourOrder,
-    handleConfirm,
+    handleConfirmOrder,
+    handleConfirmPayment,
     totalOrderPayment,
   };
 };

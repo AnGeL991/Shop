@@ -17,26 +17,33 @@
     margin-bottom: 20px;
   }
   &__deliveryBox {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 20px 0;
+    align-items: center;
+    margin: 20px auto;
   }
   &__description {
     width: 50%;
     color: black;
     text-align: left;
     font-size: 14px;
-    vertical-align: middle;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
   &__products {
     display: none;
+  }
+  &__icon {
+    font-size: 32px;
+    margin-right: 10px;
   }
 }
 @media (min-width: 768px) {
   .adressForm {
     display: flex;
-
     &__products {
       display: block;
       width: 70%;
@@ -45,6 +52,9 @@
 }
 @media (min-width: 1024px) {
   .adressForm {
+    &__deliveryBox {
+      width: 80%;
+    }
     display: flex;
     max-width: 1024px;
     margin: 0 auto;

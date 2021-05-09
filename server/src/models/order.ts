@@ -54,6 +54,13 @@ OrderSchema.statics.confirmOrder = async function (id) {
     throw new Error(err.message);
   }
 };
+OrderSchema.statics.confirmPayment = async function (id) {
+  try {
+    return await this.findOneAndUpdate({ id }, { paymentStatus: { paid: true } });
+  } catch (err) {
+    throw Error(err.message);
+  }
+};
 
 const OrderModel = model<IOrder, IOrderModel>('Order', OrderSchema);
 export default OrderModel;

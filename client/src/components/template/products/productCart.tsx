@@ -7,13 +7,16 @@ import "./style/productCart.scss";
 
 export const ProductCart: FC = () => {
   const { handleSetSort } = useFilterValue();
-  const {displayWay,handleChangeDisplayWay} = useDisplayProduct();
   const { ViewGrid, Bars } = Icons;
   const {
     sliceArray,
     category,
     displayArray,
+    displayWay,
+    firstProductShowed,
+    lastProductShowed,
     handleSetSlice,
+    handleChangeDisplayWay,
   } = useDisplayProduct(8);
 
   const options = option.map((el) => (
@@ -23,9 +26,14 @@ export const ProductCart: FC = () => {
   ));
 
   const productsToDisplay = sliceArray.map((el) => (
-    <div className={`productCart__eachProduct ${displayWay.list && 'productCart__eachProduct--horizontal'} `} key={el._id}>
+    <div
+      className={`productCart__eachProduct ${
+        displayWay.list && "productCart__eachProduct--horizontal"
+      } `}
+      key={el._id}
+    >
       <ProductBox item={el} displayWay={displayWay.list} />
-   </div> 
+    </div>
   ));
 
   return (
@@ -36,9 +44,18 @@ export const ProductCart: FC = () => {
       />
       <div className="productCart__wrapper">
         <div className="productCart__displayWay">
-          <ViewGrid className="productCart__icon" onClick={()=>handleChangeDisplayWay(2)} />
-          <Bars className="productCart__icon" onClick={()=>handleChangeDisplayWay(1)} />
-          <span> Showing 1-12 of 15 results </span>
+          <ViewGrid
+            className="productCart__icon"
+            onClick={() => handleChangeDisplayWay(2)}
+          />
+          <Bars
+            className="productCart__icon"
+            onClick={() => handleChangeDisplayWay(1)}
+          />
+          <span>
+            Showing {firstProductShowed}-{lastProductShowed} of{" "}
+            {displayArray.length} results
+          </span>
         </div>
         <form>
           <select

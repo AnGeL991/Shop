@@ -82,10 +82,22 @@
     span {
       color: black;
       &::before {
+        content: "";
         border-color: black;
         color: $color-orange;
       }
     }
+  }
+  &__img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 10px 0;
+    width: 25px;
+    display: none;
+  }
+  &__img--active {
+    display: block;
   }
 }
 @media (min-width: 768px) {
@@ -115,6 +127,10 @@
           margin-left: -30px;
         }
       }
+    }
+    &__img {
+      margin: 15px 0;
+      width: 35px;
     }
   }
 }

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Inventory, SortOption } from "store/inventory";
-import { useSelector } from "react-redux";
-import { ApplicationState } from "store";
+import { useGetState } from "_hooks";
 
-export const useDisplayProduct = (amountOnPage?: number) => {
-  const { data, search, price, sort, category } = useSelector(
-    (store: ApplicationState) => store.inventory
-  );
+export const useDisplayProduct = (amountOnPage: number) => {
+  const {
+    inventory: { data, search, price, sort, category },
+  } = useGetState();
+
   const [slice, setSlice] = useState(0);
   const [displayWay, setDisplayWay] = useState({
     list: true,
@@ -84,12 +84,13 @@ export const useDisplayProduct = (amountOnPage?: number) => {
   }
 
   const sliceArray = amountOnPage
-    ? displayArray.slice(
-        slice === 0 ? 0 : slice * amountOnPage,
-        (slice + 1) * amountOnPage
-      )
+    ? displayArray.slice(slice === 0 ? 0 : slice * amountOnPage)
     : displayArray;
-
+  const firstProductShowed = slice * amountOnPage + 1;
+  const lastProductShowed =
+    (slice + 1) * amountOnPage < displayArray.length
+      ? (slice + 1) * amountOnPage
+      : displayArray.length;
   return {
     displayArray,
     sliceArray,
@@ -97,6 +98,8 @@ export const useDisplayProduct = (amountOnPage?: number) => {
     recomendedProduct,
     displayWay,
     category,
+    firstProductShowed,
+    lastProductShowed,
     productById,
     handleSetSlice,
     productByCategory,

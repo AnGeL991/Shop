@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useFormLogic, useChecked } from "_hooks";
-import { privatePerson, delivery, business } from "db";
+import { privatePerson, business } from "db";
 import { history } from "_helpers/history";
 import { Delivery } from "store/payment";
 import Payment from "_services/payment.service";
@@ -29,7 +29,6 @@ export const useAdressLogic = () => {
   const fieldsData = dataForm.private ? privatePerson : business;
 
   return {
-    delivery,
     inputDelivery,
     handleSetRegulation,
     handleSetData,
