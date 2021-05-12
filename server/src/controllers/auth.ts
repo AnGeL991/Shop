@@ -63,28 +63,3 @@ export const resetPassword = (req: Request, res: Response) => {
   Validate(req, res);
   return errorHandler(res, User.updateHashedPassword(res.locals.user, newPassword), 200, 500);
 };
-
-// export const facebookController = async (req: Request, res: Response) => {
-//   const { userID, accessToken } = req.body;
-
-//   const url = `https://graph.facebook.com/v2.11/${userID}/?fields=id,name,email&access_token=${accessToken}`;
-
-//   try {
-//     const response = await fetch(url, { method: 'GET' });
-//     if (!response) return ResponseProcessor(res, 401, { error: 'Facebook login failed. Try later' });
-//     const { email, name } = await response.json();
-//     const user = await User.findOne({ email });
-//     if (user) {
-//       const token = CreateToken({ _id: user._id }, 31556926);
-//       return ResponseProcessor(res, 200, { token, user: { ...user } });
-//     }
-//     let password = email + config.server.token.secret;
-//     const newUser = new User({ firstName: name, email, password, regulations: true });
-//     const result = await newUser.save();
-//     if (!result) return ResponseProcessor(res, 500, { error: 'Error Facebook login on user Save' });
-//     const token = CreateToken({ _id: result._id }, 31556926);
-//     return ResponseProcessor(res, 200, { token, result });
-//   } catch (err) {
-//     return ResponseProcessor(res, 401, { error: err.message });
-//   }
-// };
