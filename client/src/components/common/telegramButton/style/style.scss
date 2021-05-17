@@ -1,7 +1,52 @@
+@import "../../../../styles/settings.scss";
+
 .telegram {
-  height: 80px;
+  position: fixed;
   bottom: 0;
   right: 0;
-  position: fixed;
-  z-index: 10000;
+  z-index: 10000000;
+  cursor: pointer;
+  img {
+    width: 80px;
+    height: 80px;
+  }
+  &__circle {
+    position: absolute;
+    top: 15px;
+    left: 8px;
+    display: inline-block;
+    background-color: $color-orange;
+    color: white;
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    line-height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    display: none;
+    &--active {
+      display: block;
+    }
+  }
+  &__message {
+    position: absolute;
+    top: -15px;
+    right: 75px;
+    width: 0px;
+    height: 40px;
+    max-height: 40px;
+    line-height: 40px;
+    text-align: center;
+    letter-spacing: 1.3px;
+    border-radius: 10px 10px 0px 10px;
+    box-shadow: (0 0 0 / 16%) 0px 0px 10px;
+    background-color: $color-orange;
+    color: white;
+    overflow: hidden;
+    transition: 0.3s 0.5s linear all;
+    font-size: 14px;
+    &--active {
+      width: 135px;
+    }
+  }
 }
