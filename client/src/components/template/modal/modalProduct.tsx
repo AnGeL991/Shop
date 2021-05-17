@@ -18,7 +18,10 @@ export const ModalProduct: FC<IModalProduct> = ({
 }) => {
   return (
     <Modal show={showModal} close={handleToggle} className="productModal">
-      <div className="productModal__wrapper">{loading && <Spinner />}</div>
+      <div className="productModal__wrapper">{loading && <Spinner />}
+      <span className='productModal__text'>Product is added ...</span>
+      </div>
+     
     </Modal>
   );
 };

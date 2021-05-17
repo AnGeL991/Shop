@@ -6,12 +6,15 @@
   z-index: 1000;
   position: fixed;
   border: none;
-  bottom: 10px;
+  bottom: 70px;
   right: 0;
-  display: none;
-  height: 500px;
+  height: 450px;
   width: 320px;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: 0.3s linear all;
   &--active {
-    display: block;
+    opacity: 1;
+    transform: translateX(0%);
   }
 }

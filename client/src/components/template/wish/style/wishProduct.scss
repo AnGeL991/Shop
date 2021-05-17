@@ -14,6 +14,8 @@
 
   &__product {
     padding: 10px 0 0;
+    max-width: 380px;
+    min-width: 320px;
     display: flex;
     flex-direction: row;
     border: 0.5px solid #a6a6a6;
@@ -102,12 +104,9 @@
   .wish {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: flex-start;
-    &__wrapper {
-      margin: 0 10px;
-      width: calc(50% - 40px);
-    }
+    justify-content: space-evenly;
+    flex-wrap: wrap;
     &__product {
       width: 100%;
     }

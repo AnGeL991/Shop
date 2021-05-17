@@ -5,11 +5,21 @@
   color: $color-orange;
   background-color: transparent;
   overflow: hidden;
+
   &__wrapper {
     height: 200px;
     text-align: center;
+    position: relative;
   }
   &__status {
     padding: 15px;
+  }
+  &__text {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    margin-top: 100px;
+    z-index: -1;
   }
 }

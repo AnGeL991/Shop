@@ -1,11 +1,10 @@
 import { FC } from "react";
 import { Modal } from "components/template";
 import { Stars, Button, Field, TextArea } from "components/common";
-import { useCommentLogic } from "_hooks";
+import { useCommentLogic, useStarLogic } from "_hooks";
 import "./style/comment.scss";
 
 interface ICommentModal {
-  star: number;
   showModal: boolean;
   handleToggle?: () => void;
   id?: string;
@@ -13,18 +12,16 @@ interface ICommentModal {
 
 export const CommentModal: FC<ICommentModal> = ({
   showModal,
-  star,
   handleToggle,
   id,
 }) => {
+  const { star, handleSetStar } = useStarLogic();
   const {
+    comment: { body, name, email },
     handleAddComment,
     handleSetComment,
-    comment,
     handleSetBodyComment,
-  } = useCommentLogic(star, id);
-
-  const { body, name, email } = comment;
+  } = useCommentLogic(id, star);
 
   return (
     <Modal show={showModal} close={handleToggle} className="comment">
@@ -32,7 +29,7 @@ export const CommentModal: FC<ICommentModal> = ({
         <h3 className="comment__title">Add new Comment</h3>
         <div className="comment__rating">
           <p className="comment__stars">Your rating:</p>
-          <Stars productId={id} arrayOfStars={[star]} />
+          <Stars arrayOfStars={[0]} {...{ star, handleSetStar }} />
         </div>
         <form onSubmit={handleAddComment}>
           <fieldset className="comment__fieldset">
@@ -61,13 +58,13 @@ export const CommentModal: FC<ICommentModal> = ({
               />
             </div>
             <div className="comment__buttons">
-          <Button onClick={handleToggle} className="comment__button">
-            Cancel
-          </Button>
-          <Button className="comment__button">
-            <p>Send new comment</p>
-          </Button>
-        </div>
+              <Button onClick={handleToggle} className="comment__button">
+                Cancel
+              </Button>
+              <Button className="comment__button">
+                <p>Send new comment</p>
+              </Button>
+            </div>
           </fieldset>
         </form>
       </div>
