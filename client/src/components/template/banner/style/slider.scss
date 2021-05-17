@@ -1,13 +1,24 @@
 @import "../../../../styles/settings.scss";
 
 .slider {
-  overflow: hidden;
   display: flex;
+  overflow: hidden;
 }
-
+@keyframes scale {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
 .slide {
+  opacity: 0;
   height: 350px;
-  transition: 0.5s linear all;
+  transition: 1s linear all;
+  &--active {
+    opacity: 1;
+  }
   &__image {
     height: 100%;
     width: 100vw;
@@ -17,11 +28,12 @@
     object-fit: cover;
     height: 100%;
     width: 100%;
+    transition: 0.5s linear all;
   }
   &__wrapper {
     padding: 20px;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -35,7 +47,9 @@
   &__title {
     color: $color-orange;
     margin: 5px 0;
-    opacity: 0.7;
+    transition: 0.3s linear ease-in;
+    transition-delay: 0.3s;
+    opacity: 0;
   }
   &__subTitle {
     margin-bottom: 10px;
@@ -63,7 +77,6 @@
     background-color: $color-orange;
     font-weight: 700;
   }
-
   &__now {
     background-color: transparent;
   }

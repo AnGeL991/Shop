@@ -1,6 +1,9 @@
 import { FC, useState, useEffect, useMemo } from "react";
 import { Slide } from "./slide";
 import { mainBaner } from "db";
+// import Slider from 'react-animated-slider';
+import 'react-animated-slider/build/horizontal.css';
+ 
 import "./style/slider.scss";
 
 export const SlideBanner: FC = () => {
@@ -11,7 +14,7 @@ export const SlideBanner: FC = () => {
       if (activeIndex === 0) {
         setActiveIndex(1);
       } else setActiveIndex(0);
-    }, 4000);
+    }, 8000);
     return () => {
       clearInterval(interval);
     };
@@ -19,7 +22,7 @@ export const SlideBanner: FC = () => {
 
   const slides = useMemo(
     () =>
-      mainBaner.map((el) => <Slide key={el.id} {...el} index={activeIndex} />),
+      mainBaner.map((el,index) => <Slide key={el.id} {...el} index={index} active={activeIndex} />),
     [activeIndex]
   );
 
