@@ -6,7 +6,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { History } from "history";
 import { Routers } from "routers";
 import { AlertAction } from "store/alert";
-import { useGetState, useToggleClick } from "_hooks";
+import { useGetState } from "_hooks";
 import { TelegramButton } from "components/common";
 import { Listener } from "components/view";
 import "normalize.css";
@@ -17,7 +17,7 @@ interface MainProps {
 
 const App: FC<MainProps> = ({ history }) => {
   const { alert } = useGetState();
-  const { handleToggle, open } = useToggleClick();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,12 +32,7 @@ const App: FC<MainProps> = ({ history }) => {
     <ConnectedRouter history={history}>
       <Listener />
       <MainLayout>
-        <TelegramButton {...{ handleToggle }} />
-        <iframe
-          src="http://localhost:80"
-          title="widget Chat"
-          className={`webChat ${open && "webChat--active"}`}
-        />
+        <TelegramButton />
         <Routers />
       </MainLayout>
     </ConnectedRouter>
