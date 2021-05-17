@@ -24,14 +24,22 @@ export const CreateToken = (body: any, time: string | number) => {
   return jwt.sign(body, config.server.token.secret, { expiresIn: time });
 };
 
-export const ResponseProcessor = (res: Response, status: number, message: string | object) => res.status(status).json(message);
+export const ResponseProcessor = (res: Response) => {
+  const sendError = (message: string | object) => {
+    res.status(500).json(message);
+  };
+  const sendResult = (message: string | object) => {
+    res.status(200).json(message);
+  };
+  return { sendError, sendResult };
+};
 
-export async function errorHandler(res: Response, toRun: any, successStatus: number, errorStatus: number, optionalBody?: any) {
+export async function errorHandler(res: Response, toRun: any, optionalBody?: any) {
   try {
     const result = await toRun;
-    return ResponseProcessor(res, successStatus, { result, optionalBody });
+    return ResponseProcessor(res).sendResult({ result, optionalBody });
   } catch (error) {
-    return ResponseProcessor(res, errorStatus, { message: error.message, error });
+    return ResponseProcessor(res).sendError({ message: error.message, error });
   }
 }
 

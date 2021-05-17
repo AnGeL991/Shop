@@ -29,19 +29,18 @@ export default class CognitoService {
         return access_token;
       }
     } catch (error) {
-      console.log(error.message);
+      return console.log(error.message);
     }
   };
 
-  static getUserInfo = async (accessToken: string) => {
+  static getUserInfo = async (token: string) => {
     const url = `${domain}/oauth2/userInfo`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `Bearer ${token}`
       }
     });
-    const { email } = await response.json();
-    return email;
+    return await response.json();
   };
 }

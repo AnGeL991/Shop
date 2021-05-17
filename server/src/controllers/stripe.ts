@@ -26,9 +26,9 @@ export const checkoutSesion = async (req: Request, res: Response) => {
       const line_items = prepareProdutToPayment(items, line, 'pln');
       const params: Stripe.Checkout.SessionCreateParams = stripeParams(req, email, line_items, shipping, coupon?.id);
       const session: Stripe.Checkout.Session = await stripe.checkout.sessions.create(params);
-      ResponseProcessor(res, 200, { id: session.id });
+      ResponseProcessor(res).sendResult({ id: session.id });
     }
   } catch (err) {
-    ResponseProcessor(res, 500, { error: err.message });
+    ResponseProcessor(res).sendError({ error: err.message });
   }
 };

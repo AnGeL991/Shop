@@ -9,41 +9,41 @@ export const addOrder = async (req: Request, res: Response) => {
     const orderId = await prepareOrderId();
     const order = await Order.createNewFromRequestBody(req.body, orderId);
     EmailSender.sendEmailWithFullfilledOrder(req.body);
-    ResponseProcessor(res, 200, { id: orderId, _id: order._id });
+    ResponseProcessor(res).sendResult({ id: orderId, _id: order._id });
   } catch (err) {
-    ResponseProcessor(res, 500, { error: err.message });
+    ResponseProcessor(res).sendError({ error: err.message });
   }
 };
 
 export const confirmOrder = (req: Request, res: Response) => {
   const { id } = req.body;
-  errorHandler(res, Order.confirmOrder(id), 200, 500);
+  errorHandler(res, Order.confirmOrder(id));
 };
 
 export const getOrders = (req: Request, res: Response) => {
   const { ordersId } = req.body;
-  errorHandler(res, Order.find({ _id: [...ordersId] }), 200, 500);
+  errorHandler(res, Order.find({ _id: [...ordersId] }));
 };
 export const confirmPayment = (req: Request, res: Response) => {
   const { id } = req.body;
-  errorHandler(res, Order.confirmPayment(id), 200, 500);
+  errorHandler(res, Order.confirmPayment(id));
 };
 export const getOneOrder = async (req: Request, res: Response) => {
   const { id } = req.body;
   try {
     const user = await User.findById(res.locals.user);
-    if (!user) return ResponseProcessor(res, 500, { message: "User does't exist" });
+    if (!user) return ResponseProcessor(res).sendError({ message: "User does't exist" });
     const order = await Order.findOne({ id });
-    if (!order) return ResponseProcessor(res, 500, { message: "Order does't exist" });
+    if (!order) return ResponseProcessor(res).sendError({ message: "Order does't exist" });
     const exist = user.ordersId.some((el) => order._id.toString() === el);
     if (exist) {
-      return ResponseProcessor(res, 402, { message: 'You already have this order' });
+      return ResponseProcessor(res).sendError({ message: 'You already have this order' });
     }
     if (user.email === order.delivery.email) {
-      return ResponseProcessor(res, 200, { order });
+      return ResponseProcessor(res).sendResult({ order });
     }
-    return ResponseProcessor(res, 401, { message: 'This order does not belong to you' });
+    return ResponseProcessor(res).sendError({ message: 'This order does not belong to you' });
   } catch (err) {
-    return ResponseProcessor(res, 500, { message: err.message });
+    return ResponseProcessor(res).sendError({ message: err.message });
   }
 };
