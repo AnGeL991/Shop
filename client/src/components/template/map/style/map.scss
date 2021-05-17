@@ -1,0 +1,46 @@
+@import "../../../../styles/settings.scss";
+.map {
+  margin: 0 20px;
+  position: relative;
+  height: 300px;
+  &__wrapper {
+    width: 100%;
+    max-width: 1180px;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  &__info {
+    position: absolute;
+    background-color: white;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  &__link {
+    color: $color-orange;
+  }
+  &__title {
+    font-size: 10px;
+    margin-bottom: 10px;
+    color: $color-orange;
+  }
+  &__description {
+    margin: 10px 0;
+    font-size: 10px;
+  }
+}
+@media (min-width: 768px) {
+  .map {
+    height: 450px;
+    &__info {
+      left: 35%;
+    }
+  }
+}
