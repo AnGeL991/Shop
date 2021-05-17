@@ -18,8 +18,8 @@ const UserSchema = new Schema<IUserDocument, IUserModel>(
     accountStatus: { type: Number, default: 0 },
     ordersId: { type: Array, default: [] },
     wishId: { type: Array, default: [] },
-    newsletter: { type: Boolean },
-    regulations: { type: Boolean, required: true }
+    type: { type: String },
+    newsletter: { type: Boolean }
   },
   {
     timestamps: true
@@ -35,8 +35,10 @@ UserSchema.pre('save', async function (this: IUserDocument) {
   let user = this;
   try {
     const salt = await bcryptjs.genSalt(10);
-    const hashedPassword = await bcryptjs.hash(user.password, salt);
-    user.password = hashedPassword;
+    if (user.password) {
+      const hashedPassword = await bcryptjs.hash(user.password, salt);
+      user.password = hashedPassword;
+    }
   } catch (err) {
     response.status(500).json({
       message: err.message,
@@ -46,7 +48,8 @@ UserSchema.pre('save', async function (this: IUserDocument) {
 });
 
 UserSchema.methods.comparePassword = function (candidatePassword: string) {
-  return bcryptjs.compare(candidatePassword, this.password);
+  if (this.password) return bcryptjs.compare(candidatePassword, this.password);
+  return;
 };
 
 UserSchema.statics.updateHashedPassword = async function (id: string, password: string) {

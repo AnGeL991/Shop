@@ -2,7 +2,7 @@ import { Document, Model } from 'mongoose';
 
 export interface IUser {
   email: string;
-  password: string;
+  password?: string;
   firstName?: string;
   lastName?: string;
   contact?: string;
@@ -15,7 +15,6 @@ export interface IUser {
   accountStatus: number | string;
   wishId: Array<string>;
   newsletter?: boolean;
-  regulations?: Boolean;
 }
 export interface IUserDocument extends IUser, Document {
   comparePassword(candidatePassword: string): boolean;
