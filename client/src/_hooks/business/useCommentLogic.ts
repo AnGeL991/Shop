@@ -1,12 +1,12 @@
 import ProductServices from "_services/product.services";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 
-export const useCommentLogic = (star: number, id?: string) => {
+export const useCommentLogic = (id?: string, stars?: number) => {
   const [comment, setComment] = useState({
     name: "",
     body: "",
     email: "",
-    star,
+    star: 0,
     date: new Date(),
   });
 
@@ -15,6 +15,12 @@ export const useCommentLogic = (star: number, id?: string) => {
       ProductServices.addComment(id, comment);
     }
   };
+
+  const handleSetStars = (stars: number) =>
+    setComment((prev) => ({
+      ...prev,
+      stars,
+    }));
 
   const handleSetComment = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
@@ -32,5 +38,17 @@ export const useCommentLogic = (star: number, id?: string) => {
     }));
   };
 
-  return { handleAddComment, handleSetComment, comment, handleSetBodyComment };
+  useEffect(() => {
+    if (stars) {
+      handleSetStars(stars);
+    }
+  }, [stars]);
+
+  return {
+    handleAddComment,
+    handleSetComment,
+    handleSetBodyComment,
+    handleSetStars,
+    comment,
+  };
 };
