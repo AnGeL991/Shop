@@ -1,17 +1,14 @@
 import { FC } from "react";
-import {  DealButtons,GalerySlick } from "components/template";
+import { DealButtons, GalerySlick } from "components/template";
 import { Stars } from "components/common";
 import { Inventory } from "components/interfaces";
 import { useProductBoxLogic } from "_hooks";
 
 type DealProps = {
   item: Inventory;
-
 };
 
-export const Slide: FC<DealProps> = ({
-  item,
-}) => {
+export const DealProduct: FC<DealProps> = ({ item }) => {
   const { price, title, description } = item;
   const {
     addProductToOrder,
@@ -23,16 +20,14 @@ export const Slide: FC<DealProps> = ({
   const galeryData = images.map((el, index) => ({ id: index, image: el }));
 
   return (
-    <div
-      className="deal__wrapper"
-    >
+    <div className="deal__wrapper">
       <div className="deal__context">
         <div className="deal__images">
           <GalerySlick data={galeryData} className="deal" />
         </div>
         <div className="deal__info">
           <h4 className="deal__title">{title}</h4>
-          <Stars productId={item._id} arrayOfStars={arrayOfStars} />
+          <Stars arrayOfStars={arrayOfStars} />
           <div className="deal__priceBox">
             <span className="deal__price"> ${discountPrice.toFixed(2)}</span>
             <span className="deal__oldPrice"> ${price.toFixed(2)}</span>

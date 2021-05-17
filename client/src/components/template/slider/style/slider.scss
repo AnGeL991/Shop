@@ -3,6 +3,10 @@
 .slick-dots li button::before {
   font-size: 12px;
 }
+.slick-slider {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 .slick-slide {
   padding: 5px;
   margin: 0px auto;
