@@ -35,10 +35,14 @@ export const useDisplayProduct = (amountOnPage: number) => {
   };
   const handleSetSlice = (amount: number) => setSlice(amount - 1);
 
-  const productById = (id: string) => data.filter((el) => el._id === id);
+  const productById = (id: string) => {
+    return data.find((el) => el._id === id);
+  };
 
   const productByCategory = (category: string) =>
-    data.filter((el) => el.category === category);
+    data.filter((el) => {
+      return el.category === category;
+    });
 
   let displayArray: Array<Inventory> = data;
 

@@ -6,12 +6,9 @@ export const usePersonalDateLogic = (firstName?: string) => {
   } = useGetState();
   const onSubmit = async (updates: any) => {
     if (token) {
-      console.log(token);
-      const result = await client("users/account", { updates }, token, {
+      await client("users/account", { updates }, token, {
         method: "PUT",
       });
-
-      console.log(result);
     }
   };
 

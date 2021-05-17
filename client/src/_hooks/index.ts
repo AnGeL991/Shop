@@ -20,3 +20,4 @@ export { useFetchLogic } from "./generic/useFetchLogic";
 export { useSetFixed } from "./generic/useSetFixed";
 export { useChangeImage } from "./generic/useChangeImage";
 export { useSuccessOrder } from "./business/useSuccessOrder";
+export { useMessageLogic } from "./business/useMessageLogic";

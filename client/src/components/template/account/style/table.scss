@@ -129,6 +129,16 @@
     }
   }
 }
+@media (min-width: 500px) {
+  .table {
+    &__orderButton {
+      padding: 5px 10px;
+      width: 90px;
+      height: 20px;
+      font-size: 9px;
+    }
+  }
+}
 @media (min-width: 768px) {
   .table {
     &__title {
