@@ -1,7 +1,6 @@
 import { SortOption } from "store/inventory";
 import { IDelivery, IPayment, IRule } from "components/interfaces";
-import { Icons } from "components/common";
-const { HomeIcon, DeliveryIcon } = Icons;
+
 export const option = [
   { name: SortOption.DEFAULT, text: "Default sorting" },
   { name: SortOption.TO_HIGHT_PRICE, text: "Sort by price: low to hight" },
@@ -26,13 +25,11 @@ export const securityInfo = [
   },
   {
     title: "Returns",
-    text:
-      "Remember that you have the full right to return the furniture within 14 days. buy without pressure.",
+    text: "Remember that you have the full right to return the furniture within 14 days. buy without pressure.",
   },
   {
     title: "Complaint",
-    text:
-      "If something is wrong with the furniture, we will replace it at our expense.",
+    text: "If something is wrong with the furniture, we will replace it at our expense.",
   },
 ];
 
