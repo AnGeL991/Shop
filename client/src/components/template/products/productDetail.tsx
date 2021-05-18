@@ -1,11 +1,16 @@
-import { FC, useMemo } from "react";
+import { FC, useEffect, useMemo } from "react";
 import { Button, Stars, Icons } from "components/common";
 import { Inventory } from "store/inventory";
 import { Sale, ResponsiveSlider } from "components/template";
-import { useProductPageLogic, useProductBoxLogic } from "_hooks";
+import {
+  useProductPageLogic,
+  useProductBoxLogic,
+  useDisplayProduct,
+} from "_hooks";
 import "./style/productDetail.scss";
 
 type ProductPageProps = {
+  id: string;
   product: Inventory;
 };
 
@@ -18,13 +23,24 @@ export const ProductDetail: FC<ProductPageProps> = ({ product }) => {
     HandleSetActiveInfo,
     currentPrice,
   } = useProductPageLogic(product);
-  const {
-    addProductToOrder,
-    addProductToWish,
-    arrayOfStars,
-  } = useProductBoxLogic(product);
+  const { addProductToOrder, addProductToWish, arrayOfStars } =
+    useProductBoxLogic(product);
 
-  const { discount, price, images, title, category, description } = product;
+  const { discount, price, images, title, category, description, image } =
+    product;
+
+  const Slider = useMemo(
+    () => (
+      <div>
+        <ResponsiveSlider>
+          {[image, ...images].map((el, index) => {
+            return <img key={index} src={el} alt="foto" className="image" />;
+          })}
+        </ResponsiveSlider>
+      </div>
+    ),
+    [image, images]
+  );
 
   const productPrice = useMemo(
     () =>
@@ -38,18 +54,9 @@ export const ProductDetail: FC<ProductPageProps> = ({ product }) => {
       ),
     [discount, currentPrice, price]
   );
-
   return (
     <section className="product">
-      <article className="product__imageBox">
-        <div>
-          <ResponsiveSlider>
-            {images.map((el) => {
-              return <img src={el} alt="foto" className="image" />;
-            })}
-          </ResponsiveSlider>
-        </div>
-      </article>
+      <article className="product__imageBox">{Slider}</article>
       <article className="product__info">
         <h4 className="product__title">{title}</h4>
         <div className="product__stars">
@@ -132,11 +139,9 @@ export const ProductDetail: FC<ProductPageProps> = ({ product }) => {
                 activeInfo === "delivery" ? "product__itemInfo--active" : null
               }`}
             >
-  
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatibus nostrum deserunt dignissimos voluptas, esse magni
-                porro
-              
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Voluptatibus nostrum deserunt dignissimos voluptas, esse magni
+              porro
             </div>
             <div
               className={`product__itemInfo ${

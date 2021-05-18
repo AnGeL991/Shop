@@ -12,10 +12,11 @@ interface IProductBox {
 
 export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
   const {
-    addProductToOrder,
-    discountPrice,
-    addProductToWish,
     arrayOfStars,
+    discountPrice,
+    addProductToOrder,
+    addProductToWish,
+    handleRedirectToProduct,
   } = useProductBoxLogic(item);
 
   const tag = item.tags ? (
@@ -45,13 +46,20 @@ export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
 
   return (
     <>
-      <div className={`productBox ${displayWay && "productBox--horizontal"}`}>
+      <div
+        className={`productBox ${displayWay && "productBox--horizontal"}`}
+      >
         <div
           className={`productBox__image ${
             displayWay && "productBox__image--horizontal"
           } `}
+          
         >
-          <img src={item.image} alt={item.title} className="productBox__img" />
+          <img
+           src={item.image} alt={item.title} 
+           className="productBox__img"
+           onClick={handleRedirectToProduct}
+            />
           {tag}
           <DealButtons
             addToCard={addProductToOrder}
@@ -64,6 +72,9 @@ export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
             }`}
             addToWishList={addProductToWish}
           />
+          <div className="productBox__hover">
+            <span className="productBox__text">See details</span>
+          </div>
         </div>
         <div
           className={`productBox__info ${
@@ -71,7 +82,7 @@ export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
           }`}
         >
           <div className="productBox__star--horizontal">
-            <Stars productId={item._id} arrayOfStars={arrayOfStars} />
+            <Stars arrayOfStars={arrayOfStars} />
             {displayWay && (
               <span className="productBox__comment">
                 ({item.comment.length} customer review)
@@ -80,7 +91,13 @@ export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
           </div>
           <h5 className="productBox__title">{item.title}</h5>
           {displayWay && (
-            <div className="productBox__description">{item.description}</div>
+            <div
+              className={`productBox__description   ${
+                displayWay && "productBox__description--horizontal"
+              }`}
+            >
+              {item.description}
+            </div>
           )}
           <span
             className={`productBox__price ${

@@ -2,6 +2,7 @@ import { FC, useEffect } from "react";
 import gsap from "gsap";
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 import { CSSPlugin } from "gsap/CSSPlugin";
+
 gsap.registerPlugin(CSSPlugin, CSSRulePlugin);
 interface ILoading {
   active: boolean;

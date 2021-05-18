@@ -1,12 +1,16 @@
 .register {
   padding: 0 10px;
+  margin: 0 auto;
+  max-width: 1180px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   &__fildset {
+    max-width: 450px;
     border: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 320px;
-    margin: 10px auto;
   }
   &__progress {
     font-size: 14px;
@@ -30,5 +34,14 @@
   &__select {
     text-transform: capitalize;
     font-weight: 700;
+  }
+}
+@media (min-width: 768px) {
+  .register {
+    justify-content: flex-start;
+    &__fildset {
+      width: 50%;
+      margin: none;
+    }
   }
 }

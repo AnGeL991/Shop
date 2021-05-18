@@ -74,7 +74,7 @@ export const Routers: FC = () => {
     <TransitionGroup>
       <ScrollToTop />
       <CSSTransition timeout={250} classNames="fade" key={location.key}>
-        <Switch>
+        <Switch location={location}>
           <PrivateRoute path="/myAccount" component={Account} />
           {router}
         </Switch>

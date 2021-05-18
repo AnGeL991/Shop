@@ -10,6 +10,7 @@ export const Listener: FC = () => {
     cart: { loading },
     wish,
   } = useGetState();
+
   if (inventoryLoading) {
     return <Loading {...{ active: inventoryLoading }} />;
   } else if (loading || wish.loading) {

@@ -6,10 +6,13 @@ import { UserState } from "./types";
 export class UserPrepare {
   static checkAccountStatus(orders: Array<PaymentState>, token: string | null) {
     const paidOrder = orders.filter((el) => el.paymentStatus.paid === true);
-    const acountStatus = paidOrder.reduce(
-      (total, item) => (total + item.totalPayment) / 1000,
-      0
-    );
+    const acountStatus = paidOrder.reduce((total, item) => {
+      const totalPayment = total + item.totalPayment / 1000;
+      if (totalPayment > 6) {
+        return totalPayment;
+      }
+      return 5;
+    }, 0);
     if (token && acountStatus < 6) {
       client("users/status", { status: Math.floor(acountStatus) }, token, {
         method: "PUT",

@@ -1,11 +1,13 @@
-import { FC, useMemo } from "react";
+import { FC, useEffect } from "react";
 import { IBanner } from "components/interfaces";
+import { animation } from "./gsap";
 import { Link } from "react-router-dom";
 
 interface SlideProps extends IBanner {
   subTitle: string;
   buttons: Array<string>;
   index: number;
+  active: number;
 }
 
 export const Slide: FC<SlideProps> = ({
@@ -15,19 +17,21 @@ export const Slide: FC<SlideProps> = ({
   description,
   buttons,
   index,
+  active,
 }) => {
-  const button = useMemo(
-    () =>
-      buttons.map((el) => (
-        <button key={el} className={`slide__${el}`}>
-          <Link to="/">{el}</Link>
-        </button>
-      )),
-    [buttons]
-  );
+  useEffect(() => {
+    if (index === active) {
+      animation();
+    }
+  }, [index, active]);
 
+  const button = buttons.map((el) => (
+    <button key={el} className={`slide__${el}`}>
+      <Link to="/">{el}</Link>
+    </button>
+  ));
   return (
-    <div className="slide" style={{ transform: `translate(-${index * 100}%)` }}>
+    <div className={`slide ${index === active && "slide--active"} `}>
       <div className="slide__image">
         <img className="slide__img" src={image} alt={title} />
         <div className="slide__wrapper">
