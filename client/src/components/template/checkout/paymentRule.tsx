@@ -29,7 +29,7 @@ export const PaymentRule: FC<PaymentRuleProps> = ({
           {el.name !== "select" ? (
             <>
               <ReadMore title={el.name} className="checkedRead">
-                <p>{el.description}</p>
+                <p className='checkedRead__rules'>{el.description}</p>
               </ReadMore>
             </>
           ) : (

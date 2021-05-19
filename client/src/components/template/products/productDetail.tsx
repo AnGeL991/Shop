@@ -1,12 +1,8 @@
-import { FC, useEffect, useMemo } from "react";
+import { FC, useMemo } from "react";
 import { Button, Stars, Icons } from "components/common";
 import { Inventory } from "store/inventory";
 import { Sale, ResponsiveSlider } from "components/template";
-import {
-  useProductPageLogic,
-  useProductBoxLogic,
-  useDisplayProduct,
-} from "_hooks";
+import { useProductPageLogic, useProductBoxLogic } from "_hooks";
 import "./style/productDetail.scss";
 
 type ProductPageProps = {
@@ -32,7 +28,7 @@ export const ProductDetail: FC<ProductPageProps> = ({ product }) => {
   const Slider = useMemo(
     () => (
       <div>
-        <ResponsiveSlider>
+        <ResponsiveSlider disable={images.length === 0}>
           {[image, ...images].map((el, index) => {
             return <img key={index} src={el} alt="foto" className="image" />;
           })}

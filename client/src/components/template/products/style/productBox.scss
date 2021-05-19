@@ -162,7 +162,7 @@
       justify-content: space-evenly;
     }
     &__image--horizontal {
-      width: 40%;
+      max-width: 40%;
       position: static;
     }
     &__tag--horizontal {
@@ -171,6 +171,8 @@
     }
     &__description--horizontal {
       display: block;
+      width: 60%;
+      line-height: 1.4;
     }
     &__star--horizontal {
       order: 1;
@@ -190,9 +192,9 @@
     }
     &__button--horizontal {
       margin: 5px;
-      min-width: 40px;
-      height: 40px;
-      font-size: 20px;
+      min-width: 30px;
+      height: 30px;
+      font-size: 16px;
     }
   }
 }

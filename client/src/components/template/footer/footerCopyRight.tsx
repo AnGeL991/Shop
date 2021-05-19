@@ -6,7 +6,7 @@ export const CopyRight: FC = () => {
   return (
     <div className="copyRight">
       <p>
-        Copyright <span dangerouslySetInnerHTML={{ __html: "&copy;" }} /> 2021
+        Adrian Markuszewski <span dangerouslySetInnerHTML={{ __html: "&copy;" }} /> 2021
       </p>
       <div className="copyRight__images">
         <img src={AWS} alt="aws logo" className="copyRight__logo" />

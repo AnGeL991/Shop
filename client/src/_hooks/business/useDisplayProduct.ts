@@ -86,10 +86,11 @@ export const useDisplayProduct = (amountOnPage: number) => {
   if (sort !== "") {
     sortArray(sort);
   }
-
+  const firstSlice = slice === 0 ? 0 : slice * amountOnPage;
+  const lastSlice = slice === 0 ? 1 * amountOnPage : (slice + 1) * amountOnPage;
   const sliceArray = amountOnPage
-    ? displayArray.slice(slice === 0 ? 0 : slice * amountOnPage)
-    : displayArray;
+    ? displayArray.slice(firstSlice, lastSlice)
+    : [];
   const firstProductShowed = slice * amountOnPage + 1;
   const lastProductShowed =
     (slice + 1) * amountOnPage < displayArray.length

@@ -22,3 +22,9 @@
     width: 100%;
   }
 }
+@media (min-width: 768px) {
+  .operation {
+    max-width: 550px;
+    margin: 0 auto;
+  }
+}

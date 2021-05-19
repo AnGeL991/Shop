@@ -37,9 +37,7 @@ export const useProductBoxLogic = (item: Inventory) => {
   };
 
   const discountPrice =
-    item.discount > 0
-      ? item.price - (item.price * item.discount) / 100
-      : item.price;
+    item.discount > 0 ? item.price - (item.price * item.discount) / 100 : 0;
 
   const totalPrice = discountPrice * item.amount;
   const arrayOfStars = item.comment.map((el) => el.star);

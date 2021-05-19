@@ -11,6 +11,11 @@ const data = [
   { name: "table" },
   { name: "accessories" },
   { name: "chair" },
+  { name: "mirror" },
+  { name: "cupboard" },
+  { name: "bedside Table" },
+  { name: "wardrobe" },
+  { name: "dressing table" },
 ];
 
 const dataTag = [{ name: "New" }, { name: "BestSeller" }];
@@ -43,13 +48,13 @@ export const Filter: FC = () => {
           />
           <Button className="filterContext__button">Filter</Button>
           <p className="filterContext__price">
-            Price: <span>${minPrice > price ? minPrice : price}</span> —{" "}
+            Price: <span>${minPrice > price ? minPrice : price}</span> —
             <span>${maxPrice}</span>
           </p>
         </div>
       </EachFilter>
       <EachFilter title="Product tags">
-        <div className='filterContext__tags'>{tagData}</div>
+        <div className="filterContext__tags">{tagData}</div>
       </EachFilter>
     </section>
   );

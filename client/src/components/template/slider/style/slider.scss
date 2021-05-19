@@ -4,7 +4,7 @@
   font-size: 12px;
 }
 .slick-slider {
-  max-width: 1200px;
+  max-width: 1220px;
   margin: 0 auto;
 }
 .slick-slide {
@@ -53,6 +53,9 @@
 .slick-next:focus {
   background: $color-orange;
   color: white;
+}
+.disable {
+  display: none;
 }
 @media (min-width: 768px) {
   .slick-slider {

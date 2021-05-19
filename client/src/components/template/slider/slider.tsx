@@ -7,9 +7,10 @@ import { Icons } from "components/common";
 const { ArrowLeft, ArrowRight } = Icons;
 interface ISlider {
   children: ReactNode;
+  disable?:boolean;
 }
 
-export const ResponsiveSlider: FC<ISlider> = ({ children }) => {
+export const ResponsiveSlider: FC<ISlider> = ({ children,disable }) => {
   const slider1 = useRef<Slider | null>(null);
   const slider2 = useRef<Slider | null>(null);
 
@@ -81,6 +82,7 @@ export const ResponsiveSlider: FC<ISlider> = ({ children }) => {
         slidesToShow={3}
         swipeToSlide={true}
         arrows={false}
+        className={`${disable && 'disable'} `}
       >
         {children}
       </Slider>

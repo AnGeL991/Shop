@@ -16,7 +16,7 @@ export const ProductPage: FC<MatchProps> = ({ match }) => {
   
 
   return (
-    <section>
+    <section style={{paddingBottom:'40px'}}>
       <ProductDetail id={match.params.id} product={product} />
       <CarousellProduct title="Related Products" data={relatedProduct} />
     </section>
