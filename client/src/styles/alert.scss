@@ -1,7 +1,8 @@
-@import "../settings.scss";
+@import "./settings.scss";
 
 .alert {
   width: 85%;
+  max-width: 320px;
   color: red;
   text-align: center;
   &__smallError {

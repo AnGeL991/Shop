@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegisterLogic } from "_hooks";
 import "./registerForm.scss";
+import 'styles/alert.scss'
 
 export const RegisterForm: FC = () => {
   const {

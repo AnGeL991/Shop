@@ -1,8 +1,9 @@
 @import "../../../../styles/settings.scss";
 
 .galerySlider {
-  padding: 20px;
+  padding: 0 10px;
   margin: 0px auto;
+  width: calc(100vw - 40px);
   max-width: 1220px;
   &__content {
     overflow: hidden;
@@ -16,11 +17,14 @@
   &__imageBox {
     position: relative;
     padding: 5px;
+    min-height: 150px;
+    max-height: 350px;
   }
   &__img {
+    object-fit: contain;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    height: 150px;
   }
   &__icon {
     position: absolute;
@@ -37,29 +41,23 @@
 }
 @media (min-width: 768px) {
   .galerySlider {
-    height: 100%;
-    &__content {
-      height: 90%;
-    }
-    &__icon {
-      color: white;
-    }
     &__img {
-      width: calc(50vw - 30px);
+      object-fit: fill;
+      height: 340px;
     }
   }
 }
-@media (min-width: 1024px) {
-  .galerySlider {
-    &__img {
-      width: calc(100vw / 3 - 23px);
-    }
-  }
-}
-@media (min-width: 1220px) {
-  .galerySlider {
-    &__img {
-      width: calc(1220px / 3 - 23px);
-    }
-  }
-}
+// @media (min-width: 1024px) {
+//   .galerySlider {
+//     &__img {
+//       width: calc(100vw / 3 - 23px);
+//     }
+//   }
+// }
+// @media (min-width: 1220px) {
+//   .galerySlider {
+//     &__img {
+//       width: calc(1220px / 3 - 23px);
+//     }
+//   }
+// }

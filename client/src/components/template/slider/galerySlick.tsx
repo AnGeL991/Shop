@@ -4,7 +4,7 @@ import { Slide } from "./slide";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style/slider.scss";
-import './style/galerySlider.scss'
+import "./style/galerySlider.scss";
 interface IGalery {
   data: Array<{ id: number; image: string }>;
   className?: string;
@@ -35,5 +35,9 @@ export const GalerySlick: FC<IGalery> = ({
     dots: true,
   };
 
-  return <Slider {...settings}>{fotos}</Slider>;
+  return (
+    <section className="galerySlider">
+      <Slider {...settings}>{fotos}</Slider>
+    </section>
+  );
 };

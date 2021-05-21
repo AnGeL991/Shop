@@ -20,12 +20,13 @@ export const BasketProduct: FC<BasketProps> = ({ item }) => {
 
   return (
     <div className="basketProduct">
-      <div className="basketProduct__image">
+      <div className="basketProduct__image"
+      onClick={handleRedirectToProduct}>
         <img src={image} alt={title} className="basketProduct__img" />
       </div>
       <div
         className="basketProduct__productInfo"
-        onClick={handleRedirectToProduct}
+        
       >
         <h4 className="basketProduct__title">{title}</h4>
         <ReadMore title="More Details" className="basketRead">

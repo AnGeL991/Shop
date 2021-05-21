@@ -35,7 +35,7 @@ export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
     </div>
   ) : null;
 
-  const price = discountPrice !==0 ? (
+  const price = item.discount !== 0 ? (
     <>
       <span className="productBox__oldPrice">${item.price.toFixed(2)}</span>
       <span>${discountPrice.toFixed(2)}</span>
