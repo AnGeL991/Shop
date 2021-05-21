@@ -14,7 +14,7 @@ export class EmailSender {
     const product = prepareProductToOrder(products);
     const totalPrice = prepareTotalPrice(products);
 
-    const emailTemplate = emailData(email, 'd-75531c57feac454cb1f07207699f2791', {
+    const emailTemplate = emailData(email, 'd-4dbe1c1ab00d42f1b52c811996dbe2e5', {
       personalData: `${firstName} ${surName}`,
       street,
       city,
@@ -31,25 +31,25 @@ export class EmailSender {
     await sgMail.send(emailTemplate);
   }
   static async sendEmailWithVerifyAccount(res: Response, email: string, token: string) {
-    const emailTemplate = emailData(email, 'd-711a3dbcc82143d09a6739a4613668e1', { link: `http://localhost:3000/users/activate/${token}` });
+    const emailTemplate = emailData(email, ' d-ad4f7d79c63543adbc0b27af420729a2', { link: `http://localhost:3000/users/activate/${token}` });
     await sgMail
       .send(emailTemplate)
       .then(() => {
-        return ResponseProcessor(res, 200, { message: `Email has been sent to ${email}` });
+        return ResponseProcessor(res).sendResult({ message: `Email has been sent to ${email}` });
       })
       .catch((err) => {
-        return ResponseProcessor(res, 500, { error: err.message });
+        return ResponseProcessor(res).sendError({ error: err.message });
       });
   }
   static async sendEmailWithResetPasswordLink(res: Response, email: string, token: string) {
-    const emailTemplate = emailData(email, 'd-b7667e8ce86748768bf618a599789f46', { link: `http://localhost:3000/users/reset/${token}` });
+    const emailTemplate = emailData(email, 'd-002550186d054d5db7ca70e2c419e3ec', { link: `http://localhost:3000/users/reset/${token}` });
     await sgMail
       .send(emailTemplate)
       .then((sent) => {
-        return ResponseProcessor(res, 200, { message: `Email has been sent to ${email}. Follow the instruction to activate your account` });
+        return ResponseProcessor(res).sendResult({ message: `Email has been sent to ${email}. Follow the instruction to activate your account` });
       })
       .catch((err) => {
-        return ResponseProcessor(res, 500, { error: err.message });
+        return ResponseProcessor(res).sendError({ error: err.message });
       });
   }
 }
