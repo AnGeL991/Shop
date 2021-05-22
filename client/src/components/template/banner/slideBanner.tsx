@@ -1,9 +1,6 @@
 import { FC, useState, useEffect, useMemo } from "react";
 import { Slide } from "./slide";
 import { mainBaner } from "db";
-// import Slider from 'react-animated-slider';
-import 'react-animated-slider/build/horizontal.css';
- 
 import "./style/slider.scss";
 
 export const SlideBanner: FC = () => {
