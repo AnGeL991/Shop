@@ -5,7 +5,7 @@ import TELEGRAM from "./telegram.svg";
 import GOOGLE from "./google.svg";
 import FBLOGO from "./fbLogo.svg";
 import TICK from "./tick.svg";
-
+import LOGO from "./logo.svg";
 export const SVG = {
   AWS,
   FACEBOOK,
@@ -14,4 +14,5 @@ export const SVG = {
   GOOGLE,
   FBLOGO,
   TICK,
+  LOGO,
 };
