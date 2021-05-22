@@ -1,6 +1,5 @@
 
-## Furniture Shop 
-
+<p align='center'><img src='https://github.com/AnGeL991/Shop/blob/master/images/logo.svg' /></p>
 
   <ol>
    <li>
@@ -96,9 +95,37 @@ Service enables us convenient and flexible scrolling products and order it.
 We also have available payment with stripe and after create orders we are send email with details.
 Service also share user account where you have your details and complex orders with products,
 address/shipping details and payment status.
-
+## Example user account 
+	Login: exampleEmail@gmail.com
+	Password: Example123
+	
 ## Example usage
-Gify 
+  ### Home page
+  <p><img src='https://github.com/AnGeL991/Shop/blob/master/images/home.jpg' /></p>
+  
+  ### Shop-horizontal
+  <p><img src='https://github.com/AnGeL991/Shop/blob/master/images/shop-horizontal.jpg' /></p>
+
+  ### Shop-vertical
+   <p><img src='https://github.com/AnGeL991/Shop/blob/master/images/shop-vertical.jpg' /></p>
+
+  ### Stripe
+   <p><img src='https://github.com/AnGeL991/Shop/blob/master/images/stripe.jpg' /></p>
+
+  ### Product 
+   <p><img src='https://github.com/AnGeL991/Shop/blob/master/images/product.jpg' /></p>
+
+  ### Account order 
+   <p><img src='https://github.com/AnGeL991/Shop/blob/master/images/AccountOrders.jpg' /></p>
+
+  ### Email activate account
+   <p><img src='https://github.com/AnGeL991/Shop/blob/master/images/activateEmail.jpg' /></p>
+
+  ### Email forget password 
+   <p><img src='https://github.com/AnGeL991/Shop/blob/master/images/resetPasswordEmail.jpg' /></p>
+
+  ### Email order 
+   <p><img src='https://github.com/AnGeL991/Shop/blob/master/images/orderEmail.jpg' /></p>
 
 
 ## Getting Started
@@ -126,11 +153,6 @@ Your app is ready to be deployed!
 2. Install NPM packages
    ```sh
    npm install
-   ```
-3. Enter your Secret_key in `client/.env`
-   ```JS
-   REACT_APP_STRIPE_PK ='Your stripe pk_key';
-   REACT_APP_GOOGLE_API ='Your google_api_key';
    ```
 
 ## License
