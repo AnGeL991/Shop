@@ -31,7 +31,7 @@ export class EmailSender {
     await sgMail.send(emailTemplate);
   }
   static async sendEmailWithVerifyAccount(res: Response, email: string, token: string) {
-    const emailTemplate = emailData(email, ' d-ad4f7d79c63543adbc0b27af420729a2', { link: `http://localhost:3000/users/activate/${token}` });
+    const emailTemplate = emailData(email, 'd-ad4f7d79c63543adbc0b27af420729a2', { link: `http://localhost:3000/users/activate/${token}` });
     await sgMail
       .send(emailTemplate)
       .then(() => {
