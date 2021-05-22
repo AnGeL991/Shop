@@ -22,12 +22,13 @@ export const OrderDetails: FC<IOrderDetails> = ({
   ));
   const maxHeight = products.length * 45 + 140
   const { firstName, surName, city, phone, postCode, email, street } = delivery;
+  const scroll =  maxHeight >= 355 ? "scroll" : "hidden";
   return (
     <tr
       className={`table__order ${open && "table__order--active"}`}
       style={{ 
       maxHeight: `${maxHeight}px`,
-      overflow:`${maxHeight > 355 ? "scroll" : "hidden"}`
+      overflowY:scroll,
     }}
     >
       <td style={{ display: "block" }}>

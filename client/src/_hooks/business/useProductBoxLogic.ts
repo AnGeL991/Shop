@@ -31,6 +31,7 @@ export const useProductBoxLogic = (item: Inventory) => {
       const exist = wishId?.find((el) => el === item._id);
       if (exist) {
         await User.removeFromWishList(exist, token);
+        onSubmit(wishAction.removeProduct, [item._id]);
       }
     }
     onSubmit(wishAction.removeProduct, [item._id]);

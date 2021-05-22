@@ -30,7 +30,7 @@ export const Activate: FC<MatchProps> = ({ match }) => {
     <section className='height'>
       {modalAlert}
       <Operation
-        title="Veryfikacja konta"
+        title="Verify Account"
         description="Hi use the button below to verify your email and start enjoying your account"
         btnText="Verify email"
         onClick={activateAccount}
