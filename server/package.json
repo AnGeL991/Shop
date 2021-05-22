@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "server.ts",
   "license": "MIT",
+  "engines": {
+    "node": "14.16.0"
+  },
   "scripts": {
-    "build": "rm -rf build/ && prettier --write src/ && tsc",
     "start": "nodemon src/server.ts"
   },
   "dependencies": {

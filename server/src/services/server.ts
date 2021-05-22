@@ -9,12 +9,12 @@ import { loggingMiddleware } from '../middlewares';
 const NAMESPACE = 'Server';
 
 class Server {
-  static config(app: any) {
-    connectToDb();
+  static async config(app: any) {
     app.use(express.static(path.join('../client/build')));
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
     app.use(cors());
+    await connectToDb();
   }
   static addRouting(app: any) {
     app.use('/api', router);

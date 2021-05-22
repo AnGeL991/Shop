@@ -15,14 +15,13 @@ const MONGO_OPTIONS = {
 
 const MONGO_USERNAME = process.env.MONGO_USERNAME || 'AnGeL';
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD || '27017';
-const MONGO_DB = process.env.MONGO_DB || `FurnitureShop`;
 const MONGO_HOST = process.env.MONGO_HOST || 'localhost';
 const MONGO = {
   host: MONGO_HOST,
   password: MONGO_PASSWORD,
   username: MONGO_USERNAME,
   options: MONGO_OPTIONS,
-  url: `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@angel.f9tbg.mongodb.net/${MONGO_DB}`
+  url: process.env.MONGODB_URI!
 };
 
 const SERVER__HOSTNAME = process.env.SERVER__HOSTNAME || 'http://localhost';
