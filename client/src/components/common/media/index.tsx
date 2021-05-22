@@ -3,9 +3,9 @@ import { SVG } from "svg";
 
 import "./media.scss";
 const linkGoogle =
-  "https://shop.auth.eu-west-2.amazoncognito.com/oauth2/authorize?redirect_uri=http://localhost:3000/login&response_type=code&client_id=7r47kh0gdld9pi8o4f3dkjfudh&identity_provider=Google";
+  "https://shop.auth.eu-west-2.amazoncognito.com/oauth2/authorize?redirect_uri=https://furnituresho.netlify.app/login&response_type=code&client_id=7r47kh0gdld9pi8o4f3dkjfudh&identity_provider=Google";
 const linkFacebook =
-  "https://shop.auth.eu-west-2.amazoncognito.com/oauth2/authorize?redirect_uri=http://localhost:3000/login&response_type=code&client_id=7r47kh0gdld9pi8o4f3dkjfudh&identity_provider=Facebook";
+  "https://shop.auth.eu-west-2.amazoncognito.com/oauth2/authorize?redirect_uri=https://furnituresho.netlify.app/login&response_type=code&client_id=7r47kh0gdld9pi8o4f3dkjfudh&identity_provider=Facebook";
 export const Google: FC = () => {
   return (
     <button className="media media--google">
