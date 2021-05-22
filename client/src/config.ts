@@ -1,5 +1,4 @@
-export const API_URL =
-  process.env.NODE_ENV === "production" ? "/api" : "http://localhost:8000/api";
+export const API_URL = "https://furniture12.herokuapp.com/api";
 
 function initConfig() {
   let PROTOCOL = "https://";

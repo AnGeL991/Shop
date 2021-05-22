@@ -261,13 +261,13 @@ export const paymentRule: Array<IRule> = [
 ];
 
 export const brands = [
-  "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Brand-3.png",
+  "./images/Brand-1.png",
 
-  "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Brand-4.png",
+  "./images/Brand-2.png",
 
-  " http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Brand-2.png",
+  "./images/Brand-3.png",
 
-  "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Brand-1.png",
+  "./images/Brand-4.png",
 ];
 
 export const nav = [
@@ -294,8 +294,7 @@ export const categoryNav = [
 export const mainBaner = [
   {
     id: 1,
-    image:
-      "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/main-banner-2.jpg",
+    image: "./images/Main-banner-01.jpg",
     title: "Summer Sale!",
     subTitle: "Trumblers cups & ceramic",
     description: "Understand introductions to ceramic materials",
@@ -303,8 +302,7 @@ export const mainBaner = [
   },
   {
     id: 2,
-    image:
-      "http://wordpress.templatemela.com/woo/WCM05/WCM050119/wp-content/uploads/2019/08/Main-banner-01.jpg",
+    image: "./images/main-banner-2.jpg",
     title: "Summer Sale!",
     subTitle: "Trumblers cups & ceramic",
     description: "Understand introductions to ceramic materials",
