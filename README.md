@@ -96,10 +96,12 @@ We also have available payment with stripe and after create orders we are send e
 Service also share user account where you have your details and complex orders with products,
 address/shipping details and payment status.
 ## Example user account 
+
 	Login: exampleEmail@gmail.com
+	
 	Password: Example123
 	
-## Example usage
+## Example 
   ### Home page
   <p><img src='https://github.com/AnGeL991/Shop/blob/master/images/home.jpg' /></p>
   
@@ -147,10 +149,13 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 ## Installation 
 1. Clone the repo
+
    ```sh
    git clone https://github.com/AnGeL991/Shop.git
    ```
+   
 2. Install NPM packages
+
    ```sh
    npm install
    ```
