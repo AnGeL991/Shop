@@ -29,7 +29,7 @@ export const TelegramButton: FC = () => {
         </div>
       </div>
       <iframe
-        src="http://localhost:8080"
+        src="https://widgetchat.netlify.app"
         title="widget Chat"
         className={`webChat ${open && "webChat--active"}`}
       />
