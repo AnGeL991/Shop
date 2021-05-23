@@ -7,11 +7,14 @@ export const SlideBanner: FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (activeIndex === 0) {
-        setActiveIndex(1);
-      } else setActiveIndex(0);
-    }, 8000);
+    let interval:any;
+    if(window.innerWidth >=768){
+      interval = setInterval(() => {
+        if (activeIndex === 0) {
+          setActiveIndex(1);
+        } else setActiveIndex(0);
+      }, 8000);
+    }
     return () => {
       clearInterval(interval);
     };
