@@ -20,8 +20,8 @@ export const Slide: FC<SlideProps> = ({
   active,
 }) => {
   useEffect(() => {
-    if (index === active) {
-      animation();
+    if (index === active && window.innerWidth >= 768) {
+       animation();
     }
   }, [index, active]);
 
