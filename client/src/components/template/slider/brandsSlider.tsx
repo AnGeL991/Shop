@@ -18,7 +18,7 @@ export const BrandSlider: FC = () => {
     pauseOnHover: true,
     responsive: [
       {
-        breakpoint: 320,
+        breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
