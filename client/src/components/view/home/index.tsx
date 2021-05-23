@@ -23,7 +23,7 @@ export const Home: FC = () => {
         button="Shop Now"
       />
       <DealOfDay />
-      <RecomendetProduct />
+      <RecomendetProduct /> 
       <BottomBanner />
       <BrandSlider />
     </section>

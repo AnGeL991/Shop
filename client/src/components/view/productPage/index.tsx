@@ -7,7 +7,6 @@ export const ProductPage: FC<MatchProps> = ({ match }) => {
   const { productById, productByCategory } = useDisplayProduct(1);
 
   const product = productById(match.params.id);
-  console.log(product);
  
   if (!product ) {
     return <div>Loading</div>;
