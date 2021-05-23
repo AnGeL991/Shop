@@ -18,11 +18,12 @@ export const BrandSlider: FC = () => {
     pauseOnHover: true,
     responsive: [
       {
-        breakpoint: 480,
+        breakpoint: 320,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
+          autoplay:false
         },
       },
       {
@@ -32,6 +33,12 @@ export const BrandSlider: FC = () => {
           slidesToScroll: 2,
           initialSlide: 1,
           infinite: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          autoplay:true
         },
       },
       {

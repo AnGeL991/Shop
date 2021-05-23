@@ -56,6 +56,7 @@ export const CarouselSlider: FC<ICarouselSlider> = ({ children, deal }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
+          autoplay: false,
         },
       },
       {
@@ -65,6 +66,12 @@ export const CarouselSlider: FC<ICarouselSlider> = ({ children, deal }) => {
           slidesToScroll: 2,
           initialSlide: 1,
           infinite: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          autoplay: true,
         },
       },
       {
