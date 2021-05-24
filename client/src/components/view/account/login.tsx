@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useLayoutEffect } from "react";
 import { Header } from "components/common";
 import { LoginForm } from "components/template";

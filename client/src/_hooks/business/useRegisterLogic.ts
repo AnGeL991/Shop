@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from "react";
 import { User } from "db";
 import { userActions } from "store/user";
@@ -9,12 +10,8 @@ import { ApplicationState } from "store";
 export const useRegisterLogic = () => {
   const { inputRules, handleSetRegulation } = useChecked();
   const { onSubmit } = useFormLogic();
-  const {
-    showModal,
-    StopPropagation,
-    setShowModal,
-    handleToggleModal,
-  } = useModalLogic();
+  const { showModal, StopPropagation, setShowModal, handleToggleModal } =
+    useModalLogic();
 
   const { type, message } = useSelector(
     (state: ApplicationState) => state.alert

@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import React,{ FC, ReactNode } from "react";
 import Slick from "react-slick";
 import { Icons } from "components/common";
 import "./style/slideCarousel.scss";
@@ -12,28 +12,22 @@ interface ICarouselSlider {
 export const CarouselSlider: FC<ICarouselSlider> = ({ children, deal }) => {
   const dealSettings = {
     dots: false,
-    infinite: false,
     speed: 500,
     slidesToShow: 2,
-    slidesToScroll: 1,
     initialSlide: 0,
-    Infinity: true,
     responsive: [
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: true,
+          initialSlide: 0,
         },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 0,
-          infinite: true,
         },
       },
     ],
@@ -55,7 +49,6 @@ export const CarouselSlider: FC<ICarouselSlider> = ({ children, deal }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: true,
           autoplay: false,
         },
       },
@@ -63,22 +56,19 @@ export const CarouselSlider: FC<ICarouselSlider> = ({ children, deal }) => {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 1,
-          infinite: true,
         },
       },
       {
         breakpoint: 768,
         settings: {
           autoplay: true,
+          Infinity:true,
         },
       },
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 1,
           infinite: true,
         },
       },
@@ -86,8 +76,6 @@ export const CarouselSlider: FC<ICarouselSlider> = ({ children, deal }) => {
         breakpoint: 1220,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 1,
-          Infinity: true,
         },
       },
     ],

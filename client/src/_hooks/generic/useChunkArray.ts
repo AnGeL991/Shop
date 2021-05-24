@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { useGetState } from "_hooks";
 
@@ -14,7 +15,7 @@ export const useChunkArray = (
   useEffect(() => {
     setActivePage(1);
     handleSetSlice(1);
-  }, [category]);
+  }, [category, handleSetSlice]);
 
   const chunk = array.reduce((chunk: number) => {
     chunk = Math.ceil(array.length / amountInChunk);
