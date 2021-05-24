@@ -7,7 +7,7 @@ import { ApplicationState, createRootReducer } from "./store";
 
 function configureStore(
   history: History,
-  initialState: ApplicationState
+  initialState: any
 ): Store<ApplicationState> {
   const reduxMiddleware = [routerMiddleware(history), thunk];
 
