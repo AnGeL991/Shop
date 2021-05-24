@@ -71,16 +71,14 @@ export const Routers: FC = () => {
   );
 
   return (
-    // <TransitionGroup>
-    <>
+    <TransitionGroup>
       <ScrollToTop />
-      {/* <CSSTransition timeout={250} classNames="fade" key={location.key}> */}
+      <CSSTransition timeout={250} classNames="fade" key={location.key}>
         <Switch location={location}>
           <PrivateRoute path="/myAccount" component={Account} />
           {router}
         </Switch>
-        </>
-    // </CSSTransition>
-    // </TransitionGroup>
+      </CSSTransition>
+    </TransitionGroup>
   );
 };
