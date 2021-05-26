@@ -29,7 +29,6 @@
   border-radius: 50%;
   width: 16px;
   height: 15px;
-  background-color: $color-orange;
   opacity: 0.75;
   .arrowIcon {
     font-size: 16px;
@@ -51,7 +50,6 @@
 .slick-prev:focus,
 .slick-next:hover,
 .slick-next:focus {
-  background: $color-orange;
   color: white;
 }
 .disable {
