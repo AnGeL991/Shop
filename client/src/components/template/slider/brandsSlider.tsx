@@ -1,103 +1,58 @@
 import { FC } from "react";
-import Slick from "react-slick";
 import { brands } from "db";
-import { Icons } from "components/common";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Pagination, Navigation, Autoplay } from "swiper/core";
 import "./style/brandSlider.scss";
-const { ArrowLeft, ArrowRight } = Icons;
+SwiperCore.use([Pagination, Navigation, Autoplay]);
+
+const settings = {
+  slidesPerView: 5,
+  spaceBetween: 20,
+  slidesPerGroup: 1,
+  loop: true,
+  loopFillGroupWithBlank: true,
+  pagination: false,
+  observer: true,
+  observeParents: true,
+  className: "mySwiper",
+  navigation: true,
+  speed: 1000,
+  autoplay: {
+    delay: 2500,
+    pauseOnMouseEnter: true,
+    disableOnInteraction: false
+  },
+  breakpoints: {
+    320: {
+      slidesPerView: 1,
+    },
+    550: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    768: {
+      slidesPerView: 4,
+    },
+    1024: {
+      slidesPerView: 5,
+    }
+  },
+};
+
+
 
 export const BrandSlider: FC = () => {
-  const settings = {
-    dots: false,
-    speed: 500,
-    slidesToShow: 4,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    cssEase: "linear",
-    pauseOnHover: true,
-    responsive: [
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          autoplay: true,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 1220,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-    ],
-  };
-
-  const SlickArrowPrew = ({ currentSlide, slideCount, ...props }: any) => {
-    return (
-      <button
-        {...props}
-        className={
-          "brands__prev arrow" + (currentSlide === 0 ? " slick-disabled" : "")
-        }
-        aria-hidden="true"
-        aria-disabled={currentSlide === 0 ? true : false}
-        type="button"
-      >
-        <ArrowLeft className="brands__icon" />
-      </button>
-    );
-  };
-
-  const SlickArrowNext = ({ currentSlide, slideCount, ...props }: any) => {
-    return (
-      <button
-        {...props}
-        className={
-          "brands__next " +
-          (currentSlide === slideCount - 1 ? " slick-disabled" : "")
-        }
-        aria-hidden="true"
-        aria-disabled={currentSlide === slideCount - 1 ? true : false}
-        type="button"
-      >
-        <ArrowRight className="brands__icon" />
-      </button>
-    );
-  };
-
   const data = brands.map((el, index) => (
-    <div key={index} className="brands__slide">
-      <img src={el} alt="brands" />
-    </div>
+    <SwiperSlide>
+      <div key={index} className="brands__slide">
+        <img src={el} alt="brands" />
+      </div>
+    </SwiperSlide>
   ));
- 
+
   return (
     <section className="brands">
-      <Slick
-        {...settings}
-        prevArrow={<SlickArrowPrew />}
-        nextArrow={<SlickArrowNext />}
-      >
-        {data}
-      </Slick>
+      <Swiper {...settings}>{data}</Swiper>
     </section>
   );
 };

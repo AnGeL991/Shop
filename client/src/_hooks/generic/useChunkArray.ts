@@ -15,7 +15,7 @@ export const useChunkArray = (
   useEffect(() => {
     setActivePage(1);
     handleSetSlice(1);
-  }, [category, handleSetSlice]);
+  }, [category]);
 
   const chunk = array.reduce((chunk: number) => {
     chunk = Math.ceil(array.length / amountInChunk);

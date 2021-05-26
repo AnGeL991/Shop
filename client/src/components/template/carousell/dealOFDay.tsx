@@ -20,12 +20,13 @@ const settings = {
   autoplay: {
     delay: 4000,
     pauseOnMouseEnter: true,
+    disableOnInteraction: false
   },
   breakpoints: {
-    480: {
+    320: {
       slidesPerView: 1,
     },
-    760: {
+    550: {
       slidesPerView: 2,
       spaceBetween: 20,
     },

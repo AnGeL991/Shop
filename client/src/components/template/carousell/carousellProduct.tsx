@@ -29,6 +29,7 @@ const settings = {
   autoplay: {
     delay: 2000,
     pauseOnMouseEnter: true,
+    disableOnInteraction: false
   },
   breakpoints: {
     480: {
