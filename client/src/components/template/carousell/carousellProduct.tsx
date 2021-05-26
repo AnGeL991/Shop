@@ -1,24 +1,68 @@
-import { FC, useMemo } from "react";
-import { Carousell, ProductBox } from "components/template";
+import { FC } from "react";
+import { ProductBox } from "components/template";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Pagination, Navigation, Autoplay } from "swiper/core";
 import { Inventory } from "components/interfaces";
+import "swiper/swiper.min.css";
+import "swiper/components/pagination/pagination.min.css";
+import "swiper/components/navigation/navigation.min.css";
+import "./style/carousell.scss";
+
+SwiperCore.use([Pagination, Navigation, Autoplay]);
+
 interface CarousellProps {
   title: string;
   data: Array<Inventory>;
-  duration?: number;
 }
+const settings = {
+  slidesPerView: 2,
+  spaceBetween: 20,
+  slidesPerGroup: 1,
+  loop: true,
+  loopFillGroupWithBlank: true,
+  pagination: false,
+  observer: true,
+  observeParents: true,
+  className: "mySwiper",
+  navigation: true,
+  speed: 1000,
+  autoplay: {
+    delay: 2000,
+    pauseOnMouseEnter: true,
+  },
+  breakpoints: {
+    480: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    760: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 20,
+    },
+    1220: {
+      slidesPerView: 5,
+      spaceBetween: 20,
+    },
+  },
+};
 
 export const CarousellProduct: FC<CarousellProps> = ({ title, data }) => {
-  const arrayOfProduct = useMemo(() => {
-   return  data.map((el) => (
-      <div key={el._id} className="carousel__item">
-        <ProductBox item={el} />
-      </div>
-    ));
-  }, [data]);
+  const arrayOfProduct = data.map((el) => (
+    <SwiperSlide key={el._id}>
+      <ProductBox item={el} />
+    </SwiperSlide>
+  ));
 
   return (
-    <section>
-      <Carousell title={title}>{arrayOfProduct}</Carousell>
+    <section className="carousel">
+      <header className="carousel__header">
+        <h1 className="carousel__title">{title}</h1>
+      </header>
+      <Swiper {...settings}>{arrayOfProduct}</Swiper>
     </section>
   );
 };

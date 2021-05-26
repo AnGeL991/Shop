@@ -31,7 +31,7 @@ export const BrandSlider: FC = () => {
       {
         breakpoint: 768,
         settings: {
-          autoplay:true,
+          autoplay: true,
           infinite: true,
         },
       },
@@ -49,6 +49,7 @@ export const BrandSlider: FC = () => {
       },
     ],
   };
+
   const SlickArrowPrew = ({ currentSlide, slideCount, ...props }: any) => {
     return (
       <button
@@ -64,6 +65,7 @@ export const BrandSlider: FC = () => {
       </button>
     );
   };
+
   const SlickArrowNext = ({ currentSlide, slideCount, ...props }: any) => {
     return (
       <button
@@ -86,7 +88,7 @@ export const BrandSlider: FC = () => {
       <img src={el} alt="brands" />
     </div>
   ));
-
+ 
   return (
     <section className="brands">
       <Slick

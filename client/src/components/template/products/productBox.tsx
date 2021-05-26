@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC,useMemo } from "react";
 import { Tag, Stars } from "components/common";
 import { DealButtons } from "components/template";
 import { useProductBoxLogic } from "_hooks";
@@ -19,21 +19,23 @@ export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
     handleRedirectToProduct,
   } = useProductBoxLogic(item);
 
-  const tag = item.tags ? (
-    <div
-      className={`productBox__tags ${
-        displayWay && "productBox__tag--horizontal"
-      }`}
-    >
-      {item.tags.map((el) => (
-        <Tag
-          key={el}
-          name={el === "discount" ? `-${item.discount.toString()}%` : el}
-          className={` productBox__tag productBox__${el} `}
-        />
-      ))}
-    </div>
-  ) : null;
+  const tag = useMemo(()=>
+    item.tags ? 
+      <div
+        className={`productBox__tags ${
+          displayWay && "productBox__tag--horizontal"
+        }`}
+      >
+        {item.tags.map((el) => (
+          <Tag
+            key={el}
+            name={el === "discount" ? `-${item.discount.toString()}%` : el}
+            className={` productBox__tag productBox__${el} `}
+          />
+        ))}
+      </div>
+     : null
+    ,[displayWay, item.discount, item.tags])
 
   const price = item.discount !== 0 ? (
     <>
@@ -45,7 +47,6 @@ export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
   );
 
   return (
-    <>
       <div
         className={`productBox ${displayWay && "productBox--horizontal"}`}
       >
@@ -108,6 +109,6 @@ export const ProductBox: FC<IProductBox> = ({ item, displayWay = false }) => {
           </span>
         </div>
       </div>
-    </>
+  
   );
 };

@@ -1,0 +1,155 @@
+@import "../../../../styles/settings.scss";
+
+.deal {
+  &__slides {
+    display: flex;
+  }
+  &__wrapper {
+    overflow: hidden;
+    text-align: left;
+    transition: 0.3s linear all;
+  }
+  &__context {
+    transition: 0.3s linear all;
+    background-color: white;
+    overflow: hidden;
+    margin: 20px 0px;
+    padding: 0px 15px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  &__info {
+    margin: 10px 0;
+  }
+  &__imageWrapper {
+    height: 200px;
+    margin: 10px;
+  }
+  &__imageBox {
+    text-align: center;
+    width: 100%;
+  }
+  &__img {
+    width: 85%;
+    max-height: 250px;
+    max-width: 300px;
+  }
+  &__title {
+    color: black;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  &__price {
+    color: black;
+    font-weight: 600;
+    margin-right: 10px;
+  }
+  &__oldPrice {
+    text-decoration: line-through;
+    font-weight: 500;
+    color: $color-gray;
+  }
+  &__description {
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 1.8;
+    text-transform: uppercase;
+    color: $color-darkGray;
+  }
+  &__time {
+    background-color: $bgc-gray;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  &__eachTime {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 25%;
+    text-align: center;
+    color: black;
+    font-weight: 700;
+    margin: 5px 0;
+    border-right: 1px solid $color-gray;
+    &:last-of-type {
+      border: none;
+    }
+    span {
+      color: red;
+      font-weight: 300;
+      font-size: 12px;
+      color: $color-darkGray;
+    }
+  }
+  &__buttons {
+    padding: 10px 0 0;
+  }
+  &__button {
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    margin-right: 5px;
+    padding: 5px 5px 0;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 768px) {
+  .deal {
+    &__context {
+      flex-direction: row;
+      flex-wrap: wrap;
+      height: 300px;
+      margin: 20px 0;
+      padding: 10px;
+    }
+    &__title {
+      font-size: 16px;
+    }
+    &__priceBox {
+      margin: 10px 0;
+    }
+    &__info {
+      width: 50%;
+    }
+    &__images {
+      width: 50%;
+      transform: translateY(20%);
+    }
+
+    &__buttons {
+      display: none;
+    }
+    &__wrapper:hover {
+      .deal__buttons {
+        display: block;
+      }
+    }
+    &__imageBox {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    &__button {
+      width: 35px;
+      height: 35px;
+      min-width: 35px;
+    }
+  }
+}
+
+@media (min-width: 1220px) {
+  .deal {
+    &__title {
+      font-size: 18px;
+    }
+    &__buttons {
+      margin: 10px 0;
+    }
+  }
+}

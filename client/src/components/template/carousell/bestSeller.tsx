@@ -7,9 +7,5 @@ export const BestSeller: FC = () => {
     inventory: { data },
   } = useGetState();
 
-  return (
-    <section>
-      <CarousellProduct title="BestSeller Products" data={data} />
-    </section>
-  );
+  return <CarousellProduct title="Best seller product" {...{ data }} />;
 };

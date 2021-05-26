@@ -3,7 +3,7 @@ import { DealButtons, GalerySlick } from "components/template";
 import { Stars } from "components/common";
 import { Inventory } from "components/interfaces";
 import { useProductBoxLogic } from "_hooks";
-
+import './style/deal.scss'
 type DealProps = {
   item: Inventory;
 };
