@@ -1,19 +1,18 @@
 import { FC } from "react";
-import { useGetState, useLoading } from "_hooks";
-import { Loading, ModalProduct } from "components/template";
+import { useGetState } from "_hooks";
+import { ModalProduct } from "components/template";
 
 import "./style.scss";
 
 export const Listener: FC = () => {
-  const { inventoryLoading } = useLoading();
+ 
   const {
     cart: { loading },
     wish,
   } = useGetState();
 
-  if (inventoryLoading) {
-    return <Loading {...{ active: inventoryLoading }} />;
-  } else if (loading || wish.loading) {
+ 
+   if (loading || wish.loading) {
     return (
       <ModalProduct
         {...{

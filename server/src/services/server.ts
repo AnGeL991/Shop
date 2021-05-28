@@ -19,7 +19,8 @@ class Server {
   static addRouting(app: any) {
     app.use('/api', router);
     app.get('*', (req: Request, res: Response) => {
-      res.sendFile(path.join(__dirname + '../../../client/build/index.html'));
+      const index = path.join(__dirname + './../../../client/build/index.html');
+      res.sendFile(index);
     });
   }
 
@@ -27,7 +28,7 @@ class Server {
     app.use(loggingMiddleware);
   }
   static startServer(app: any) {
-    app.listen(config.server.port, () => info(NAMESPACE, `Server is running on ${config.server.hostname}:${config.server.port}`));
+    app.listen(process.env.PORT || config.server.port, () => info(NAMESPACE, `Server is running on ${config.server.hostname}:${config.server.port} || ${process.env.PORT}`));
   }
 }
 

@@ -27,7 +27,6 @@ const App: FC<MainProps> = ({ history }) => {
       });
     }
   }, [alert.message]);
-
   return (
     <ConnectedRouter history={history}>
       <Listener />

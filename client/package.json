@@ -9,15 +9,21 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@types/gsap": "^1.20.2",
     "@types/jest": "^26.0.15",
     "@types/node": "^15.6.0",
+    "@types/puppeteer": "^5.4.3",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.0",
     "@types/react-redux": "^7.1.16",
     "@types/react-router-dom": "^5.1.7",
+    "@types/react-slick": "^0.23.4",
+    "@types/react-transition-group": "^4.4.1",
+    "@types/redux-logger": "^3.0.8",
     "connected-react-router": "^6.8.0",
     "core-js": "^3.12.1",
     "gsap": "^3.6.1",
+    "logrocket": "^1.2.2",
     "netlify-cli": "^3.30.7",
     "node-sass": "^5.0.0",
     "normalize.css": "^8.0.1",
@@ -64,11 +70,6 @@
     ]
   },
   "devDependencies": {
-    "@types/gsap": "^1.20.2",
-    "@types/puppeteer": "^5.4.3",
-    "@types/react-slick": "^0.23.4",
-    "@types/react-transition-group": "^4.4.1",
-    "@types/redux-logger": "^3.0.8",
     "puppeteer": "^8.0.0"
   }
 }

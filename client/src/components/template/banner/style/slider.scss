@@ -41,6 +41,7 @@
     position: absolute;
     top: 40%;
     left: 50%;
+    overflow: hidden;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
@@ -92,6 +93,9 @@
   .slide {
     &__img {
       object-fit: cover;
+    }
+    &__wrapper {
+      top: 25%;
     }
     height: 500px;
   }

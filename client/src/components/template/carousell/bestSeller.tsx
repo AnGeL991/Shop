@@ -6,6 +6,5 @@ export const BestSeller: FC = () => {
   const {
     inventory: { data },
   } = useGetState();
-
   return <CarousellProduct title="Best seller product" {...{ data }} />;
 };

@@ -24,6 +24,7 @@ const settings = {
   },
   breakpoints: {
     320: {
+      autoplay:false,
       slidesPerView: 1,
     },
     550: {
@@ -31,6 +32,7 @@ const settings = {
       spaceBetween: 20,
     },
     768: {
+      autoplay:true,
       slidesPerView: 4,
     },
     1024: {
@@ -42,9 +44,9 @@ const settings = {
 
 
 export const BrandSlider: FC = () => {
-  const data = brands.map((el, index) => (
-    <SwiperSlide>
-      <div key={index} className="brands__slide">
+  const data = brands.map((el) => (
+    <SwiperSlide key={el}>
+      <div  className="brands__slide">
         <img src={el} alt="brands" />
       </div>
     </SwiperSlide>

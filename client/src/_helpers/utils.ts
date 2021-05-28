@@ -5,27 +5,6 @@ import {
   Inventory,
 } from "components/interfaces";
 
-// export const usePasswordStrength = (e: ChangeEvent<HTMLInputElement>) => {
-//   const [status, setStatus] = useState("");
-
-//   const { value, max } = cancelateComplexity(e.target.value);
-
-//   switch (value) {
-//     case 1:
-//       setStatus("Słabe hasło");
-//       return { status, value, max };
-//     case 3:
-//       setStatus("Silne hasło");
-//       return { status, value, max };
-//     case 5:
-//       setStatus("Bardzo silne hasło");
-//       return { status, value, max };
-//     default:
-//       setStatus("no password");
-//       return { status, value, max };
-//   }
-// };
-
 export const prepareDelivery = (inputDelivery: IDeliveryOption) => {
   const { payment, courier } = inputDelivery;
   if (payment) {

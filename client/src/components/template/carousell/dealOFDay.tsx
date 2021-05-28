@@ -1,46 +1,44 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { DealProduct } from "components/template";
 import { useDisplayProduct } from "_hooks";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Pagination, Navigation, Autoplay } from "swiper/core";
-SwiperCore.use([Pagination, Navigation, Autoplay]);
+import SwiperCore, { Pagination, Navigation } from "swiper/core";
+SwiperCore.use([Pagination, Navigation]);
 
 const settings = {
   slidesPerView: 2,
   spaceBetween: 20,
+  look:true,
   slidesPerGroup: 1,
-  loop: true,
-  loopFillGroupWithBlank: true,
   pagination: false,
-  observer: true,
-  observeParents: true,
   className: "mySwiper",
   navigation: true,
   speed: 1000,
-  autoplay: {
-    delay: 4000,
-    pauseOnMouseEnter: true,
-    disableOnInteraction: false
-  },
   breakpoints: {
     320: {
+  
       slidesPerView: 1,
     },
     550: {
       slidesPerView: 2,
       spaceBetween: 20,
     },
+
   },
 };
 
 export const DealOfDay: FC = () => {
   const { dealProduct } = useDisplayProduct(1);
 
-  const slides = dealProduct.map((el) => (
-    <SwiperSlide key={el._id}>
-      <DealProduct key={el._id} item={el} />
-    </SwiperSlide>
-  ));
+  const slides = useMemo(
+    () =>
+      dealProduct.map((el) => (
+        <SwiperSlide key={el._id}>
+          <DealProduct key={el._id} item={el} />
+        </SwiperSlide>
+      )),
+    [dealProduct]
+  );
 
   return (
     <section className="carousel">

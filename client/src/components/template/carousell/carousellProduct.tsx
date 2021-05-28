@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { ProductBox } from "components/template";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Navigation, Autoplay } from "swiper/core";
@@ -18,23 +18,22 @@ const settings = {
   slidesPerView: 2,
   spaceBetween: 20,
   slidesPerGroup: 1,
-  loop: true,
-  loopFillGroupWithBlank: true,
   pagination: false,
-  observer: true,
-  observeParents: true,
   className: "mySwiper",
   navigation: true,
   speed: 1000,
   autoplay: {
     delay: 2000,
     pauseOnMouseEnter: true,
-    disableOnInteraction: false
+    disableOnInteraction: false,
   },
   breakpoints: {
-    480: {
+    320: {
       slidesPerView: 2,
       spaceBetween: 20,
+    },
+    480: {
+      slidesPerView: 2,
     },
     760: {
       slidesPerView: 3,
@@ -52,12 +51,15 @@ const settings = {
 };
 
 export const CarousellProduct: FC<CarousellProps> = ({ title, data }) => {
-  const arrayOfProduct = data.map((el) => (
-    <SwiperSlide key={el._id}>
-      <ProductBox item={el} />
-    </SwiperSlide>
-  ));
-
+  const arrayOfProduct = useMemo(
+    () =>
+      data.map((el) => (
+        <SwiperSlide key={el._id}>
+          <ProductBox item={el} />
+        </SwiperSlide>
+      )),
+    [data]
+  );
   return (
     <section className="carousel">
       <header className="carousel__header">

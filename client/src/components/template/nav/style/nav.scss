@@ -14,7 +14,7 @@
   max-width: 250px;
   transform: translateX(100%);
   transition: 0.3s linear all;
-  &__active {
+  &--active {
     transform: translateX(0%);
   }
 
@@ -101,8 +101,14 @@
     font-weight: 400;
   }
 }
-
+.mobileNav {
+  overflow: hidden;
+  display: block;
+}
 @media (min-width: 768px) {
+  .mobileNav {
+    display: none;
+  }
   .allCategories {
     padding: 15px 15px 10px;
     text-align: center;

@@ -11,7 +11,7 @@ export const MobileNav: FC = () => {
 
   const filter = useMemo(
     () => (
-      <nav className={`nav ${showModal && "nav__active"}`}>
+      <nav className={`nav ${showModal && "nav--active"}`}>
         <ul className="nav__list">
           {nav.map((el) => (
             <EachLink key={el.name} {...el} />
@@ -23,13 +23,13 @@ export const MobileNav: FC = () => {
   );
 
   return (
-    <>
+    <div className='mobileNav'>
       <div onClick={handleToggleModal} className="icon__bottom nav__button">
         <GoThreeBars color="white" size="28" />
       </div>
       <Modal show={showModal} close={handleToggleModal} fullHight>
         {filter}
       </Modal>
-    </>
+    </div>
   );
 };
