@@ -1,6 +1,7 @@
 
 <p align='center'><img src='https://github.com/AnGeL991/Shop/blob/master/images/logo.svg' /></p>
 
+<p > <h3>Live demo:  <a href='https://furnituresho.netlify.app/' alt='Live Link' target="_blank">https://furnituresho.netlify.app/</a> </h3>  </p>
   <ol>
    <li>
       <a href="#tech-stack">Tech Stack</a>
