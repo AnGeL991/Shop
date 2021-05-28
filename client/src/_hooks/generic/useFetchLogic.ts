@@ -9,9 +9,7 @@ export const useFetchLogic = () => {
   const fetchProduct = async (dispatch: Function) => {
     const products = await client(`products`, null);
     if (products) {
-      setTimeout(() => {
-        dispatch(actions.doneFetchingAppData(products.result));
-      }, 4000);
+      dispatch(actions.doneFetchingAppData(products.result));
     }
   };
   const fetchUser = async (dispatch: Function) => {
